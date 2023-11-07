@@ -1,0 +1,162 @@
+﻿@model KK_BookStore.BinhLuan
+
+@{
+    ViewBag.Title = "BinhLuan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/Details/detail.css" rel="stylesheet" />
+    <title>eCommerce Product Detail</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="card">
+            <div class="container-fliud">
+                <div class="wrapper row">
+                    <div class="preview col-md-6">
+
+                        <div class="preview-pic tab-content">
+                            <div class="tab-pane active" id="pic-1"><img src="@Model.Sach.HinhAnh" style="width:200px;margin-left:100px" /></div>
+                            @*<div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
+                                <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
+                                <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
+                                <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>*@
+                        </div>
+                        
+
+                    </div>
+                    <div class="details col-md-6">
+
+                        <!--<h3 class="product-title">@Model.Sach.TenSach</h3>
+                        <div class="rating">
+                            <div class="stars">-->
+                                @*<span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>*@
+                                <!--@Model.Sach.TenTacGia
+                            </div>
+                            <span class="review-no">@Model.Sach.SoLike like</span>
+                        </div>
+
+                        <p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia sem sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p>
+                        <h4 class="price">current price: <span>@Model.Sach.DonGia</span></h4>-->
+                        @*<p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>*@
+                        @*<h5 class="sizes">
+                                sizes:
+                                <span class="size" data-toggle="tooltip" title="small">s</span>
+                                <span class="size" data-toggle="tooltip" title="medium">m</span>
+                                <span class="size" data-toggle="tooltip" title="large">l</span>
+                                <span class="size" data-toggle="tooltip" title="xtra large">xl</span>
+                            </h5>
+                            <h5 class="colors">
+                                colors:
+                                <span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>
+                                <span class="color green"></span>
+                                <span class="color blue"></span>
+                            </h5>*@
+                        <div class="action">
+                            @*<button class="add-to-cart btn btn-default" type="button">add to cart</button>*@
+                            <a class="add-to-cart btn btn-default" href="@Url.Action("ThemGioHang", "GioHang",new { @id = Model.MaSach, @strURL = Request.Url.ToString()})">Thêm vào giỏ hàng</a>
+                            @*<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>*@
+                            <a class="like btn btn-default" href="@Url.Action("themDanhSachYeuThich", "DanhSachYeuThich",new { @id = Model.MaSach, @strURL = Request.Url.ToString()})"><span class="fa fa-heart"></span></a>
+                            <a class="like btn btn-default" href="@Url.Action("danhSachBinhLuan", "Sach", new {@id = Model.MaSach})"><i class="fa-solid fa-comment"></i></a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+<link href="~/Content/BinhLuan/ShareBL.css" rel="stylesheet" />
+<link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="widget-area no-padding blank">
+                <div class="status-upload" style="text-align: center; width: fit-content; font-size: large; margin-left: 800px">
+
+
+                    @using (Html.BeginForm("themBinhLuan", "Sach", FormMethod.Get))
+                    {
+
+                        <!--<input list="browsers" type="text" placeholder="cmt" name="masach" />
+                        <datalist id="browsers">-->
+
+                        @*<option value=@Model.MaSach>*@
+
+                        <!--</datalist>
+
+                        <input type="text" placeholder="cmt" name="noidung" />-->
+                        @*@Html.TextBox("searching")*@
+                        <!--<input type="submit" value="them" />-->
+
+                        <input hidden style="width:50px;" list="browsers" value="@Model.MaSach" type="text" placeholder="ma" name="masach" />
+                        @*<datalist id="browsers">
+
+                                <option value=@Model.MaSach>
+
+                            </datalist>*@
+                        <input style="width:500px;height:fit-content" name="noidung" placeholder="Add your comment here" />
+                        <button style="margin-left:20px" type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Share</button>
+
+
+
+
+
+
+                    }
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<link href="~/Content/BinhLuan/BinhLuan.css" rel="stylesheet" />
+<div class='container'>
+    <div class="media comment-box" style="background-color:white">
+
+        <div class="media-left">
+            <a href="#">
+                <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" style="width:50px">
+            </a>
+        </div>
+        <div class="media-body">
+            <h4 style="color:aqua" class="media-heading">Azar Hank</h4>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+        </div>
+    </div>
+</div>-->

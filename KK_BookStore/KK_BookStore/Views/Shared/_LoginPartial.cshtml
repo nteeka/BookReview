@@ -1,0 +1,55 @@
+﻿@using Microsoft.AspNet.Identity
+<link href="~/Content/DropDown.css" rel="stylesheet" />
+
+@if (Request.IsAuthenticated)
+{
+
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+<div style="margin-left: 10px;" class="dropdown">
+
+    @*<button class="rounded-circle" style="width: 100px; height: 50px; font-size: large; margin-top: 10px;"></button>*@
+
+    @if (ViewBag.hinh != null)
+    {
+        <img src="@ViewBag.hinh" style="width:70px;height:50px;margin-top:25px" class="profile-user-img img-responsive img-circle" />
+
+    }
+    else
+    {
+        <img src="\Content\user.jpg" style="width: 70px; height: 50px; margin-top: 25px" class="profile-user-img img-responsive img-circle" />
+
+    }
+    @*<img src="@ViewBag.hinh" style="width:50px;height:50px" class="profile-user-img img-responsive img-circle" />*@
+
+
+    <div class="dropdown-content">
+        <a style="text-align:center;color:white" href="https://localhost:44339/Manage">Manager</a>
+        <a style="text-align: center; color: white" href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
+
+    </div>
+</div>
+
+        @*<ul>
+                <li>
+                    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                </li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+            </ul>*@
+    }
+}
+else
+{
+    
+    
+    <div class="dropdown">
+        <button style="font-size:larger;margin-top:31px;margin-left:10px">Account</button>
+        <div class="dropdown-content">
+            <a href="https://localhost:44339/Account/Register">Register</a>
+            <a href="https://localhost:44339/Account/Login">Login</a>
+        </div>
+    </div>
+
+
+}

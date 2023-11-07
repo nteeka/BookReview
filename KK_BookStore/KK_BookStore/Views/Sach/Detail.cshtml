@@ -1,0 +1,478 @@
+﻿@model KK_BookStore.Sach
+@{
+    ViewBag.Title = "Detail";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html class="wide wow-animation smoothscroll scrollTo" lang="en">
+<head>
+    <!-- Site Title-->
+    <title>Comunity_Reviewer </title>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="keywords" content="intense web design multipurpose template">
+    <meta name="date" content="Dec 26">
+    <link rel="icon" href="~/HTML_CSS_JS/detail_Sach/images/favicon.ico" type="image/x-icon">
+    <!-- Stylesheets-->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=PT+Sans:400,700">
+    @*<link rel="stylesheet" href="css/style.css">*@
+    <link href="~/HTML_CSS_JS/detail_Sach/style.css" rel="stylesheet" />
+    <!--[if lt IE 10]>
+    <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+    <script src="js/html5shiv.min.js"></script>
+        <![endif]-->
+    <script src="https://kit.fontawesome.com/e38363a3ae.js" crossorigin="anonymous"></script>
+    <link href="~/Content/LayoutChung/font-awesome.min.css" rel="stylesheet" />
+    @*<link href="~/Content/LayoutChung/bootstrap.min.css" rel="stylesheet" />*@
+    <link href="~/Content/LayoutChung/style.css" rel="stylesheet" />
+</head>
+<body>
+    <section class="top-area">
+        <div class="header-area">
+            <!-- Start Navigation -->
+            <nav class="navbar navbar-default bootsnav  navbar-sticky navbar-scrollspy" data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
+
+                <div class="container">
+
+                    <!-- Start Header Navigation -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <a class="navbar-brand" href="https://localhost:44339/Home/Index">list<span>race</span></a>
+
+                    </div><!--/.navbar-header-->
+                    <!-- End Header Navigation -->
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
+                        <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+                            <li><a href="https://localhost:44339/Home/Index">home</a></li>
+                            <li class="scroll"><a href="#works">how it works</a></li>
+                            <li class="scroll"><a href="#explore">explore</a></li>
+                            @*<li class="scroll"><a href="#reviews">review</a></li>*@
+                            <li class="scroll"><a href="#reviews">review</a></li>
+                            <li><a href="https://localhost:44339/Blog/Index">blog</a></li>
+
+                            <li class="scroll"><a href="#contact">contact</a></li>
+                        </ul><!--/.nav -->
+                    </div><!-- /.navbar-collapse -->
+                </div><!--/.container-->
+            </nav><!--/nav-->
+            <!-- End Navigation -->
+        </div><!--/.header-area-->
+        <div class="clearfix"></div>
+
+    </section>
+    <!-- Page-->
+    <div class="page text-center">
+        <!-- Page Head-->
+        @*<header class="page-head"></header>*@
+        <!-- api gg tranlate -->
+        <!-- Page Contents-->
+        <main class="page-content">
+            <!--<section class="context-dark reveal-md-block section-mobile-panel">-->
+            @*<a class="fa-solid fa-arrow-up" href="#" data-custom-toggle="panel-icons"></a>*@
+            <!--<div class="shell-wide">
+                    <div class="range range-xs-middle">
+                        <div class="cell-sm-6 text-sm-left"><a class="brand" href="index.html"><img class="img-responsive reveal-inline-block" src="~/HTML_CSS_JS/detail_Sach/images/logo-light-187x32.png" width="138" height="46" alt=""></a></div>
+                        <div class="cell-sm-6">
+                            <ul class="list-inline pull-sm-right list-inline-darkest" id="panel-icons">
+                                <li><a class="fa-brand fa-google" href="#"></a></li>
+                                <li><a class="fa-brand fa-youtube" href="#"></a></li>
+                                <li><a class="fa-brand fa-tumblr" href="#"></a></li>
+                                <li><a class="fa-brand fa-tiktok" href="#"></a></li>
+                                <li><a class="fa-brand fa-instagram" href="#"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>-->
+            <!-- Information Architecture-->
+            <section class="section parallax-container bg-overlay-white" data-parallax-img="">
+                <div class="parallax-content">
+                    <div class="shell">
+                        <div class="range">
+                            <div class="range range-xs-center range-xs-middle section-cover range-md-right">
+                                <div>
+                                    <img src="@Model.HinhAnh" style="width:350px;height:500px;margin-right:150px" />
+                                </div>
+                                <div class="cell-xs-10 cell-md-6 text-md-left section-top-110 section-bottom-66 section-md-bottom-110">
+                                    <div>
+                                        <h1 class="text-uppercase text-bold">@Model.TenSach</h1>
+                                    </div>
+                                    <div class="offset-top-17">
+                                        <h4 class="text-dark text-regular">@Model.MoTa</h4>
+                                    </div>
+                                    <div class="offset-top-30 offset-md-top-60 group"><a class="btn btn-primary btn-icon btn-icon-left" href="#"><span class="fa fa-heart"></span> ADD TO WISHLIST</a><a class="btn btn-default btn-icon btn-icon-left" href="#"><span class="fa fa-info"></span> DETAIL</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--Counters-->
+            <section class="section-95 bg-macaroni context-dark">
+                <div class="shell-wide">
+                    <div class="range">
+                        <div class="cell-sm-8 cell-sm-preffix-2 cell-md-12 cell-md-preffix-0">
+                            <div class="range range-sm-bottom section-divided">
+                                <div class="cell-md-3 cell-sm-6">
+                                    <!-- Counter type 2-->
+                                    <div class="counter-type-2">
+                                        <span class="fa-regular fa-file"></span>
+                                        <div class="offset-top-10"><span class="h2 text-bold counter" data-speed="1000" data-from="0" data-to="56000"></span><span class="h2 text-bold"></span></div>
+                                        <div class="text-uppercase text-bold offset-top-15 text-spacing-60">PAGES</div>
+                                    </div>
+                                </div>
+                                <div class="cell-md-3 cell-sm-6 offset-top-60 offset-sm-top-0">
+                                    <!-- Counter type 2-->
+                                    <div class="counter-type-2">
+                                        <span class="fa fa-calendar"></span>
+                                        <div class="offset-top-10">
+                                            <div class="h2 text-bold counter" data-speed="1500" data-from="0" data-to="@Model.NamXuatBan"></div>
+                                        </div>
+                                        <div class="text-uppercase text-bold offset-top-15 text-spacing-60">PUBLISHING YEAR</div>
+                                    </div>
+                                </div>
+                                <div class="cell-md-3 cell-sm-6 offset-top-60 offset-md-top-0">
+                                    <!-- Counter type 2-->
+                                    <div class="counter-type-2">
+                                        <span class="fa fa-comment"></span>
+                                        <div class="offset-top-10">
+                                            <div class="h2 text-bold counter" data-speed="1500" data-from="0" data-to="@ViewBag.soBinhLuan"></div>
+                                        </div>
+                                        <div class="text-uppercase text-bold offset-top-15 text-spacing-60">COMMENTS</div>
+                                    </div>
+                                </div>
+                                <div class="cell-md-3 cell-sm-6 offset-top-60 offset-md-top-0">
+                                    <!-- Counter type 2-->
+                                    <div class="counter-type-2">
+                                        <span class="fa fa-money"></span>
+                                        <div class="offset-top-10"><span class="h2 text-bold counter" data-speed="1300" data-from="0" data-to="@Model.DonGia"></span><span class="h2 text-bold"> VNĐ</span></div>
+                                        <div class="text-uppercase text-bold offset-top-15 text-spacing-60">PRICE</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--You Can Read it Anyhow, Anytime, Anywhere -->
+            <section class="section-top-85" style="overflow: hidden;">
+                <div class="shell">
+                    <div class="range range-xs-center">
+                        <div class="cell-xs-10 cell-md-6 text-md-left cell-md-push-2 offset-top-15">
+                            <h2>You Can Buy it at FAHASHA</h2>
+                            <p class="inset-md-right-100">
+                                FAHASA is the leading brand in the Vietnamese book publishing industry, right from the subsidy period to the period of market economy, innovation, international integration, the Company ...
+                            </p>
+                            <div class="offset-lg-top-60 offset-top-30"><a class="btn btn-primary btn-icon btn-icon-left" href="#"><span class="fa fa-cart-plus"></span> buy now</a></div>
+                        </div>
+                        <div class="cell-xs-10 cell-md-6 cell-md-push-1 offset-top-60 offset-md-top-0"><img class="img-responsive wow fadeInUp reveal-inline-block" src="https://vnpayqr.vn/wp-content/uploads/2020/08/FAHASA.png" width="546" height="513" alt=""></div>
+                    </div>
+                </div>
+            </section>
+            <!-- Information Architecture-->
+            <section class="section parallax-container context-dark" data-parallax-img="/HTML_CSS_JS/detail_Sach/images/bg-02-1920x800.jpg">
+                <div class="parallax-content">
+                    <div class="shell section-110">
+                        <div class="range range-xs-center range-md-left">
+                            <div class="cell-xs-10 cell-md-4 text-md-left">
+                                <div>
+                                    <h2 class="text-bold">Read All Books</h2>
+                                </div>
+                                <div class="offset-top-17">
+                                    <p>
+                                        The books of our publishing house are available at all
+                                        city libraries throughout the country as well as
+                                        at local book stores.
+                                    </p>
+                                </div>
+                                <div class="offset-top-30 offset-md-top-60"><a class="btn btn-primary btn-icon btn-icon-left" href="#"><span class="fa fa-book"></span> READ</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- What People Say-->
+            <section class="section-80 section-md-110 section-md-bottom-150 bg-white">
+                <div class="shell">
+                    <h2 class="text-bold">What People Say</h2>
+                    <div class="range range-xs-center offset-md-top-30 offset-top-60">
+                        @if (ViewBag.soBinhLuan == 0)
+                        {
+                            <h2 class="text-bold">No one has commented yet!</h2>
+                            <div style="margin-top: 50px;">
+                                <a href="#" style="text-align: center;">SHOW MORE</a>
+                            </div>
+                        }
+                        else
+                        {
+                            foreach (var item in ViewBag.danhSachBinhLuan)
+                            {
+                                <div class="cell-sm-8 cell-md-4 wow fadeInLeft" data-wow-delay="0.1s">
+                                    <blockquote class="quote quote-classic quote-outboxed">
+                                        <div class="quote-body">
+                                            <p class="text-darker">
+                                                <q>@item.NoiDung</q>
+                                            </p>
+                                        </div>
+                                        <div class="quote-meta unit unit-horizontal unit-spacing-sm unit-middle">
+                                            <div class="unit-left unit-item-narrow"><img class="img-circle quote-img" width="80" height="80" src="@item.NguoiDung.Hinh" alt="" /></div>
+                                            <div class="unit-body unit-item-wide">
+                                                <h6 class="quote-author text-uppercase">
+                                                    <cite class="text-normal">@item.NguoiDung.HoTen</cite>
+                                                </h6>
+                                                <p class="quote-desc text-uppercase text-primary">Xem trang </p>
+                                            </div>
+                                        </div>
+                                    </blockquote>
+                                </div>
+                                ViewBag.sl++;
+                                if (ViewBag.sl == 3)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+
+
+                    </div>
+
+                </div>
+                @if (ViewBag.soBinhLuan > 3)
+                {
+                    <div style="margin-top: 50px;">
+                        <a href="#" style="text-align: center;">SHOW MORE</a>
+                    </div>
+                }
+
+            </section>
+            <!-- Pricing & Plans-->
+            <section class="section-80 section-md-110 section-md-bottom-35 bg-caribbean">
+                <div class="shell">
+                    <h2 class="text-white">Pricing & Plans</h2>
+                    <div class="range range-narrow range-md-center">
+                        <div class="cell-sm-6 cell-xs-8 cell-xs-preffix-2 cell-md-3 cell-sm-preffix-0 wow fadeInRight" data-wow-delay="0.1s">
+                            <!-- Planning Box type 1-->
+                            <div class="box-planning box-planning-type-1">
+                                <div class="box-planning-label">
+                                    <svg class="box-planning-svg" x="0px" y="0px" viewbox="0 0 76.5 76.5" enable-background="new 0 0 76.5 76.5" xml:space="preserve">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4-11.4l76.5,76.5L76.4,76.5L0,0.1L11.4-11.4z"></path>
+                    </svg><span>Popular</span>
+                                </div>
+                                <h1>Personal</h1>
+                                <div class="box-planning-price">
+                                    <p class="h2 offset-top-10">$19</p>
+                                </div>
+                                <p class="small text-uppercase offset-top-0">per month</p>
+                                <hr class="bg-gray-lighter" />
+                                <ul class="list list-unstyled">
+                                    <li><span class="text-darker">1</span><span class="text-dark">Account</span></li>
+                                    <li><span class="text-darker">0</span><span class="text-dark">Private Books</span></li>
+                                    <li><span class="text-darker">1</span><span class="text-dark">Free Download</span></li>
+                                    <li><span class="text-darker">0</span><span class="text-dark">Custom Covers</span></li>
+                                    <li><span class="text-darker">1</span><span class="text-dark">Paperback Book</span></li>
+                                </ul><a class="btn btn-block btn-default" href="#">Sign up</a>
+                            </div>
+                        </div>
+                        <div class="cell-sm-6 cell-xs-8 cell-xs-preffix-2 cell-md-3 cell-sm-preffix-0 offset-top-30 offset-sm-top-0 wow fadeInRight" data-wow-delay="0.3s">
+                            <!-- Planning Box type 1-->
+                            <div class="box-planning box-planning-type-1 active">
+                                <div class="box-planning-label">
+                                    <svg class="box-planning-svg" x="0px" y="0px" viewbox="0 0 76.5 76.5" enable-background="new 0 0 76.5 76.5" xml:space="preserve">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4-11.4l76.5,76.5L76.4,76.5L0,0.1L11.4-11.4z"></path>
+                    </svg><span>Popular</span>
+                                </div>
+                                <h1>Team</h1>
+                                <div class="box-planning-price">
+                                    <p class="h2 offset-top-10">$59</p>
+                                </div>
+                                <p class="small text-uppercase offset-top-0">per month</p>
+                                <hr class="bg-gray-lighter" />
+                                <ul class="list list-unstyled">
+                                    <li><span class="text-darker">2</span><span class="text-dark">Accounts</span></li>
+                                    <li><span class="text-darker">5</span><span class="text-dark">Private Books</span></li>
+                                    <li><span class="text-darker">10</span><span class="text-dark">Free Downloads</span></li>
+                                    <li><span class="text-darker">2</span><span class="text-dark">Custom Covers</span></li>
+                                    <li><span class="text-darker">3</span><span class="text-dark">Paperback Books</span></li>
+                                </ul><a class="btn btn-block btn-primary" href="#">Sign up</a>
+                            </div>
+                        </div>
+                        <div class="cell-sm-6 cell-xs-8 cell-xs-preffix-2 cell-md-3 cell-sm-preffix-0 offset-top-30 offset-md-top-0 wow fadeInRight" data-wow-delay="0.5s">
+                            <!-- Planning Box type 1-->
+                            <div class="box-planning box-planning-type-1">
+                                <div class="box-planning-label">
+                                    <svg class="box-planning-svg" x="0px" y="0px" viewbox="0 0 76.5 76.5" enable-background="new 0 0 76.5 76.5" xml:space="preserve">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4-11.4l76.5,76.5L76.4,76.5L0,0.1L11.4-11.4z"></path>
+                    </svg><span>Popular</span>
+                                </div>
+                                <h1>Studio</h1>
+                                <div class="box-planning-price">
+                                    <p class="h2 offset-top-10">$89</p>
+                                </div>
+                                <p class="small text-uppercase offset-top-0">per month</p>
+                                <hr class="bg-gray-lighter" />
+                                <ul class="list list-unstyled">
+                                    <li><span class="text-darker">3</span><span class="text-dark">Accounts</span></li>
+                                    <li><span class="text-darker">10</span><span class="text-dark">Private Books</span></li>
+                                    <li><span class="text-darker">20</span><span class="text-dark">Free Downloads</span></li>
+                                    <li><span class="text-darker">5</span><span class="text-dark">Custom Covers</span></li>
+                                    <li><span class="text-darker">7</span><span class="text-dark">Paperback Books</span></li>
+                                </ul><a class="btn btn-block btn-default" href="#">Sign up</a>
+                            </div>
+                        </div>
+                        <div class="cell-sm-6 cell-xs-8 cell-xs-preffix-2 cell-md-3 cell-sm-preffix-0 offset-top-30 offset-md-top-0 wow fadeInRight" data-wow-delay="0.7s">
+                            <!-- Planning Box type 1-->
+                            <div class="box-planning box-planning-type-1">
+                                <div class="box-planning-label">
+                                    <svg class="box-planning-svg" x="0px" y="0px" viewbox="0 0 76.5 76.5" enable-background="new 0 0 76.5 76.5" xml:space="preserve">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4-11.4l76.5,76.5L76.4,76.5L0,0.1L11.4-11.4z"></path>
+                    </svg><span>Popular</span>
+                                </div>
+                                <h1>Business</h1>
+                                <div class="box-planning-price">
+                                    <p class="h2 offset-top-10">$129</p>
+                                </div>
+                                <p class="small text-uppercase offset-top-0">per month</p>
+                                <hr class="bg-gray-lighter" />
+                                <ul class="list list-unstyled">
+                                    <li><span class="text-darker">4</span><span class="text-dark">Accounts</span></li>
+                                    <li><span class="text-darker">12</span><span class="text-dark">Private Books</span></li>
+                                    <li><span class="text-darker">25</span><span class="text-dark">Free Downloads</span></li>
+                                    <li><span class="text-darker">10</span><span class="text-dark">Custom Covers</span></li>
+                                    <li><span class="text-darker">15</span><span class="text-dark">Paperback Books</span></li>
+                                </ul><a class="btn btn-block btn-default" href="#">Sign up</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--About the Author-->
+            <section class="section-80 section-md-110">
+                <div class="shell">
+                    <h2>About the Author</h2>
+                    <div class="range range-xs-center">
+                        <div class="cell-xs-10 cell-md-4"><img class="img-responsive reveal-inline-block wow fadeInLeft" src="images/home-02-370x330.jpg" width="370" height="330" alt=""></div>
+                        <div class="cell-xs-10 cell-md-8 text-md-left offset-top-30 offset-md-top-0">
+                            <div class="inset-md-left-55">
+                                <div>
+                                    <h3 class="text-regular">@Model.TenTacGia</h3>
+                                </div>
+                                <p class="small offset-top-10">Author of “@Model.TenSach”</p>
+                                <p class="text-darker offset-top-30">Mark Hoffman is an independent information architecture consultant. He has been instrumental in helping establish the field of information architecture, and in articulating the role and value of librarianship within the field. Mark played a leading role in organizing and programming first information architecture conferences.</p>
+                                <p class="text-darker">As a consultant, he has helped AT&T, Ford, PayPal, Caterpillar, and many other large, highly-political organizations grapple with their information headaches.</p>
+                                <div class="offset-top-30 offset-md-top-55"><a class="btn btn-primary" href="#">DETAIL ABOUT AUTHOR</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Join Our Newsletter-->
+            @*<section class="section parallax-container context-dark" data-parallax-img="/HTML_CSS_JS/detail_Sach/images/bg-03-1920x650.jpg">
+                    <div class="parallax-content">
+                        <div class="shell section-110">
+                            <div class="range range-xs-center">
+                                <div class="cell-xs-10 cell-sm-7 cell-lg-5">
+                                    <div>
+                                        <h2 class="text-bold">Join Our Newsletter</h2>
+                                    </div>
+                                    <div class="offset-top-17">
+                                        <p>Keep up with our latest news, updates, and special book offers.<br class="veil reveal md-inline-block"> Enter your e-mail and subscribe to our newsletter.</p>
+                                    </div>
+                                    <div class="offset-top-30 offset-md-top-60 inset-md-left-55 inset-md-right-55">
+                                        <form class="rd-mailform" data-form-output="form-subscribe-footer" data-form-type="subscribe" method="post" action="bat/rd-mailform.php">
+                                            <div class="form-group">
+                                                <div class="input-group input-group-sm">
+                                                    <span class="input-group-addon"><span class="fa-inbox fa-email"></span></span>
+                                                    <input class="form-control" placeholder="Enter your E-Mail" type="email" name="email" /><span class="input-group-btn">
+                                                    <button class="btn btn-sm btn-primary" type="submit">Subscribe</button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="form-output" id="form-subscribe-footer"></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>*@
+        </main>
+        <!--<footer class="section-50 section-sm-30 page-footer bg-gray-base context-dark">-->
+        <!-- Default footer-->
+        <!--<div class="shell text-sm-left">
+                <div class="footer-brand reveal-inline-block"><a href="index.html"> <img class="img-responsive reveal-inline-block" src="/HTML_CSS_JS/detail_Sach/images/logo-footer-212x55.png" width="138" height="46" alt=""></a></div>
+                <div class="pull-sm-right offset-top-30 offset-sm-top-10">
+                    <ul class="list-inline">
+                        <li><a class="icon fa fa-facebook icon-xxs icon-circle icon-gray-darkest-filled" href="#"></a></li>
+                        <li><a class="icon fa fa-twitter icon-xxs icon-circle icon-gray-darkest-filled" href="#"></a></li>
+                        <li><a class="icon fa fa-google-plus icon-xxs icon-circle icon-gray-darkest-filled" href="#"></a></li>
+                        <li><a class="icon fa fa-linkedin icon-xxs icon-circle icon-gray-darkest-filled" href="#"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>-->
+
+        <footer id="footer" class="footer">
+            <div class="container">
+                <div class="footer-menu">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="navbar-header">
+                                <a class="navbar-brand" href="https://localhost:44339/Home/Index">list<span>race</span></a>
+                            </div><!--/.navbar-header-->
+                        </div>
+                        <div class="col-sm-9">
+                            <ul class="footer-menu-item">
+                                <li class="scroll"><a href="#works">how it works</a></li>
+                                <li class="scroll"><a href="#explore">explore</a></li>
+                                <li class="scroll"><a href="#reviews">review</a></li>
+                                <li class="scroll"><a href="#blog">blog</a></li>
+                                <li class="scroll"><a href="#contact">contact</a></li>
+                                <li class=" scroll"><a href="#contact">my account</a></li>
+                            </ul><!--/.nav -->
+                        </div>
+                    </div>
+                </div>
+                <div class="hm-footer-copyright">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <p>
+                                &copy;copyright. designed and developed by <a href="https://www.themesine.com/">themesine</a>
+                            </p><!--/p-->
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="footer-social">
+                                <span><i class="fa fa-phone"> +1  (222) 777 8888</i></span>
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-linkedin"></i></a>
+                                <a href="#"><i class="fa fa-google-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!--/.hm-footer-copyright-->
+            </div><!--/.container-->
+
+
+
+    </div><!--/.scroll-Top-->
+    </footer><!--/.footer-->
+    </div>
+    <!-- Global Mailform Output-->
+    <div class="snackbars" id="form-output-global"></div>
+    <!-- Java script-->
+    @*<script src="js/core.min.js"></script>*@
+    <script src="~/HTML_CSS_JS/detail_Sach/core.min.js"></script>
+    @*<script src="js/script.js"></script>*@
+    <script src="~/HTML_CSS_JS/detail_Sach/script.js"></script>
+</body>
+</html>
+
+
+
+

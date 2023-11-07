@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "SachTheoTheLoai";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/IndexSach/IndexSach.css" rel="stylesheet" />
+<h2 style="margin-top:100px;margin-bottom:100px;text-align:center">Sách theo thể loại @ViewBag.ten</h2>
+@if (Model.Count == 0)
+{
+    <h1>@ViewBag.Sach</h1>
+}
+@*<h1>@ViewBag.Sach</h1>*@
+<div id=" divBody">
+    @{ int i = 0;}
+    <div class="container">
+
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                i++;
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="product-grid6">
+                        <div class="product-image6">
+                            <a href="https://localhost:44339/Sach/Detail/@item.MaSach">
+                                <img class="pic-1" src="@item.HinhAnh" style="width:200px;height:300px">
+                            </a>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="title"><a style="color:white" href="https://localhost:44339/Sach/Detail/@item.MaSach">@item.TenSach</a></h3>
+                            <div class="price">
+                                @String.Format("{0:0,0}", item.DonGia) VND
+                                @foreach (var temp in ViewBag.sachGiamGia)
+                                {
+                                    if (temp.MaSach == item.MaSach)
+                                    {
+                                        <span> @String.Format("{0:0,0}", temp.GiaCu)</span>
+                                    }
+                                }
+                            </div>
+                        </div>
+                        <ul class="social">
+                            <li><a href="https://localhost:44339/Sach/danhSachBinhLuan/@item.MaSach" data-tip="Comments"><i class="fa fa-comment"></i></a></li>
+
+                            <li><a href="https://localhost:44339/Sach/Detail/@item.MaSach" data-tip="Detail"><i class="fa fa-eye"></i></a></li>
+                            <li>
+                                <a data-tip="Add to wistlist" class="like btn btn-default" href="@Url.Action("themDanhSachYeuThich", "DanhSachYeuThich", new { @id = item.MaSach, @strURL = Request.Url.ToString() })"><span class="fa fa-heart"></span></a>
+                            </li>
+
+                            <li>
+                                <a data-tip="Add to cart" class="add-to-cart btn btn-default" href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.MaSach, @strURL = Request.Url.ToString() })"><span class="fa fa-shopping-cart"></span></a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </div>
+
+                <hr>
+
+   
+            if (i % 3 == 0)
+            {
+                <div style="clear:both"></div>
+            }
+        }
+        </div>
+     }
+</div>
+    </div>
+        <div style="clear:both"></div>
+
+

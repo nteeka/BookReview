@@ -1,0 +1,146 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+<title>K&K_Admin</title>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<link href="~/Content/admin/index.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+<div style="margin-top:60px" class="container">
+    <h1 style="text-align:center;margin-bottom:50px">ADMIN</h1>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card-counter primary">
+                <i class="fa fa-product-hunt"></i>
+                <span class="count-numbers">@ViewBag.soLuongDonHang</span>
+                <span class="count-name">Tổng đơn hàng</span>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <a href="https://localhost:44339/Admin/quanLyDonHang">
+                <div class="card-counter danger">
+                    <i class="fa fa-ticket"></i>
+                    <span class="count-numbers">@ViewBag.soLuongDonHangChuaDuyet</span>
+                    <span class="count-name">Đơn hàng chưa duyệt</span>
+                </div>
+            </a>
+
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-counter success">
+                <i class="fa fa-cash-register"></i>
+                <span class="count-numbers">@String.Format("{0:0,0}", ViewBag.tongDoanhThu)   VNĐ</span>
+                <span class="count-name">Tổng Doanh thu</span>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <a href="https://localhost:44339/Admin/quanLyNguoiDung">
+                <div class="card-counter info">
+
+                    <i class="fa fa-users"></i>
+                    @if (ViewBag.tongDoanhThuTrongNgay == null)
+                    {
+                        <span class="count-numbers">0 VNĐ</span>
+                    }
+                    else
+                    {
+                        <span class="count-numbers"> @ViewBag.tongDoanhThuTrongNgay VNĐ</span>
+
+                    }
+                    <span class="count-name">Tổng doanh thu trong ngày</span>
+                </div>
+            </a>
+        </div>
+
+
+
+        <div class="col-md-3">
+            <a href="https://localhost:44339/Admin/quanLyNguoiDung">
+                <div class="card-counter info">
+
+                    <i class="fa fa-users"></i>
+                    <span class="count-numbers"> @ViewBag.soLuongNguoiMuaTrongNgay</span>
+                    <span class="count-name">Số lượng đơn trong ngày</span>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="https://localhost:44339/Admin/quanLyNguoiDung">
+                <div class="card-counter info">
+
+                    <i class="fa fa-users"></i>
+                    <span class="count-numbers"> @ViewBag.soLuongNguoiMuaTrongThang</span>
+                    <span class="count-name">Số lượng đơn trong tháng</span>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="https://localhost:44339/Admin/quanLyNguoiDung">
+                <div class="card-counter info">
+
+                    <i class="fa fa-users"></i>
+                    <span class="count-numbers"> @ViewBag.soLuongNguoiDung</span>
+                    <span class="count-name">Người đăng ký</span>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <div class="card-counter success">
+                <i class="fa fa-cash-register"></i>
+                <span class="count-numbers">@String.Format("{0:0,0}", ViewBag.tongDoanhThuTrongThang)   VNĐ</span>
+                <span class="count-name">Tổng Doanh thu trong tháng</span>
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <a href="https://localhost:44339/Admin/quanLyNguoiDung">
+                <div class="card-counter info">
+                    <img style="width:50px;" src="@ViewBag.anhSachNhieuLike.HinhAnh" />
+                    <span class="count-numbers">@ViewBag.anhSachNhieuLike.TenSach (@ViewBag.anhSachNhieuLike.SoLike)</span>
+                    <span class="count-name">Sách nhiều like nhất</span>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-6">
+            <a href="https://localhost:44339/Admin/quanLyNguoiDung">
+                <div class="card-counter info">
+                    <i class="fa fa-users"></i>
+                    <img style="width:60px;border-radius:50%" src="@ViewBag.anhNguoiMuaNhieuNhat" />
+                    <span class="count-numbers">@ViewBag.nguoiMuaNhieuNhat</span>
+                    <span class="count-name">Người mua nhiều nhất</span>
+                </div>
+            </a>
+        </div>
+        <!--<div style="width:50%">
+    <a href="https://localhost:44339/Admin/quanLyNguoiDung">
+        <div style="background-color:rebeccapurple">
+
+            <i class="fa fa-users"></i>
+            <span class="count-numbers"> @ViewBag.soLuongNguoiMuaTrongThang</span>-->
+        @*<span class="count-name">Số lượng đơn trong tháng</span>*@
+        <!--</div>
+        </a>
+    </div>-->
+        <!--<div style="width:50%">
+    <a href="https://localhost:44339/Admin/quanLyNguoiDung">
+        <div>
+
+            <i class="fa fa-users"></i>
+            <span class="count-numbers"> @ViewBag.soLuongNguoiMuaTrongThang</span>-->
+        @*<span class="count-name">Số lượng đơn trong tháng</span>*@
+        <!--</div>
+        </a>
+    </div>-->
+
+    </div>
+</div>
+
+

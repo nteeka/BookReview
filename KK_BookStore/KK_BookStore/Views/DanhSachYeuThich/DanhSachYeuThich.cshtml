@@ -1,0 +1,54 @@
+﻿@model IEnumerable<KK_BookStore.Models.DanhSachYeuThich>
+@{
+    ViewBag.Title = "DanhSachYeuThich";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h1 style="margin-top:20px;color:aqua;text-align:center">Danh Sách Yêu Thích</h1>*@
+<div style="background-color:brown">
+    <table class="table" style="font-size:x-large;color:white;margin-top:50px;">
+        <tr>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.tenSach)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.hinh)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    <a style="color:white" href="https://localhost:44339/Sach/Detail/@item.maSach">
+                        @Html.DisplayFor(modelItem => item.tenSach)
+                    </a>
+                </td>
+                <td>
+                    <a href="https://localhost:44339/Sach/Detail/@item.maSach">
+                        <img src="@item.hinh" width="180" />
+
+                    </a>
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                </td>
+                <td>
+                    @*<a href="@Url.Action("Detail", "Sach", new { @id = item.maSach })">Chi Tiết</a> |*@
+                    @*@Html.ActionLink("Xóa", "XoaDanhSachYeuThich", new { @id = item.maSach })*@
+                    <a class="btn btn-success" href="@Url.Action("XoaDanhSachYeuThich", "DanhSachYeuThich",new { @id = item.maSach, @strURL = Request.Url.ToString()})">Xóa khỏi yêu thích</a>
+
+                    <a class="btn btn-success" href="@Url.Action("ThemGioHang", "GioHang",new { @id = item.maSach, @strURL = Request.Url.ToString()})">Thêm vào giỏ hàng</a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+

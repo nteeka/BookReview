@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "SuccessView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<link href="~/Content/CamOn/CamOn.css" rel="stylesheet" />
+
+<div class="error-content" style="font-size:x-large">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="error-text">
+                    <h4 style="color:aquamarine;font-size:50px;margin-top:90px" class="error">ĐẶT HÀNG THÀNH CÔNG!</h4>
+                    <div class="im-sheep" style="margin-top:20px">
+                        <div class="top">
+                            <div style="background-color:white" class="body"></div>
+                            <div class="head">
+                                <div class="im-eye one"></div>
+                                <div class="im-eye two"></div>
+                                <div class="im-ear one"></div>
+                                <div class="im-ear two"></div>
+                            </div>
+                        </div>
+                        <div style="font-size:x-large;" class="im-legs">
+                            <div class="im-leg"></div>
+                            <div class="im-leg"></div>
+                            <div class="im-leg"></div>
+                            <div class="im-leg"></div>
+                        </div>
+                    </div>
+                    <h1 style="color:white">Chân thành cảm ơn quý khách đã tin tưởng và mua sách ở trang web này!</h1>
+                    <p style="font-size: large; color: white">Đơn hàng quý khách sẽ được duyệt và gửi đi trong thời gian sớm nhất.Quý khách có thể kiểm tra thông tin đơn hàng tại @Html.ActionLink("đây", "LichSuDatHang", "GioHang")</p>
+                    <a style="font-size:x-large" href="@Url.Action("Index","Sach")" class="btn btn-primary btn-round">Tiếp tục mua hàng</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,78 @@
+﻿@model IEnumerable<KK_BookStore.TheLoai>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="~/Content/TheLoai/TheLoai.css" rel="stylesheet" />
+    <div class="Icons" style="background-color:white;margin-top:150px">
+        <div class="container">
+            <ul>
+@foreach (var item in Model)
+    {
+        <li>
+            <a class="btn-mod btn-11" href="https://localhost:44339/TheLoai/SachTheoTheLoai?MaTL=@item.MaTL"><img src="https://img.icons8.com/carbon-copy/100/000000/book.png" /></a>
+            <a href="#">@item.TenTL</a>
+        </li>
+    }
+
+</ul>
+
+        </div>
+    </div>
+<!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>-->
+<!------ Include the above in your HEAD tag ---------->
+<!--<link href="~/Content/TheLoai/TheLoai2.css" rel="stylesheet" />
+
+<script src="~/Content/TheLoai/TheLoai2.js"></script>
+<div class="container">
+    <div class="row">
+        <div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h1 class="gallery-title">Gallery</h1>
+        </div>
+
+        <div align="center">
+            <button class="btn btn-default filter-button" data-filter="all">Tất cả</button>
+
+            @foreach (var item in Model)
+            {
+                <button class="btn btn-default filter-button" data-filter="@item.MaTL">@item.TenTL</button>
+
+            }
+
+        </div>
+        <br />
+
+
+        @foreach (var item in Model)
+        {
+            <div class="filter @item.MaTL">
+                @foreach (var sach in ViewBag.sach)
+                {
+                    if (sach.MaTL == item.MaTL)
+                    {
+                        <a href="https://localhost:44339/Sach/Detail/@sach.MaSach">
+                            <img  style="width:200px;height:250px;margin-top:10px" src="@sach.HinhAnh" class="img-responsive col-md-3">
+                        </a>
+                        
+                        
+                    }
+                }
+            </div>
+
+        }
+
+
+
+
+    </div>
+</div>-->
+
+
+

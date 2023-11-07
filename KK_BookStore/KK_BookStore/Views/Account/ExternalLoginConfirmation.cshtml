@@ -1,0 +1,64 @@
+﻿@model KK_BookStore.Models.ExternalLoginConfirmationViewModel
+@{
+    ViewBag.Title = "Register";
+}
+<@*h2 style="margin-top:80px">@ViewBag.Title.</h2>
+<h3>Associate your @ViewBag.LoginProvider account.</h3>*@
+<div style="background-color:white; margin-top: 80px;font-size:large;">
+    @using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <p style="color:black;text-align:center" class="text-info">
+            Bạn đã đăng nhập thành công với <strong>@ViewBag.LoginProvider</strong>.
+            Vui lòng nhập các thông tin bên dưới để hoàn tất việc đăng nhập.
+        </p>
+        <div style="margin-left:250px" class="form-group">
+            <strong style="font-size:medium" class="col-md-2 control-label">Tên tài khoản</strong>
+
+            @*@Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })*@
+            <div style="margin-top:10px" class="col-md-10">
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div style="margin-left:250px" class="form-group">
+            <strong class="col-md-2 control-label">Họ và tên</strong>
+
+            @*@Html.LabelFor(m => m.FullName, new { @class = "col-md-2 control-label" })*@
+            <div style="margin-top:10px" class="col-md-10">
+                @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*<div class="form-group">
+                @Html.LabelFor(m => m.Gender, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.CheckBoxFor(m => m.Gender, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+        <div style="margin-left:250px" class="form-group">
+            <strong class="col-md-2 control-label">Email</strong>
+
+            @*@Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })*@
+            <div style="margin-top:10px" class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div style="margin-left:250px;" class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input style="margin-left: 50px; font-size:large" type="submit" class="btn btn-default" value="Đăng ký" />
+            </div>
+        </div>
+    }
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

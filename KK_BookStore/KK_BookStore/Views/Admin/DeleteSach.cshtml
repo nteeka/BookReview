@@ -1,0 +1,21 @@
+﻿@model KK_BookStore.Sach
+
+@{
+    ViewBag.Title = "DeleteSach";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<fieldset style="font-size:x-large;text-align:center">
+    <div class="display-label">Mã sách: @Html.Encode(Model.MaSach)</div>
+    <div class="display-lable">Mã thể loại: @Html.Encode(Model.MaTL)</div>
+    <div class="display-lable">Tên thể loại: @Html.Encode(Model.TheLoai.TenTL)</div>
+    <div class="display-label">Tên sách: @Model.TenSach</div>
+    <p><img width="200px" src="@Model.HinhAnh" alt="Hinh sach" /></p>
+</fieldset>
+@using (Html.BeginForm())
+{
+    <p style="font-size:x-large;text-align:center;margin-top:20px">
+        <input type="submit" value="Delete" />
+        @Html.ActionLink("Back to List", "quanLySach")
+    </p>
+}

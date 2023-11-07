@@ -1,0 +1,93 @@
+﻿@model IEnumerable<KK_BookStore.PhanHoi>
+
+@{
+    ViewBag.Title = "danhSachPhanHoi";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+@*<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+    <div style="margin-top:40px;" class="container">
+        @foreach (var item in Model)
+        {
+            <blockquote style="width:300px;" class="col-md-3">
+                <p class="quotation-mark">
+                    “
+                </p>
+                <p class="quote-text">
+                    @item.NoiDung.
+                </p>
+                <hr>
+                <div class="blog-post-actions">
+                    <p class="blog-post-bottom pull-left">
+                        @item.NguoiDung.TaiKhoan
+                    </p>
+                    <p class="blog-post-bottom pull-right">
+                        <span class="badge quote-badge"><img style="width:100px" src="@item.NguoiDung.Hinh" /></span>  
+                    </p>
+                </div>
+            </blockquote>
+
+        }
+
+    </div>*@
+<title>K&K_PhanHoi</title>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="~/Content/fixBL/fixBL.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/Details/detail.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container">
+        <div  class="card">
+            <div class="container-fliud">
+                <div class="wrapper row">
+                                    
+                    <div   class="details col-md-6">
+                        <div class="page-header">
+                            <h1 style=""><small style="margin-top:10px" class="pull-right">@Model.Count() Phản hồi</small> Phản hồi </h1>
+                        </div>
+
+                        @foreach (var item in Model)
+                        {
+                            <div class="comments-list" style="font-size:large;margin-top:20px">
+                                <div class="media">
+                                    <p class="pull-right"><small>@item.NgayTao.Value.ToShortDateString()</small></p>
+                                    <a style="margin-left:10px" class="media-left" href="#">
+                                        <img class="rounded-circle" style="width:50px" src="@item.NguoiDung.Hinh">
+                                    </a>
+                                    <div class="media-body">
+
+                                        <h2 class="media-heading user_name">@item.TaiKhoan</h2>
+                                        @item.NoiDung
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <div class="action">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+

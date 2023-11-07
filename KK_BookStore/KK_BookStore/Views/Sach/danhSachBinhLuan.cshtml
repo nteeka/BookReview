@@ -1,0 +1,644 @@
+﻿@model IEnumerable<KK_BookStore.BinhLuan>
+
+@{
+    ViewBag.Title = "danhSachBinhLuan";
+    Layout = null ;
+}
+@*<link href="~/Content/BinhLuan/ShareBL.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="widget-area no-padding blank">
+                    <div class="status-upload" style="text-align: center; width: fit-content; font-size: large;">
+
+
+                        @using (Html.BeginForm("themBinhLuan", "Sach", FormMethod.Get))
+                        {
+                        <div style="float:right;margin-top:20px">
+                            <input hidden style="width:50px;" list="browsers" value=@ViewBag.MaSach type="text" placeholder="ma" name="masach" />
+
+                            <input style="width:500px;height:fit-content" name="noidung" placeholder="Add your comment here" />
+                            <button style="margin-left:20px" type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Share</button>
+                        </div>
+                        }
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>*@
+
+
+
+
+
+@*<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <link href="~/Content/BinhLuan/BinhLuan.css" rel="stylesheet" />
+    <h1 style="text-align:center;color:rebeccapurple">Danh Sách Bình Luận</h1>
+    @if (Model.Count() == 0)
+    {
+        <h1 style="background-color: rebeccapurple; margin-top: 80px; width: fit-content; text-align: center">Chua co comment</h1>
+    }
+    else
+    {
+        <div class='container'>
+            @foreach (var item in Model)
+            {
+                <div class="media comment-box" style="background-color:white">
+
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="img-responsive user-photo" src="@item.NguoiDung.Hinh" alt="loi" style="width:50px">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 style="color:black" class="media-heading">@item.TaiKhoan =>> <img style="width:50px" src="@item.Sach.HinhAnh" /></h4>
+                        <p style="color:blue">@item.NoiDung</p>
+
+                    </div>
+                </div>
+            }
+
+        </div>
+    }*@
+@*<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>*@
+<!------ Include the above in your HEAD tag ---------->
+@*<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>eCommerce Product Detail</title>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+        <link href="~/Content/DanhGia.css" rel="stylesheet" />
+    </head>
+
+    <body>
+
+        <div class="container" style="margin-top:150px">
+            <div class="card">
+                <div class="container-fliud">
+                    <div class="wrapper row">
+                        <div class="preview col-md-6">
+
+                            <div class="preview-pic tab-content">
+                                <div class="tab-pane active" id="pic-1"><img src="@ViewBag.hinhSach" style="width:200px;margin-left:100px" /></div>
+
+                            </div>
+
+                        </div>
+
+                        @using (Html.BeginForm("themBinhLuan", "Sach", FormMethod.Get))
+                        {
+                            <div>
+                                <input hidden style="width:50px;" list="browsers" value=@ViewBag.MaSach type="text" placeholder="ma" name="masach" />
+
+                                <div class="container">
+                                    <div class="rate">
+                                        <input type="radio" id="star5" name="rate" value="5" />
+                                        <label for="star5" title="text">5 stars</label>
+                                        <input type="radio" id="star4" name="rate" value="4" />
+                                        <label for="star4" title="text">4 stars</label>
+                                        <input type="radio" id="star3" name="rate" value="3" />
+                                        <label for="star3" title="text">3 stars</label>
+                                        <input type="radio" id="star2" name="rate" value="2" />
+                                        <label for="star2" title="text">2 stars</label>
+                                        <input type="radio" id="star1" name="rate" value="1" />
+                                        <label for="star1" title="text">1 star</label>
+                                    </div>
+                                    <textarea name="noidung" style="width:10000px;" placeholder="Add your comment here"></textarea>
+                                    <button style="margin-left:20px;margin-bottom:50px" type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Share</button>
+
+                                </div>*@
+@*<input style="width:500px;height:fit-content" name="noidung" placeholder="Add your comment here" />*@
+
+@*</div>
+    }
+    <div class="details col-md-6">
+        <div class="page-header">
+            <h1 style=""><small class="pull-right">@Model.Count() bình luận</small> Bình Luận </h1>
+        </div>
+
+        @foreach (var item in Model)
+        {
+            <div class="comments-list" style="font-size:large;margin-top:20px">
+                <div class="media">*@
+@*<p class="pull-right"><small>@item.NgayTao</small></p>*@
+@*<a style="margin-left:10px" class="media-left" href="#">
+                                            <img class="rounded-circle" style="width:50px" src="\Content\truongHutech.jpg">
+                                        </a>
+                                        <div class="media-body">
+
+                                            <h2 class="media-heading user_name">@item.TaiKhoan</h2>
+                                            <div>
+                                                @if (item.SoSao == 1)
+                                                {
+                                                    <span class="fa fa-star checked"></span>
+
+                                                }
+                                                @if (item.SoSao == 2)
+                                                {
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+
+                                                }
+                                                @if (item.SoSao == 3)
+                                                {
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+
+                                                }
+                                                @if (item.SoSao == 4)
+                                                {
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+
+                                                }
+                                                @if (item.SoSao == 5)
+                                                {
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                }
+                                            </div>
+
+                                            @item.NoiDung
+                                            <div>
+                                                @if (User.Identity.Name.Trim() == item.TaiKhoan.Trim())
+                                                {
+                                                    <p style="margin-right:107px"><small><a class="col-md-3" href="">Sửa</a></small></p>
+                                                    <p> <small><a class="col-md-3" href="@Url.Action("xoaBinhLuan", "Sach",new { @id = item.MaBinhLuan})">Xóa</a> -</small></p>
+                                                }
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <div class="action">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+    </html>*@
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/Details/detail.css" rel="stylesheet" />
+    <title>eCommerce Product Detail</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="container" style="margin-top:30px">
+        <div style="font-size:large" class="card">
+            <div class="container-fliud">
+                <div class="wrapper row">
+                    <div class="preview col-md-6">
+
+                        <div class="preview-pic tab-content">
+                            <div class="tab-pane active" id="pic-1"><img src="@ViewBag.hinhSach" style="width:200px;height:300px;margin-left:100px;" /></div>
+
+                        </div>
+
+                        <strong style="margin-left:60px;margin-top:100px">Nhà xuất bản @ViewBag.nhaXuatBan (@ViewBag.namXuatBan)</strong>
+
+
+                    </div>
+                    <div class="details col-md-6">
+                        <h3 class="product-title">@ViewBag.tenSach</h3>
+                        <div class="rating">
+                            <div class="stars">
+                                @if (ViewBag.soSao != 0)
+                                {
+                                    if (ViewBag.soSao <= 5)
+                                    {
+                                        if (ViewBag.soSao == 5)
+                                        {
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                        }
+                                        else
+                                        {
+                                            if (ViewBag.soSao >= 4)
+                                            {
+                                                if (ViewBag.soSao == 4)
+                                                {
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star-half checked"></span>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                if (ViewBag.soSao >= 3)
+                                                {
+                                                    if (ViewBag.soSao == 3)
+                                                    {
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star"></span>
+                                                        <span class="fa fa-star"></span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star-half checked"></span>
+                                                        <span class="fa fa-star"></span>
+
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    if (ViewBag.soSao >= 2)
+                                                    {
+                                                        if (ViewBag.soSao == 2)
+                                                        {
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star-half checked"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            <span class="fa fa-star"></span>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        if (ViewBag.soSao >= 1)
+                                                        {
+                                                            if (ViewBag.soSao == 1)
+                                                            {
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star"></span>
+                                                                <span class="fa fa-star"></span>
+                                                                <span class="fa fa-star"></span>
+                                                                <span class="fa fa-star"></span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star-half checked"></span>
+                                                                <span class="fa fa-star"></span>
+                                                                <span class="fa fa-star"></span>
+                                                                <span class="fa fa-star"></span>
+                                                            }
+                                                        }
+                                                    }
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                }
+                                <p>@ViewBag.soSao/5 sao (@ViewBag.soLuongNguoiDanhGia đánh giá)</p>
+
+                                @*<span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>*@
+
+                                <strong>@ViewBag.tenTacGia</strong>
+                            </div>
+                            @*<span class="review-no">@Model.SoLike like</span>*@
+                        </div>
+
+                        @*<p style="color:black" class="product-description">@Model.MoTa</p>*@
+                        <p style="color:black" class="product-description">Day la doan mo ta sach chua cuoc thay vao vi thieu thuoc tinh co so du lieu va se duoc them vao sau nhe cac ban yeu dau cua toi</p>
+
+                        <h4 class="price">Giá bán : <span> @String.Format("{0:0,0}", ViewBag.donGia) VNĐ</span></h4>
+
+                        <div class="action">
+                            <a class="add-to-cart btn btn-default" href="@Url.Action("ThemGioHang", "GioHang",new { @id = ViewBag.MaSach, @strURL = Request.Url.ToString()})">Thêm vào giỏ hàng</a>
+                            <a class="add-to-cart btn btn-default" href="@Url.Action("xacNhanMuaNhanh", "GioHang",new { ViewBag.MaSach})">Mua ngay</a>
+
+                            <a class="like btn btn-default" href="@Url.Action("themDanhSachYeuThich", "DanhSachYeuThich",new { @id = ViewBag.MaSach, @strURL = Request.Url.ToString()})"><span class="fa fa-heart"></span></a>
+                            <a class="like btn btn-default" href="@Url.Action("danhSachBinhLuan", "Sach", new {@id = ViewBag.MaSach})"><i class="fa-solid fa-comment"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+<link href="~/Content/BinhLuan/danhSachBinhLuan.css" rel="stylesheet" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<section class="content-item" id="comments">
+    <div style="" class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <div style="width:fit-content">
+                    @using (Html.BeginForm("themBinhLuan", "Sach", FormMethod.Get))
+                    {
+                        <input hidden list="browsers" value=@ViewBag.MaSach type="text" placeholder="ma" name="masach" />
+                        <form>
+                            <h3 class="pull-left">New Comment</h3>
+                            <div class="rate">
+                                <input type="radio" id="star5" name="rate" value="5" />
+                                <label for="star5" title="text">5 stars</label>
+                                <input type="radio" id="star4" name="rate" value="4" />
+                                <label for="star4" title="text">4 stars</label>
+                                <input type="radio" id="star3" name="rate" value="3" />
+                                <label for="star3" title="text">3 stars</label>
+                                <input type="radio" id="star2" name="rate" value="2" />
+                                <label for="star2" title="text">2 stars</label>
+                                <input type="radio" id="star1" name="rate" value="1" />
+                                <label for="star1" title="text">1 star</label>
+                            </div>
+                            <button type="submit" class="btn btn-normal pull-right">Submit</button>
+                            <fieldset>
+
+
+                                <div class="row">
+                                    <div class="col-sm-3 col-lg-2 hidden-xs">
+                                        <img style="width:280px;height:100px" class="img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                                        @*<textarea class="form-control" id="message" placeholder="Your message" required=""></textarea>*@
+
+                                    </div>
+                                    <div class="col-xs-12 col-sm-9 col-lg-10">
+                                        <textarea class="form-control" name="noidung" id="message" placeholder="Your message" required=""></textarea>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                        </form>
+                    }
+
+
+                </div>
+
+
+
+                <h3>@Model.Count() Comments</h3>
+                @foreach (var item in Model)
+                {
+                    <div class="media">
+                        <a class="pull-left" href="#"><img width="100" height="100" class="media-object" src="\Content\truongHutech.jpg" alt=""></a>
+                        <div class="media-body">
+
+                            <h4 class="media-heading">
+                                @item.TaiKhoan
+                                @if (item.SoSao == 1)
+                                {
+                                    <span class="fa fa-star checked"></span>
+
+                                }
+                                @if (item.SoSao == 2)
+                                {
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+
+                                }
+                                @if (item.SoSao == 3)
+                                {
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+
+                                }
+                                @if (item.SoSao == 4)
+                                {
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+
+                                }
+                                @if (item.SoSao == 5)
+                                {
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                }
+                            </h4>
+
+                            <p>@item.NoiDung</p>
+                            <ul class="list-unstyled list-inline media-detail pull-left">
+                                <li><i class="fa fa-calendar"></i>@item.NgayTao.Value.ToShortDateString()</li>
+                                @if (item.SoLike == 0)
+                                {
+                                    <li><i class="fa fa-thumbs-up"></i></li>
+                                }
+                                else
+                                {
+                                    
+                                    <li><i class="fa fa-thumbs-up"></i>@item.SoLike</li>
+
+                                }
+                            </ul>
+                            <ul class="list-unstyled list-inline media-detail pull-right">
+                                <li class=""><a href="@Url.Action("thichBinhLuan", "Sach",new { @id = item.MaBinhLuan})">Like</a></li>
+                                
+                                @if (item.TaiKhoan.Trim() == User.Identity.Name)
+                                {
+                                    <li class=""><a href="@Url.Action("xoaBinhLuan", "Sach",new { @id = item.MaBinhLuan})">Delete</a></li>
+
+                                }
+                                <li class=""><a href="@Url.Action("phanHoiBinhLuan", "Sach",new { @id = item.MaBinhLuan})">Reply</a></li>
+
+
+                                <li></li>
+                            </ul>
+                        </div>
+                        @*//phan hoi*@
+                        @*@for(int i=0;i<3;i++)
+                            {
+                            <div style="margin-top:20px;margin-left:100px" class="media">
+                                <a class="pull-left" href="#"><img width="100" height="100" class="media-object" src="\Content\truongHutech.jpg" alt=""></a>
+                                <div class="media-body">
+
+                                    <h4 class="media-heading">
+                                        @item.TaiKhoan
+
+                                    </h4>
+
+                                    <p>@item.NoiDung</p>
+                                    <ul class="list-unstyled list-inline media-detail pull-left">
+                                        <li><i class="fa fa-calendar"></i>27/02/2014</li>
+                                        <li><i class="fa fa-thumbs-up"></i>@item.SoLike</li>
+                                    </ul>
+                                    <ul class="list-unstyled list-inline media-detail pull-right">
+                                        <li class=""><a href="@Url.Action("thichBinhLuan", "Sach",new { @id = item.MaDanhGia})">Like</a></li>
+                                        @if (item.TaiKhoan.Trim() == User.Identity.Name)
+                                        {
+                                            <li class=""><a href="@Url.Action("xoaBinhLuan", "Sach",new { @id = item.MaDanhGia})">Delete</a></li>
+
+                                        }
+                                        <li class=""><a href="@Url.Action("phanHoiBinhLuan", "Sach",new { @id = item.MaDanhGia})">Reply</a></li>
+
+
+                                        <li></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            }*@
+
+
+
+
+
+                    </div>
+
+                }
+
+
+                <!-- COMMENT 1 - START -->
+                <!--<div class="media">
+                    <a class="pull-left" href="#"><img width="100" height="100" class="media-object" src="\Content\truongHutech.jpg" alt=""></a>
+                    <div class="media-body">
+                        <h4 class="media-heading">John Doe</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <ul class="list-unstyled list-inline media-detail pull-left">
+                            <li><i class="fa fa-calendar"></i>27/02/2014</li>
+                            <li><i class="fa fa-thumbs-up"></i>13</li>
+                        </ul>
+                        <ul class="list-unstyled list-inline media-detail pull-right">
+                            <li class=""><a href="">Like</a></li>
+                            <li class=""><a href="">Reply</a></li>
+                        </ul>
+                    </div>
+                </div>-->
+                <!-- COMMENT 1 - END -->
+                <!-- COMMENT 2 - START -->
+                <!--<div class="media">
+                    <a class="pull-left" href="#"><img width="100px" class="media-object" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt=""></a>
+                    <div class="media-body">
+                        <h4 class="media-heading">John Doe</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <ul class="list-unstyled list-inline media-detail pull-left">
+                            <li><i class="fa fa-calendar"></i>27/02/2014</li>
+                            <li><i class="fa fa-thumbs-up"></i>13</li>
+                        </ul>
+                        <ul class="list-unstyled list-inline media-detail pull-right">
+                            <li class=""><a href="">Like</a></li>
+                            <li class=""><a href="">Reply</a></li>
+                        </ul>
+                    </div>
+                </div>-->
+                <!-- COMMENT 2 - END -->
+                <!-- COMMENT 3 - START -->
+                <!--<div class="media">
+                    <a class="pull-left" href="#"><img width="100px" class="media-object" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></a>
+                    <div class="media-body">
+                        <h4 class="media-heading">John Doe</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <ul class="list-unstyled list-inline media-detail pull-left">
+                            <li><i class="fa fa-calendar"></i>27/02/2014</li>
+                            <li><i class="fa fa-thumbs-up"></i>13</li>
+                        </ul>
+                        <ul class="list-unstyled list-inline media-detail pull-right">
+                            <li class=""><a href="">Like</a></li>
+                            <li class=""><a href="">Reply</a></li>
+                        </ul>
+                    </div>
+                </div>-->
+                <!-- COMMENT 3 - END -->
+                <!-- COMMENT 4 - START -->
+                <!--<div class="media">
+                    <a class="pull-left" href="#"><img width="100px" class="media-object" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt=""></a>
+                    <div class="media-body">
+                        <h4 class="media-heading">John Doe</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <ul class="list-unstyled list-inline media-detail pull-left">
+                            <li><i class="fa fa-calendar"></i>27/02/2014</li>
+                            <li><i class="fa fa-thumbs-up"></i>13</li>
+                        </ul>
+                        <ul class="list-unstyled list-inline media-detail pull-right">
+                            <li class=""><a href="">Like</a></li>
+                            <li class=""><a href="">Reply</a></li>
+                        </ul>
+                    </div>
+                </div>-->
+                <!-- COMMENT 4 - END -->
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,130 @@
+﻿@model IEnumerable<KK_BookStore.CTHoaDon>
+
+@{
+    ViewBag.Title = "chiTietDonHang";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<link href="~/Content/CHiTietDonHang/CTDH.css" rel="stylesheet" />
+<div style="margin-left:400px" class="container">
+    <div class="row">
+
+        <div class="receipt-main col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+            <div class="row">
+                <div class="receipt-header">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="receipt-left">
+                            @if (Model.First().HoaDon.NguoiDung.Hinh == null)
+                            {
+                                <img class="img-responsive" alt="anh" src="\Content\user.jpg" style="width: 200px; border-radius: 43px;">
+
+                            }
+                            else
+                            {
+                                <img class="img-responsive" alt="anh" src="@Model.First().HoaDon.NguoiDung.Hinh" style="width: 200px; border-radius: 43px;">
+
+                            }
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="receipt-header receipt-header-mid">
+                    <div class="col-xs-8 col-sm-8 col-md-8 text-left">
+                        <div class="receipt-right">
+                            <h5>@Model.First().HoaDon.TaiKhoan <small> </small></h5>
+                            <p><b>Mobile :</b>@Model.First().HoaDon.NguoiDung.SDT </p>
+                            <p><b>Email :</b> @Model.First().HoaDon.NguoiDung.Email</p>
+                            <p><b>Address :</b> @Model.First().HoaDon.NguoiDung.DiaChi</p>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="receipt-left">
+                            <h3 style="margin-top:10px">Đơn hàng #@Model.First().MaHD</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Tên sách</th>
+                            <th style="text-align:center">Số lượng</th>
+                            <th style="text-align:center">Thành tiền</th>
+                            <th>Đơn hàng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+
+                                <td>@item.Sach.TenSach</td>
+                                <td>@item.SoLuongMua</td>
+                                <td>@String.Format("{0:0,0}", item.ThanhTien) VND</td>
+                                <td>
+                                    @if (item.HoaDon.TinhTrang == null)
+                                    {
+                                        <p>Chưa duyệt</p>
+                                    }
+                                    @if (item.HoaDon.TinhTrang == -1)
+                                    {
+                                        <p>Đã hủy</p>
+                                    }
+                                    @if (item.HoaDon.TinhTrang == 1)
+                                    {
+                                        <p>Đã duyệt</p>
+                                    }
+                                </td>
+                                
+
+                            </tr>
+                        }
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            <td><h4><strong>Tổng cộng: </strong></h4></td>
+
+                            <td class="text-center text-danger"><h4><strong>@String.Format("{0:0,0}", ViewBag.Tongtien) VNĐ</strong></h4></td>
+                        </tr>
+
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="receipt-header receipt-header-mid receipt-footer">
+                    <div class="col-xs-8 col-sm-8 col-md-8 text-left">
+                        <div class="receipt-right">
+                            <p><b>Date :</b> @Model.First().HoaDon.NgayTao.Value.ToShortDateString()</p>
+
+                            @*<h5 style="color: rgb(140, 140, 140);">Thank you for your business!</h5>*@
+                            @if(Model.First().HoaDon.TinhTrang== null)
+                            {
+                                <div style="margin-left:250px;margin-top:20px">
+                                    <a class="edit" href="@Url.Action("duyetDonHang", "Admin",new { @id = Model.First().MaHD})" title="Duyệt" data-toggle="tooltip"><i style="font-size: xx-large;" class="fa fa-check"></i></a>
+
+                                    <a style="margin-left:40px" class="delete" href="@Url.Action("huyDonHang", "Admin",new { @id = Model.First().MaHD})" title="Hủy" data-toggle="tooltip"><i style="font-size:xx-large; " class="fa fa-times"></i></a>
+                                </div>
+                            }
+                        
+                            
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="receipt-left">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

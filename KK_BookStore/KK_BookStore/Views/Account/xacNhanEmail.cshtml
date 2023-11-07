@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "xacNhanEmail";
+    Layout = null ;
+}
+
+@*<h1 style="margin-top:80px;color:black">Confirm Email</h1>*@
+
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<link href="~/Content/xacNhanEmail/xacNhanEmail.css" rel="stylesheet" />
+<!DOCTYPE html>
+<link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900|Roboto:100,300,400,500,700,900" rel="stylesheet" />
+<div class="container">
+    <div style="font-size:large" class="error-wrapper">
+        <div class="man-icon"></div>
+        <h3 class="title">Register Success !!</h3>
+        <p class="info">Thank you for register !!</p>
+        @*<div style="margin-top:80px;margin-left:200px">*@
+            <p style=" color: black">We have just sent you an email.</p>
+            <p>Please confirm to be able to use some website functions such as forgot password, .. or you can skip and proceed to @Html.ActionLink("HOME", "Index", "Home") .But you have to confirm your email for the next login!  </p>
+        @*</div>*@
+    <a>@Html.ActionLink("HOME", "Index", "Home")</a>
+    </div>
+</div>

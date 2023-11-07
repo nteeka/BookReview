@@ -1,0 +1,112 @@
+﻿@model IEnumerable<KK_BookStore.TheLoai>
+
+@{
+    ViewBag.Title = "quanLyTheLoai";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+@*<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="~/Content/TheLoai/TheLoai.css" rel="stylesheet" />
+    <div class="Icons" style="background-color:brown;height:100%">
+        <div class="container">
+            <ul>
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <a class="btn-mod btn-11" href="https://localhost:44339/TheLoai/SachTheoTheLoai?MaTL=@item.MaTL"><img src="https://img.icons8.com/carbon-copy/100/000000/book.png" /></a>
+                        <a href="https://localhost:44339/TheLoai/SachTheoTheLoai?MaTL=@item.MaTL">@item.TenTL</a>
+                    </li>
+                }
+
+            </ul>
+
+        </div>
+    </div>*@
+<title>K&K_Quản lý thể loại</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    @*<title>Tables - SB Admin</title>*@
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    @*<link href="css/styles.css" rel="stylesheet" />*@
+    <link href="~/Content/quanLySach/quanLySach.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+<body  class="sb-nav-fixed">
+    <div id="layoutSidenav_content">
+        <main style="margin-right:200px">
+            <div class="container-fluid px-4">
+                <h1 style="text-align:center" class="mt-4">Quản lý thể loại</h1>
+               
+                @*<ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Tables</li>
+                    </ol>*@
+                @*<div class="card mb-4">
+                        <div class="card-body">
+                            DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the
+                            <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
+                            .
+                        </div>
+                    </div>*@
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-table me-1"></i>
+                        Bảng quản lý thể loại
+                        
+                        <a style="float:right" data-tip="Thêm" href="@Url.Action("themTheLoai", "Admin")"><i class="fa fa-hammer"></i></a>
+                    </div>
+                    <div class="card-body">
+                        <table id="datatablesSimple">
+                            <thead>
+                                <tr>
+                                    <th>Mã thể loại</th>
+                                    <th>Tên thể loại</th>                                
+                                    <th></th>
+
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Mã thể loại</th>
+                                    <th>Tên thể loại</th>
+                                    <th></th>
+
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.MaTL</td>
+                                        <td>@item.TenTL</td>
+                                        
+                                        <td>
+                                            <a class="edit" href="@Url.Action("EditTheLoai", "Admin",new { @id = item.MaTL})" title="Edit" data-toggle="tooltip"><i class="fa fa-pen"></i></a>
+                                            <a class="delete" href="@Url.Action("xoaTheLoai", "Admin",new { @id = item.MaTL})" title="Delete" data-toggle="tooltip"><i class="fa fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    @*<script src="js/scripts.js"></script>*@
+    <script src="~/Content/quanLySach/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    @*<script src="js/datatables-simple-demo.js"></script>*@
+    <script src="~/Content/quanLySach/datatables-simple-demo.js"></script>
+</body>
+</html>

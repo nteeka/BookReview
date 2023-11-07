@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Banned";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900|Roboto:100,300,400,500,700,900" rel="stylesheet" />
+<div class="container" style="font-size:xx-large;background-color:white;width:fit-content;margin-top:100px">
+    <div class="error-wrapper">
+        <div class="man-icon"></div>
+        <h1 style="text-align:center" class="title">BANNED</h1>
+        <p class="info">Oh! Tài khoản của bạn đã bị khóa vì một số lý do nào đó!!</p>
+        <a style="font-size:small;float:right" href=@Url.Action("Login","Account")>Quay về trang chủ</a>
+    </div>
+</div>
+

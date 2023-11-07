@@ -1,0 +1,254 @@
+﻿@model IEnumerable<KK_BookStore.CTHoaDon>
+
+@{
+    ViewBag.Title = "chiTietDonHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="~/Content/admin/quanLySach/index.css" rel="stylesheet" />
+@*<script src="~/Content/admin/quanLySach/quanLySach.js"></script>*@
+
+@*<div class="container" style="margin-top:50px">
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">*@
+@*<div class="col-sm-8"><h2>Thông tin <b>Đơn Hàng @Model.First().MaHD của @Model.First().HoaDon.TaiKhoan</b></h2></div>*@
+@*<div class="col-sm-4">*@
+@*<button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>*@
+@*<a data-tip="Create" class="btn btn-default" href="@Url.Action("CreateSach", "Admin")"><i class="fa fa-flus"></i>Create</a>*@
+
+
+<!--</div>
+    </div>
+</div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+
+
+            <th>Tên sách</th>
+            <th style="text-align:center">Số lượng</th>
+            <th style="text-align:center">Thành tiền</th>
+            <th style="text-align:center">Ngày đặt đơn</th>
+            <th>Tình trạng đơn hàng</th>
+        </tr>
+    </thead>
+    <tbody>-->
+@*@foreach (var item in Model)
+    {
+        <tr>*@
+
+
+@*<td>@item.Sach.TenSach</td>
+    <td style="text-align:center">@item.SoLuongMua</td>
+    <td style="text-align:center">@String.Format("{0:0,0}", item.ThanhTien)</td>
+    <td style="text-align:center">@item.HoaDon.NgayTao.Value.ToShortDateString()</td>*@
+@*<td><p><img width="150px" src="@item.Sach.HinhAnh" alt="Hinh sach" /></p></td>*@
+@*<td>
+        @if (item.HoaDon.TinhTrang == null)
+        {
+            <p>Chưa duyệt</p>
+        }
+        @if (item.HoaDon.TinhTrang == -1)
+        {
+            <p>Đã hủy</p>
+        }
+        @if (item.HoaDon.TinhTrang == 1)
+        {
+            <p>Đã duyệt</p>
+        }
+    </td>*@
+<!--<!--<td>-->-->
+<!--@*<a data-tip="Xóa" class="like btn btn-default" href="@Url.Action("XoaGioHang", "GioHang",new { @id = item.HoaDon})"><span class="fa fa-check"></span></a>*@-->
+@*<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons"></i></a>*@
+@*<a class="edit" href="@Url.Action("duyetDonHang", "Admin",new { @id = item.MaHD})" title="Duyệt" data-toggle="tooltip"><i style="font-size:large" class="fa fa-check"></i></a>
+    <a class="delete" href="@Url.Action("huyDonHang", "Admin",new { @id = item.MaHD})" title="Delete" data-toggle="tooltip"><i style="font-size:large" class="fa fa-times"></i></a>*@
+@*</td>*@
+
+<!--</tr>
+                }
+
+
+
+
+            </tbody>
+        </table>
+        @*@if (Model.First().HoaDon.TinhTrang == null)
+        {
+            <a style="margin-left:270px;" class="edit" href="@Url.Action("duyetDonHang", "Admin",new { @id = Model.First().MaHD})" title="Duyệt" data-toggle="tooltip">Duyệt</a>
+            <a style="margin-left:30px" class="delete" href="@Url.Action("huyDonHang", "Admin",new { @id = Model.First().MaHD})" title="Delete" data-toggle="tooltip">Hủy</a>
+        }*@
+
+
+    @*</div>
+</div>-*@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<link href="~/Content/CHiTietDonHang/CTDH.css" rel="stylesheet" />
+<div class="container">
+    <div class="row">
+
+        <div class="receipt-main col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+            <div class="row">
+                <div class="receipt-header">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="receipt-left">
+                            <img class="img-responsive" alt="iamgurdeeposahan" src="@Model.First().HoaDon.NguoiDung.Hinh" style="width: 200px; border-radius: 43px;">
+                        </div>
+                    </div>
+                    @*<div style="float:right" class="col-xs-6 col-sm-6 col-md-6 text-right">
+                            <div class="receipt-right">
+                                <h5>TechiTouch.</h5>
+                                <p>+91 12345-6789 <i class="fa fa-phone"></i></p>
+                                <p>info@gmail.com <i class="fa fa-envelope-o"></i></p>
+                                <p>Australia <i class="fa fa-location-arrow"></i></p>
+                            </div>
+                        </div>*@
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="receipt-header receipt-header-mid">
+                    <div class="col-xs-8 col-sm-8 col-md-8 text-left">
+                        <div class="receipt-right">
+                            <h5>@Model.First().HoaDon.TaiKhoan <small>  |   @*Lucky Number : 156*@</small></h5>
+                            <p><b>Mobile :</b>@Model.First().HoaDon.NguoiDung.SDT </p>
+                            <p><b>Email :</b> @Model.First().HoaDon.NguoiDung.Email</p>
+                            <p><b>Address :</b> @Model.First().HoaDon.NguoiDung.DiaChi</p>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="receipt-left">
+                            <h3 style="margin-top:10px">Đơn hàng #@Model.First().MaHD</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Tên sách</th>
+                            <th style="text-align:center">Số lượng</th>
+                            <th style="text-align:center">Thành tiền</th>
+                            @*<th style="text-align:center">Ngày đặt đơn</th>*@
+                            @*<th>Đơn hàng</th>*@
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+
+                                <td>@item.Sach.TenSach</td>
+                                <td style="text-align:center">@item.SoLuongMua</td>
+                                <td>@String.Format("{0:0,0}", item.ThanhTien) VND</td>
+                                @*<td>@item.HoaDon.NgayTao.Value.ToShortDateString()</td>*@
+                                @*<td><p><img width="150px" src="@item.Sach.HinhAnh" alt="Hinh sach" /></p></td>*@
+                                @*<td>
+                    @if (item.HoaDon.TinhTrang == null)
+                    {
+                        <p>Chưa duyệt</p>
+                    }
+                    @if (item.HoaDon.TinhTrang == -1)
+                    {
+                        <p>Đã hủy</p>
+                    }
+                    @if (item.HoaDon.TinhTrang == 1)
+                    {
+                        <p>Đã duyệt</p>
+                    }
+                </td>*@
+                                <!--<td>-->
+                                @*<a data-tip="Xóa" class="like btn btn-default" href="@Url.Action("XoaGioHang", "GioHang",new { @id = item.HoaDon})"><span class="fa fa-check"></span></a>*@
+
+                                <!--<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons"></i></a>
+                <a class="edit" href="@Url.Action("duyetDonHang", "Admin",new { @id = item.MaHD})" title="Duyệt" data-toggle="tooltip"><i style="font-size:large" class="fa fa-check"></i></a>
+                <a class="delete" href="@Url.Action("huyDonHang", "Admin",new { @id = item.MaHD})" title="Delete" data-toggle="tooltip"><i style="font-size:large" class="fa fa-times"></i></a>
+            </td>-->
+
+                            </tr>
+                        }
+                    @*<tr>
+
+                        <td>   </td>
+                        <td>   </td>
+                        <td class="text-center text-danger">
+                            @if (Model.First().HoaDon.TinhTrang == null)
+                            {
+                                <h5><strong>Chưa duyệt</strong></h5>
+                            }
+                            @if (Model.First().HoaDon.TinhTrang == -1)
+                            {
+                                <h5><strong>Đã hủy</strong></h5>
+                            }
+                            @if (Model.First().HoaDon.TinhTrang == 1)
+                            {
+                                <h5><strong>Đã duyệt</strong></h5>
+                            }
+                        </td>
+                    </tr>*@
+                        <tr>
+
+                            <td>   </td>
+                            @*<td style="margin-right:20px" class="text-right"><h4><strong>Tổng cộng: </strong></h4></td>*@
+                            <td><h4><strong>Tổng cộng: </strong></h4></td>
+
+                            <td class="text-center text-danger"><h4><strong>@String.Format("{0:0,0}", ViewBag.Tongtien) VNĐ</strong></h4></td>
+                        </tr>
+
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="receipt-header receipt-header-mid receipt-footer">
+                    <div class="col-xs-8 col-sm-8 col-md-8 text-left">
+                        <div class="receipt-right">
+                            <p><b>Date :</b> @Model.First().HoaDon.NgayTao.Value.ToShortDateString()</p>
+
+                            @*<h5 style="color: rgb(140, 140, 140);">Thank you for your business!</h5>*@
+                        </div>
+                        @*<div style="float:right">
+                            @if (Model.First().HoaDon.TinhTrang == null)
+                            {
+                                <p>Chưa duyệt</p>
+                            }
+                            @if (Model.First().HoaDon.TinhTrang == -1)
+                            {
+                                <p>Đã hủy</p>
+                            }
+                            @if (Model.First().HoaDon.TinhTrang == 1)
+                            {
+                                <p>Đã duyệt</p>
+                            }
+                        </div>*@
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="receipt-left">
+                            @*<h1>Signature</h1>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

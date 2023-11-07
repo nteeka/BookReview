@@ -1,0 +1,416 @@
+﻿@model KK_BookStore.Models.IndexViewModel
+@{
+    ViewBag.Title = "Manage";
+}
+
+@*<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="~/Content/Account/Account.css" rel="stylesheet" />
+    <script src="~/Content/Account/Account.js"></script>*@
+<!------ Include the above in your HEAD tag ---------->
+@*<div class="container">
+    <div class="row">
+        <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
+
+
+
+            <br>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 style="text-align:center" class="panel-title">@User.Identity.Name</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="@ViewBag.hinh" class="img-circle img-responsive"> </div>
+
+
+                        <div class=" col-md-9 col-lg-9 ">
+                            <table class="table table-user-information">
+                                <tbody>
+
+
+                                    <tr>
+                                        <td>Ngày sinh</td>
+                                        <td>@ViewBag.Date</td>
+                                    </tr>
+
+                                    <tr>
+
+                                    <tr>
+                                        <td>Địa chỉ</td>
+                                        <td>@ViewBag.Address</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email</td>
+                                        <td><a href="@ViewBag.Email">@ViewBag.Email</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Số điện thoại</td>
+                                        <td>
+                                            @ViewBag.PhoneNumber
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Xác thực hai yếu tố</td>
+                                        <td>
+                                            @if (Model.TwoFactor)
+                                            {
+                                                using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    <text>Enabled
+                                                        <input style="margin-bottom:3px" type="submit" value="Disable" class="btn btn-link" />
+                                                    </text>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    <text>Disabled
+                                                        <input style="margin-bottom:3px" type="submit" value="Enable" class="btn btn-link" />
+                                                    </text>
+                                                }
+                                            }
+                                        </td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                            @if (!Model.HasPassword)
+                            {
+                                <a href="https://localhost:44339/Manage/SetPassword" class="btn btn-primary">Cập nhập mật khẩu</a>
+
+                            }
+                            <a style="float:right" href="https://localhost:44339/Manage/ChangePassword" class="btn btn-primary">Đổi mật khẩu tài khoản</a>
+                        </div>
+                    </div>
+                </div>*@
+<!--<div class="panel-footer">-->
+@*<a style="float:right" href="https://localhost:44339/Manage/Edit/@User.Identity.Name" class="btn btn-primary">Thay đổi thông tin</a>*@
+
+<!--<a style="margin-left:380px" data-original-title="Broadcast Message" data-toggle="tooltip" href="https://localhost:44339/Manage/Edit/@User.Identity.Name" class="btn btn-sm btn-primary">Thay đổi thông tin</a>
+<span class="pull-right">-->
+@*<a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+    @Html.ActionLink("Change information", "Edit", new { id = User.Identity.Name })
+    <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>*@
+<!--</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>-->
+@*@using (Html.BeginForm("LayHinh", "AccountController", new { Id = "ViewBag.hinh" }, FormMethod.Post))
+    {
+
+    }*@
+<link href="~/Content/Profile/profile.css" rel="stylesheet" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div style="background-color:rebeccapurple" class="container bootstrap snippets bootdey">
+    <div class="row">
+        <div class="main-content">
+            <!-- NAV TABS -->
+            <ul class="nav nav-tabs nav-tabs-custom-colored tabs-iconized">
+                <li class="active"><a href="#profile-tab" data-toggle="tab" aria-expanded="true"><i class="fa fa-user"></i> Profile</a></li>
+                <li class=""><a href="#activity-tab" data-toggle="tab" aria-expanded="false"><i class="fa fa-rss"></i> Recent Activity</a></li>
+                <li class=""><a href="#settings-tab" data-toggle="tab" aria-expanded="false"><i class="fa fa-gear"></i> Settings</a></li>
+            </ul>
+            <!-- END NAV TABS -->
+            <div class="tab-content profile-page">
+                <!-- PROFILE TAB CONTENT -->
+                <div class="tab-pane profile active" id="profile-tab">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="user-info-left">
+
+                                @*<img class="img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Profile Picture">*@
+                                @if (ViewBag.hinh == null)
+                                {
+                                    <img class="img-responsive" src="\Content\user.jpg" alt="Profile Picture">
+
+                                }
+                                else
+                                {
+                                    <img class="img-responsive" src="@ViewBag.hinh" alt="Profile Picture">
+
+                                }
+                                <h2 style="color:aqua;font:bold">@User.Identity.Name<i class="fa fa-circle green-font online-icon"></i><sup class="sr-only">online</sup></h2>
+                                <div class="contact">
+                                    <a href="https://localhost:44339/Manage/Edit/@User.Identity.Name" class="btn btn-block btn-danger"><i class="fa fa-user-edit"></i> Change information</a>
+                                    <a href="#" class="btn btn-block btn-success"><i class="fa fa-book"></i> Add To Contact</a>
+                                    <ul class="list-inline social">
+                                        <li><a href="#" title="Facebook"><i class="fa fa-facebook-square"></i></a></li>
+                                        <li><a href="#" title="Twitter"><i class="fa fa-twitter-square"></i></a></li>
+                                        <li><a href="#" title="Google Plus"><i class="fa fa-google-plus-square"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div style="font-size:large" class="user-info-right">
+                                <div class="basic-info">
+                                    <h3 style="color:aqua;font:bold"><i class="fa fa-square"></i> Basic Information</h3>
+                                    <p style="margin-left:30px" class="data-row">
+                                        <span style="text-align:center;font-size:medium" class="data-name">Username <i class="fa fa-user"></i></span>
+                                        <span style="color:yellow" class="data-value">@User.Identity.Name</span>
+                                    </p>
+                                    <p style="margin-top: 10px; margin-left: 30px" class="data-row">
+                                        <span style="text-align:center;font-size:medium" class="data-name">Birth Date <i class="fa fa-calendar"></i></span>
+                                        <span style="color:yellow" class="data-value">@ViewBag.Date</span>
+                                    </p>
+                                    <p style="margin-top: 10px; margin-left: 30px" class="data-row">
+                                        <span style="text-align:center;font-size:medium" class="data-name">Gender <i class="fa fa-genderless"></i></span>
+                                        <span style="color:yellow" class="data-value">Male</span>
+                                    </p>
+                                    @*<p style="margin-top:10px; margin-left: 30px" class="data-row">
+                                        <span style="text-align:center;font-size:medium" class="data-name">Website</span>
+                                        <span class="data-value"><a href="#">www.jonasmith.com</a></span>
+                                    </p>*@
+                                    <p style="margin-top: 10px; margin-left: 30px" class="data-row">
+                                        <span style="text-align:center;font-size:medium" class="data-name">Last Login</span>
+                                        <span style="color:yellow" class="data-value">2 hours ago</span>
+                                    </p>
+                                    <p style="margin-top: 10px; margin-left: 30px" class="data-row">
+                                        <span style="text-align:center;font-size:medium" class="data-name">Date Joined</span>
+                                        <span style="color:yellow" class="data-value">@ViewBag.MonthJoin @ViewBag.DayJoin, @ViewBag.YearJoin</span>
+                                    </p>
+                                </div>
+                                <div style="margin-top:15px" class="contact_info">
+                                    <h3 style="color:aqua;font:bold"><i class="fa fa-square"></i> Contact Information</h3>
+                                    <p style="margin-left:30px" class="data-row">
+                                        <span style="text-align:center;font-size:medium" class="data-name">Email <i class="fa fa-envelope-o"></i></span>
+                                        <span style="color:yellow" class="data-value">@ViewBag.Email</span>
+                                    </p>
+                                    <p style="margin-top:10px;margin-left:30px" margin-left:30px"" class="data-row">
+                                        <span style="text-align:center;font-size:medium" class="data-name">Phone <i class="fa fa-phone"></i></span>
+                                        <span style="color:yellow" class="data-value">@ViewBag.PhoneNumber</span>
+                                    </p>
+                                    <p style="margin-top: 10px; margin-left: 30px" margin-left:30px"" class="data-row">
+                                        <span style="text-align:center;font-size:medium" class="data-name">Address <i class="fa fa-address-card"></i></span>
+                                        <span style="color:yellow" class="data-value">@ViewBag.Address</span>
+                                    </p>
+                                </div>
+                                <div style="margin-top:15px" class="about">
+                                    <h3 style="color:aqua;font:bold"><i class="fa fa-square"></i> About Me</h3>
+                                    <p style="color:yellow">@ViewBag.Bio</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END PROFILE TAB CONTENT -->
+                <!-- ACTIVITY TAB CONTENT -->
+                <div class="tab-pane activity" id="activity-tab">
+                    <ul class="list-unstyled activity-list">
+                        <li>
+                            <i class="fa fa-shopping-cart activity-icon pull-left"></i>
+                            <p>
+                                <a href="#">Jonathan</a> commented on <a href="#">Special Deal 2013</a> <span class="timestamp">12 minutes ago</span>
+                            </p>
+                        </li>
+                        <li>
+                            <i class="fa fa-pencil activity-icon pull-left"></i>
+                            <p>
+                                <a href="#">Jonathan</a> posted <a href="#">a new blog post</a> <span class="timestamp">4 hours ago</span>
+                            </p>
+                        </li>
+                        <li>
+                            <i class="fa fa-user activity-icon pull-left"></i>
+                            <p>
+                                <a href="#">Jonathan</a> edited his profile <span class="timestamp">11 hours ago</span>
+                            </p>
+                        </li>
+                        <li>
+                            <i class="fa fa-pencil activity-icon pull-left"></i>
+                            <p>
+                                <a href="#">Jonathan</a> has added review on <a href="#">jQuery Complete Guide</a> book <span class="timestamp">Yesterday</span>
+                            </p>
+                        </li>
+                        <li>
+                            <i class="fa fa-thumbs-up activity-icon pull-left"></i>
+                            <p>
+                                <a href="#">Jonathan</a> liked <a href="#">a post</a> <span class="timestamp">December 12</span>
+                            </p>
+                        </li>
+                        <li>
+                            <i class="fa fa-tasks activity-icon pull-left"></i>
+                            <p>
+                                <a href="#">Jonathan</a> has completed one task <span class="timestamp">December 11</span>
+                            </p>
+                        </li>
+                        <li>
+                            <i class="fa fa-picture-o activity-icon pull-left"></i>
+                            <p>
+                                <a href="#">Jonathan</a> uploaded <a href="#">new photos</a> <span class="timestamp">December 5</span>
+                            </p>
+                        </li>
+                        <li>
+                            <i class="fa fa-credit-card activity-icon pull-left"></i>
+                            <p>
+                                <a href="#">Jonathan</a> has updated his credit card info <span class="timestamp">September 28</span>
+                            </p>
+                        </li>
+                    </ul>
+                    <p class="text-center more"><a href="#" class="btn btn-custom-primary">View more <i class="fa fa-long-arrow-right"></i></a></p>
+                </div>
+                <!-- END ACTIVITY TAB CONTENT -->
+                <!-- SETTINGS TAB CONTENT -->
+
+                <div class="tab-pane settings" id="settings-tab">
+
+                    <form class="form-horizontal" role="form">
+                        <fieldset>
+                            @if (!Model.HasPassword)
+                            {
+                                <a href="https://localhost:44339/Manage/SetPassword" class="btn btn-primary">Cập nhập mật khẩu</a>
+
+                            }
+                        </fieldset>
+                        <fieldset>
+                            <a href="https://localhost:44339/Manage/Edit/@User.Identity.Name">Thay đổi thông tin</a>
+
+                        </fieldset>
+                        <fieldset>
+
+                            @*<h3><i class="fa fa-square"></i> Change Password</h3>*@
+                            <a href="https://localhost:44339/Manage/ChangePassword">Change password</a>
+                            @*<div class="form-group">
+            <label for="old-password" class="col-sm-3 control-label">Old Password</label>
+            <div class="col-sm-4">
+                <input type="password" id="old-password" name="old-password" class="form-control">
+            </div>
+        </div>
+        <hr>
+        <div class="form-group">
+            <label for="password" class="col-sm-3 control-label">New Password</label>
+            <div class="col-sm-4">
+                <input type="password" id="password" name="password" class="form-control">
+            </div>
+        </div>*@
+                            @*<div class="form-group">
+            <label for="password2" class="col-sm-3 control-label">Repeat Password</label>
+            <div class="col-sm-4">
+                <input type="password" id="password2" name="password2" class="form-control">
+            </div>
+        </div>*@
+                        </fieldset>
+
+                        @*<fieldset>
+                <h3><i class="fa fa-square"></i> Privacy</h3>
+                <label class="fancy-checkbox">
+                    <input type="checkbox">
+                    <span>Show my display name</span>
+                </label>
+                <label class="fancy-checkbox">
+                    <input type="checkbox">
+                    <span>Show my birth date</span>
+                </label>
+                <label class="fancy-checkbox">
+                    <input type="checkbox">
+                    <span>Show my email</span>
+                </label>
+                <label class="fancy-checkbox">
+                    <input type="checkbox">
+                    <span>Show my online status on chat</span>
+                </label>
+            </fieldset>
+            <h3><i class="fa fa-square"> </i>Notifications</h3>
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-sm-5 control-label">Receive message from administrator</label>
+                    <ul class="col-sm-7 list-inline">
+                        <li>
+                            <div class="has-switch switch-animate switch-small switch-on" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-globe"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-globe"></i></span><input type="checkbox" checked="" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-globe'></i>" data-off-label="<i class='glyphicon glyphicon-globe'></i>"></div></div>
+                        </li>
+                        <li>
+                            <div class="has-switch switch-animate switch-small switch-on" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-phone"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-phone"></i></span><input type="checkbox" checked="" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-phone'></i>" data-off-label="<i class='glyphicon glyphicon-phone'></i>"></div></div>
+                        </li>
+                        <li>
+                            <div class="has-switch switch-animate switch-small switch-on" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-envelope"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-envelope"></i></span><input type="checkbox" checked="" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-envelope'></i>" data-off-label="<i class='glyphicon glyphicon-envelope'></i>"></div></div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-5 control-label">New product has been added</label>
+                    <ul class="col-sm-7 list-inline">
+                        <li>
+                            <div class="has-switch switch-animate switch-small switch-off" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-globe"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-globe"></i></span><input type="checkbox" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-globe'></i>" data-off-label="<i class='glyphicon glyphicon-globe'></i>"></div></div>
+                        </li>
+                        <li>
+                            <div class="has-switch switch-animate switch-small switch-on" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-phone"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-phone"></i></span><input type="checkbox" checked="" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-phone'></i>" data-off-label="<i class='glyphicon glyphicon-phone'></i>"></div></div>
+                        </li>
+                        <li>
+                            <div class="has-switch switch-animate switch-small switch-on" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-envelope"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-envelope"></i></span><input type="checkbox" checked="" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-envelope'></i>" data-off-label="<i class='glyphicon glyphicon-envelope'></i>"></div></div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-5 control-label">Product review has been approved</label>
+                    <ul class="col-sm-7 list-inline">
+                        <li>
+                            <div class="has-switch switch-animate switch-small switch-on" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-globe"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-globe"></i></span><input type="checkbox" checked="" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-globe'></i>" data-off-label="<i class='glyphicon glyphicon-globe'></i>"></div></div>
+                        </li>
+                        <li>
+                            <div class="has-switch switch-animate switch-small switch-off" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-phone"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-phone"></i></span><input type="checkbox" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-phone'></i>" data-off-label="<i class='glyphicon glyphicon-phone'></i>"></div></div>
+                        </li>
+                        <li>
+                            <div class="has-switch switch-animate switch-small switch-on" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-envelope"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-envelope"></i></span><input type="checkbox" checked="" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-envelope'></i>" data-off-label="<i class='glyphicon glyphicon-envelope'></i>"></div></div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-5 control-label">Others liked your post</label>
+                    <ul class="col-sm-7 list-inline">
+                        <li>
+                            <div class="has-switch switch-animate switch-small switch-off" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-globe"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-globe"></i></span><input type="checkbox" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-globe'></i>" data-off-label="<i class='glyphicon glyphicon-globe'></i>"></div></div>
+                        </li>
+                        <li>
+                            <div class="has-switch switch-animate switch-small switch-off" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-phone"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-phone"></i></span><input type="checkbox" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-phone'></i>" data-off-label="<i class='glyphicon glyphicon-phone'></i>"></div></div>
+                        </li>
+                        <li>
+                            <div class="has-switch switch-animate switch-small switch-off" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-envelope"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-envelope"></i></span><input type="checkbox" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-envelope'></i>" data-off-label="<i class='glyphicon glyphicon-envelope'></i>"></div></div>
+                        </li>
+                    </ul>
+                </div>
+            </fieldset>*@
+                        <h1>Xác thực hai yếu tố</h1>
+                        @if (Model.TwoFactor)
+                        {
+                            using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <text>Enabled
+                                    <input style="margin-bottom:3px" type="submit" value="Disable" class="btn btn-link" />
+                                </text>
+                            }
+                        }
+                        else
+                        {
+                            using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <text>Disabled
+                                    <input style="margin-bottom:3px" type="submit" value="Enable" class="btn btn-link" />
+                                </text>
+                            }
+                        }
+                    </form>
+                </div>
+                <!-- END SETTINGS TAB CONTENT -->
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+
