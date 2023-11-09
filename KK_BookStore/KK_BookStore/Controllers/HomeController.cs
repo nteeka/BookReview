@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using System.Xml.Linq;
 
@@ -18,7 +19,18 @@ namespace KK_BookStore.Controllers
                 var anhDaiDien = from s in data.NguoiDungs where s.TaiKhoan == User.Identity.Name select s;
                 ViewBag.hinh = anhDaiDien.First().Hinh;
             }
-
+            var baiviets = data.BaiViets.ToList();
+            List<BaiViet> lstBaiViet = new List<BaiViet>();
+            int count = 0;
+            foreach(var item in baiviets)
+            {
+                lstBaiViet.Add(item);
+                count++;
+                if (count == 3)
+                    break;
+            }
+            ViewBag.baiviet = lstBaiViet;
+            
             //return View(all_sach.ToList());
             return View();
         }

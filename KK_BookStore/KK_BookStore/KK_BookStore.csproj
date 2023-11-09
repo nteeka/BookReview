@@ -237,6 +237,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
+    <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\SachController.cs" />
     <Compile Include="Controllers\TacGiaController.cs" />
     <Compile Include="Controllers\TheLoaiController.cs" />
@@ -392,6 +393,7 @@
     <Content Include="Content\quanLySach\scripts.js" />
     <Content Include="Content\report\report.css" />
     <Content Include="Content\report\report.js" />
+    <Content Include="Content\Review\Index.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\style1.css" />
     <Content Include="Content\TacGia\Index.css" />
@@ -634,6 +636,7 @@
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\TacGia\Index.cshtml" />
     <Content Include="Views\NguoiDung\trangCaNhan.cshtml" />
+    <Content Include="Views\Review\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
