@@ -5,6 +5,196 @@
 
 }
 
+@*<link href="~/Content/Review/Index.css" rel="stylesheet" />
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Javascript Documentation</title>
+        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <header>
+            <nav style="width:200px">
+
+                <div style="position:fixed;width:180px">
+                    <h1>@ViewBag.baiviet.TenBaiViet</h1>
+                    @foreach (var item in ViewBag.chitietbaiviet)
+                    {
+                        <ul>
+                            <a href="#@item.TieuDe">
+                            <li style="text-align:center">@item.TieuDe</li></a>
+                        </ul>
+                    }
+                    <ul><li>Back</li></ul>
+                </div>
+            </nav>
+
+        </header>
+        <main>
+            <div>
+
+
+
+                <div style="float:left;width:800px">
+                    @foreach (var item in ViewBag.chitietbaiviet)
+                    {
+                        <section id="@item.TieuDe">
+                            <h2>@item.TieuDe</h2>
+                            <article>
+                                <img src="@item.HinhMinhHoa" width="700" height="300" />
+                                <p>
+                                    @item.NoiDung
+                                </p>
+
+                                <p>
+                                    JavaScript contains a standard library of objects, such as Array,
+                                    Date, and Math, and a core set of language elements such as
+                                    operators, control structures, and statements. Core JavaScript can
+                                    be extended for a variety of purposes by supplementing it with
+                                    additional objects; for example:
+                                </p>
+                                <ul>
+                                    <li>
+                                        Client-side JavaScript extends the core language by supplying
+                                        objects to control a browser and its Document Object Model (DOM).
+                                        For example, client-side extensions allow an application to place
+                                        elements on an HTML form and respond to user events such as mouse
+                                        clicks, form input, and page navigation.
+                                    </li>
+                                    <li>
+                                        Server-side JavaScript extends the core language by supplying
+                                        objects relevant to running JavaScript on a server. For example,
+                                        server-side extensions allow an application to communicate with a
+                                        database, provide continuity of information from one invocation to
+                                        another of the application, or perform file manipulations on a
+                                        server.
+                                    </li>
+                                </ul>
+                            </article>
+                        </section>
+                    }
+
+
+                </div>
+                <div style="float:right;">
+                    <div style="margin-top: 10px; margin-left: 230px;"> <a href="Link web 2" target="_blank"><img border="0" src="http://farm6.staticflickr.com/5759/31081343902_b95bee4751_o.png" width="200" /></a> </div>
+                    <div style="margin-top: 10px; margin-left: 230px;"> <a href="Link web 2" target="_blank"><img border="0" src="\Content\user.jpg" width="200" /></a> </div>
+                </div>
+
+
+            </div>
+            <link href="~/Content/BinhLuan/danhSachBinhLuan.css" rel="stylesheet" />
+            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+            <section class="content-item" id="comments">
+                <div style="" class="container">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div style="width:fit-content">
+                                @using (Html.BeginForm("themBinhLuan", "Sach", FormMethod.Get))
+                                {
+                                    <input hidden list="browsers" value=@ViewBag.MaSach type="text" placeholder="ma" name="masach" />
+                                    <form>
+                                        <h3 class="pull-left">New Comment</h3>
+                                        <div class="rate">
+
+                                            <input type="radio" id="star5" name="rate" value="5" />
+                                            <label for="star5" title="text">5 stars</label>
+                                            <input type="radio" id="star4" name="rate" value="4" />
+                                            <label for="star4" title="text">4 stars</label>
+                                            <input type="radio" id="star3" name="rate" value="3" />
+                                            <label for="star3" title="text">3 stars</label>
+                                            <input type="radio" id="star2" name="rate" value="2" />
+                                            <label for="star2" title="text">2 stars</label>
+                                            <input type="radio" id="star1" name="rate" value="1" />
+                                            <label for="star1" title="text">1 star</label>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-normal pull-right">Submit</button>
+                                        <fieldset>
+                                            <div class="row">
+                                                <div class="col-sm-3 col-lg-2 hidden-xs">
+                                                    <img style="width:180px;height:100px" class="img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                                                </div>
+                                                <div class="col-xs-12 col-sm-9 col-lg-10">
+                                                    <textarea style="width:400px" class="form-control" name="noidung" id="message" placeholder="Your message" required=""></textarea>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                    </form>
+                                }
+
+                            </div>
+
+
+
+                            <h3>das Comments</h3>
+                            @foreach (var item in ViewBag.cmt)
+                            {
+                                <div class="media">
+                                    <a class="pull-left" href="#"><img width="100" height="100" class="media-object" src="@item.NguoiDung.Hinh" alt=""></a>
+                                    <div >
+
+                                        <h4 class="media-heading">
+                                            @item.TaiKhoan
+                                            @if (item.SoSao == 1)
+                                            {
+                                                <span class="fa fa-star checked"></span>
+
+                                            }
+                                            @if (item.SoSao == 2)
+                                            {
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+
+                                            }
+                                            @if (item.SoSao == 3)
+                                            {
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+
+                                            }
+                                            @if (item.SoSao == 4)
+                                            {
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+
+                                            }
+                                            @if (item.SoSao == 5)
+                                            {
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                            }
+                                        </h4>
+
+                                        <p>@item.NoiDung</p>
+
+                                    </div>
+                                </div>
+
+                            }
+
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+        </main>
+    </body>
+
+    </html>*@
 <link href="~/Content/Review/Index.css" rel="stylesheet" />
 <!DOCTYPE html>
 <html lang="en">
@@ -19,28 +209,16 @@
 <body>
     <header>
         <nav style="width:200px">
-            @*<h1>@ViewBag.baiviet.TenBaiViet</h1>*@
-            @*<ul>
-                <a href="#Introduction">
-                <li>Introduction</li></a>
-                <a href="#What_you_should_already_know">
-                <li>What you should already know</li></a>
-                <a href="#JavaScript_and_Java">
-                <li>JavaScript and Java</li></a>
-                <a href="#Hello_world">
-                <li>Hello world</li></a>
-                <a href="#Variables">
-                <li>Variables</li></a>*@
-            </ul>
+
             <div style="position:fixed;width:180px">
                 <h1>@ViewBag.baiviet.TenBaiViet</h1>
-                @foreach (var item in ViewBag.chitietbaiviet)
-                {
+                @*@foreach (var item in ViewBag.baiviet)
+                {*@
                     <ul>
-                        <a href="#@item.TieuDe">
-                        <li style="text-align:center">@item.TieuDe</li></a>
+                        <a href="#@ViewBag.baiviet.TenBaiViet">
+                        <li style="text-align:center">@ViewBag.baiviet.TenBaiViet</li></a>
                     </ul>
-                }
+                @*}*@
                 <ul><li>Back</li></ul>
             </div>
         </nav>
@@ -52,17 +230,17 @@
 
 
             <div style="float:left;width:800px">
-                @foreach (var item in ViewBag.chitietbaiviet)
-                {
-                    <section id="@item.TieuDe">
-                        <h2>@item.TieuDe</h2>
+                @*@foreach (var item in ViewBag.baiviet)
+                {*@
+                    <section id="@ViewBag.baiviet.TenBaiViet">
+                        <h2>@ViewBag.baiviet.TenBaiViet</h2>
                         <article>
-                            <img src="@item.HinhMinhHoa" width="700" height="300" />
+                            <img src="@ViewBag.baiviet.AnhBia" width="700" height="300" />
                             <p>
-                                @item.NoiDung
+                               @Html.Raw(ViewBag.baiviet.NoiDung)
                             </p>
 
-                            <p>
+                            @*<p>
                                 JavaScript contains a standard library of objects, such as Array,
                                 Date, and Math, and a core set of language elements such as
                                 operators, control structures, and statements. Core JavaScript can
@@ -85,10 +263,10 @@
                                     another of the application, or perform file manipulations on a
                                     server.
                                 </li>
-                            </ul>
+                            </ul>*@
                         </article>
                     </section>
-                }
+                @*}*@
 
 
             </div>
@@ -130,8 +308,6 @@
                                         <div class="row">
                                             <div class="col-sm-3 col-lg-2 hidden-xs">
                                                 <img style="width:180px;height:100px" class="img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
-                                                @*<textarea class="form-control" id="message" placeholder="Your message" required=""></textarea>*@
-
                                             </div>
                                             <div class="col-xs-12 col-sm-9 col-lg-10">
                                                 <textarea style="width:400px" class="form-control" name="noidung" id="message" placeholder="Your message" required=""></textarea>
@@ -151,7 +327,7 @@
                         {
                             <div class="media">
                                 <a class="pull-left" href="#"><img width="100" height="100" class="media-object" src="@item.NguoiDung.Hinh" alt=""></a>
-                                <div >
+                                <div>
 
                                     <h4 class="media-heading">
                                         @item.TaiKhoan
@@ -192,39 +368,8 @@
                                     </h4>
 
                                     <p>@item.NoiDung</p>
-                                    @*<ul>
-                                        <li><i class="fa fa-calendar"></i>@item.NgayTao</li>
-                                        @if (item.SoLike == 0)
-                                        {
-                                            <li><i class="fa fa-thumbs-up"></i></li>
-                                        }
-                                        else
-                                        {
 
-                                            <li><i class="fa fa-thumbs-up"></i>@item.SoLike</li>
-
-                                        }
-                                    </ul>
-                                    <ul>
-                                        <li class=""><a href="@Url.Action("thichBinhLuan", "Sach",new { @id = item.MaBinhLuan})">Like</a></li>
-
-                                        @if (item.TaiKhoan.Trim() == User.Identity.Name)
-                                        {
-                                            <li class=""><a href="@Url.Action("xoaBinhLuan", "Sach",new { @id = item.MaBinhLuan})">Delete</a></li>
-
-                                        }
-                                        <li class=""><a href="@Url.Action("phanHoiBinhLuan", "Sach",new { @id = item.MaBinhLuan})">Reply</a></li>
-
-
-                                        <li></li>
-                                    </ul>*@
                                 </div>
-
-
-
-
-
-
                             </div>
 
                         }

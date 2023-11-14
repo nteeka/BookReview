@@ -20,12 +20,12 @@
         {
             @Html.AntiForgeryToken()
             <div class=" social-auth-links-text-center">
-                <p style="margin-top:10px">- Hoặc -</p>
+                <p style="margin-top:10px">- Or -</p>
                 @foreach (AuthenticationDescription p in loginProviders)
                 {
                     <button type="submit" class="btn btn-social btn-google btn-flat" 
                             id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType">
-                <i class="fa fa-google-plus"></i>Đăng nhập bằng tài khoản Google+</button>
+                <i class="fa fa-google-plus"></i>Login with account Google+</button>
                 }
             </div>
 

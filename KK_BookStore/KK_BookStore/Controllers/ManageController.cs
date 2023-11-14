@@ -386,6 +386,7 @@ namespace KK_BookStore.Controllers
             return View(E_sach);
         }
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Edit(string id, FormCollection collection)
         {
             var E_taikhoan = mydata.NguoiDungs.First(m => m.TaiKhoan.Equals(id));

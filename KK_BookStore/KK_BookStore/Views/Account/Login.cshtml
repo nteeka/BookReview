@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>K&K | Log in</title>
+    <title>NTK_Reviews | Log in</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -26,7 +26,7 @@
     <!-- iCheck -->
     @*<link rel="stylesheet" href="/plugins/iCheck/square/blue.css">*@
     <link href="~/Content/Login/blue.css" rel="stylesheet" />
-
+    <link rel="shortcut icon" type="image/icon" href="~/Content/LayoutChung/favicon.png" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -34,15 +34,15 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body class="hold-transition login-page" style="background-image: url('https://img.freepik.com/premium-vector/hand-drawn-seamless-pattern-book-doodle-elements-education-concept_253081-84.jpg');">
+<body class="hold-transition login-page" style="background-image: url('https://i.pinimg.com/564x/65/c2/73/65c27380f1ccc9c6cebc6a126855e7e6.jpg'); background-repeat: repeat; background-size: contain ">
 
-    <div class="login-box" style="background-color:whitesmoke;padding-top:10px;text-align:center">
+    <div class="login-box" style="background-color:lightslategray;padding-top:10px;text-align:center">
         <div class="login-logo">
-            <a href="#"><b>K&K</b> BookStore</a>
+            <a style="color:white" href="#"><b>NTK</b>_Reviews</a>
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
-            <p class="login-box-msg">Đăng nhập để mua sách</p>
+            <p class="login-box-msg">Welcome !</p>
 
             <section id="loginForm">
                 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -61,14 +61,14 @@
                         <span class="fa fa-lock form-control-feedback"></span>
                     </div>
                     <div>
-                        <p style="float:left">@Html.ActionLink("Quên mật khẩu?", "ForgotPassword")</p>
+                        <p style="float:left">@Html.ActionLink("Forgot password?", "ForgotPassword")</p>
                         <label style="float:right;">
                             @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.Label("Nhớ mật khẩu")
+                            @Html.Label("Remember me")
                         </label>
                     </div>
                     <div style="margin-top:50px">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Đăng nhập</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
                     </div>
                 }
             </section>
@@ -79,7 +79,7 @@
 
             <!-- /.social-auth-links -->
             <div style="margin-top:10px">
-                @Html.ActionLink("Nhấn vào đây để đăng ký tài khoản", "Register", "Account")
+                @Html.ActionLink("Don't have an account?", "Register", "Account")
 
             </div>
 

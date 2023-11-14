@@ -2,12 +2,12 @@
     display: inline-block;
     position: relative;
 }
-
+/*
 .dropdown-content {
     display: none;
     position: absolute;
     width: 100%;
-   /* overflow: auto;*/
+    overflow: auto;
     box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
 }
 
@@ -17,7 +17,7 @@
 
 .dropdown-content a {
     display: block;
-    /*color: #000000;*/
+    color: #000000;
     color:black;
     padding: 5px;
     text-decoration: none;
@@ -26,3 +26,4 @@
         color: #FFFFFF;
         background-color: #00A4BD;
     }
+*/
