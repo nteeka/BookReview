@@ -183,6 +183,7 @@ D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\roslyn\vbc.
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\roslyn\vbc.rsp
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\roslyn\VBCSCompiler.exe
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\roslyn\VBCSCompiler.exe.config
+D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\AntiXssLibrary.dll
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\Antlr3.Runtime.dll
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\EntityFramework.dll
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\EntityFramework.SqlServer.dll
@@ -192,6 +193,7 @@ D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\Google.Apis
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\Google.Apis.dll
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\Google.Apis.PlatformServices.dll
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\Google.Apis.Translate.v2.dll
+D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\HtmlSanitizationLibrary.dll
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\Microsoft.AspNet.Identity.Core.dll
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\Microsoft.AspNet.Identity.Owin.dll
@@ -228,6 +230,7 @@ D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\System.Web.
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\System.Web.WebPages.Razor.dll
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\Twilio.dll
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\WebGrease.dll
+D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\AntiXssLibrary.xml
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\Google.Apis.pdb
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\Google.Apis.xml
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\Google.Apis.Auth.pdb
@@ -236,6 +239,7 @@ D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\Google.Apis
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\Google.Apis.Core.xml
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\Google.Apis.Translate.v2.pdb
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\Google.Apis.Translate.v2.xml
+D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\HtmlSanitizationLibrary.xml
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\Microsoft.AspNet.SignalR.Core.xml
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\Microsoft.IdentityModel.Tokens.xml
@@ -278,7 +282,3 @@ D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\obj\Debug\KK_Bo
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\obj\Debug\KK_BookStore.csproj.CopyComplete
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\obj\Debug\KK_BookStore.dll
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\obj\Debug\KK_BookStore.pdb
-D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\AntiXssLibrary.dll
-D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\HtmlSanitizationLibrary.dll
-D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\AntiXssLibrary.xml
-D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\bin\HtmlSanitizationLibrary.xml

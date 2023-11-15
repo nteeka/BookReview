@@ -1,0 +1,181 @@
+﻿@model KK_BookStore.BaiViet
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NTK_Reviews | @Model.TenBaiViet</title>
+    <link href="~/Content/Review/Index.css" rel="stylesheet" />
+</head>
+
+<body>
+
+
+
+
+
+
+    <header>
+        <nav style="width:200px">
+
+            <ul>
+                <li><a href="https://localhost:44339/Home/Index">home</a></li>
+                <li class="scroll"><a href="#works">how it works</a></li>
+                <li class="scroll"><a href="#explore">explore</a></li>
+                @*<li class="scroll"><a href="#reviews">review</a></li>*@
+                <li class="scroll"><a href="#reviews">review</a></li>
+                <li><a href="https://localhost:44339/Blog/Index">blog</a></li>
+                <li class="scroll"><a href="#contact">contact</a></li>
+                @Html.Partial("_LoginPartial")
+            </ul>
+
+
+
+        </nav>
+
+    </header>
+    <main>
+        <div>
+
+
+
+            <div style="float:left; width:900px">
+                
+                <section style="margin-left:80px;width:900px" id="@Model.TenBaiViet">
+                    <h1>@Model.TenBaiViet</h1>
+                    <article>
+                        @*<img src="@ViewBag.baiviet.AnhBia" width="700" height="300" />*@
+                        <p>
+                            @Html.Raw(Model.NoiDung)
+                        </p>
+
+                        
+                    </article>
+                </section>
+                @*}*@
+
+
+            </div>
+            <div style="float: right;margin-left: 200px;">
+                <div> <a href="Link web 2" target="_blank"><img border="0" src="http://farm6.staticflickr.com/5759/31081343902_b95bee4751_o.png" width="200" /></a> </div>
+                <div style="margin-top: 10px;"> <a href="Link web 2" target="_blank"><img border="0" src="\Content\user.jpg" width="200" /></a> </div>
+            </div>
+
+            
+        </div>
+        <link href="~/Content/BinhLuan/danhSachBinhLuan.css" rel="stylesheet" />
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <section class="content-item" id="comments">
+            <div style="" class="container">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div style="width:fit-content">
+                            @using (Html.BeginForm("themBinhLuan", "Sach", FormMethod.Get))
+                            {
+                                <input hidden list="browsers" value=@ViewBag.MaSach type="text" placeholder="ma" name="masach" />
+                                <form>
+                                    <h3 class="pull-left">New Comment</h3>
+                                    <div class="rate">
+
+                                        <input type="radio" id="star5" name="rate" value="5" />
+                                        <label for="star5" title="text">5 stars</label>
+                                        <input type="radio" id="star4" name="rate" value="4" />
+                                        <label for="star4" title="text">4 stars</label>
+                                        <input type="radio" id="star3" name="rate" value="3" />
+                                        <label for="star3" title="text">3 stars</label>
+                                        <input type="radio" id="star2" name="rate" value="2" />
+                                        <label for="star2" title="text">2 stars</label>
+                                        <input type="radio" id="star1" name="rate" value="1" />
+                                        <label for="star1" title="text">1 star</label>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-normal pull-right">Submit</button>
+                                    <fieldset>
+                                        <div class="row">
+                                            <div class="col-sm-3 col-lg-2 hidden-xs">
+
+                                                @*<img style="width:180px;height:100px" class="img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">*@
+                                            </div>
+                                            <div class="col-xs-12 col-sm-9 col-lg-10">
+                                                <textarea style="width:400px" class="form-control" name="noidung" id="message" placeholder="Your message" required=""></textarea>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                </form>
+                            }
+
+                        </div>
+
+
+
+                        <h3>das Comments</h3>
+                        @foreach (var item in ViewBag.cmt)
+                        {
+                            <div class="media">
+                                <a class="pull-left" href="#"><img width="100" height="100" class="media-object" src="@item.NguoiDung.Hinh" alt=""></a>
+                                <div>
+
+                                    <h4 class="media-heading">
+                                        @item.TaiKhoan
+                                        @if (item.SoSao == 1)
+                                        {
+                                            <span class="fa fa-star checked"></span>
+
+                                        }
+                                        @if (item.SoSao == 2)
+                                        {
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+
+                                        }
+                                        @if (item.SoSao == 3)
+                                        {
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+
+                                        }
+                                        @if (item.SoSao == 4)
+                                        {
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+
+                                        }
+                                        @if (item.SoSao == 5)
+                                        {
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                        }
+                                    </h4>
+
+                                    <p>@item.NoiDung</p>
+
+                                </div>
+                            </div>
+
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+</body>
+
+</html>

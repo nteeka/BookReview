@@ -235,12 +235,14 @@
                                             <ul>
                                                 <li>
                                                     <div class="single-explore-image-icon">
-                                                        <i class="fa fa-arrows-alt"></i>
+                                                        <a href="https://localhost:44339/Review/Detail/@item.MaBaiViet"><i style="color:white" class="fa fa-arrows-alt"></i></a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="single-explore-image-icon">
-                                                        <i class="fa fa-bookmark-o"></i>
+                                                        
+                                                        <a href=" @Url.Action("yeuThichBaiViet", "Review",new { @id = item.MaBaiViet, @strURL = Request.Url.ToString()})"><i style="color:white" class="fa fa-bookmark-o"></i></a>
+
                                                     </div>
                                                 </li>
                                             </ul>
@@ -253,10 +255,10 @@
                                         <span class="explore-rating">@item.SoSao ★</span>
                                         <a href="#"> 10 ratings</a>
                                         <span class="explore-price-box">
-                                            form
+                                            
                                             <span class="explore-price">5$-300$</span>
                                         </span>
-                                        <a href="#">@item.TaiKhoan</a>
+                                        <a href="#">Author: <strong>@item.TaiKhoan</strong> </a>
                                     </p>
                                     <div class="explore-person">
                                         <div class="row">

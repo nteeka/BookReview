@@ -1,0 +1,240 @@
+﻿@model KK_BookStore.BaiViet
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>Edit</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>BaiViet</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.MaBaiViet)
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TenBaiViet, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TenBaiViet, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TenBaiViet, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.AnhBia, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.AnhBia, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AnhBia, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NoiDung, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MaTL, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.MaTL, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MaTL, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+           
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TrangThai, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TrangThai, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TrangThai, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Post Form</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="~/Content/Review/create.css" rel="stylesheet" />
+    <script src="//cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
+    <script src="~/Content/Review/create.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="apply_box">
+            <h1>
+                Edit Post
+                <span class="title_small">(NTK_Reviews)</span>
+            </h1>
+            @*<form action="">*@
+            @using (Html.BeginForm("Edit", "Review", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form_container">
+                    <div class="form_control">
+                        <label for="TenBaiViet"> Ten Bai Viet </label>
+                        @*<input required id="TenBaiViet"
+                               name="TenBaiViet"
+                               placeholder="Enter TenBaiViet..." />*@
+                        @Html.EditorFor(model => model.TenBaiViet, new { htmlAttributes = new { @class = "form-control",@id= "TenBaiViet",
+                               @name = "TenBaiViet",
+                               @placeholder = "Enter TenBaiViet..."
+                   } })
+                    </div>
+                    @*@Html.EditorFor(model => model.MaTL, new { htmlAttributes = new { @class = "form-control",@style="display:none" } })*@
+                <div class="form_control">
+                    <label for="MaTL"> The Loai </label>
+                    <select id="MaTL" name="MaTL">
+
+                        @foreach (var i in ViewBag.TheLoais)
+                        {
+                            if (ViewBag.TL == i.MaTL)
+                            {
+                                <option selected value=@i.MaTL>@i.TenTL</option>
+
+                            }
+                            else
+                            {
+                                <option value=@i.MaTL>@i.TenTL</option>
+
+                            }
+
+                        }
+
+
+                    </select>
+
+
+                </div>
+                    <div class="form_control">
+                        <label for="TrangThai"> Status </label>
+                        <select id="TrangThai" name="TrangThai">
+                            @if (ViewBag.status == 0)
+                            {
+                                <option selected value=0>Private</option>
+                                <option value=1>Public</option>
+                            }
+                            else
+                            {
+                                <option  value=0>Private</option>
+                                <option selected value=1>Public</option>
+                            }
+
+
+                        </select>
+                        
+
+                    </div>
+                    <div class="form_control">
+                        <label for="MoTa"> Bio </label>
+                        @Html.TextAreaFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control"
+                                    ,@id = "MoTa",
+                                  @name = "MoTa",
+                                  @placeholder = "Enter Bio..."
+                   } })
+                    </div>
+
+                    @*<div class="form_control">
+                            <label for="email"> Email </label>
+                            <input type="email"
+                                   id="email"
+                                   name="email"
+                                   placeholder="Enter Email..." />
+                        </div>*@
+
+                <div class="textarea_control ckeditor">
+                    <label for="NoiDung"> NOI DUNG </label>
+                    @Html.TextAreaFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control ckeditor"
+                              ,@id = "NoiDung",
+                              @name = "NoiDung",
+                              @row = "4",
+                              @cols = "50",
+                              @placeholder = "Enter NoiDung"} })
+                </div>
+                    <script>CKEDITOR.replace("NoiDung");</script>
+
+                   
+
+                    <div class="form_control">
+                        <label for="AnhBia"> Upload Your Anh Bia </label>
+                        @*<input type="file" id="AnhBia" name="AnhBia" />*@
+                        @Html.EditorFor(model => model.AnhBia, new { htmlAttributes = new { @class = "form-control",@style="display:none" } })
+                        @Html.ValidationMessageFor(model => model.AnhBia, "", new { @class = "text-danger" })
+                        <input type="file" class="text-center center-block file-upload" name="fileUpload" id="fileUpload" accept="image/*" />
+                        @section upload
+            {
+                            <script>
+                        $(function () {
+                            $('#btnUpload').click(function () {
+                                $('#fileUpload').trigger('click');
+                            });
+                        });
+                        $('#fileUpload').change(function () {
+                            if (window.FormData !== undefined) {
+                                var fileUpload = $('#fileUpload').get(0);
+                                var files = fileUpload.files;
+                                var formData = new FormData();
+                                formData.append('file', files[0]);
+                                $.ajax(
+                                    {
+                                        type: 'POST',
+                                        url: '/Review/ProcessUpload',
+                                        contentType: false,
+                                        processData: false,
+                                        data: formData,
+                                        success: function (urlImage) {
+                                            $('#pictureUpload').attr('src', urlImage);
+                                            $('#AnhBia').val(urlImage);
+                                        },
+                                        error: function (err) {
+                                            alert('Error ', err.statusText);
+                                            19
+                                        }
+                                    });
+                            }
+                        });
+                            </script>
+                        }
+                    </div>
+
+                </div>
+                <div class="button_container">
+                    <button type="submit">UpLoad Now</button>
+                </div>
+                @*</form>*@
+            }
+
+        </div>
+    </div>
+</body>
+
+</html>

@@ -111,22 +111,22 @@ namespace KK_BookStore.Controllers
         [Authorize]
         public ActionResult themDanhSachYeuThich(int id, string strURL)
         {
-            var D_sach1 = (from s in data.DanhSachYeuThiches where s.MaSach == id && s.TaiKhoan == User.Identity.Name select s).FirstOrDefault();
-            if (D_sach1 != null)
-            {
-                return Redirect(strURL);
+            //var D_sach1 = (from s in data.DanhSachYeuThiches where s.MaSach == id && s.TaiKhoan == User.Identity.Name select s).FirstOrDefault();
+            //if (D_sach1 != null)
+            //{
+            //    return Redirect(strURL);
 
-            }
-            var capnhapLike = from tt in data.Saches where tt.MaSach == id select tt;            
-            capnhapLike.First().SoLike++;
-            UpdateModel(capnhapLike);
+            //}
+            //var capnhapLike = from tt in data.Saches where tt.MaSach == id select tt;            
+            //capnhapLike.First().SoLike++;
+            //UpdateModel(capnhapLike);
 
 
-            DanhSachYeuThich danhsach = new DanhSachYeuThich();
-            danhsach.MaSach = id;
-            danhsach.TaiKhoan = User.Identity.Name;
-            data.DanhSachYeuThiches.InsertOnSubmit(danhsach);
-            data.SubmitChanges();
+            //DanhSachYeuThich danhsach = new DanhSachYeuThich();
+            //danhsach.MaSach = id;
+            //danhsach.TaiKhoan = User.Identity.Name;
+            //data.DanhSachYeuThiches.InsertOnSubmit(danhsach);
+            //data.SubmitChanges();
                 
             
             return Redirect(strURL);
@@ -134,13 +134,13 @@ namespace KK_BookStore.Controllers
         }
         public ActionResult xoaDanhSachYeuThich(int id)
         {
-            var capnhapunLike = from tt in data.Saches where tt.MaSach == id select tt;
-            capnhapunLike.First().SoLike--;
-            UpdateModel(capnhapunLike);
+            //var capnhapunLike = from tt in data.Saches where tt.MaSach == id select tt;
+            //capnhapunLike.First().SoLike--;
+            //UpdateModel(capnhapunLike);
 
-            var sach = from tt in data.DanhSachYeuThiches where tt.MaSach == id && tt.TaiKhoan==User.Identity.Name select tt;
-            data.DanhSachYeuThiches.DeleteOnSubmit(sach.First());
-            data.SubmitChanges();
+            //var sach = from tt in data.DanhSachYeuThiches where tt.MaSach == id && tt.TaiKhoan==User.Identity.Name select tt;
+            //data.DanhSachYeuThiches.DeleteOnSubmit(sach.First());
+            //data.SubmitChanges();
             return RedirectToAction("Index");
         }
     }

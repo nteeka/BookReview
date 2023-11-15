@@ -86,100 +86,114 @@
     <div class="container">
         <div class="apply_box">
             <h1>
-                Job Application
+                Create Post
                 <span class="title_small">(NTK_Reviews)</span>
             </h1>
             @*<form action="">*@
             @using (Html.BeginForm("Create", "Review", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
-                <div class="form_container">
-                    <div class="form_control">
-                        <label for="TenBaiViet"> Ten Bai Viet </label>
-                        <input id="TenBaiViet"
-                               name="TenBaiViet"
-                               placeholder="Enter TenBaiViet..." />
-                    </div>
-                    @*<div class="form_control">
-                    <label for="last_name"> Last Name </label>
-                    <input id="last_name"
-                           name="last_name"
-                           placeholder="Enter Last Name..." />
-                </div>
-                <div class="form_control">
-                    <label for="email"> Email </label>
-                    <input type="email"
-                           id="email"
-                           name="email"
-                           placeholder="Enter Email..." />
-                </div>*@
-                    @*<div class="form_control">
-                    <label for="job_role"> Job Role </label>
-                    <select id="job_role" name="job_role">
-                        <option value="">Select Job Role</option>
-                        <option value="frontend">Frontend Developer</option>
-                        <option value="backend">Backend Developer</option>
-                        <option value="full_stack">Full Stack Developer</option>
-                        <option value="ui_ux">UI UX Designer</option>
-                    </select>
-                </div>*@
-                    <div class="textarea_control ckeditor">
-                        <label for="NoiDung"> NOI DUNG </label>
-                        <textarea id="NoiDung"
-                                  name="NoiDung"
-                                  row="4"
-                                  cols="50"
-                                  placeholder="Enter NoiDung"></textarea>
-                    </div>
-                    <script>CKEDITOR.replace("NoiDung");</script>
-                    
-                    @*<div class="form_control">
-                    <label for="city"> City </label>
-                    <input id="city" name="city" placeholder="Enter City Name..." />
-                </div>*@
-
-                <div class="form_control">
-                    <label for="AnhBia"> Upload Your Anh Bia </label>
-                    @*<input type="file" id="AnhBia" name="AnhBia" />*@
-                    @Html.EditorFor(model => model.AnhBia, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.AnhBia, "", new { @class = "text-danger" })
-                    <input type="file" class="text-center center-block file-upload" name="fileUpload" id="fileUpload" accept="image/*" />
-                    @section upload
-            {
-                        <script>
-                            $(function () {
-                                $('#btnUpload').click(function () {
-                                    $('#fileUpload').trigger('click');
-                                });
-                            });
-                            $('#fileUpload').change(function () {
-                                if (window.FormData !== undefined) {
-                                    var fileUpload = $('#fileUpload').get(0);
-                                    var files = fileUpload.files;
-                                    var formData = new FormData();
-                                    formData.append('file', files[0]);
-                                    $.ajax(
-                                        {
-                                            type: 'POST',
-                                            url: '/Review/ProcessUpload',
-                                            contentType: false,
-                                            processData: false,
-                                            data: formData,
-                                            success: function (urlImage) {
-                                                $('#pictureUpload').attr('src', urlImage);
-                                                $('#AnhBia').val(urlImage);
-                                            },
-                                            error: function (err) {
-                                                alert('Error ', err.statusText);
-                                                19
-                                            }
-                                        });
-                                }
-                            });
-                        </script>
+        <div class="form_container">
+            <div class="form_control">
+                <label for="TenBaiViet"> Ten Bai Viet </label>
+                <input required id="TenBaiViet"
+                       name="TenBaiViet"
+                       placeholder="Enter TenBaiViet..." />
+            </div>
+            <div class="form_control">
+                <label for="MaTL"> Category </label>
+                <select id="MaTL" name="MaTL">
+                    @foreach (var tl in ViewBag.TheLoais)
+                    {
+                        <option value="@tl.MaTL">@tl.TenTL</option>
                     }
-                </div>
-                </div>
+
+                    @*<option value="backend">Backend Developer</option>
+                <option value="full_stack">Full Stack Developer</option>
+                <option value="ui_ux">UI UX Designer</option>*@
+                </select>
+            </div>
+            <div class="form_control">
+                <label for="TrangThai"> Status </label>
+                <select id="TrangThai" name="TrangThai">                                    
+                    <option value=0>Private</option>
+                    <option value=1>Public</option>
+                
+                </select>
+            </div>
+            <div class="form_control">
+                <label for="MoTa"> Mô tả </label>
+                <textarea id="MoTa"
+                          name="MoTa"
+                          placeholder="Enter Bio..."></textarea>
+            </div>
+
+            @*<div class="form_control">
+            <label for="email"> Email </label>
+            <input type="email"
+                   id="email"
+                   name="email"
+                   placeholder="Enter Email..." />
+        </div>*@
+
+            <div class="textarea_control ckeditor">
+                <label for="NoiDung"> NOI DUNG </label>
+                <textarea id="NoiDung"
+                          name="NoiDung"
+                          row="4"
+                          cols="50"
+                          placeholder="Enter NoiDung"></textarea>
+            </div>
+            <script>CKEDITOR.replace("NoiDung");</script>
+
+            @*<div class="form_control">
+            <label for="city"> City </label>
+            <input id="city" name="city" placeholder="Enter City Name..." />
+        </div>*@
+
+            <div class="form_control">
+                <label for="AnhBia"> Upload Your Anh Bia </label>
+                @*<input type="file" id="AnhBia" name="AnhBia" />*@
+                @Html.EditorFor(model => model.AnhBia, new { htmlAttributes = new { @class = "form-control", @style = "display:none" } })
+                @Html.ValidationMessageFor(model => model.AnhBia, "", new { @class = "text-danger" })
+                <input type="file" class="text-center center-block file-upload" name="fileUpload" id="fileUpload" accept="image/*" />
+                @section upload
+            {
+                    <script>
+                        $(function () {
+                            $('#btnUpload').click(function () {
+                                $('#fileUpload').trigger('click');
+                            });
+                        });
+                        $('#fileUpload').change(function () {
+                            if (window.FormData !== undefined) {
+                                var fileUpload = $('#fileUpload').get(0);
+                                var files = fileUpload.files;
+                                var formData = new FormData();
+                                formData.append('file', files[0]);
+                                $.ajax(
+                                    {
+                                        type: 'POST',
+                                        url: '/Review/ProcessUpload',
+                                        contentType: false,
+                                        processData: false,
+                                        data: formData,
+                                        success: function (urlImage) {
+                                            $('#pictureUpload').attr('src', urlImage);
+                                            $('#AnhBia').val(urlImage);
+                                        },
+                                        error: function (err) {
+                                            alert('Error ', err.statusText);
+                                            19
+                                        }
+                                    });
+                            }
+                        });
+                    </script>
+                }
+            </div>
+
+        </div>
                 <div class="button_container">
                     <button type="submit">UpLoad Now</button>
                 </div>
