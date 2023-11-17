@@ -289,9 +289,9 @@ namespace KK_BookStore.Controllers
                     sl += item.SoSao;
                 }
                 cTDanhGia.TongSao = sl;
-                cTDanhGia.DiemDanhGia = (float)cTDanhGia.TongSao / lst_DanhGia.Count();
+                cTDanhGia.DiemDanhGia = Math.Round((float)cTDanhGia.TongSao / lst_DanhGia.Count(),2);
                 data.CTBinhLuans.InsertOnSubmit(cTDanhGia);
-                D_sach.SoSao = (float)cTDanhGia.TongSao / lst_DanhGia.Count();
+                D_sach.SoSao =Math.Round((float)cTDanhGia.TongSao / lst_DanhGia.Count(),2) ;
                 UpdateModel(D_sach);
                 data.SubmitChanges();
             }
@@ -311,10 +311,10 @@ namespace KK_BookStore.Controllers
                 UpdateModel(D_tk);
                 var tinhSao = data.CTBinhLuans.Where(m => m.BinhLuan.MaSach == masach).AsEnumerable().Last();
                 tinhSao.TongSao = sl;
-                tinhSao.DiemDanhGia = (float)sl / lst_DanhGia.Count();
+                tinhSao.DiemDanhGia =Math.Round((float)sl / lst_DanhGia.Count(),2) ;
                 
                 UpdateModel(tinhSao);
-                D_sach.SoSao = (float)sl / lst_DanhGia.Count();
+                D_sach.SoSao =Math.Round((float)sl / lst_DanhGia.Count(),2) ;
                 UpdateModel(D_sach);
                 data.SubmitChanges();
             }

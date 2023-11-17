@@ -250,15 +250,22 @@
                                     </div>
                                 </div>
                                 <div class="single-explore-txt bg-theme-1">
-                                    <h2><a href="#">@item.TenBaiViet</a></h2>
+                                    <h2><a href="https://localhost:44339/Review/Detail/@item.MaBaiViet">@item.TenBaiViet</a></h2>
                                     <p class="explore-rating-price">
-                                        <span class="explore-rating">@item.SoSao ★</span>
-                                        <a href="#"> 10 ratings</a>
+                                        <span class="explore-rating">@Math.Round(@item.SoSao,1) ★</span>
+                                        <a href="#"> @item.SoLuotDanhGia ratings</a>
+
                                         <span class="explore-price-box">
-                                            
-                                            <span class="explore-price">5$-300$</span>
+
+                                            <span class="fa fa-eye"> @item.LuotXem</span>
+
                                         </span>
-                                        <a href="#">Author: <strong>@item.TaiKhoan</strong> </a>
+                                        <span>
+
+                                            <span class="fa fa-heart"> @item.YeuThich </span>
+
+                                        </span>
+                                        <a href="#">-  Author: <strong>@item.TaiKhoan</strong> </a>
                                     </p>
                                     <div class="explore-person">
                                         <div class="row">
@@ -274,7 +281,7 @@
                                             </div>
                                             <div class="col-sm-10">
                                                 <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incid ut labore et dolore magna aliqua....
+                                                    @item.MoTa
                                                 </p>
                                             </div>
                                         </div>

@@ -1,5 +1,6 @@
 ﻿using KK_BookStore.Models;
 using Microsoft.AspNet.Identity;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -108,30 +109,21 @@ namespace KK_BookStore.Controllers
             var danhsach = from tt in data.DanhSachYeuThiches where tt.TaiKhoan == User.Identity.Name  select tt;
             return View(danhsach.ToList());
         }
-        [Authorize]
-        public ActionResult themDanhSachYeuThich(int id, string strURL)
+        public ActionResult DanhSachBaiViet(int? page)
         {
-            //var D_sach1 = (from s in data.DanhSachYeuThiches where s.MaSach == id && s.TaiKhoan == User.Identity.Name select s).FirstOrDefault();
-            //if (D_sach1 != null)
-            //{
-            //    return Redirect(strURL);
+            if (page == null) page = 1;
+            int pageSize = 3;
+            int pageNum = page ?? 1;
 
-            //}
-            //var capnhapLike = from tt in data.Saches where tt.MaSach == id select tt;            
-            //capnhapLike.First().SoLike++;
-            //UpdateModel(capnhapLike);
-
-
-            //DanhSachYeuThich danhsach = new DanhSachYeuThich();
-            //danhsach.MaSach = id;
-            //danhsach.TaiKhoan = User.Identity.Name;
-            //data.DanhSachYeuThiches.InsertOnSubmit(danhsach);
-            //data.SubmitChanges();
-                
-            
-            return Redirect(strURL);
-
+            if (User.Identity.IsAuthenticated)
+            {
+                var anhDaiDien = from s in data.NguoiDungs where s.TaiKhoan == User.Identity.Name select s;
+                ViewBag.hinh = anhDaiDien.First().Hinh;
+            }
+            var danhsach = from tt in data.DanhSachYeuThiches where tt.TaiKhoan == User.Identity.Name select tt;
+            return View(danhsach.ToPagedList(pageNum, pageSize));
         }
+        
         public ActionResult xoaDanhSachYeuThich(int id)
         {
             //var capnhapunLike = from tt in data.Saches where tt.MaSach == id select tt;

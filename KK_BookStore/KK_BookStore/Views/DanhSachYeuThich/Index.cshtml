@@ -4,51 +4,134 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div style="background-color:brown">
-    <table class="table" style="font-size:x-large;color:white;margin-top:50px;">
-        <tr>
-
-            <th>
-                @*@Html.DisplayNameFor(model => model.Sach.TenSach)*@
-                <h1>Tên sách</h1>
-            </th>
-            <th>
-                @*@Html.DisplayNameFor(model => model.Sach.HinhAnh)*@
-                <h1>Hình ảnh</h1>
-
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+@*<div style="background-color:brown">
+        <table class="table" style="font-size:x-large;color:white;margin-top:50px;">
             <tr>
 
-                <td>
-                    <a style="color:white" href="https://localhost:44339/Sach/Detail/@item.MaSach">
-                        @Html.DisplayFor(modelItem => item.Sach.TenSach)
-                    </a>
-                </td>
-                <td>
-                    <a href="https://localhost:44339/Sach/Detail/@item.MaSach">
-                        <img src="@item.Sach.HinhAnh" width="180" />
+                <th>
+                    @Html.DisplayNameFor(model => model.Sach.TenSach)
+                    <h1>Tên sách</h1>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sach.HinhAnh)
+                    <h1>Hình ảnh</h1>
 
-                    </a>
-                </td>
-                <td>
-                    @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-                </td>
-                <td>
-                    @*<a href="@Url.Action("Detail", "Sach", new { @id = item.maSach })">Chi Tiết</a> |*@
-                    @*@Html.ActionLink("Xóa", "XoaDanhSachYeuThich", new { @id = item.maSach })*@
-                    <a class="btn btn-success" href="@Url.Action("xoaDanhSachYeuThich", "DanhSachYeuThich",new { @id = item.MaSach, @strURL = Request.Url.ToString()})">Xóa khỏi yêu thích</a>
-
-                    <a class="btn btn-success" href="@Url.Action("ThemGioHang", "GioHang",new { @id = item.MaSach, @strURL = Request.Url.ToString()})">Thêm vào giỏ hàng</a>
-                </td>
+                </th>
+                <th></th>
             </tr>
-        }
 
-    </table>
-</div>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        <a style="color:white" href="https://localhost:44339/Sach/Detail/@item.MaSach">
+                            @Html.DisplayFor(modelItem => item.BaiViet.TenSach)
+                        </a>
+                    </td>
+                    <td>
+                        <a href="https://localhost:44339/Sach/Detail/@item.MaSach">
+                            <img src="@item.Sach.HinhAnh" width="180" />
+
+                        </a>
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Detail", "Sach", new { @id = item.maSach })">Chi Tiết</a> |
+                        @Html.ActionLink("Xóa", "XoaDanhSachYeuThich", new { @id = item.maSach })
+                        <a class="btn btn-success" href="@Url.Action("xoaDanhSachYeuThich", "DanhSachYeuThich",new { @id = item.MaSach, @strURL = Request.Url.ToString()})">Xóa khỏi yêu thích</a>
+
+                        <a class="btn btn-success" href="@Url.Action("ThemGioHang", "GioHang",new { @id = item.MaSach, @strURL = Request.Url.ToString()})">Thêm vào giỏ hàng</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>*@
+<!--<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="~/Content/DanhSachYeuThich/DanhSachBaiViet.css" rel="stylesheet" />
+<div class="container padding-bottom-3x mb-2">
+    <div class="row">
+        <div class="col-lg-4">
+            <aside class="user-info-wrapper">
+                <div class="user-cover" style="background-image: url(https://bootdey.com/img/Content/bg1.jpg);">
+                    <div class="info-label" data-toggle="tooltip" title="" data-original-title="You currently have 290 Reward Points to spend"><i class="icon-medal"></i>290 points</div>
+                </div>
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <a class="edit-avatar" href="#"></a><img src="@ViewBag.hinh" alt="User">
+                    </div>
+                    <div class="user-data">
+                        <h4>@User.Identity.Name</h4><span>Joined February 06, 2017</span>
+                    </div>
+                </div>
+            </aside>
+            <nav class="list-group">-->
+                @*<a class="list-group-item with-badge" href="#"><i class=" fa fa-th"></i>Orders<span class="badge badge-primary badge-pill">6</span></a>
+        <a class="list-group-item" href="#"><i class="fa fa-user"></i>Profile</a>
+        <a class="list-group-item" href="#"><i class="fa fa-map"></i>Addresses</a>*@
+                @*<a class="list-group-item with-badge active" href="#"><i class="fa fa-heart"></i>Wishlist<span>3</span></a>*@
+                @*<a class="list-group-item with-badge" href="#"><i class="fa fa-tag"></i>My Tickets<span class="badge badge-primary badge-pill">4</span></a>*@
+                <!--<div style="padding-top:10px">
+                    <a style="padding-left:30px" href="#"><i class="fa fa-heart"></i>  Wishlist</a> <span style="padding-left:160px;color:black">@Model.Count() posts</span>
+                    <hr />
+                    <a style="padding-left:30px" href="#"><i class="fa-solid fa-person"></i>Your Author</a> <span style="padding-left:135px;color:black">3 posts</span>
+
+                </div>--> 
+                @*<hr />
+                <div style=""><a href="#">Wishlist</a></div>  
+                <hr />
+                <div style=""><a href="#">Wishlist</a></div>*@
+
+            <!--</nav>
+        </div>
+        <div class="col-lg-8">
+            <div class="padding-top-2x mt-2 hidden-lg-up"></div>-->
+            <!-- Wishlist Table-->
+            <!--<div class="table-responsive wishlist-table margin-bottom-none">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>WISHLIST</th>
+                            <th class="text-center"><a class="btn btn-sm btn-outline-danger" href="#">Clear Wishlist</a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="product-item">
+                                    <a class="product-thumb" href="#"><img src="@item.BaiViet.AnhBia" alt="Product"></a>
+                                    <div class="product-info">
+                                        <h4 class="product-title"><a href="#">@item.BaiViet.TenBaiViet -- @Math.Round(item.BaiViet.SoSao.Value, 1)⭐ -- @item.BaiViet.YeuThich ❤️</a></h4>
+                                        <div class="text-lg text-medium text-muted">@item.BaiViet.MoTa</div>
+                                        <div>
+                                            @item.BaiViet.TheLoai.TenTL
+                                            <div class="d-inline text-success">Author: @item.BaiViet.TaiKhoan</div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </td>
+                                <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="icon-cross"></i></a></td>
+                            </tr>
+                        }
+                        
+                        
+                        
+                    </tbody>
+                </table>
+                <button class="btn btn-default">View More...</button>
+            </div>
+            <hr class="mb-4">
+            <div class="custom-control custom-checkbox">
+                <input class="custom-control-input" type="checkbox" id="inform_me" checked="">
+                <label class="custom-control-label" for="inform_me">Inform me when item from my wishlist is available</label>
+            </div>
+        </div>
+    </div>
+</div>-->

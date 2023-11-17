@@ -82,7 +82,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Create Post Form</title>
+    <title>Edit Post Form</title>
     <link rel="stylesheet" href="style.css" />
     <link href="~/Content/Review/create.css" rel="stylesheet" />
     <script src="//cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
@@ -101,18 +101,19 @@
                 @Html.AntiForgeryToken()
                 <div class="form_container">
                     <div class="form_control">
-                        <label for="TenBaiViet"> Ten Bai Viet </label>
+                        <label for="TenBaiViet"> Post's Name </label>
                         @*<input required id="TenBaiViet"
                                name="TenBaiViet"
                                placeholder="Enter TenBaiViet..." />*@
                         @Html.EditorFor(model => model.TenBaiViet, new { htmlAttributes = new { @class = "form-control",@id= "TenBaiViet",
-                               @name = "TenBaiViet",
-                               @placeholder = "Enter TenBaiViet..."
+                       @name = "TenBaiViet",
+                       @placeholder = "Enter TenBaiViet...",
+                       @required=true
                    } })
                     </div>
                     @*@Html.EditorFor(model => model.MaTL, new { htmlAttributes = new { @class = "form-control",@style="display:none" } })*@
                 <div class="form_control">
-                    <label for="MaTL"> The Loai </label>
+                    <label for="MaTL"> Catagory </label>
                     <select id="MaTL" name="MaTL">
 
                         @foreach (var i in ViewBag.TheLoais)
@@ -159,7 +160,8 @@
                         @Html.TextAreaFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control"
                                     ,@id = "MoTa",
                                   @name = "MoTa",
-                                  @placeholder = "Enter Bio..."
+                                  @placeholder = "Enter Bio...",
+                                  @required=true
                    } })
                     </div>
 
@@ -172,20 +174,22 @@
                         </div>*@
 
                 <div class="textarea_control ckeditor">
-                    <label for="NoiDung"> NOI DUNG </label>
+                    <label for="NoiDung"> Content </label>
                     @Html.TextAreaFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control ckeditor"
                               ,@id = "NoiDung",
-                              @name = "NoiDung",
-                              @row = "4",
-                              @cols = "50",
-                              @placeholder = "Enter NoiDung"} })
+                   @name = "NoiDung",
+                   @row = "4",
+                   @cols = "50",
+                   @placeholder = "Enter NoiDung",
+                   @required = true
+               } })
                 </div>
                     <script>CKEDITOR.replace("NoiDung");</script>
 
                    
 
                     <div class="form_control">
-                        <label for="AnhBia"> Upload Your Anh Bia </label>
+                        <label for="AnhBia"> Upload Post's Background </label>
                         @*<input type="file" id="AnhBia" name="AnhBia" />*@
                         @Html.EditorFor(model => model.AnhBia, new { htmlAttributes = new { @class = "form-control",@style="display:none" } })
                         @Html.ValidationMessageFor(model => model.AnhBia, "", new { @class = "text-danger" })
@@ -228,7 +232,7 @@
 
                 </div>
                 <div class="button_container">
-                    <button type="submit">UpLoad Now</button>
+                    <button type="submit">Save</button>
                 </div>
                 @*</form>*@
             }

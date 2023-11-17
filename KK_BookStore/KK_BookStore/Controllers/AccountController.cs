@@ -245,6 +245,8 @@ namespace KK_BookStore.Controllers
                     nguoiDung.Email = model.Email;
                     nguoiDung.MaChucVu = 2;
                     nguoiDung.Banned = false;
+                    nguoiDung.GioiTinh = "None";
+                    nguoiDung.Hinh = "\\Content\\user.jpg";
                     string v = DateTime.Now.ToString("MM/dd/yyyy");
                     nguoiDung.NgayLap = DateTime.Parse(v);
                     myData.NguoiDungs.InsertOnSubmit(nguoiDung);
@@ -379,6 +381,7 @@ namespace KK_BookStore.Controllers
                 return View("Error");
             }
             var userFactors = await UserManager.GetValidTwoFactorProvidersAsync(userId);
+            
             var factorOptions = userFactors.Select(purpose => new SelectListItem { Text = purpose, Value = purpose }).ToList();
             return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
@@ -419,6 +422,7 @@ namespace KK_BookStore.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -459,12 +463,26 @@ namespace KK_BookStore.Controllers
                 if (result.Succeeded)
                 {
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
+
+                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+
+
+
+                    await UserManager.SendEmailAsync(user.Id, "Confirm your account",
+                        "Please confirm your account by clicking " + callbackUrl + "");
+
                     NguoiDung nguoiDung = new NguoiDung();
                     nguoiDung.TaiKhoan = model.UserName;
                     
                     nguoiDung.HoTen = model.FullName;
                     nguoiDung.Email = model.Email;
                     nguoiDung.MaChucVu = 2;
+                    nguoiDung.Banned = false;
+                    nguoiDung.GioiTinh = "None";
+                    nguoiDung.Hinh = "\\Content\\user.jpg";
+                    string v = DateTime.Now.ToString("MM/dd/yyyy");
+                    nguoiDung.NgayLap = DateTime.Parse(v);
                     myData.NguoiDungs.InsertOnSubmit(nguoiDung);
                     myData.SubmitChanges();
                     if (result.Succeeded)

@@ -313,6 +313,7 @@
     <Content Include="Content\bootstrap.min1.css" />
     <Content Include="Content\CamOn\CamOn.css" />
     <Content Include="Content\CHiTietDonHang\CTDH.css" />
+    <Content Include="Content\DanhSachYeuThich\DanhSachBaiViet.css" />
     <Content Include="Content\demo.js" />
     <Content Include="Content\Details\detail.css" />
     <Content Include="Content\DropDown.css" />
@@ -322,6 +323,7 @@
     <Content Include="Content\GioHang\GioHang.css" />
     <Content Include="Content\hero_1.jpg" />
     <Content Include="Content\Home.css" />
+    <Content Include="Content\Home\About.css" />
     <Content Include="Content\icheck.min.js" />
     <Content Include="Content\Img\77518c88c397c8a314ac5614803c8aebe4bfed210d82a4f509ec0955ccaa17f5.jpg" />
     <Content Include="Content\Img\book.png" />
@@ -408,6 +410,7 @@
     <Content Include="Content\template\huyDonHang.html" />
     <Content Include="Content\template\send2 - Copy.html" />
     <Content Include="Content\template\send2.html" />
+    <Content Include="Content\ThankYouConfirmEmail\ThankConFirm.css" />
     <Content Include="Content\TheLoai\TheLoai.css" />
     <Content Include="Content\TheLoai\TheLoai2.css" />
     <Content Include="Content\TheLoai\TheLoai2.js" />
@@ -415,6 +418,7 @@
     <Content Include="Content\trangcanhan\trangCaNhan.css" />
     <Content Include="Content\user.jpg" />
     <Content Include="Content\xacNhanEmail\xacNhanEmail.css" />
+    <Content Include="Content\z4799609119173_002_0fbb2e9489776db5aa7f9aa248413f4b.jpg" />
     <Content Include="Content\_all-skins.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -974,6 +978,7 @@
     <Content Include="Views\Review\Create.cshtml" />
     <Content Include="Views\Review\Detail.cshtml" />
     <Content Include="Views\Review\Edit.cshtml" />
+    <Content Include="Views\DanhSachYeuThich\DanhSachBaiViet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

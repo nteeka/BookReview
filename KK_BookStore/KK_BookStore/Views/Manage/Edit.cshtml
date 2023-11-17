@@ -232,6 +232,7 @@
                                 @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
                             </div>
                         </div>
+
                         @*<div class="form-group">
                 @Html.LabelFor(model => model.HoTen, htmlAttributes: new { @class = "control-label col-md-2" })
                 <strong class="control-label col-md-2">Họ tên</strong>
@@ -246,10 +247,11 @@
                                 @Html.TextAreaFor(model => model.SDT, new { @class = "form-control" })
 
                                 @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
-                                
+
 
                             </div>
                         </div>
+
 
                         <div class="form-group">
                             <div class="col-xs-6">
@@ -271,14 +273,42 @@
                         </div>
                         @*<div class="form-group">
 
+                <div class="col-xs-6">
+                    <label for="email"><h4>Bio</h4></label>
+                    @Html.TextAreaFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+                        <div class="form-group">
                             <div class="col-xs-6">
-                                <label for="email"><h4>Bio</h4></label>
-                                @Html.TextAreaFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+                                <label for="GioiTinh"><h4>Gender</h4> </label>
+                                <select id="GioiTinh" name="GioiTinh">
+
+                                    @if (ViewBag.Gender == "Nam")
+                                    {
+                                        <option selected value="Nam">Male</option>
+                                        <option value="Nữ">Female</option>
+                                        <option value="None">dont want to show</option>
+                                    }
+                                    else
+                                    {
+                                        if (ViewBag.Gender == "Nữ")
+                                        {
+                                            <option value="Nam">Male</option>
+                                            <option selected value="Nữ">Female</option>
+                                            <option value="None">dont want to show</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="Nam">Male</option>
+                                            <option value="Nữ">Female</option>
+                                            <option selected value="None">dont want to show</option>
+                                        }
+                                    }
+                                </select>
                             </div>
-                        </div>*@
-
-
+                        </div>
                         <div class="form-group">
 
                             <div class="col-xs-6">
@@ -287,11 +317,12 @@
                                 @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
                             </div>
                         </div>
+
                         <div class="form-group">
                             <div class="col-xs-12">
                                 <br>
                                 <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                                @*<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>*@
                             </div>
                         </div>
 

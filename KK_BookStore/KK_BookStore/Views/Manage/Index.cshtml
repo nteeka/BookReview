@@ -119,9 +119,9 @@
         <div class="main-content">
             <!-- NAV TABS -->
             <ul class="nav nav-tabs nav-tabs-custom-colored tabs-iconized">
-                <li class="active"><a href="#profile-tab" data-toggle="tab" aria-expanded="true"><i class="fa fa-user"></i> Profile</a></li>
-                <li class=""><a href="#activity-tab" data-toggle="tab" aria-expanded="false"><i class="fa fa-rss"></i> Recent Activity</a></li>
-                <li class=""><a href="#settings-tab" data-toggle="tab" aria-expanded="false"><i class="fa fa-gear"></i> Settings</a></li>
+                <li class="active"><a style="color:whitesmoke" href="#profile-tab" data-toggle="tab" aria-expanded="true"><i class="fa fa-user"></i> Profile</a></li>
+                <li class=""><a style="color:whitesmoke" href="#activity-tab" data-toggle="tab" aria-expanded="false"><i class="fa fa-rss"></i> Recent Activity</a></li>
+                <li class=""><a style="color:whitesmoke" href="#settings-tab" data-toggle="tab" aria-expanded="false"><i class="fa fa-gear"></i> Settings</a></li>
             </ul>
             <!-- END NAV TABS -->
             <div class="tab-content profile-page">
@@ -142,10 +142,11 @@
                                     <img class="img-responsive" src="@ViewBag.hinh" alt="Profile Picture">
 
                                 }
-                                <h2 style="color:aqua;font:bold">@User.Identity.Name<i class="fa fa-circle green-font online-icon"></i><sup class="sr-only">online</sup></h2>
+                                <h2 style="padding-top:10px;color:aqua;font:bold">@User.Identity.Name<i class="fa fa-circle green-font online-icon"></i><sup class="sr-only">online</sup></h2>
                                 <div class="contact">
                                     <a href="https://localhost:44339/Manage/Edit/@User.Identity.Name" class="btn btn-block btn-danger"><i class="fa fa-user-edit"></i> Change information</a>
-                                    <a href="#" class="btn btn-block btn-success"><i class="fa fa-book"></i> Add To Contact</a>
+                                    @*<a href="https://localhost:44339/Manage/ChangePassword">Change password</a>*@
+                                    <a href="https://localhost:44339/Manage/ChangePassword" class="btn btn-block btn-success"><i class="fa fa-lock"></i> Change Password</a>
                                     <ul class="list-inline social">
                                         <li><a href="#" title="Facebook"><i class="fa fa-facebook-square"></i></a></li>
                                         <li><a href="#" title="Twitter"><i class="fa fa-twitter-square"></i></a></li>
@@ -168,7 +169,7 @@
                                     </p>
                                     <p style="margin-top: 10px; margin-left: 30px" class="data-row">
                                         <span style="text-align:center;font-size:medium" class="data-name">Gender <i class="fa fa-genderless"></i></span>
-                                        <span style="color:yellow" class="data-value">Male</span>
+                                        <span style="color:yellow" class="data-value">@ViewBag.Gender</span>
                                     </p>
                                     @*<p style="margin-top:10px; margin-left: 30px" class="data-row">
                                         <span style="text-align:center;font-size:medium" class="data-name">Website</span>
@@ -281,26 +282,31 @@
                         <fieldset>
 
                             @*<h3><i class="fa fa-square"></i> Change Password</h3>*@
-                            <a href="https://localhost:44339/Manage/ChangePassword">Change password</a>
+                            @*@if (!Model.HasPassword)
+                {
+                    <a href="https://localhost:44339/Manage/SetPassword" class="btn btn-primary">Cập nhập mật khẩu</a>
+
+                }*@
+                            
                             @*<div class="form-group">
-            <label for="old-password" class="col-sm-3 control-label">Old Password</label>
-            <div class="col-sm-4">
-                <input type="password" id="old-password" name="old-password" class="form-control">
-            </div>
-        </div>
-        <hr>
-        <div class="form-group">
-            <label for="password" class="col-sm-3 control-label">New Password</label>
-            <div class="col-sm-4">
-                <input type="password" id="password" name="password" class="form-control">
-            </div>
-        </div>*@
+                    <label for="old-password" class="col-sm-3 control-label">Old Password</label>
+                    <div class="col-sm-4">
+                        <input type="password" id="old-password" name="old-password" class="form-control">
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label for="password" class="col-sm-3 control-label">New Password</label>
+                    <div class="col-sm-4">
+                        <input type="password" id="password" name="password" class="form-control">
+                    </div>
+                </div>*@
                             @*<div class="form-group">
-            <label for="password2" class="col-sm-3 control-label">Repeat Password</label>
-            <div class="col-sm-4">
-                <input type="password" id="password2" name="password2" class="form-control">
-            </div>
-        </div>*@
+                    <label for="password2" class="col-sm-3 control-label">Repeat Password</label>
+                    <div class="col-sm-4">
+                        <input type="password" id="password2" name="password2" class="form-control">
+                    </div>
+                </div>*@
                         </fieldset>
 
                         @*<fieldset>
@@ -381,28 +387,29 @@
                     </ul>
                 </div>
             </fieldset>*@
-                        <h1>Xác thực hai yếu tố</h1>
-                        @if (Model.TwoFactor)
-                        {
-                            using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                            {
-                                @Html.AntiForgeryToken()
-                                <text>Enabled
-                                    <input style="margin-bottom:3px" type="submit" value="Disable" class="btn btn-link" />
-                                </text>
-                            }
-                        }
-                        else
-                        {
-                            using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                            {
-                                @Html.AntiForgeryToken()
-                                <text>Disabled
-                                    <input style="margin-bottom:3px" type="submit" value="Enable" class="btn btn-link" />
-                                </text>
-                            }
-                        }
+
                     </form>
+                    <h1>Xác thực hai yếu tố</h1>
+                    @if (Model.TwoFactor)
+                    {
+                        using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <input style="margin-bottom:3px" type="submit" value="Disable" class="btn btn-default" />
+
+                        }
+                    }
+                    else
+                    {
+                        using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <input style="margin-bottom:3px" type="submit" value="Enable" class="btn btn-default" />
+
+                        }
+                    }
                 </div>
                 <!-- END SETTINGS TAB CONTENT -->
             </div>

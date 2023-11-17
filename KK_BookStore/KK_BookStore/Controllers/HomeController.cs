@@ -14,11 +14,12 @@ namespace KK_BookStore.Controllers
             ViewBag.sgg = all_sgg;
             ViewBag.sl = 0;
             //var all_sach = (from s in data.SachGiamGias  select s);
-            if(User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated)
             {
                 var anhDaiDien = from s in data.NguoiDungs where s.TaiKhoan == User.Identity.Name select s;
                 ViewBag.hinh = anhDaiDien.First().Hinh;
             }
+            
             var baiviets = data.BaiViets.ToList();
             List<BaiViet> lstBaiViet = new List<BaiViet>();
             int count = 0;

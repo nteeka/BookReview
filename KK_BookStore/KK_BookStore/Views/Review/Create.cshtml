@@ -95,10 +95,10 @@
                 @Html.AntiForgeryToken()
         <div class="form_container">
             <div class="form_control">
-                <label for="TenBaiViet"> Ten Bai Viet </label>
+                <label for="TenBaiViet"> Post's Name </label>
                 <input required id="TenBaiViet"
                        name="TenBaiViet"
-                       placeholder="Enter TenBaiViet..." />
+                       placeholder="Enter Post's Name..." />
             </div>
             <div class="form_control">
                 <label for="MaTL"> Category </label>
@@ -122,8 +122,8 @@
                 </select>
             </div>
             <div class="form_control">
-                <label for="MoTa"> Mô tả </label>
-                <textarea id="MoTa"
+                <label for="MoTa"> Bio </label>
+                <textarea required id="MoTa"
                           name="MoTa"
                           placeholder="Enter Bio..."></textarea>
             </div>
@@ -137,8 +137,8 @@
         </div>*@
 
             <div class="textarea_control ckeditor">
-                <label for="NoiDung"> NOI DUNG </label>
-                <textarea id="NoiDung"
+                <label for="NoiDung"> Content </label>
+                <textarea required id="NoiDung"
                           name="NoiDung"
                           row="4"
                           cols="50"
@@ -152,11 +152,11 @@
         </div>*@
 
             <div class="form_control">
-                <label for="AnhBia"> Upload Your Anh Bia </label>
+                <label for="AnhBia"> Upload Post's Background </label>
                 @*<input type="file" id="AnhBia" name="AnhBia" />*@
                 @Html.EditorFor(model => model.AnhBia, new { htmlAttributes = new { @class = "form-control", @style = "display:none" } })
                 @Html.ValidationMessageFor(model => model.AnhBia, "", new { @class = "text-danger" })
-                <input type="file" class="text-center center-block file-upload" name="fileUpload" id="fileUpload" accept="image/*" />
+                <input required type="file" class="text-center center-block file-upload" name="fileUpload" id="fileUpload" accept="image/*" />
                 @section upload
             {
                     <script>
@@ -195,7 +195,7 @@
 
         </div>
                 <div class="button_container">
-                    <button type="submit">UpLoad Now</button>
+                    <button type="submit">Save Post</button>
                 </div>
                 @*</form>*@
             }

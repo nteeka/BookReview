@@ -13,6 +13,7 @@ using System.Net;
 using System.IO;
 using System.Globalization;
 using System.Drawing;
+using PayPal.Api;
 
 namespace KK_BookStore.Controllers
 {
@@ -89,8 +90,9 @@ namespace KK_BookStore.Controllers
                 ViewBag.Address = item.DiaChi;
                 ViewBag.hinh = item.Hinh;
                 ViewBag.PhoneNumber = item.SDT;
-                ViewBag.Bio = item.MoTa;
-
+                ViewBag.Bio = item.MoTa;              
+                ViewBag.Gender = item.GioiTinh;
+                
                 DateTime a = DateTime.Parse(item.NgayLap.Value.ToShortDateString()) ;
                 string thang = ConvertMonthToString(a.Month);
                 ViewBag.DateJoin = a.ToShortDateString();
@@ -383,6 +385,7 @@ namespace KK_BookStore.Controllers
         public ActionResult Edit(string id)
         {
             var E_sach = mydata.NguoiDungs.First(m => m.TaiKhoan.Equals(id));
+            ViewBag.Gender = E_sach.GioiTinh;
             return View(E_sach);
         }
         [HttpPost]
@@ -394,7 +397,10 @@ namespace KK_BookStore.Controllers
             var E_ngaysinh = collection["NgaySinh"];
             var E_diachi = collection["DiaChi"];
             var E_hinh = collection["Hinh"];
+            var E_gioitinh = collection["GioiTinh"];
+            
             E_taikhoan.TaiKhoan = id;
+            
             if (string.IsNullOrEmpty(E_hoten))
             {
                 ViewData["Error"] = "Don't empty!";
@@ -405,6 +411,8 @@ namespace KK_BookStore.Controllers
                 E_taikhoan.NgaySinh = E_ngaysinh;
                 E_taikhoan.DiaChi = E_diachi;
                 E_taikhoan.Hinh = E_hinh;
+                E_taikhoan.GioiTinh=E_gioitinh;
+                
                 UpdateModel(E_taikhoan);
                 mydata.SubmitChanges();
                 return RedirectToAction("Index");

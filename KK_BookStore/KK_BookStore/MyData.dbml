@@ -1,20 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="WebBanSach" Class="MyDataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-6KQK234;Initial Catalog=WebBanSach;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="WebBanSachConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.BinhLuan" Member="BinhLuans">
-    <Type Name="BinhLuan">
-      <Column Name="MaBinhLuan" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="TaiKhoan" Type="System.String" DbType="Char(50)" CanBeNull="true" />
-      <Column Name="MaSach" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SoLike" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SoSao" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="NgayTao" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Association Name="BinhLuan_CTBinhLuan" Member="CTBinhLuans" ThisKey="MaBinhLuan" OtherKey="MaBinhLuan" Type="CTBinhLuan" />
-      <Association Name="BinhLuan_CTLikeBinhLuan" Member="CTLikeBinhLuans" ThisKey="MaBinhLuan" OtherKey="MaBinhLuan" Type="CTLikeBinhLuan" />
-      <Association Name="NguoiDung_BinhLuan" Member="NguoiDung" ThisKey="TaiKhoan" OtherKey="TaiKhoan" Type="NguoiDung" IsForeignKey="true" />
-      <Association Name="Sach_BinhLuan" Member="Sach" ThisKey="MaSach" OtherKey="MaSach" Type="Sach" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.ChiTietBaiViet" Member="ChiTietBaiViets">
     <Type Name="ChiTietBaiViet">
       <Column Name="MaChiTietBaiViet" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -57,8 +42,8 @@
       <Column Name="MaCTLikeBinhLuan" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TaiKhoan" Type="System.String" DbType="Char(50) NOT NULL" CanBeNull="false" />
       <Column Name="MaBinhLuan" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="BinhLuan_CTLikeBinhLuan" Member="BinhLuan" ThisKey="MaBinhLuan" OtherKey="MaBinhLuan" Type="BinhLuan" IsForeignKey="true" />
       <Association Name="NguoiDung_CTLikeBinhLuan" Member="NguoiDung" ThisKey="TaiKhoan" OtherKey="TaiKhoan" Type="NguoiDung" IsForeignKey="true" />
+      <Association Name="BinhLuan_CTLikeBinhLuan" Member="BinhLuan" ThisKey="MaBinhLuan" OtherKey="MaBinhLuan" Type="BinhLuan" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.HoaDon" Member="HoaDons">
@@ -86,12 +71,12 @@
       <Column Name="Banned" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="MoTa" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="NgayLap" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Association Name="NguoiDung_BinhLuan" Member="BinhLuans" ThisKey="TaiKhoan" OtherKey="TaiKhoan" Type="BinhLuan" />
       <Association Name="NguoiDung_CTLikeBinhLuan" Member="CTLikeBinhLuans" ThisKey="TaiKhoan" OtherKey="TaiKhoan" Type="CTLikeBinhLuan" />
       <Association Name="NguoiDung_HoaDon" Member="HoaDons" ThisKey="TaiKhoan" OtherKey="TaiKhoan" Type="HoaDon" />
       <Association Name="NguoiDung_PhanHoi" Member="PhanHois" ThisKey="TaiKhoan" OtherKey="TaiKhoan" Type="PhanHoi" />
-      <Association Name="NguoiDung_BaiViet" Member="BaiViets" ThisKey="TaiKhoan" OtherKey="TaiKhoan" Type="BaiViet" />
       <Association Name="NguoiDung_DanhSachYeuThich" Member="DanhSachYeuThiches" ThisKey="TaiKhoan" OtherKey="TaiKhoan" Type="DanhSachYeuThich" />
+      <Association Name="NguoiDung_BinhLuan" Member="BinhLuans" ThisKey="TaiKhoan" OtherKey="TaiKhoan" Type="BinhLuan" />
+      <Association Name="NguoiDung_BaiViet" Member="BaiViets" ThisKey="TaiKhoan" OtherKey="TaiKhoan" Type="BaiViet" />
       <Association Name="ChucVu_NguoiDung" Member="ChucVu" ThisKey="MaChucVu" OtherKey="MaChucVu" Type="ChucVu" IsForeignKey="true" />
     </Type>
   </Table>
@@ -118,9 +103,9 @@
       <Column Name="SoLuongSach" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="SoLike" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="SoSao" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Association Name="Sach_BinhLuan" Member="BinhLuans" ThisKey="MaSach" OtherKey="MaSach" Type="BinhLuan" />
       <Association Name="Sach_CTHoaDon" Member="CTHoaDons" ThisKey="MaSach" OtherKey="MaSach" Type="CTHoaDon" />
       <Association Name="Sach_SachGiamGia" Member="SachGiamGias" ThisKey="MaSach" OtherKey="MaSach" Type="SachGiamGia" />
+      <Association Name="Sach_BinhLuan" Member="BinhLuans" ThisKey="MaSach" OtherKey="MaSach" Type="BinhLuan" />
       <Association Name="TheLoai_Sach" Member="TheLoai" ThisKey="MaTL" OtherKey="MaTL" Type="TheLoai" IsForeignKey="true" />
     </Type>
   </Table>
@@ -142,6 +127,32 @@
       <Association Name="TheLoai_BaiViet" Member="BaiViets" ThisKey="MaTL" OtherKey="MaTL" Type="BaiViet" />
     </Type>
   </Table>
+  <Table Name="dbo.DanhSachYeuThich" Member="DanhSachYeuThiches">
+    <Type Name="DanhSachYeuThich">
+      <Column Name="MaDSYT" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TaiKhoan" Type="System.String" DbType="Char(50)" CanBeNull="true" />
+      <Column Name="MaBaiViet" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="NguoiDung_DanhSachYeuThich" Member="NguoiDung" ThisKey="TaiKhoan" OtherKey="TaiKhoan" Type="NguoiDung" IsForeignKey="true" />
+      <Association Name="BaiViet_DanhSachYeuThich" Member="BaiViet" ThisKey="MaBaiViet" OtherKey="MaBaiViet" Type="BaiViet" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BinhLuan" Member="BinhLuans">
+    <Type Name="BinhLuan">
+      <Column Name="MaBinhLuan" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="TaiKhoan" Type="System.String" DbType="Char(50)" CanBeNull="true" />
+      <Column Name="MaSach" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SoLike" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SoSao" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NgayTao" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="MaBaiViet" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="BinhLuan_CTBinhLuan" Member="CTBinhLuans" ThisKey="MaBinhLuan" OtherKey="MaBinhLuan" Type="CTBinhLuan" />
+      <Association Name="BinhLuan_CTLikeBinhLuan" Member="CTLikeBinhLuans" ThisKey="MaBinhLuan" OtherKey="MaBinhLuan" Type="CTLikeBinhLuan" />
+      <Association Name="NguoiDung_BinhLuan" Member="NguoiDung" ThisKey="TaiKhoan" OtherKey="TaiKhoan" Type="NguoiDung" IsForeignKey="true" />
+      <Association Name="Sach_BinhLuan" Member="Sach" ThisKey="MaSach" OtherKey="MaSach" Type="Sach" IsForeignKey="true" />
+      <Association Name="BaiViet_BinhLuan" Member="BaiViet" ThisKey="MaBaiViet" OtherKey="MaBaiViet" Type="BaiViet" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.BaiViet" Member="BaiViets">
     <Type Name="BaiViet">
       <Column Name="MaBaiViet" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -149,26 +160,19 @@
       <Column Name="NgayViet" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="TenBaiViet" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="AnhBia" Type="System.String" DbType="NChar(500)" CanBeNull="true" />
-      <Column Name="SoSao" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="NoiDung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="MaTL" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="MoTa" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="TrangThai" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="LuotXem" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="YeuThich" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SoLuotDanhGia" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SoSao" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Association Name="BaiViet_ChiTietBaiViet" Member="ChiTietBaiViets" ThisKey="MaBaiViet" OtherKey="MaBaiViet" Type="ChiTietBaiViet" />
       <Association Name="BaiViet_DanhSachYeuThich" Member="DanhSachYeuThiches" ThisKey="MaBaiViet" OtherKey="MaBaiViet" Type="DanhSachYeuThich" />
+      <Association Name="BaiViet_BinhLuan" Member="BinhLuans" ThisKey="MaBaiViet" OtherKey="MaBaiViet" Type="BinhLuan" />
       <Association Name="NguoiDung_BaiViet" Member="NguoiDung" ThisKey="TaiKhoan" OtherKey="TaiKhoan" Type="NguoiDung" IsForeignKey="true" />
       <Association Name="TheLoai_BaiViet" Member="TheLoai" ThisKey="MaTL" OtherKey="MaTL" Type="TheLoai" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.DanhSachYeuThich" Member="DanhSachYeuThiches">
-    <Type Name="DanhSachYeuThich">
-      <Column Name="MaDSYT" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TaiKhoan" Type="System.String" DbType="Char(50)" CanBeNull="true" />
-      <Column Name="MaBaiViet" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="BaiViet_DanhSachYeuThich" Member="BaiViet" ThisKey="MaBaiViet" OtherKey="MaBaiViet" Type="BaiViet" IsForeignKey="true" />
-      <Association Name="NguoiDung_DanhSachYeuThich" Member="NguoiDung" ThisKey="TaiKhoan" OtherKey="TaiKhoan" Type="NguoiDung" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

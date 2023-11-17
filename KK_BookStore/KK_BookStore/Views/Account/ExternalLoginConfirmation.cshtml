@@ -4,24 +4,24 @@
 }
 <@*h2 style="margin-top:80px">@ViewBag.Title.</h2>
 <h3>Associate your @ViewBag.LoginProvider account.</h3>*@
-<div style="background-color:white; margin-top: 80px;font-size:large;">
+<div style="background-color:white; margin-top: 40px;font-size:large;">
     @using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
         @Html.AntiForgeryToken()
 
+    <h1 style="color:black;text-align:center;margin-bottom:20px" class="text-info">
+        Bạn đã đăng nhập thành công với <strong>@ViewBag.LoginProvider</strong>.
+        Vui lòng nhập các thông tin bên dưới để hoàn tất việc đăng nhập.
+    </h1>
         
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <p style="color:black;text-align:center" class="text-info">
-            Bạn đã đăng nhập thành công với <strong>@ViewBag.LoginProvider</strong>.
-            Vui lòng nhập các thông tin bên dưới để hoàn tất việc đăng nhập.
-        </p>
+        
         <div style="margin-left:250px" class="form-group">
             <strong style="font-size:medium" class="col-md-2 control-label">Tên tài khoản</strong>
 
             @*@Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })*@
             <div style="margin-top:10px" class="col-md-10">
-                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @style = "width:500px", @placeholder="Tên dùng để điền vào khi đăng nhập" })
                 @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -30,7 +30,7 @@
 
             @*@Html.LabelFor(m => m.FullName, new { @class = "col-md-2 control-label" })*@
             <div style="margin-top:10px" class="col-md-10">
-                @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", @style = "width:500px", @placeholder = "Nhập vào họ và tên" })
                 @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -46,7 +46,7 @@
 
             @*@Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })*@
             <div style="margin-top:10px" class="col-md-10">
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @style="width:500px" })
                 @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
             </div>
         </div>
