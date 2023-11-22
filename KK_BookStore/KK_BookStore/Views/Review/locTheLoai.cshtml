@@ -1,0 +1,301 @@
+﻿@model PagedList.IPagedList<KK_BookStore.BaiViet>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "locTheLoai";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/Review/danhSachBaiViet.css" rel="stylesheet" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+<title>List Reviews</title>
+<div class="container bootdey" style="float:left;padding-left:200px;padding-top:10px">
+    <div class="col-md-3">
+        <section class="panel">
+            <div class="panel-body">
+                @*usingform*@
+                <form>
+                    <input type="text" placeholder="Keyword Search" class="form-control" name="ten" />
+                    <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+        </section>
+        <section class="panel">
+            <header class="panel-heading">
+                Category
+            </header>
+            <div class="panel-body">
+                <ul class="nav prod-cat">
+                    <li>
+                        <a href="#" class="active"><i class="fa fa-angle-right"></i> Dress</a>
+                        <ul class="nav">
+                            <li class="active"><a href="#">- Shirt</a></li>
+                            <li><a href="#">- Pant</a></li>
+                            <li><a href="#">- Shoes</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="https://localhost:44339/Review/danhSachBaiViet"><i class="fa fa-angle-right"></i>ALL</a>
+
+                    </li>
+                    @foreach (var item in ViewBag.TheLoai)
+                    {
+                        <li>
+                            <a href="@Url.Action("locTheLoai", "Review",new { @id = item.MaTL,@page = 1})"><i class="fa fa-angle-right"></i>@item.TenTL</a>
+
+                        </li>
+                    }
+
+                    @*<li>
+                            <a href="#"><i class="fa fa-angle-right"></i> Beauty</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-angle-right"></i> Coat &amp; Jacket</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-angle-right"></i> Jeans</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-angle-right"></i> Jewellery</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-angle-right"></i> Electronics</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-angle-right"></i> Sports</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-angle-right"></i> Technology</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-angle-right"></i> Watches</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-angle-right"></i> Accessories</a>
+                        </li>*@
+                </ul>
+            </div>
+        </section>
+        @*<section class="panel">
+                <header class="panel-heading">
+                    Price Range
+                </header>
+                <div class="panel-body sliders">
+                    <div id="slider-range" class="slider"></div>
+                    <div class="slider-info">
+                        <span id="slider-range-amount"></span>
+                    </div>
+                </div>
+            </section>*@
+        <section class="panel">
+            <header class="panel-heading">
+                Filter
+            </header>
+            <div class="panel-body">
+                <form role="form product-form">
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select>
+                            @*<option>Wallmart</option>
+                                <option>Catseye</option>
+                                <option>Moonsoon</option>*@
+
+                            @foreach (var item in ViewBag.TheLoai)
+                            {
+                                <option>@item.TenTL</option>
+                            }
+
+                        </select>
+                        @*<span class="customSelect form-control" style="display: inline-block;"><span class="customSelectInner" style="width: 209px; display: inline-block;">Wallmart</span></span>*@
+                    </div>
+                    <div class="form-group">
+                        <label>Color</label>
+                        <select class="form-control hasCustomSelect" style="-webkit-appearance: menulist-button; width: 231px; position: absolute; opacity: 0; height: 34px; font-size: 12px;">
+                            <option>White</option>
+                            <option>Black</option>
+                            <option>Red</option>
+                            <option>Green</option>
+                        </select>
+                        <span class="customSelect form-control" style="display: inline-block;"><span class="customSelectInner" style="width: 209px; display: inline-block;">White</span></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Type</label>
+                        <select class="form-control hasCustomSelect" style="-webkit-appearance: menulist-button; width: 231px; position: absolute; opacity: 0; height: 34px; font-size: 12px;">
+                            <option>Small</option>
+                            <option>Medium</option>
+                            <option>Large</option>
+                            <option>Extra Large</option>
+                        </select>
+                        <span class="customSelect form-control" style="display: inline-block;"><span class="customSelectInner" style="width: 209px; display: inline-block;">Small</span></span>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Filter</button>
+                </form>
+            </div>
+        </section>
+
+    </div>
+    <div class="col-md-9">
+
+        @if (Model.Count == 0)
+        {
+            <h1 style="text-align:center;padding-top:10px">Chưa có bài viết cho thể loại</h1>
+        }
+        else
+        {
+            <div class="row product-list">
+
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4">
+                        <section class="panel">
+                            <div class="pro-img-box">
+                                <a href="https://localhost:44339/Review/Detail/@item.MaBaiViet"><img style="width:250px;height:220px"  src="@item.AnhBia" alt="" /></a>
+                                <a  style="margin-left:-10px" href="#" class="adtocart">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </a>
+                            </div>
+
+                            <div class="panel-body text-center">
+                                <h4>
+                                    <a href="https://localhost:44339/Review/Detail/@item.MaBaiViet" class="pro-title">
+                                        @if (item.TenBaiViet.Length < 15)
+                                        {
+                                            @item.TenBaiViet
+                                        }
+                                        else
+                                        {
+                                            @item.TenBaiViet.Substring(0, 15)<span>...</span>
+                                        }
+
+                                    </a>
+                                    <p>@Math.Round((float)item.SoSao, 1) <i style="color:yellow" class="fa fa-star"> </i> || @item.YeuThich <i style="color:red" class="fa fa-heart"></i> || @item.LuotXem <i style="color:blue" class="fa fa-eye"></i></p>
+                                </h4>
+                                <p>Author: @item.TheLoai.TenTL</p>
+                                <p>Author: @item.TaiKhoan</p>
+                                @*<p class="price">Author: @item.TaiKhoan</p>*@
+                            </div>
+                        </section>
+                    </div>
+                }
+            </div>
+            <section class="panel">
+                <div class="panel-body">
+                    <div class="pull-right">
+                        @*<ul class="pagination pagination-sm pro-page-list">
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">»</a></li>
+                        </ul>*@
+                        <div>
+                            Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) /
+                            @Model.PageCount
+                        </div>
+                        <div class="MenuTrang">
+                            @Html.PagedListPager(Model, page => Url.Action("danhSachBaiViet", new
+                            {
+                                page = page
+                            }))
+                        </div>
+                    </div>
+                </div>
+            </section>
+        }
+
+    </div>
+
+</div>
+<div class="container bootdey col-md-2">
+    <section class="panel">
+        <header class="panel-heading">
+            Top Review
+        </header>
+        <div class="panel-body">
+            <div class="best-seller">
+                @foreach (var item in ViewBag.baiVietNhieuTim)
+                {
+                    <article class="media">
+                        <a class="pull-left thumb p-thumb">
+                            <img src="@item.AnhBia" />
+                        </a>
+                        <div style="text-align:center" class="media-body">
+                            @*<a  href="#" class="p-head">@item.TenBaiViet</a>
+                                <p>@Math.Round((float)item.SoSao, 1) <i style="color:yellow" class="fa fa-star"> </i></p>*@
+                            <h4>
+                                <a href="https://localhost:44339/Review/Detail/@item.MaBaiViet" class="pro-title">
+                                    @item.TenBaiViet
+
+                                </a>
+                                <p>@Math.Round((float)item.SoSao, 1) <i style="color:yellow" class="fa fa-star"> </i> || @item.YeuThich <i style="color:red" class="fa fa-heart"></i> || @item.LuotXem <i style="color:blue" class="fa fa-eye"></i></p>
+                            </h4>
+                            <p>Author: @item.TheLoai.TenTL</p>
+                            <p>Author: @item.TaiKhoan</p>
+                        </div>
+                    </article>
+                }
+
+                @*<article class="media">
+                        <a class="pull-left thumb p-thumb">
+                            <img src="https://www.bootdey.com/image/250x220/A2BE2/000000" />
+                        </a>
+                        <div class="media-body">
+                            <a href="#" class="p-head">Item Two Tittle</a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </article>
+                    <article class="media">
+                        <a class="pull-left thumb p-thumb">
+                            <img src="https://www.bootdey.com/image/250x220/6495ED/000000" />
+                        </a>
+                        <div class="media-body">
+                            <a href="#" class="p-head">Item Three Tittle</a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </article>*@
+            </div>
+        </div>
+    </section>
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>
+<style type="text/css">
+    #mau-nut a {
+        clear: both;
+        background-color: orange;
+        color: snow;
+    }
+
+        #mau-nut a:hover {
+            background-color: darkcyan;
+            color: snow;
+        }
+</style>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var maxLength = 100;
+        $(".show-read-more").each(function () {
+            var myStr = $(this).text();
+            if ($.trim(myStr).length > maxLength) {
+                var newStr = myStr.substring(0, maxLength);
+                var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
+                $(this).empty().html(newStr);
+
+                $(this).append(' <a href="javascript:void(0);" class="read-more">đọc tiếp...</a>');
+
+                $(this).append('<span class="more-text">' + removedStr +
+                    '</span>');
+            }
+        });
+        $(".read-more").click(function () {
+            $(this).siblings(".more-text").contents().unwrap(); $(this).remove();
+        });
+    });
+</script>
+<style>
+    .show-read-more .more-text {
+        display: none;
+    }
+</style>

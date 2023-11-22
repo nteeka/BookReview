@@ -23,7 +23,8 @@ namespace KK_BookStore.Controllers
                 
 
             }
-            return View();
+            var tacgia = mydata.NguoiDungs.Where(p => p.MaChucVu == 1004);
+            return View(tacgia);
         }
     }
 }

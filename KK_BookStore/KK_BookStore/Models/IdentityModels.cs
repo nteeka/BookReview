@@ -44,6 +44,10 @@ namespace KK_BookStore.Models
             return new ApplicationDbContext();
         }
 
+        public System.Data.Entity.DbSet<KK_BookStore.Models.RoleViewModel> RoleViewModels { get; set; }
+
+
+
         //public System.Data.Entity.DbSet<KK_BookStore.Models.RoleViewModel> RoleViewModels { get; set; }
     }
 }

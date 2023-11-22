@@ -70,32 +70,32 @@
                 </p>
             </div>
             <div class="welcome-hero-serch-box">
-                    <div class="welcome-hero-form">
-                        <div class="single-welcome-hero-form">
-                            <h3>what?</h3>
-                            <form action="index.html">
-                                <input type="text" placeholder="Ex: palce, resturent, food, automobile" />
-                            </form>
-                            <div class="welcome-hero-form-icon">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </div>
-                        </div>
-                        <div class="single-welcome-hero-form">
-                            <h3>location</h3>
-                            <form action="index.html">
-                                <input type="text" placeholder="Ex: london, newyork, rome" />
-                            </form>
-                            <div class="welcome-hero-form-icon">
-                                <i class="flaticon-gps-fixed-indicator"></i>
-                            </div>
+                <div class="welcome-hero-form">
+                    <div class="single-welcome-hero-form">
+                        <h3>what?</h3>
+                        <form action="index.html">
+                            <input type="text" placeholder="Ex: palce, resturent, food, automobile" />
+                        </form>
+                        <div class="welcome-hero-form-icon">
+                            <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
                     </div>
-                    <div class="welcome-hero-serch">
-                        <button class="welcome-hero-btn" onclick="window.location.href='#'">
-                            search  <i data-feather="search"></i>
-                        </button>
+                    <div class="single-welcome-hero-form">
+                        <h3>location</h3>
+                        <form action="index.html">
+                            <input type="text" placeholder="Ex: london, newyork, rome" />
+                        </form>
+                        <div class="welcome-hero-form-icon">
+                            <i class="flaticon-gps-fixed-indicator"></i>
+                        </div>
                     </div>
-              </div>
+                </div>
+                <div class="welcome-hero-serch">
+                    <button class="welcome-hero-btn" onclick="window.location.href='#'">
+                        search  <i data-feather="search"></i>
+                    </button>
+                </div>
+            </div>
         </div>
 
     </section><!--/.welcome-hero-->
@@ -109,7 +109,7 @@
                         <div class="single-list-topics-content">
                             <div class="single-list-topics-icon">
                                 <i style="font-size:40px" class="fa fa-book"></i>
-                                
+
                             </div>
                             <h2><a href="#">book</a></h2>
                             <p>150 listings</p>
@@ -236,12 +236,15 @@
                                                 <li>
                                                     <div class="single-explore-image-icon">
                                                         <a href="https://localhost:44339/Review/Detail/@item.MaBaiViet"><i style="color:white" class="fa fa-arrows-alt"></i></a>
+                                                        
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="single-explore-image-icon">
-                                                        
+
                                                         <a href=" @Url.Action("yeuThichBaiViet", "Review",new { @id = item.MaBaiViet, @strURL = Request.Url.ToString()})"><i style="color:white" class="fa fa-bookmark-o"></i></a>
+                                                        
+
 
                                                     </div>
                                                 </li>
@@ -252,7 +255,7 @@
                                 <div class="single-explore-txt bg-theme-1">
                                     <h2><a href="https://localhost:44339/Review/Detail/@item.MaBaiViet">@item.TenBaiViet</a></h2>
                                     <p class="explore-rating-price">
-                                        <span class="explore-rating">@Math.Round(@item.SoSao,1) ★</span>
+                                        <span class="explore-rating">@Math.Round(@item.SoSao, 1) ★</span>
                                         <a href="#"> @item.SoLuotDanhGia ratings</a>
 
                                         <span class="explore-price-box">
@@ -308,14 +311,12 @@
                         read more
                     </button>
 
-                    
+
                 </div>
             </div>
         </div><!--/.container-->
 
     </section><!--/.explore-->
-    
-    
     <!-- statistics strat -->
     <section id="statistics" class="statistics">
         <div class="container">
@@ -443,7 +444,7 @@
         </div>
         <div id="scroll-Top">
             <div class="return-to-top">
-                <i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title="" data-original-title="Back to Top" aria-hidden="true"></i>
+                <i class="fa fa-arrow-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title="" data-original-title="Back to Top" aria-hidden="true"></i>
             </div>
         </div>
     </section><!--/subscription-->
@@ -477,7 +478,7 @@
     <!--Custom JS-->
     @*<script src="assets/js/custom.js"></script>*@
     <script src="~/Content/LayoutChung/custom.js"></script>
-
+    
 </body>
 
 </html>

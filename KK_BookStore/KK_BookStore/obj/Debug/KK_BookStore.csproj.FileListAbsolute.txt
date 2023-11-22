@@ -282,3 +282,4 @@ D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\obj\Debug\KK_Bo
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\obj\Debug\KK_BookStore.csproj.CopyComplete
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\obj\Debug\KK_BookStore.dll
 D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\obj\Debug\KK_BookStore.pdb
+D:\K&K_WebsiteBanSachOnline\SourceCode\KK_BookStore\KK_BookStore\obj\Debug\KK_BookStore.Migrations.role.resources

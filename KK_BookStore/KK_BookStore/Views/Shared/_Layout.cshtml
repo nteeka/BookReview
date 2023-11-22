@@ -111,10 +111,14 @@
                             <li><a href="https://localhost:44339/Home/Index">home</a></li>
                             <li><a href="https://localhost:44339/Home/About">about</a></li>
                             <li><a href="https://localhost:44339/DanhSachYeuThich/DanhSachBaiViet">Wishlist</a></li>
-                            <li class="scroll"><a href="#explore">explore</a></li>
+                            @if (User.IsInRole("Reviewer"))
+                            {
+                                <li><a href="https://localhost:44339/Review/quanLyBaiViet"><i style="font-size:x-large" class="fa fa-briefcase"></i></a></li>
+                            }
+
                             @*<li class="scroll"><a href="#reviews">review</a></li>*@
                             <li><a href="https://localhost:44339/Review/Index">review</a></li>
-                            <li><a href="https://localhost:44339/Blog/Index">blog</a></li>
+                            @*<li><a href="https://localhost:44339/Blog/Index">blog</a></li>*@
                             @Html.Partial("_LoginPartial")
 
 

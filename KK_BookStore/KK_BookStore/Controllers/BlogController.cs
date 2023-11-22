@@ -14,8 +14,7 @@ namespace KK_BookStore.Controllers
         private MyDataDataContext mydata = new MyDataDataContext();
         public ActionResult Index()
         {
-            var userId = User.Identity.GetUserName();
-           
+            var userId = User.Identity.GetUserName();          
             var user = mydata.NguoiDungs.Where(p => p.TaiKhoan == userId);
             foreach (var item in user)
             {

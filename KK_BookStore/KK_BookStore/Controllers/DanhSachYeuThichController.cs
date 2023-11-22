@@ -98,17 +98,18 @@ namespace KK_BookStore.Controllers
         //    lstYeuThich.Clear();
         //    return RedirectToAction("DanhSachYeuThich");
         //}
+        //[Authorize]
+        //public ActionResult Index()
+        //{
+        //    if (User.Identity.IsAuthenticated)
+        //    {
+        //        var anhDaiDien = from s in data.NguoiDungs where s.TaiKhoan == User.Identity.Name select s;
+        //        ViewBag.hinh = anhDaiDien.First().Hinh;
+        //    }
+        //    var danhsach = from tt in data.DanhSachYeuThiches where tt.TaiKhoan == User.Identity.Name  select tt;
+        //    return View(danhsach.ToList());
+        //}
         [Authorize]
-        public ActionResult Index()
-        {
-            if (User.Identity.IsAuthenticated)
-            {
-                var anhDaiDien = from s in data.NguoiDungs where s.TaiKhoan == User.Identity.Name select s;
-                ViewBag.hinh = anhDaiDien.First().Hinh;
-            }
-            var danhsach = from tt in data.DanhSachYeuThiches where tt.TaiKhoan == User.Identity.Name  select tt;
-            return View(danhsach.ToList());
-        }
         public ActionResult DanhSachBaiViet(int? page)
         {
             if (page == null) page = 1;

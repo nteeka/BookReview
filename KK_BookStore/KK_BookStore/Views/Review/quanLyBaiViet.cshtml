@@ -1,0 +1,545 @@
+﻿@model IEnumerable<KK_BookStore.BaiViet>
+
+@{
+    ViewBag.Title = "quanLyBaiViet";
+    Layout = "\\Views\\Shared\\Reviewer.cshtml";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css" integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<div class="container" style="float:left">
+    <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
+        <div class="sidenav-header">
+            <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+            <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html " target="_blank">
+                <img src="~/Content/Admin_Template/assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
+                <span class="ms-1 font-weight-bold">REVIEWER AREA</span>
+            </a>
+        </div>
+        <hr class="horizontal dark mt-0">
+        <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="https://localhost:44339/Review/quanLyBaiViet">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="https://localhost:44339/Review/quanLyBaiViet">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Your Posts</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="~/Content/Admin_Template/pages/billing.html">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Create Post</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="~/Content/Admin_Template/pages/virtual-reality.html">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-app text-info text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Virtual Reality</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="~/Content/Admin_Template/pages/rtl.html">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">RTL</span>
+                    </a>
+                </li>
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="~/Content/Admin_Template/pages/profile.html">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Profile</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="~/Content/Admin_Template/pages/sign-in.html">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Sign In</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="~/Content/Admin_Template/pages/sign-up.html">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-collection text-info text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Sign Up</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="sidenav-footer mx-3 ">
+            <div class="card card-plain shadow-none" id="sidenavCard">
+                <img class="w-50 mx-auto" src="~/Content/Admin_Template/assets/img/illustrations/icon-documentation.svg" alt="sidebar_illustration">
+                <div class="card-body text-center p-3 w-100 pt-0">
+                    <div class="docs-info">
+                        <h6 class="mb-0">Need help?</h6>
+                        <p class="text-xs font-weight-bold mb-0">Please check our docs</p>
+                    </div>
+                </div>
+            </div>
+            <a href="https://www.creative-tim.com/learning-lab/bootstrap/license/argon-dashboard" target="_blank" class="btn btn-dark btn-sm w-100 mb-3">Documentation</a>
+            <a class="btn btn-primary btn-sm mb-0 w-100" href="https://www.creative-tim.com/product/argon-dashboard-pro?ref=sidebarfree" type="button">Upgrade to pro</a>
+        </div>
+    </aside>
+</div>
+
+<div class="container" style="float:right">
+    
+    <div class="card">
+        
+        <div class="card-body">
+            <a href="https://localhost:44339/Review/Create" class="btn btn-primary waves-effect waves-light"><i class="fa fa-plus"></i> Create new Post</a>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="table-responsive px-3">
+                                    <table class="table table-striped align-middle table-nowrap">
+                                        <tbody>
+                                            @if (Model.Count()==0)
+                                            {
+
+
+                                                <tr>
+                                                    <td>None post</td>
+                                                </tr>
+                                            }
+                                            else
+                                            {
+                                                foreach (var item in Model)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            <div class="avatar-lg me-4">
+                                                                <img src="@item.AnhBia" width="380" height="380" class="img-fluid rounded" alt="">
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div>
+                                                                @if (item.TenBaiViet.Length < 30)
+                                                                {
+                                                                    <h5 class="font-size-18"><a href="ecommerce-product-detail.html" class="text-dark">@item.TenBaiViet</a></h5>
+
+                                                                }
+                                                                else
+                                                                {
+                                                                    <h5 class="font-size-18"><a href="ecommerce-product-detail.html" class="text-dark">@item.TenBaiViet.Substring(0, 30)...</a></h5>
+
+                                                                }
+                                                                <p class="text-muted mb-0 mt-2 pt-2">
+
+                                                                    @item.TheLoai.TenTL
+                                                                </p>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <ul class="list-unstyled ps-0 mb-0">
+                                                                <li><p class="text-muted mb-1 text-truncate"><i class="mdi mdi-circle-medium align-middle text-primary me-1"></i>@Math.Round((double)item.SoSao, 1)<i class="fa fa-star"></i> / @item.SoLuotDanhGia lượt</p></li>
+                                                                <li><p class="text-muted mb-1 text-truncate"><i class="mdi mdi-circle-medium align-middle text-primary me-1"></i>@item.YeuThich <i class="fa fa-heart"></i></p></li>
+                                                                <li><p class="text-muted mb-1 text-truncate"><i class="mdi mdi-circle-medium align-middle text-primary me-1"></i>@item.LuotXem <i class="fa fa-eye"></i></p></li>
+                                                                @*<li><p class="text-muted mb-1 text-truncate"><i class="mdi mdi-circle-medium align-middle text-primary me-1"></i> Battery life: Up to 22 hours of video playback</p></li>
+                                                                <li><p class="text-muted mb-0 text-truncate"><i class="mdi mdi-circle-medium align-middle text-primary me-1"></i> 5G and Gigabit LTE</p></li>*@
+                                                            </ul>
+                                                        </td>
+
+                                                        <td style="width: 180px;">
+
+                                                            <ul class="list-inline mb-0 text-muted product-color">
+                                                                @if (item.TrangThai == 1)
+                                                                {
+
+                                                                    <li class="list-inline-item">
+                                                                        <i class="mdi mdi-circle font-size-16 text-success">Public</i>
+                                                                    </li>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <i class="mdi mdi-circle font-size-16 text-danger">Private</i>
+
+                                                                }
+
+
+
+                                                            </ul>
+                                                        </td>
+
+                                                        <td style="width: 220px;">
+                                                            <h3 class="mb-0 font-size-20"><span class="text-muted me-2"><del class="font-size-16 fw-normal">$500</del></span><b>$450</b></h3>
+                                                        </td>
+
+                                                        <td>
+                                                            <a href="https://localhost:44339/Review/Edit/@item.MaBaiViet" class="btn btn-primary waves-effect waves-light"><i class="fa fa-pen"></i> Edit</a>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="dropdown float-end">
+                                                                <a class="text-muted dropdown-toggle font-size-20" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
+                                                                    <i class="bx bx-dots-horizontal-rounded"></i>
+                                                                </a>
+                                                                <div class="dropdown-menu dropdown-menu-end">
+                                                                    <a class="dropdown-item" href="#">Edit</a>
+                                                                    <a class="dropdown-item" href="#">Action</a>
+                                                                    <a class="dropdown-item" href="#">Remove</a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+
+
+
+                                            @*<tr>
+            <td>
+                <div class="avatar-lg me-4">
+                    <img src="https://www.bootdey.com/image/380x380/0000FF/000000" class="img-fluid rounded" alt="">
+                </div>
+            </td>
+
+            <td>
+                <div>
+                    <h5 class="font-size-18"><a href="ecommerce-product-detail.html" class="text-dark">Smartphone Dual Camera</a></h5>
+                    <p class="text-muted mb-0 mt-2 pt-2">
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bxs-star text-warning"></i>
+                    </p>
+                </div>
+            </td>
+
+            <td>
+                <ul class="list-unstyled ps-0 mb-0">
+                    <li><p class="text-muted mb-0 text-truncate"><i class="mdi mdi-circle-medium align-middle text-primary me-1"></i> 5G and Gigabit LTE</p></li>
+                    <li><p class="text-muted mb-1 text-truncate"><i class="mdi mdi-circle-medium align-middle text-primary me-1"></i> 32MP TrueDepth front camera</p></li>
+                    <li><p class="text-muted mb-1 text-truncate"><i class="mdi mdi-circle-medium align-middle text-primary me-1"></i> Battery life: Up to 22 hours of video playback</p></li>
+                </ul>
+            </td>
+
+            <td style="width: 180px;">
+                <p>Colors :</p>
+                <ul class="list-inline mb-0 text-muted product-color">
+                    <li class="list-inline-item">
+                        <i class="mdi mdi-circle font-size-16 text-primary"></i>
+                    </li>
+                    <li class="list-inline-item">
+                        <i class="mdi mdi-circle font-size-16 text-danger"></i>
+                    </li>
+                    <li class="list-inline-item">
+                        <i class="mdi mdi-circle font-size-16 text-warning"></i>
+                    </li>
+                </ul>
+            </td>
+
+            <td style="width: 220px;">
+                <h3 class="mb-0 font-size-20"><span class="text-muted me-2"><del class="font-size-16 fw-normal">$280</del></span><b>$240</b></h3>
+            </td>
+
+            <td>
+                <button type="button" class="btn btn-primary waves-effect waves-light"><i class="bx bx-cart me-2 font-size-15 align-middle"></i> Add</button>
+            </td>
+
+            <td>
+                <div class="dropdown float-end">
+                    <a class="text-muted dropdown-toggle font-size-20" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
+                        <i class="bx bx-dots-horizontal-rounded"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <a class="dropdown-item" href="#">Edit</a>
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Remove</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="avatar-lg me-4">
+                    <img src="https://www.bootdey.com/image/380x380/008B8B/000000" class="img-fluid rounded" alt="">
+                </div>
+            </td>
+
+            <td>
+                <div>
+                    <h5 class="font-size-18"><a href="ecommerce-product-detail.html" class="text-dark">Black Colour Smartphone</a></h5>
+                    <p class="text-muted mb-0 mt-2 pt-2">
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bxs-star text-warning"></i>
+                    </p>
+                </div>
+            </td>
+
+            <td>
+                <ul class="list-unstyled ps-0 mb-0">
+                    <li><p class="text-muted mb-1 text-truncate"><i class="mdi mdi-circle-medium align-middle text-primary me-1"></i> 5G and Gigabit LTE </p></li>
+                    <li><p class="text-muted mb-1 text-truncate"><i class="mdi mdi-circle-medium align-middle text-primary me-1"></i> LiDAR Scanner for Night mode</p></li>
+                    <li><p class="text-muted mb-0 text-truncate"><i class="mdi mdi-circle-medium align-middle text-primary me-1"></i> Face ID for secure authentication</p></li>
+                </ul>
+            </td>
+
+            <td style="width: 180px;">
+                <p>Colors :</p>
+                <ul class="list-inline mb-0 text-muted product-color">
+                    <li class="list-inline-item">
+                        <i class="mdi mdi-circle font-size-16 text-info"></i>
+                    </li>
+                    <li class="list-inline-item">
+                        <i class="mdi mdi-circle font-size-16 text-danger"></i>
+                    </li>
+                    <li class="list-inline-item">
+                        <i class="mdi mdi-circle font-size-16 text-dark"></i>
+                    </li>
+                </ul>
+            </td>
+
+            <td style="width: 220px;">
+                <h3 class="mb-0 font-size-20"><span class="text-muted me-2"><del class="font-size-16 fw-normal">$500</del></span><b>$450</b></h3>
+            </td>
+
+            <td>
+                <button type="button" class="btn btn-primary waves-effect waves-light"><i class="bx bx-cart me-2 font-size-15 align-middle"></i> Add</button>
+            </td>
+
+            <td>
+                <div class="dropdown float-end">
+                    <a class="text-muted dropdown-toggle font-size-20" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
+                        <i class="bx bx-dots-horizontal-rounded"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <a class="dropdown-item" href="#">Edit</a>
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Remove</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="avatar-lg me-4">
+                    <img src="https://www.bootdey.com/image/380x380/9932CC/000000" class="img-fluid rounded" alt="">
+                </div>
+            </td>
+
+            <td>
+                <div>
+                    <h5 class="font-size-18"><a href="ecommerce-product-detail.html" class="text-dark">Latest Smartphone Under 2000</a></h5>
+                    <p class="text-muted mb-0 mt-2 pt-2">
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bxs-star-half text-warning"></i>
+                    </p>
+                </div>
+            </td>
+
+            <td>
+                <ul class="list-unstyled ps-0 mb-0">
+                    <li><p class="text-muted mb-1 text-truncate"><i class="mdi mdi-circle-medium align-middle text-primary me-1"></i> 20MP TrueDepth front camera </p></li>
+                    <li><p class="text-muted mb-1 text-truncate"><i class="mdi mdi-circle-medium align-middle text-primary me-1"></i> LiDAR Scanner for Night mode</p></li>
+                    <li><p class="text-muted mb-0 text-truncate"><i class="mdi mdi-circle-medium align-middle text-primary me-1"></i> Compatible with MagSafe accessories</p></li>
+                </ul>
+            </td>
+
+            <td style="width: 180px;">
+                <p>Colors :</p>
+                <ul class="list-inline mb-0 text-muted product-color">
+                    <li class="list-inline-item">
+                        <i class="mdi mdi-circle font-size-16 text-primary"></i>
+                    </li>
+                    <li class="list-inline-item">
+                        <i class="mdi mdi-circle font-size-16 text-success"></i>
+                    </li>
+                    <li class="list-inline-item">
+                        <i class="mdi mdi-circle font-size-16 text-warning"></i>
+                    </li>
+                </ul>
+            </td>
+
+            <td style="width: 220px;">
+                <h3 class="mb-0 font-size-20"><span class="text-muted me-2"><del class="font-size-16 fw-normal">$420</del></span><b>$380</b></h3>
+            </td>
+
+            <td>
+                <button type="button" class="btn btn-primary waves-effect waves-light"><i class="bx bx-cart me-2 font-size-15 align-middle"></i> Add</button>
+            </td>
+
+            <td>
+                <div class="dropdown float-end">
+                    <a class="text-muted dropdown-toggle font-size-20" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
+                        <i class="bx bx-dots-horizontal-rounded"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <a class="dropdown-item" href="#">Edit</a>
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Remove</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="avatar-lg me-4">
+                    <img src="https://www.bootdey.com/image/380x380/1E90FF/000000" class="img-fluid rounded" alt="">
+                </div>
+            </td>
+
+            <td>
+                <div>
+                    <h5 class="font-size-18"><a href="ecommerce-product-detail.html" class="text-dark">New Phone Max Pro</a></h5>
+                    <p class="text-muted mb-0 mt-2 pt-2">
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bxs-star text-warning"></i>
+                    </p>
+                </div>
+            </td>
+
+            <td>
+                <ul class="list-unstyled ps-0 mb-0">
+                    <li><p class="text-muted mb-1 text-truncate"><i class="mdi mdi-circle-medium align-middle text-primary me-1"></i> 2MagSafe and Qi wireless charging </p></li>
+                    <li><p class="text-muted mb-1 text-truncate"><i class="mdi mdi-circle-medium align-middle text-primary me-1"></i> A15 Bionic chip with new 6-core CPU</p></li>
+                    <li><p class="text-muted mb-0 text-truncate"><i class="mdi mdi-circle-medium align-middle text-primary me-1"></i> Compatible with MagSafe accessories</p></li>
+                </ul>
+            </td>
+
+            <td style="width: 180px;">
+                <p>Colors :</p>
+                <ul class="list-inline mb-0 text-muted product-color">
+                    <li class="list-inline-item">
+                        <i class="mdi mdi-circle font-size-16 text-dark"></i>
+                    </li>
+                    <li class="list-inline-item">
+                        <i class="mdi mdi-circle font-size-16 text-danger"></i>
+                    </li>
+                    <li class="list-inline-item">
+                        <i class="mdi mdi-circle font-size-16 text-primary"></i>
+                    </li>
+                </ul>
+            </td>
+
+            <td style="width: 220px;">
+                <h3 class="mb-0 font-size-20"><span class="text-muted me-2"><del class="font-size-16 fw-normal">$470</del></span><b>$390</b></h3>
+            </td>
+
+            <td>
+                <button type="button" class="btn btn-primary waves-effect waves-light"><i class="bx bx-cart me-2 font-size-15 align-middle"></i> Add</button>
+            </td>
+
+            <td>
+                <div class="dropdown float-end">
+                    <a class="text-muted dropdown-toggle font-size-20" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
+                        <i class="bx bx-dots-horizontal-rounded"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <a class="dropdown-item" href="#">Edit</a>
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Remove</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="avatar-lg me-4">
+                    <img src="https://www.bootdey.com/image/380x380/FF00FF/000000" class="img-fluid rounded" alt="">
+                </div>
+            </td>
+
+            <td>
+                <div>
+                    <h5 class="font-size-18"><a href="ecommerce-product-detail.html" class="text-dark">Smart Phone Pro +256</a></h5>
+                    <p class="text-muted mb-0 mt-2 pt-2">
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bxs-star-half text-warning"></i>
+                    </p>
+                </div>
+            </td>
+
+            <td>
+                <ul class="list-unstyled ps-0 mb-0">
+                    <li><p class="text-muted mb-1 text-truncate"><i class="mdi mdi-circle-medium align-middle text-primary me-1"></i> 13.7 cm (5.4-inch) Super Retina HDR and True Tone</p></li>
+                    <li><p class="text-muted mb-1 text-truncate"><i class="mdi mdi-circle-medium align-middle text-primary me-1"></i> Battery life: Up to 22 hours of video playback</p></li>
+                    <li><p class="text-muted mb-0 text-truncate"><i class="mdi mdi-circle-medium align-middle text-primary me-1"></i> Compatible with MagSafe accessories</p></li>
+                </ul>
+            </td>
+
+            <td style="width: 180px;">
+                <p>Colors :</p>
+                <ul class="list-inline mb-0 text-muted product-color">
+                    <li class="list-inline-item">
+                        <i class="mdi mdi-circle font-size-16 text-primary"></i>
+                    </li>
+                    <li class="list-inline-item">
+                        <i class="mdi mdi-circle font-size-16 text-warning"></i>
+                    </li>
+                    <li class="list-inline-item">
+                        <i class="mdi mdi-circle font-size-16 text-info"></i>
+                    </li>
+                </ul>
+            </td>
+
+            <td style="width: 220px;">
+                <h3 class="mb-0 font-size-20"><span class="text-muted me-2"><del class="font-size-16 fw-normal">$470</del></span><b>$320</b></h3>
+            </td>
+
+            <td>
+                <button type="button" class="btn btn-primary waves-effect waves-light"><i class="bx bx-cart me-2 font-size-15 align-middle"></i> Add</button>
+            </td>
+
+            <td>
+                <div class="dropdown float-end">
+                    <a class="text-muted dropdown-toggle font-size-20" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
+                        <i class="bx bx-dots-horizontal-rounded"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <a class="dropdown-item" href="#">Edit</a>
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Remove</a>
+                    </div>
+                </div>
+            </td>
+        </tr>*@
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

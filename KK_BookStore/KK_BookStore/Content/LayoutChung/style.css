@@ -243,7 +243,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
 --------------------------------------*/
 .welcome-hero {
     position: relative;
-    background: url('https://img.freepik.com/free-photo/stack-books-table_23-2147896606.jpg?w=740&t=st=1699883683~exp=1699884283~hmac=33d8118699568c26c382a0eb396e0429e506c15e77667adee1c7b6383283cdcc')no-repeat;
+    background: url('\Content\Home\banner.jpg')no-repeat;
     background-position: center;
     background-size: cover;
     text-align: center;

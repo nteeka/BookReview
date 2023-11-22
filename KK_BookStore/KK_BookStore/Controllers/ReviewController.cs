@@ -1,6 +1,8 @@
 ﻿using Microsoft.Security.Application;
+using PagedList;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -23,8 +25,66 @@ namespace KK_BookStore.Controllers
             var checkYeuThich = myData.DanhSachYeuThiches.Where(m=>m.TaiKhoan==User.Identity.Name).ToList().FirstOrDefault();
             if (checkYeuThich!=null)
                 ViewBag.check = checkYeuThich;
-            var baiviet = myData.BaiViets.Where(m=>m.TrangThai==1);                                           
+            //lay all bai viet public
+            var baiviet = myData.BaiViets.Where(m=>m.TrangThai==1);
+
+            //lay reiviewr
+            var tacgia = myData.NguoiDungs.Where(m => m.MaChucVu == 1004);
+            ViewBag.lstTacGia = tacgia;
+
+            //layBaiVietMoi
+            var baivietmoi = from s in myData.BaiViets where s.TrangThai==1 orderby s.NgayViet descending select s;
+            List<BaiViet> baiVietMoi = new List<BaiViet>();
+            foreach(var item in baivietmoi)
+            {
+                baiVietMoi.Add(item);
+                if (baiVietMoi.Count == 6)
+                    break;
+            }
+            ViewBag.baiVietMoi = baiVietMoi;
+
+            //lay post nhieu danhgiacao
+            var baiVietDanhGiaCao = from tt in myData.BaiViets orderby tt.SoSao descending select tt;
+            List<BaiViet> lstbaiVietDanhGiaCao = new List<BaiViet>();
+            foreach (var item in baiVietDanhGiaCao)
+            {
+                lstbaiVietDanhGiaCao.Add(item);
+                if (lstbaiVietDanhGiaCao.Count() == 4)
+                    break;
+            }
+            ViewBag.baiVietDanhGiaCao = lstbaiVietDanhGiaCao;
+            ////layRanDom
+            //var random = myData.BaiViets.OrderBy(o => Guid.NewGuid());
+            //List<BaiViet> randomData = new List<BaiViet>();
+            //foreach (var item in random)
+            //{
+            //    randomData.Add(item);
+            //    if (randomData.Count == 6)
+            //        break;
+            //}
+            //ViewBag.randomData = randomData;
+
+            //baiVietNhieuTim
+            var baiVietNhieuTim = from tt in myData.BaiViets orderby tt.YeuThich descending select tt;
+            List<BaiViet> lstbaiVietNhieuTim = new List<BaiViet>();
+            foreach (var item in baiVietNhieuTim)
+            {
+                lstbaiVietNhieuTim.Add(item);
+                if (lstbaiVietNhieuTim.Count == 6)
+                    break;
+            }
+            ViewBag.lstbaiVietNhieuTim = lstbaiVietNhieuTim;
             return View(baiviet);
+        }
+
+        //BaiViet
+        [Authorize(Roles ="Reviewer")]
+        public ActionResult quanLyBaiViet()
+        {
+            var nguoidung = myData.NguoiDungs.Where(m => m.TaiKhoan == User.Identity.Name);
+            ViewBag.hinh = nguoidung.First().Hinh;
+            var allPost = myData.BaiViets.Where(m =>m.TaiKhoan == User.Identity.Name);                               
+            return View(allPost);
         }
         public string ProcessUpload(HttpPostedFileBase file)
         {
@@ -36,6 +96,7 @@ namespace KK_BookStore.Controllers
             ViewBag.hinh = "/Content/Img_Profile/" + file.FileName;
             return "/Content/Img_Profile/" + file.FileName;
         }
+        [Authorize(Roles = "Reviewer")]
         public ActionResult Create()
         {
             if (User.Identity.IsAuthenticated)
@@ -70,9 +131,13 @@ namespace KK_BookStore.Controllers
             baiViet.MaTL = int.Parse(collection["MaTL"]);
             baiViet.MoTa = collection["MoTa"];
             baiViet.TrangThai = int.Parse(collection["TrangThai"]);
+            baiViet.SoSao = 0;
+            baiViet.SoLuotDanhGia = 0;
+            baiViet.YeuThich = 0;
+            baiViet.LuotXem = 0;
             myData.BaiViets.InsertOnSubmit(baiViet);
             myData.SubmitChanges();
-            return View();
+            return Redirect("https://localhost:44339/Review/quanLyBaiViet/"); ;
         }
 
 
@@ -123,7 +188,7 @@ namespace KK_BookStore.Controllers
             myData.SubmitChanges();
             return View(baiViet);
         }
-
+        [Authorize]
         public ActionResult yeuThichBaiViet(int id, string strURL)
         {
             
@@ -152,6 +217,7 @@ namespace KK_BookStore.Controllers
             }
             return Redirect(strURL);
         }
+        [Authorize(Roles = "Reviewer")]
         public ActionResult Edit(int id)
         {
             if (User.Identity.IsAuthenticated)
@@ -186,7 +252,7 @@ namespace KK_BookStore.Controllers
                 baiViet.TenBaiViet = model.TenBaiViet;
                 baiViet.AnhBia = model.AnhBia;
                 baiViet.NoiDung = model.NoiDung;
-                //baiViet.MaTL = model.MaTL;
+                baiViet.MaTL = model.MaTL;
                 baiViet.MoTa = model.MoTa;
                 baiViet.TrangThai = model.TrangThai;             
                 myData.SubmitChanges();
@@ -196,7 +262,7 @@ namespace KK_BookStore.Controllers
             if (baiViet.TrangThai == 1)
                 ViewBag.status = 1;
             ViewBag.TL = baiViet.MaTL;
-            return View(baiViet);
+            return Redirect("https://localhost:44339/Review/quanLyBaiViet");
         }
 
 
@@ -262,6 +328,63 @@ namespace KK_BookStore.Controllers
 
             myData.SubmitChanges();
             return Redirect("https://localhost:44339/Review/Detail/" + mabaiviet);
+        }
+        
+        public ActionResult danhSachBaiViet(int? page)
+        {
+
+            if (page == null) page = 1;
+            int pageSize = 6;
+            int pageNum = page ?? 1;
+            var allPost = from tt in myData.BaiViets select tt;
+
+
+            var nguoidung = from tt in myData.NguoiDungs where tt.TaiKhoan == User.Identity.Name select tt;
+            ViewBag.hinh = nguoidung.First().Hinh;
+            //lay the loai
+            var allCate = from tt in myData.TheLoais select tt;
+            ViewBag.TheLoai = allCate;
+            //lay post nhieu tim/view
+            var baiVietNhieuTim = from tt in myData.BaiViets orderby tt.SoSao descending select tt;
+            List<BaiViet> lstBaiVietNhieuTim = new List<BaiViet>();
+            foreach(var item in baiVietNhieuTim)
+            {
+                lstBaiVietNhieuTim.Add(item);
+                if (lstBaiVietNhieuTim.Count() == 3)
+                    break;
+            }
+            ViewBag.baiVietNhieuTim = lstBaiVietNhieuTim;
+
+
+            return View(allPost.ToPagedList(pageNum, pageSize));
+        }
+        public ActionResult locTheLoai(int id, int? page )
+        {
+            if (page == null) page = 1;
+            int pageSize = 3;
+            int pageNum = page ?? 1;
+            var allPost = from tt in myData.BaiViets select tt;
+
+
+
+            ViewBag.hinh = allPost.First().NguoiDung.Hinh;
+            //lay the loai
+            var allCate = from tt in myData.TheLoais select tt;
+            ViewBag.TheLoai = allCate;
+            //lay post nhieu tim/view
+            var baiVietNhieuTim = from tt in myData.BaiViets orderby tt.SoSao descending select tt;
+            List<BaiViet> lstBaiVietNhieuTim = new List<BaiViet>();
+            foreach (var item in baiVietNhieuTim)
+            {
+                lstBaiVietNhieuTim.Add(item);
+                if (lstBaiVietNhieuTim.Count() == 3)
+                    break;
+            }
+            ViewBag.baiVietNhieuTim = lstBaiVietNhieuTim;
+
+
+            var cate = from tt in myData.BaiViets where tt.MaTL == id select tt;
+            return View(cate.ToPagedList(pageNum, pageSize));
         }
 
     }
