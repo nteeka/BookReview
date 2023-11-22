@@ -29,7 +29,7 @@ namespace KK_BookStore.Controllers
             var baiviet = myData.BaiViets.Where(m=>m.TrangThai==1);
 
             //lay reiviewr
-            var tacgia = myData.NguoiDungs.Where(m => m.MaChucVu == 1004);
+            var tacgia = myData.NguoiDungs.Where(m => m.MaChucVu == "f72cd8b7-6945-4fba-9d72-28b9e6240acf");
             ViewBag.lstTacGia = tacgia;
 
             //layBaiVietMoi

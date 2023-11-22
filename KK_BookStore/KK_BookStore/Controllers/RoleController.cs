@@ -14,6 +14,7 @@ namespace KK_BookStore.Controllers
     {
         // GET: Role
         MyDataDataContext data= new MyDataDataContext();
+        ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationRoleManager _roleManager;
 
         public RoleController()
@@ -59,7 +60,9 @@ namespace KK_BookStore.Controllers
         {
             var role = new ApplicationRole() { Name = model.Name };
             await RoleManager.CreateAsync(role);
+            var getId = db.Roles.Where(m=>m.Name == model.Name).First();
             ChucVu chucVu = new ChucVu();
+            chucVu.MaChucVu =getId.Id;
             chucVu.TenChucVu = model.Name;
             data.ChucVus.InsertOnSubmit(chucVu);
             data.SubmitChanges();
@@ -74,12 +77,18 @@ namespace KK_BookStore.Controllers
         [HttpPost]
         public async Task<ActionResult> Edit(RoleViewModel model)
         {
-            
+            var chucVu = data.ChucVus.Where(m=>m.MaChucVu==model.Id).First();
+            chucVu.TenChucVu = model.Name;
+            UpdateModel(chucVu);
+            data.SubmitChanges();
             var role = new ApplicationRole() { Id = model.Id, Name = model.Name };
             await RoleManager.UpdateAsync(role);
 
             return RedirectToAction("Index");
         }
+
+
+
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Details(string id)
         {
@@ -92,9 +101,13 @@ namespace KK_BookStore.Controllers
             var role = await RoleManager.FindByIdAsync(id);
             return View(new RoleViewModel(role));
         }
-        public async Task<ActionResult> DeleteConfirmed(string id)
+        [HttpPost]
+        public async Task<ActionResult> Delete(RoleViewModel model)
         {
-            var role = await RoleManager.FindByIdAsync(id);
+            var role = await RoleManager.FindByIdAsync(model.Id);
+            var chucVu = data.ChucVus.Where(m => m.MaChucVu == model.Id).First();
+            data.ChucVus.DeleteOnSubmit(chucVu);
+            data.SubmitChanges();
             await RoleManager.DeleteAsync(role);
             return RedirectToAction("Index");
         }

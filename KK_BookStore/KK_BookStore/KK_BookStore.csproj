@@ -1260,6 +1260,7 @@
     <Content Include="Views\Role\Details.cshtml" />
     <Content Include="Views\Role\Delete.cshtml" />
     <Content Include="Views\Shared\Reviewer.cshtml" />
+    <Content Include="Views\Admin\quanLyNguoiDung.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

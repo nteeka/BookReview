@@ -130,7 +130,7 @@ namespace KK_BookStore.Controllers
                         return View("Banned");
 
                     }
-                    if (nguoidung.First().MaChucVu==1)
+                    if (nguoidung.First().MaChucVu== "7e4b3521-c157-45f8-8790-2c9bb2b4a89e")
                         return RedirectToAction("Index", "Admin");
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
@@ -245,7 +245,8 @@ namespace KK_BookStore.Controllers
                     //nguoiDung.MatKhau = model.Password;
                     nguoiDung.HoTen = model.FullName;
                     nguoiDung.Email = model.Email;
-                    nguoiDung.MaChucVu = 2;
+                    nguoiDung.MaChucVu = "9cb428a4-bd38-415b-aed6-264b6afa1a59";
+      
                     nguoiDung.Banned = false;
                     nguoiDung.GioiTinh = "None";
                     nguoiDung.Hinh = "\\Content\\user.jpg";
@@ -479,7 +480,7 @@ namespace KK_BookStore.Controllers
                     
                     nguoiDung.HoTen = model.FullName;
                     nguoiDung.Email = model.Email;
-                    nguoiDung.MaChucVu = 2;
+                    nguoiDung.MaChucVu = "9cb428a4-bd38-415b-aed6-264b6afa1a59";
                     nguoiDung.Banned = false;
                     nguoiDung.GioiTinh = "None";
                     nguoiDung.Hinh = "\\Content\\user.jpg";

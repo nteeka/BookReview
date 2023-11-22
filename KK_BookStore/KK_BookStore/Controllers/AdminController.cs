@@ -125,12 +125,12 @@ namespace KK_BookStore.Controllers
             }
             return EditNguoiDung(id);
         }
-        public ActionResult danhSachNguoiDungTheoRole(int id)
-        {
-            var all_nguoidung = from tt in data.NguoiDungs where tt.MaChucVu == id select tt;
+        //public ActionResult danhSachNguoiDungTheoRole(int id)
+        //{
+        //    var all_nguoidung = from tt in data.NguoiDungs where tt.MaChucVu == id select tt;
 
-            return View(all_nguoidung);
-        }
+        //    return View(all_nguoidung);
+        //}
 
 
 
@@ -201,21 +201,21 @@ namespace KK_BookStore.Controllers
             data.SubmitChanges();
             return Redirect("quanLyVaiTro");
         }
-        public ActionResult xoaVaiTro(int id)
-        {
-            var D_chucvu = data.ChucVus.Where(m => m.MaChucVu == id).First();
-            data.ChucVus.DeleteOnSubmit(D_chucvu);
-            data.SubmitChanges();
-            return RedirectToAction("quanLyVaiTro");
-        }
-        public ActionResult EditVaiTro(int id)
+        //public ActionResult xoaVaiTro(int id)
+        //{
+        //    var D_chucvu = data.ChucVus.Where(m => m.MaChucVu == id).First();
+        //    data.ChucVus.DeleteOnSubmit(D_chucvu);
+        //    data.SubmitChanges();
+        //    return RedirectToAction("quanLyVaiTro");
+        //}
+        public ActionResult EditVaiTro(string id)
         {
             var D_vaitro = data.ChucVus.Where(m => m.MaChucVu == id).First();
             return View(D_vaitro);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditVaiTro(int id, ChucVu model)
+        public ActionResult EditVaiTro(string id, ChucVu model)
         {
             var D_vaitro = data.ChucVus.Where(m => m.MaChucVu == id).First();
 
