@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace KK_BookStore.Controllers
 {
-    public class AdminController : Controller
+    public class AdminController : BaseController
     {
         // GET: Admin
         MyDataDataContext data = new MyDataDataContext();
@@ -50,7 +50,8 @@ namespace KK_BookStore.Controllers
 
             //var tongDoanhThuTrongNgay = from tt in data.CTHoaDons where tt.HoaDon.NgayTao.Value.Day == DateTime.Now.Day && tt.HoaDon.NgayTao.Value.Month == DateTime.Now.Month && tt.HoaDon.NgayTao.Value.Year == DateTime.Now.Year select tt.ThanhTien;
             //ViewBag.tongDoanhThuTrongNgay = tongDoanhThuTrongNgay.Sum();
-
+            var lstThongBao = data.ThongBaos.FirstOrDefault();
+            ViewBag.thongBao = lstThongBao;
             return View();
         }
         //BaiViet
@@ -483,10 +484,27 @@ namespace KK_BookStore.Controllers
             var all_phanhoi = from tt in data.PhanHois select tt;
             return View(all_phanhoi);
         }
-        
 
 
+        public ActionResult danhSachThongBao()
+        {
+            var all_ThongBao = from tt in data.ThongBaos orderby tt.MaThongBao descending select tt;
+            return View(all_ThongBao);
+        }
 
+        public ActionResult duyetBaiViet(int id)
+        {
+            var duyet_BaiViet = (from tt in data.BaiViets where tt.MaBaiViet == id select tt).First();
+            var all_ThongBao = (from tt in data.ThongBaos where tt.MaBaiViet == id select tt).First();
+
+            duyet_BaiViet.TrangThai = 1;
+            UpdateModel(duyet_BaiViet);
+            all_ThongBao.TrangThai = 1;
+            UpdateModel(all_ThongBao);
+            data.SubmitChanges();
+            SetAlert("Duyệt bài thành công", "success");
+            return View(all_ThongBao);
+        }
     }
 
 }

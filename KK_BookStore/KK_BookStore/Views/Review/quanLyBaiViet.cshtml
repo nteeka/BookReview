@@ -108,7 +108,7 @@
     <div class="card">
         
         <div class="card-body">
-            <a href="https://localhost:44339/Review/Create" class="btn btn-primary waves-effect waves-light"><i class="fa fa-plus"></i> Create new Post</a>
+            <a href="@Url.Action("Create", "Review")" class="btn btn-primary waves-effect waves-light"><i class="fa fa-plus"></i> Create new Post</a>
             <div class="row">
                 <div class="col-xl-12">
                     <div class="card">
@@ -178,7 +178,16 @@
                                                                 }
                                                                 else
                                                                 {
-                                                                    <i class="mdi mdi-circle font-size-16 text-danger">Private</i>
+                                                                    if (item.TrangThai == 0)
+                                                                    {
+                                                                        <i class="mdi mdi-circle font-size-16 text-danger">Private</i>
+
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <i style="color:goldenrod" class="mdi mdi-circle font-size-16 text-yellow">Waiting</i>
+
+                                                                    }
 
                                                                 }
 

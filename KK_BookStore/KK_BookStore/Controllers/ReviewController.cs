@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace KK_BookStore.Controllers
 {
-    public class ReviewController : Controller
+    public class ReviewController : BaseController
     {
         // GET: Review
         MyDataDataContext myData = new MyDataDataContext();
@@ -83,7 +83,7 @@ namespace KK_BookStore.Controllers
         {
             var nguoidung = myData.NguoiDungs.Where(m => m.TaiKhoan == User.Identity.Name);
             ViewBag.hinh = nguoidung.First().Hinh;
-            var allPost = myData.BaiViets.Where(m =>m.TaiKhoan == User.Identity.Name);                               
+            var allPost = myData.BaiViets.Where(m =>m.TaiKhoan == User.Identity.Name).OrderByDescending(m=>m.MaBaiViet);                               
             return View(allPost);
         }
         public string ProcessUpload(HttpPostedFileBase file)
@@ -118,6 +118,7 @@ namespace KK_BookStore.Controllers
                 var anhDaiDien = from s in myData.NguoiDungs where s.TaiKhoan == User.Identity.Name select s;
                 ViewBag.hinh = anhDaiDien.First().Hinh;
             }
+            
             var alltheloai = myData.TheLoais.ToList();
             ViewBag.TheLoais = alltheloai;
             //create bai viet
@@ -130,14 +131,28 @@ namespace KK_BookStore.Controllers
             baiViet.AnhBia = collection["AnhBia"];
             baiViet.MaTL = int.Parse(collection["MaTL"]);
             baiViet.MoTa = collection["MoTa"];
-            baiViet.TrangThai = int.Parse(collection["TrangThai"]);
+            //baiViet.TrangThai = int.Parse(collection["TrangThai"]);
+            baiViet.TrangThai = -1;
             baiViet.SoSao = 0;
             baiViet.SoLuotDanhGia = 0;
             baiViet.YeuThich = 0;
             baiViet.LuotXem = 0;
             myData.BaiViets.InsertOnSubmit(baiViet);
             myData.SubmitChanges();
-            return Redirect("https://localhost:44339/Review/quanLyBaiViet/"); ;
+            //thong bao len man hinh
+            SetAlert("Create new post success, please wait to admin check and public !!","success");
+            //thong bao cho nguoi duyet
+            //
+            ThongBao thongBao = new ThongBao();
+            thongBao.NgayTao = DateTime.Now;
+            thongBao.MaBaiViet = baiViet.MaBaiViet;
+            thongBao.TrangThai = 0;//chua xu ly
+            thongBao.NoiDung = "Bài viết" + " đang đợi phê duyệt!!";
+            myData.ThongBaos.InsertOnSubmit(thongBao);
+            myData.SubmitChanges();
+            //return Redirect("https://localhost:44339/Review/quanLyBaiViet/");
+
+            return RedirectToAction("quanLyBaiViet"); ;
         }
 
 
@@ -229,10 +244,7 @@ namespace KK_BookStore.Controllers
             ViewBag.TheLoais = alltheloai;
             var baiViet = myData.BaiViets.Where(m => m.MaBaiViet == id).First();
             ViewBag.TL = baiViet.MaTL;
-            if (baiViet.TrangThai == 0)
-                ViewBag.status = 0;
-            if (baiViet.TrangThai == 1)
-                ViewBag.status = 1;
+            
             return View(baiViet);
         }
         [HttpPost]
@@ -254,13 +266,10 @@ namespace KK_BookStore.Controllers
                 baiViet.NoiDung = model.NoiDung;
                 baiViet.MaTL = model.MaTL;
                 baiViet.MoTa = model.MoTa;
-                baiViet.TrangThai = model.TrangThai;             
+                //baiViet.TrangThai = model.TrangThai;             
                 myData.SubmitChanges();
             }
-            if (baiViet.TrangThai == 0)
-                ViewBag.status = 0;
-            if (baiViet.TrangThai == 1)
-                ViewBag.status = 1;
+            SetAlert("Edit post success!!", "success");
             ViewBag.TL = baiViet.MaTL;
             return Redirect("https://localhost:44339/Review/quanLyBaiViet");
         }

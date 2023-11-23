@@ -141,6 +141,7 @@
       <Association Name="BaiViet_ChiTietBaiViet" Member="ChiTietBaiViets" ThisKey="MaBaiViet" OtherKey="MaBaiViet" Type="ChiTietBaiViet" />
       <Association Name="BaiViet_DanhSachYeuThich" Member="DanhSachYeuThiches" ThisKey="MaBaiViet" OtherKey="MaBaiViet" Type="DanhSachYeuThich" />
       <Association Name="BaiViet_BinhLuan" Member="BinhLuans" ThisKey="MaBaiViet" OtherKey="MaBaiViet" Type="BinhLuan" />
+      <Association Name="BaiViet_ThongBao" Member="ThongBaos" ThisKey="MaBaiViet" OtherKey="MaBaiViet" Type="ThongBao" />
       <Association Name="TheLoai_BaiViet" Member="TheLoai" ThisKey="MaTL" OtherKey="MaTL" Type="TheLoai" IsForeignKey="true" />
       <Association Name="NguoiDung_BaiViet" Member="NguoiDung" ThisKey="TaiKhoan" OtherKey="TaiKhoan" Type="NguoiDung" IsForeignKey="true" />
     </Type>
@@ -173,6 +174,16 @@
       <Association Name="NguoiDung_BinhLuan" Member="BinhLuans" ThisKey="TaiKhoan" OtherKey="TaiKhoan" Type="BinhLuan" />
       <Association Name="NguoiDung_BaiViet" Member="BaiViets" ThisKey="TaiKhoan" OtherKey="TaiKhoan" Type="BaiViet" />
       <Association Name="ChucVu_NguoiDung" Member="ChucVu" ThisKey="MaChucVu" OtherKey="MaChucVu" Type="ChucVu" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ThongBao" Member="ThongBaos">
+    <Type Name="ThongBao">
+      <Column Name="MaThongBao" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MaBaiViet" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NgayTao" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="TrangThai" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="BaiViet_ThongBao" Member="BaiViet" ThisKey="MaBaiViet" OtherKey="MaBaiViet" Type="BaiViet" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

@@ -237,6 +237,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\DanhSachYeuThichController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
@@ -283,6 +284,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\1600x900 Minimalist Sunset In Hill 1600x900 Resolution Wallpaper, HD Minimalist 4K Wallpapers, Images, Photos and Background - Wallpapers Den.jfif" />
     <Content Include="Content\Account\Account.css" />
     <Content Include="Content\Account\Account.js" />
     <Content Include="Content\Account\Error.css" />
@@ -516,6 +518,7 @@
     <Content Include="Content\Review\create.js" />
     <Content Include="Content\Review\danhSachBaiViet.css" />
     <Content Include="Content\Review\Index.css" />
+    <Content Include="Content\Rick.png" />
     <Content Include="Content\style.css" />
     <Content Include="Content\style1.css" />
     <Content Include="Content\TacGia\Index.css" />
@@ -526,9 +529,11 @@
     <Content Include="Content\TheLoai\TheLoai.css" />
     <Content Include="Content\TheLoai\TheLoai2.css" />
     <Content Include="Content\TheLoai\TheLoai2.js" />
+    <Content Include="Content\ThongBao\danhSachThongBao.css" />
     <Content Include="Content\timkiem\timkiem.css" />
     <Content Include="Content\trangcanhan\trangCaNhan.css" />
     <Content Include="Content\user.jpg" />
+    <Content Include="Content\Vegeta, blue power, artwork, 1600x900 wallpaper.jfif" />
     <Content Include="Content\xacNhanEmail\xacNhanEmail.css" />
     <Content Include="Content\z4799609119173_002_0fbb2e9489776db5aa7f9aa248413f4b.jpg" />
     <Content Include="Content\_all-skins.min.css" />
@@ -1261,6 +1266,7 @@
     <Content Include="Views\Role\Delete.cshtml" />
     <Content Include="Views\Shared\Reviewer.cshtml" />
     <Content Include="Views\Admin\quanLyNguoiDung.cshtml" />
+    <Content Include="Views\Admin\danhSachThongBao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1268,6 +1274,7 @@
     <Folder Include="Content\Img_Profile\" />
     <Folder Include="Content\Img_Review\" />
     <Folder Include="UploadFiles\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

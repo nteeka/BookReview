@@ -83,7 +83,7 @@
                                 <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
                             </a>
                         </li>
-                        @*<li class="nav-item dropdown pe-2 d-flex align-items-center">
+                        <li class="nav-item dropdown pe-2 d-flex align-items-center">
                                 <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fa fa-bell cursor-pointer"></i>
                                 </a>
@@ -155,12 +155,19 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </li>*@
+                            </li>
                     </ul>
                 </div>
             </div>
         </nav>
         <!-- End Navbar -->
+        @if (TempData["AlertMessage"] != null)
+        {
+            <div id="AlertBox" style="width: fit-content; color: white; font-size: large;margin-left:500px" class="alert @TempData["AlertType"] hide">
+                @TempData["AlertMessage"]
+            </div>
+        }
+
         @RenderBody()
 
         <footer class="footer pt-3  ">
@@ -371,6 +378,13 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="~/Content/Admin_Template/assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(function () {
+            $("#AlertBox").removeClass("hide");
+            $("#AlertBox").delay("2500").slideUp("500");
+        });
+    </script>
 </body>
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/bootstrap")
