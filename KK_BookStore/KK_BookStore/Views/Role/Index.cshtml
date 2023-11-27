@@ -69,7 +69,7 @@
                                         <td>
                                             <a class="edit" href="@Url.Action("Edit", "Role",new { @id = item.Id})" title="Edit" data-toggle="tooltip"><i class="fa fa-pen"></i></a>
                                             <a style="margin-left:10px" class="delete" href="@Url.Action("Delete", "Role",new { @id = item.Id})" title="Delete" data-toggle="tooltip"><i class="fa fa-trash"></i></a>
-                                            <a style="margin-left:10px" href="@Url.Action("danhSachNguoiDungTheoRole", "Admin",new { @id =item.Name})" title="Chi tiết" data-toggle="tooltip"><i style="font-size:large" class="fa fa-info"></i></a>
+                                            <a style="margin-left:10px" href="@Url.Action("danhSachNguoiDungTheoRole", "Role",new { @id =item.Id})" title="Chi tiết" data-toggle="tooltip"><i style="font-size:large" class="fa fa-info"></i></a>
 
                                         </td>
                                     </tr>

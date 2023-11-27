@@ -1,0 +1,117 @@
+﻿@model IEnumerable<KK_BookStore.BinhLuan>
+
+@{
+    ViewBag.Title = "danhSachBinhLuan";
+    Layout = null;
+}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NTK_Reviews | </title>
+    <link href="~/Content/Review/Index.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <header>
+        <a style="color:black;font:bold" class="navbar-brand" href="https://localhost:44339/Home/Index">NTK<span style="color:red">_Reviews</span></a>
+
+        <nav style="width:200px">
+
+
+            <ul style="text-align:center">
+                <li><a href="https://localhost:44339/Home/Index">HOME</a></li>
+                <li class="scroll"><a href="#works">how it works</a></li>
+                <li class="scroll"><a href="#explore">explore</a></li>
+                @*<li class="scroll"><a href="#reviews">review</a></li>*@
+                <li><a href="https://localhost:44339/Review/Index">review</a></li>
+                <li><a href="https://localhost:44339/Blog/Index">blog</a></li>
+                <li class="scroll"><a href="#contact">contact</a></li>
+                @Html.Partial("_LoginPartial")
+            </ul>
+
+
+
+        </nav>
+        <div style="">
+            <div> <a href="Link web 2" target="_blank"><img border="0" src="http://farm6.staticflickr.com/5759/31081343902_b95bee4751_o.png" width="200" /></a> </div>
+        </div>
+
+    </header>
+    <main style="width:100%">
+        <link href="~/Content/Ads/Ads_home.css" rel="stylesheet" />
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <!------ Include the above in your HEAD tag ---------->
+
+        <link href="https://raw.githubusercontent.com/daneden/animate.css/master/animate.css" rel="stylesheet">
+
+
+
+
+
+
+        <link href="~/Content/BinhLuan/danhSachPhanHoi.css" rel="stylesheet" />
+        <div class="container bootstrap snippets bootdey">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="blog-comment">
+                        <h3 class="text-success">@Model.Count() Comments</h3>
+                        <hr />
+                        <ul class="comments">
+                            @foreach (var item in Model)
+                            {
+                                <li class="clearfix">
+                                    <img src="@item.NguoiDung.Hinh" class="avatar" alt="">
+                                    <div class="post-comments">
+                                        <p class="meta">@item.NgayTao.ToString("dd/MM/yyyy") <a href="#">@item.TaiKhoan</a> says : <i class="pull-right"><a href="#"><small>Reply</small></a></i></p>
+                                        <p>
+                                            @item.NoiDung
+                                        </p>
+                                    </div>
+                                    @if (ViewBag.replys != null)
+                                    {
+                                        foreach (var a in ViewBag.replys)
+                                        {
+                                            if (a.MaBinhLuan == item.MaBinhLuan)
+                                            {
+                                                <ul class="comments">
+                                                    <li class="clearfix">
+                                                        <img src="@a.NguoiDung.Hinh" class="avatar" alt="">
+                                                        <div class="post-comments">
+                                                            <p class="meta">@a.NgayTao.ToString("dd/MM/yyyy") <a href="#">@a.TaiKhoan</a> says : <i class="pull-right"><a href="#"><small>Reply</small></a></i></p>
+                                                            <p>
+                                                                @a.NoiDung
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            }
+                                        }
+                                    }
+                                
+                                </li>
+                             }
+                        
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+﻿@model KK_BookStore.BaiViet
+
+@{
+    ViewBag.Title = "xemTruocBaiViet";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+
+
+
+
+
+    
+    <main style="width:100%">
+        <link href="~/Content/Ads/Ads_home.css" rel="stylesheet" />
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <!------ Include the above in your HEAD tag ---------->
+
+
+
+        <script src="~/Content/Ads/Ads_home.js"></script>
+        <!--slide end-->
+        <div style="width:1000px">
+            <div>
+                <section style="margin-left:80px;" id="@Model.TenBaiViet">
+
+                    <h1 style="background-color:bisque;width:fit-content;padding-bottom:5px">@Model.TheLoai.TenTL</h1>
+                    <h1>Bai Review @Model.TenBaiViet</h1>
+                    <hr>
+                    <hr>
+                    <hr>
+                    <article>
+                        @*<img src="@ViewBag.baiviet.AnhBia" width="700" height="300" />*@
+                        <p>
+                            @Html.Raw(Model.NoiDung)
+                        </p>
+
+
+                    </article>
+                </section>
+                @*}*@
+
+
+            </div>
+
+
+
+        </div>
+        @if (Model.TrangThai == -1)
+        {
+            <a style="background-color:green;color:white" class="btn btn-default " href="@Url.Action("duyetBaiViet", "Admin", new { @id = Model.MaBaiViet })">Duyệt bài</a>
+
+            <a style="background-color:red;color:white" class="btn btn-default" href="#">Từ chối duyệt bài</a>
+        }
+        else
+        {
+            <span  style="background-color:green;color:white" class="btn btn-default "> Đã Duyệt bài</span>
+
+        }
+
+
+
+
+
+
+
+
+
+
+    </main>
+
+</body>
+
+</html>

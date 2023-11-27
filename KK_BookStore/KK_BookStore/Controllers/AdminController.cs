@@ -1,14 +1,18 @@
 ﻿using KK_BookStore.Models;
 using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using PagedList;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml.Linq;
 
 namespace KK_BookStore.Controllers
 {
@@ -16,6 +20,8 @@ namespace KK_BookStore.Controllers
     {
         // GET: Admin
         MyDataDataContext data = new MyDataDataContext();
+        ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationUserManager _userManager;
 
         [Authorize(Roles ="Admin")]
         public ActionResult Index()
@@ -95,6 +101,17 @@ namespace KK_BookStore.Controllers
             return RedirectToAction("quanLyNguoiDung");
         }
 
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
         public ActionResult EditNguoiDung(string id)
         {
             var D_nguoidung = data.NguoiDungs.Where(m => m.TaiKhoan == id.ToString()).First();
@@ -107,10 +124,10 @@ namespace KK_BookStore.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditNguoiDung(string id, NguoiDung model)
+        public   async Task<ActionResult> EditNguoiDung(string id, NguoiDung model)
         {
-
-
+            var nguoidung = db.Users.Where(m => m.UserName == id).First();
+            var role = db.Roles.Where(m=>m.Id==model.MaChucVu).First();
             var D_chucvu = from tt in data.ChucVus select tt;
             List<SelectListItem> list = new List<SelectListItem>();
             foreach (var tl in D_chucvu)
@@ -119,29 +136,71 @@ namespace KK_BookStore.Controllers
             var D_nguoidung = data.NguoiDungs.Where(m => m.TaiKhoan == id.ToString()).First();
             if (D_nguoidung != null)
             {
-
                 D_nguoidung.MaChucVu = model.MaChucVu;
-                data.SubmitChanges();
+                var result = await UserManager.AddToRoleAsync(nguoidung.Id, role.Name);         
+                data.SubmitChanges();              
                 return RedirectToAction("quanLyNguoiDung");
             }
-            return EditNguoiDung(id);
+            return View();
         }
-        //public ActionResult danhSachNguoiDungTheoRole(int id)
-        //{
-        //    var all_nguoidung = from tt in data.NguoiDungs where tt.MaChucVu == id select tt;
-
-        //    return View(all_nguoidung);
-        //}
+       
 
 
 
-
+        
 
         //Categories
         public ActionResult quanLyTheLoai()
         {
             var all_theloai = from tt in data.TheLoais select tt;
+            var all_baiviet = from tt in data.BaiViets select tt;
+            Dictionary<string, int> categoryCounts = new Dictionary<string, int>();
+            
+            foreach (var product in all_baiviet)
+            {
+                
+                // Nếu loại sản phẩm đã tồn tại trong dictionary, tăng số lượng lên 1
+                if (categoryCounts.ContainsKey(product.TheLoai.TenTL))
+                {
+                    categoryCounts[product.TheLoai.TenTL]++;
+                }
+                // Ngược lại, thêm loại sản phẩm mới vào dictionary với số lượng là 1
+                else
+                {
+                    categoryCounts.Add(product.TheLoai.TenTL, 1);
+                }
+            }
+            // Kiểm tra xem có thể loại mới nào chưa có bài viết không
+            foreach (var theLoai in all_theloai)
+            {
+                if (!categoryCounts.ContainsKey(theLoai.TenTL))
+                {
+                    // Nếu thể loại chưa có bài viết, thêm nó vào dictionary với số lượng là 0
+                    categoryCounts.Add(theLoai.TenTL, 0);
+                }
+            }
+
+            //kiem tra mot the loai ma khong co post nao
+            // Lấy mã thể loại và số lượng bài viết
+            Dictionary<int, int> maTLCounts = new Dictionary<int, int>();
+            foreach (var theLoai in all_theloai)
+            {
+                int maTL = theLoai.MaTL;
+                if (categoryCounts.ContainsKey(theLoai.TenTL))
+                {
+                    int soLuongBaiViet = categoryCounts[theLoai.TenTL];
+                    maTLCounts.Add(maTL, soLuongBaiViet);
+                }
+            }
+            
+            ViewBag.CategoryCounts = categoryCounts;
+            //ViewBag.CategoryCounts = categoryCounts;
+            ViewBag.theloai = all_theloai;
+            ViewBag.baiviet = all_baiviet;
             return View(all_theloai);
+
+
+
         }
         public ActionResult themTheLoai()
         {
@@ -161,16 +220,20 @@ namespace KK_BookStore.Controllers
             data.SubmitChanges();
             return RedirectToAction("quanLyTheLoai");
         }
+
         public ActionResult EditTheLoai(int id)
         {
-            var D_theloai = data.TheLoais.Where(m => m.MaTL == id).First();
+
+            var D_theloai = data.TheLoais.Where(m => m.MaTL == id).FirstOrDefault();
+
             return View(D_theloai);
+
         }
-        [HttpPost]
+        [HttpPost, ActionName("EditTheLoai")]
         [ValidateAntiForgeryToken]
         public ActionResult EditTheLoai(int id, TheLoai model)
         {
-            var D_theloai = data.TheLoais.Where(m => m.MaTL == id).First();
+            var D_theloai = data.TheLoais.Where(m => m.MaTL == id).FirstOrDefault();
 
             // Checking if any such record exist
             if (D_theloai != null)
@@ -179,9 +242,22 @@ namespace KK_BookStore.Controllers
                 data.SubmitChanges();
                 return RedirectToAction("quanLyTheLoai");
             }
-            return EditTheLoai(id);
+            return Redirect("quanLyTheLoai");
+
         }
 
+
+
+
+        public ActionResult danhSachBaiVietTheoTheLoai(int id, int? page)
+        {
+            if (page == null) page = 1;
+            int pageSize = 3;
+            int pageNum = page ?? 1;
+           
+            var all_baiViet = from tt in data.BaiViets where tt.MaTL == id select tt;
+            return View(all_baiViet.ToPagedList(pageNum, pageSize));
+        }
 
 
 
@@ -486,10 +562,13 @@ namespace KK_BookStore.Controllers
         }
 
 
-        public ActionResult danhSachThongBao()
+        public ActionResult danhSachThongBao(int? page)
         {
-            var all_ThongBao = from tt in data.ThongBaos orderby tt.MaThongBao descending select tt;
-            return View(all_ThongBao);
+            if (page == null) page = 1;
+            int pageSize = 3;
+            int pageNum = page ?? 1;
+            var all_ThongBao = from tt in data.ThongBaos where tt.TaiKhoan == "Admin" orderby tt.MaThongBao descending select tt;
+            return View(all_ThongBao.ToPagedList(pageNum, pageSize));
         }
 
         public ActionResult duyetBaiViet(int id)
@@ -503,7 +582,32 @@ namespace KK_BookStore.Controllers
             UpdateModel(all_ThongBao);
             data.SubmitChanges();
             SetAlert("Duyệt bài thành công", "success");
-            return View(all_ThongBao);
+            //guiTHongBaoChoReviewer
+            ThongBao thongBaoReviewer = new ThongBao();
+            thongBaoReviewer.NgayTao = DateTime.Now;
+            thongBaoReviewer.MaBaiViet = id;
+            thongBaoReviewer.TrangThai = 0;
+            thongBaoReviewer.NoiDung = "Bài viêt " + id + "của bạn đã được duyệt !!";
+            thongBaoReviewer.TaiKhoan = duyet_BaiViet.TaiKhoan;
+            data.ThongBaos.InsertOnSubmit(thongBaoReviewer);
+            data.SubmitChanges();
+            return RedirectToAction("danhSachThongBao");
+        }
+
+        public ActionResult xemTruocBaiViet(int id)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var anhDaiDien = from s in data.NguoiDungs where s.TaiKhoan == User.Identity.Name select s;
+                ViewBag.hinh = anhDaiDien.First().Hinh;
+            }
+
+            
+
+            var baiViet = data.BaiViets.Where(m => m.MaBaiViet == id).First();
+            ViewBag.MaBaiViet = baiViet.MaBaiViet;           
+            data.SubmitChanges();
+            return View(baiViet);
         }
     }
 

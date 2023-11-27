@@ -284,7 +284,7 @@
                                             </div>
                                             <div class="col-sm-10">
                                                 <p>
-                                                    @item.MoTa
+                                                    @item.MoTa.Substring(0,50)...
                                                 </p>
                                             </div>
                                         </div>
@@ -307,7 +307,7 @@
                             </div>
                         </div>
                     }
-                    <button style="margin-left:500px" class="welcome-hero-btn how-work-btn" onclick="window.location.href='https://localhost:44339/Blog/Index'">
+                    <button style="margin-left:150px" class="welcome-hero-btn how-work-btn" onclick="window.location.href='https://localhost:44339/Review/Index'">
                         read more
                     </button>
 
@@ -362,58 +362,37 @@
     <section id="blog" class="blog">
         <div class="container">
             <div class="section-header">
-                <h2>BLOG WRITING</h2>
+                <h2>RANDOM POSTS</h2>
                 <p>Always upto date with our latest News and Articles </p>
             </div><!--/.section-header-->
             <div class="blog-content">
                 <div class="row">
-                    <div class="col-md-4 col-sm-6">
-                        <div class="single-blog-item">
-                            <div class="single-blog-item-img">
-                                <img src="assets/images/blog/b1.jpg" alt="blog image">
-                            </div>
-                            <div class="single-blog-item-txt">
-                                <h2><a href="#">How to find your Desired Place more quickly</a></h2>
-                                <h4>posted <span>by</span> <a href="#">admin</a> march 2018</h4>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur de adipisicing elit, sed do eiusmod tempore incididunt ut labore et dolore magna.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="single-blog-item">
-                            <div class="single-blog-item-img">
-                                <img src="assets/images/blog/b2.jpg" alt="blog image">
-                            </div>
-                            <div class="single-blog-item-txt">
-                                <h2><a href="#">How to find your Desired Place more quickly</a></h2>
-                                <h4>posted <span>by</span> <a href="#">admin</a> march 2018</h4>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur de adipisicing elit, sed do eiusmod tempore incididunt ut labore et dolore magna.
-                                </p>
+                    @foreach (var item in ViewBag.random)
+                    {
+
+                        <div class="col-md-4 col-sm-6">
+                            <div class="single-blog-item">
+                                <div class="single-blog-item-img">
+                                    <img src="@item.AnhBia" style="margin-left:100px;width:200px;height:180px" alt="blog image">
+                                </div>
+                                <div class="single-blog-item-txt">
+                                    <h2><a href="#">@item.TenBaiViet</a></h2>
+                                    <h4>posted <span>by</span> <a href="#">@item.TaiKhoan</a> @item.NgayViet.ToString("dd/MM/yyyy")</h4>
+                                    <p>
+                                        @item.MoTa.Substring(0,50)..
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="single-blog-item">
-                            <div class="single-blog-item-img">
-                                <img src="assets/images/blog/b3.jpg" alt="blog image">
-                            </div>
-                            <div class="single-blog-item-txt">
-                                <h2><a href="#">How to find your Desired Place more quickly</a></h2>
-                                <h4>posted <span>by</span> <a href="#">admin</a> march 2018</h4>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur de adipisicing elit, sed do eiusmod tempore incididunt ut labore et dolore magna.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+
+
+                    }
                 </div>
-                <button style="margin-left:500px" class="welcome-hero-btn how-work-btn" onclick="window.location.href='https://localhost:44339/Blog/Index'">
-                    read more
-                </button>
-            </div>
+
+                    <button style="margin-left:500px" class="welcome-hero-btn how-work-btn" onclick="window.location.href='https://localhost:44339/Review/Index'">
+                        read more
+                    </button>
+                </div>
         </div><!--/.container-->
 
     </section><!--/.blog-->

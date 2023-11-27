@@ -65,7 +65,7 @@
                                             <div class="text-lg text-medium text-muted">@item.BaiViet.MoTa</div>
                                             <div>
                                                 @item.BaiViet.TheLoai.TenTL
-                                                <div class="d-inline text-success">Author: @item.BaiViet.TaiKhoan</div>
+                                                <div class="d-inline text-success">Author: @item.BaiViet.TaiKhoan <a class="fa fa-trash" href="@Url.Action("xoaDanhSachYeuThich", "DanhSachYeuThich", new {@id = item.MaBaiViet})">Delete</a></div>
                                             </div>
                                         </div>
                                     </div>

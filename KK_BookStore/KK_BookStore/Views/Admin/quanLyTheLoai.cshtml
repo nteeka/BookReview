@@ -1,0 +1,77 @@
+﻿@model IEnumerable<KK_BookStore.TheLoai>
+
+@{
+    ViewBag.Title = "quanLyTheLoai";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<link href="~/Content/TheLoai/quanLyTheLoai.css" rel="stylesheet" />
+<div class="container">
+    <a href="@Url.Action("themTheLoai", "Admin")" style="background-color:white" class="btn btn-default"><i class="fa fa-plus"></i> Create new</a>
+    <div class="row mb-4">
+        
+        @foreach (var categoryCount in ViewBag.CategoryCounts)
+        {
+
+            <div  class="col-lg-4 col-md-6 mb-4">
+                <div class="card hover-lift hover-shadow-xl shadow-sm border-0">
+                    <!--card-body-->
+                    <div style="background-color:wheat" class="card-body p-4">
+                        <div class="d-flex mb-4 align-items-center">
+
+                            <!--Companies group-->
+                            <div class="flex-grow-1 d-flex align-items-center">
+                                <!--Campany-->
+                                <div class="width-5x height-5x p-2 bg-white shadow-sm position-relative flex-center rounded-circle border">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="img-fluid" alt="">
+                                </div>
+                                <!--Campany-->
+                                <div class="width-5x height-5x p-2 ms-n3 bg-white shadow-sm position-relative flex-center rounded-circle border">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="img-fluid" alt="">
+                                </div>
+                                <!--Campany-->
+                                <div class="width-5x height-5x p-2 ms-n3 bg-white shadow-sm position-relative flex-center rounded-circle border">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="img-fluid" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <h5>
+
+                            @categoryCount.Key
+                            @*<a href="https://localhost:44339/Admin/EditTheLoai/@categoryCount.Key" class="fa fa-edit"></a>*@
+                            @*<a href="@Url.Action("EditTheLoai", "Admin", new { @id = categoryCount.Value })" class="fa fa-edit"></a>*@
+                            @foreach (var item in ViewBag.theloai)
+                            {
+                                if (item.TenTL == categoryCount.Key)
+                                {
+                                    <a href="@Url.Action("EditTheLoai", "Admin", new { @id =item.MaTL } )" class="fa fa-edit"> Edit   </a>
+                                    break;
+                                }
+                            }
+                            @foreach (var item in ViewBag.baiviet)
+                            {
+                                if (item.TheLoai.TenTL == categoryCount.Key)
+                                {
+                                    <a href="@Url.Action("danhSachBaiVietTheoTheLoai", "Admin",new { id = item.MaTL  })" class="fa fa-info"> Detail</a>
+                                    break;
+                                }
+                            }
+                        </h5>
+                        
+                        <p class="mb-0 text-muted">@categoryCount.Value Posts</p>
+
+                    </div>
+                    <!--link-->
+                    @*<a href="#" class="stretched-link"></a>*@
+                </div>
+            </div>
+        }
+        @*@foreach (var categoryCount in ViewBag.CategoryCounts)
+        {
+            <h2>Category: @categoryCount.Key</h2>
+            <p>Number of products: @categoryCount.Value</p>
+        }*@
+
+
+    </div>
+</div>

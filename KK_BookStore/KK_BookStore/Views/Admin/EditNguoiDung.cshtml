@@ -1,0 +1,36 @@
+﻿@model KK_BookStore.NguoiDung
+
+@{
+    ViewBag.Title = "EditNguoiDung";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal" style="font-size:xx-large">
+        <img src="@Model.Hinh" style="width:100px;height:70px;margin-top:25px;margin-left:635px;border-radius:20px" class="profile-user-img img-responsive img-circle" />
+        <h1 style="text-align:center">@Model.TaiKhoan</h1>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.TaiKhoan)
+
+        <div class="form-group">
+
+            <div style="margin-left:540px" class="col-md-5">
+                <label class="control-label"><strong>Phân quyền</strong></label>
+                @Html.DropDownListFor(m => m.MaChucVu, new SelectList(ViewBag.chucvu, "Value", "Text", new { @class = "form-control" }))
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input style="margin-left:650px;margin-top:40px;font-size:x-large" type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

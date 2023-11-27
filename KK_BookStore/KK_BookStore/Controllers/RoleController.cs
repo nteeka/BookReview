@@ -48,6 +48,7 @@ namespace KK_BookStore.Controllers
             {
                 list.Add(new RoleViewModel(role));
             }
+            
             return View(list);
         }
         [Authorize(Roles = "Admin")]
@@ -77,6 +78,7 @@ namespace KK_BookStore.Controllers
         [HttpPost]
         public async Task<ActionResult> Edit(RoleViewModel model)
         {
+            
             var chucVu = data.ChucVus.Where(m=>m.MaChucVu==model.Id).First();
             chucVu.TenChucVu = model.Name;
             UpdateModel(chucVu);
@@ -111,5 +113,28 @@ namespace KK_BookStore.Controllers
             await RoleManager.DeleteAsync(role);
             return RedirectToAction("Index");
         }
+
+
+        public ActionResult danhSachNguoiDungTheoRole(string id)
+        {
+            var all_nguoidung = from tt in data.NguoiDungs where tt.MaChucVu == id select tt;
+            var nguoidung = from tt in data.NguoiDungs select tt;
+            ViewBag.lstNguoiDung = nguoidung;
+            return View(all_nguoidung);
+        }
+        //public ActionResult allUser()
+        //{
+        //    var all_nguoidung = from tt in data.NguoiDungs where tt.ChucVu.TenChucVu == "User" select tt;
+               
+        //    return View(all_nguoidung);
+        //}
+
+        //public ActionResult addToRole(string id)
+        //{
+        //    var all_nguoidung = from tt in data.NguoiDungs where tt.MaChucVu == id select tt;
+        //    var nguoidung = from tt in data.NguoiDungs select tt;
+        //    ViewBag.lstNguoiDung = nguoidung;
+        //    return View(all_nguoidung);
+        //}
     }
 }

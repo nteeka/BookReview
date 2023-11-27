@@ -1,0 +1,215 @@
+﻿@model PagedList.IPagedList<KK_BookStore.BaiViet>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "danhSachBaiVietTheoTheLoai";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css" integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+<div class="container">
+
+    <div class="card">
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="table-responsive px-3">
+                                    <table id="myTable" class="table table-striped align-middle table-nowrap">
+                                        <tbody>
+                                            @if (Model.Count() == 0)
+                                            {
+
+
+                                                <tr>
+                                                    <td>None post</td>
+                                                </tr>
+                                            }
+                                            else
+                                            {
+                                                foreach (var item in Model)
+                                                {
+                                                    <tr data-href="@Url.Action("xemTruocBaiViet", "Admin", new { @id = item.MaBaiViet })">
+                                                        <td>
+                                                            <div class="avatar-lg me-4">
+                                                                <img src="@item.AnhBia" width="380" height="380" class="img-fluid rounded" alt="">
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div>
+                                                                @if (item.TenBaiViet.Length < 30)
+                                                                {
+                                                                    <h5 class="font-size-18"><a href="ecommerce-product-detail.html" class="text-dark">@item.TenBaiViet</a></h5>
+
+                                                                }
+                                                                else
+                                                                {
+                                                                    <h5 class="font-size-18"><a href="ecommerce-product-detail.html" class="text-dark">@item.TenBaiViet.Substring(0, 30)...</a></h5>
+
+                                                                }
+                                                                <p class="text-muted mb-0 mt-2 pt-2">
+
+                                                                    @item.TheLoai.TenTL
+                                                                </p>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <ul class="list-unstyled ps-0 mb-0">
+                                                                <li><p class="text-muted mb-1 text-truncate"><i class="mdi mdi-circle-medium align-middle text-primary me-1"></i>@Math.Round((double)item.SoSao, 1)<i class="fa fa-star"></i> / @item.SoLuotDanhGia lượt</p></li>
+                                                                <li><p class="text-muted mb-1 text-truncate"><i class="mdi mdi-circle-medium align-middle text-primary me-1"></i>@item.YeuThich <i class="fa fa-heart"></i></p></li>
+                                                                <li><p class="text-muted mb-1 text-truncate"><i class="mdi mdi-circle-medium align-middle text-primary me-1"></i>@item.LuotXem <i class="fa fa-eye"></i></p></li>
+                                                                @*<li><p class="text-muted mb-1 text-truncate"><i class="mdi mdi-circle-medium align-middle text-primary me-1"></i> Battery life: Up to 22 hours of video playback</p></li>
+                                                                    <li><p class="text-muted mb-0 text-truncate"><i class="mdi mdi-circle-medium align-middle text-primary me-1"></i> 5G and Gigabit LTE</p></li>*@
+                                                            </ul>
+                                                        </td>
+
+                                                        <td style="width: 180px;">
+
+                                                            <ul class="list-inline mb-0 text-muted product-color">
+                                                                @if (item.TrangThai == 1)
+                                                                {
+
+                                                                    <li class="list-inline-item">
+                                                                        <i class="mdi mdi-circle font-size-16 text-success">Public</i>
+                                                                    </li>
+                                                                }
+                                                                else
+                                                                {
+                                                                    if (item.TrangThai == 0)
+                                                                    {
+                                                                        <i class="mdi mdi-circle font-size-16 text-danger">Private</i>
+
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <i style="color:goldenrod" class="mdi mdi-circle font-size-16 text-yellow">Waiting</i>
+
+                                                                    }
+
+                                                                }
+
+
+
+                                                            </ul>
+                                                        </td>
+
+                                                        <td style="width: 220px;">
+                                                            <h3 class="mb-0 font-size-20"><span class="text-muted me-2"><del class="font-size-16 fw-normal">$500</del></span><b>$450</b></h3>
+                                                        </td>
+
+                                                        <td>
+                                                            <a href="https://localhost:44339/Review/Edit/@item.MaBaiViet" class="btn btn-primary waves-effect waves-light"><i class="fa fa-pen"></i> Edit</a>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="dropdown float-end">
+                                                                <a class="text-muted dropdown-toggle font-size-20" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
+                                                                    <i class="bx bx-dots-horizontal-rounded"></i>
+                                                                </a>
+                                                                <div class="dropdown-menu dropdown-menu-end">
+                                                                    <a class="dropdown-item" href="#">Edit</a>
+                                                                    <a class="dropdown-item" href="#">Action</a>
+                                                                    <a class="dropdown-item" href="#">Remove</a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+
+                                        </tbody>
+
+                                    </table>
+
+
+                                    <script>
+                                        // Get all rows in the table
+                                        const tableRows = document.querySelectorAll('#myTable tbody tr');
+
+                                        // Add a click event listener to each row
+                                        tableRows.forEach(row => {
+                                            row.addEventListener('click', () => {
+                                                // Get the value of the 'data-href' attribute
+                                                const link = row.getAttribute('data-href');
+
+                                                // Navigate to the link
+                                                window.location.href = link;
+                                            });
+                                        });
+                                    </script>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div>
+                            <div>
+                                Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) /
+                                @Model.PageCount
+                            </div>
+                            <div class="MenuTrang">
+                                @Html.PagedListPager(Model, page => Url.Action("danhSachBaiVietTheoTheLoai", new
+                                {
+                                    page = page
+                                }))
+                            </div>
+                        </div>
+
+                       
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>
+<style type="text/css">
+    #mau-nut a {
+        clear: both;
+        background-color: orange;
+        color: snow;
+    }
+
+        #mau-nut a:hover {
+            background-color: darkcyan;
+            color: snow;
+        }
+</style>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var maxLength = 100;
+        $(".show-read-more").each(function () {
+            var myStr = $(this).text();
+            if ($.trim(myStr).length > maxLength) {
+                var newStr = myStr.substring(0, maxLength);
+                var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
+                $(this).empty().html(newStr);
+
+                $(this).append(' <a href="javascript:void(0);" class="read-more">đọc tiếp...</a>');
+
+                $(this).append('<span class="more-text">' + removedStr +
+                    '</span>');
+            }
+        });
+        $(".read-more").click(function () {
+            $(this).siblings(".more-text").contents().unwrap(); $(this).remove();
+        });
+    });
+</script>
+<style>
+    .show-read-more .more-text {
+        display: none;
+    }
+</style>

@@ -412,6 +412,8 @@
     <Content Include="Content\app.min.js" />
     <Content Include="Content\BinhLuan\BinhLuan.css" />
     <Content Include="Content\BinhLuan\danhSachBinhLuan.css" />
+    <Content Include="Content\BinhLuan\danhSachPhanHoi.css" />
+    <Content Include="Content\BinhLuan\NguoiDungBL.css" />
     <Content Include="Content\BinhLuan\ShareBL.css" />
     <Content Include="Content\Blog\script.js" />
     <Content Include="Content\Blog\style.css" />
@@ -526,9 +528,7 @@
     <Content Include="Content\template\send2 - Copy.html" />
     <Content Include="Content\template\send2.html" />
     <Content Include="Content\ThankYouConfirmEmail\ThankConFirm.css" />
-    <Content Include="Content\TheLoai\TheLoai.css" />
-    <Content Include="Content\TheLoai\TheLoai2.css" />
-    <Content Include="Content\TheLoai\TheLoai2.js" />
+    <Content Include="Content\TheLoai\quanLyTheLoai.css" />
     <Content Include="Content\ThongBao\danhSachThongBao.css" />
     <Content Include="Content\timkiem\timkiem.css" />
     <Content Include="Content\trangcanhan\trangCaNhan.css" />
@@ -1267,6 +1267,16 @@
     <Content Include="Views\Shared\Reviewer.cshtml" />
     <Content Include="Views\Admin\quanLyNguoiDung.cshtml" />
     <Content Include="Views\Admin\danhSachThongBao.cshtml" />
+    <Content Include="Views\Admin\xemTruocBaiViet.cshtml" />
+    <Content Include="Views\Review\danhSachThongBao.cshtml" />
+    <Content Include="Views\Admin\quanLyTheLoai.cshtml" />
+    <Content Include="Views\Admin\themTheLoai.cshtml" />
+    <Content Include="Views\Admin\EditTheLoai.cshtml" />
+    <Content Include="Views\Admin\danhSachBaiVietTheoTheLoai.cshtml" />
+    <Content Include="Views\Role\danhSachNguoiDungTheoRole.cshtml" />
+    <Content Include="Views\Review\danhSachPhanHoi.cshtml" />
+    <Content Include="Views\Review\danhSachBinhLuan.cshtml" />
+    <Content Include="Views\Admin\EditNguoiDung.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

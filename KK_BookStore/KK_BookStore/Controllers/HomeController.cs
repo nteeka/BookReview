@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using System.Xml.Linq;
@@ -20,7 +21,7 @@ namespace KK_BookStore.Controllers
                 ViewBag.hinh = anhDaiDien.First().Hinh;
             }
             
-            var baiviets = data.BaiViets.ToList();
+            var baiviets = data.BaiViets.OrderByDescending(m=>m.SoSao).ToList();
             List<BaiViet> lstBaiViet = new List<BaiViet>();
             int count = 0;
             foreach(var item in baiviets)
@@ -31,7 +32,21 @@ namespace KK_BookStore.Controllers
                     break;
             }
             ViewBag.baiviet = lstBaiViet;
-            
+
+
+            List<BaiViet> baivietsRanDom = data.BaiViets.ToList();
+            List<BaiViet> random = new List<BaiViet>();
+            Random rand = new Random();
+            for (int i = 0;i<3;i++)
+            {
+                int k = rand.Next(0, baivietsRanDom.Count + 1);             
+                
+                    random.Add(baivietsRanDom[k]);
+            }
+            // Perform Fisher-Yates Shuffle
+            ViewBag.random = random;
+
+            // Get the first 3 elements
             //return View(all_sach.ToList());
             return View();
         }

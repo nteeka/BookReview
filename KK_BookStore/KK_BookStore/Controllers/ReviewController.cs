@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace KK_BookStore.Controllers
 {
@@ -53,16 +54,18 @@ namespace KK_BookStore.Controllers
                     break;
             }
             ViewBag.baiVietDanhGiaCao = lstbaiVietDanhGiaCao;
-            ////layRanDom
-            //var random = myData.BaiViets.OrderBy(o => Guid.NewGuid());
-            //List<BaiViet> randomData = new List<BaiViet>();
-            //foreach (var item in random)
-            //{
-            //    randomData.Add(item);
-            //    if (randomData.Count == 6)
-            //        break;
-            //}
-            //ViewBag.randomData = randomData;
+            //layRanDom
+            List<BaiViet> baivietsRanDom = myData.BaiViets.ToList();
+            List<BaiViet> random = new List<BaiViet>();
+            Random rand = new Random();
+            for (int i = 0; i < 6; i++)
+            {
+                int k = rand.Next(0, baivietsRanDom.Count + 1);
+
+                random.Add(baivietsRanDom[k]);
+            }
+            // Perform Fisher-Yates Shuffle
+            ViewBag.random = random;
 
             //baiVietNhieuTim
             var baiVietNhieuTim = from tt in myData.BaiViets orderby tt.YeuThich descending select tt;
@@ -78,7 +81,9 @@ namespace KK_BookStore.Controllers
         }
 
         //BaiViet
-        [Authorize(Roles ="Reviewer")]
+        //[Authorize(Roles = "Admin")]
+        //[Authorize(Roles ="Reviewer")]
+        [Authorize(Roles = "Admin, Reviewer")]
         public ActionResult quanLyBaiViet()
         {
             var nguoidung = myData.NguoiDungs.Where(m => m.TaiKhoan == User.Identity.Name);
@@ -148,6 +153,7 @@ namespace KK_BookStore.Controllers
             thongBao.MaBaiViet = baiViet.MaBaiViet;
             thongBao.TrangThai = 0;//chua xu ly
             thongBao.NoiDung = "Bài viết" + " đang đợi phê duyệt!!";
+            thongBao.TaiKhoan = "Admin";
             myData.ThongBaos.InsertOnSubmit(thongBao);
             myData.SubmitChanges();
             //return Redirect("https://localhost:44339/Review/quanLyBaiViet/");
@@ -186,21 +192,81 @@ namespace KK_BookStore.Controllers
                 ViewBag.hinh = anhDaiDien.First().Hinh;
             }
 
-            var cmt = myData.BinhLuans.Where(p => p.MaBaiViet == id);
+
+
+            var cmt = myData.DanhGias.Where(p => p.MaBaiViet == id);
             if (cmt != null)
             {
                 ViewBag.slCMT = cmt.Count();
                 ViewBag.cmt = cmt;
             }
-               
+
             else
                 ViewBag.checkCMT = -1;
-            
+
+            var lstComment = myData.BinhLuans.Where(p => p.MaBaiViet == id);
+            if(lstComment.Count()!=0)
+                ViewBag.comments = lstComment;
+            else
+                ViewBag.comments = null;
+            var reply = myData.PhanHois.ToList();
+            if (reply.Count() != 0)
+                ViewBag.replys = reply;
+            else
+                ViewBag.replys = null;
+            ViewBag.countReply = 0;
+            ViewBag.MaBaiViet = 0;
+            ViewBag.countComment = 0;
+
             var baiViet = myData.BaiViets.Where(m => m.MaBaiViet == id).First();
             ViewBag.MaBaiViet = baiViet.MaBaiViet;
             baiViet.LuotXem++;
             UpdateModel(baiViet);
             myData.SubmitChanges();
+            var all_baiviet = from tt in myData.DanhGias where tt.MaBaiViet == id select tt;
+            int sao5 = 0;
+            int sao4 = 0;
+            int sao3 = 0;
+            int sao2 = 0;
+            int sao1 = 0;
+            int demSao = 0;
+            foreach (var item in all_baiviet)
+            {
+                demSao++;
+                if (item.SoSao == 5)
+                {
+                    sao5++;
+                }
+                if (item.SoSao == 4)
+                {
+                    sao4++;
+                }
+                if (item.SoSao == 3)
+                {
+                    sao3++;
+                }
+                if (item.SoSao == 2)
+                {
+                    sao2++;
+                }
+                if (item.SoSao == 1)
+                {
+                    sao1++;
+                }
+            }
+            if (demSao == 0)
+            {
+                demSao = 1;
+                ViewBag.slDanhGia = 0;
+            }
+            else              
+                ViewBag.slDanhGia = demSao;
+            ViewBag.sao1 = sao1;ViewBag.phanTram1 = (sao1 * 100) / demSao;
+            ViewBag.sao2 = sao2; ViewBag.phanTram2 = (sao2 * 100) / demSao;
+            ViewBag.sao3 = sao3; ViewBag.phanTram3 = (sao3 * 100) / demSao;
+            ViewBag.sao4 = sao4; ViewBag.phanTram4 = (sao4 * 100) / demSao;
+            ViewBag.sao5 = sao5; ViewBag.phanTram5 = (sao5 * 100) / demSao;
+
             return View(baiViet);
         }
         [Authorize]
@@ -230,6 +296,7 @@ namespace KK_BookStore.Controllers
                 UpdateModel(baiviet);
                 myData.SubmitChanges();
             }
+            
             return Redirect(strURL);
         }
         [Authorize(Roles = "Reviewer")]
@@ -277,17 +344,17 @@ namespace KK_BookStore.Controllers
 
 
         [Authorize]
-        public ActionResult themBinhLuan(int mabaiviet, string comment, int? rate)
+        public ActionResult themDanhGia(int mabaiviet, string comment, int? rate)
         {
 
             
 
-            var D_tk = myData.CTBinhLuans.FirstOrDefault(m => m.BinhLuan.TaiKhoan.Equals(User.Identity.Name) && m.BinhLuan.MaBaiViet == mabaiviet);
-            var lst_DanhGia = myData.BinhLuans.Where(m => m.MaBaiViet == mabaiviet);
+            var D_tk = myData.ChiTietDanhGias.FirstOrDefault(m => m.DanhGia.TaiKhoan.Equals(User.Identity.Name) && m.DanhGia.MaBaiViet == mabaiviet);
+            var lst_DanhGia = myData.DanhGias.Where(m => m.MaBaiViet == mabaiviet);
             var D_sach = myData.BaiViets.Where(m => m.MaBaiViet == mabaiviet).First();
             if (D_tk == null)
             {
-                BinhLuan danhGia = new BinhLuan();
+                DanhGia danhGia = new DanhGia();
                 danhGia.MaBaiViet = mabaiviet;
                 danhGia.NgayTao = DateTime.Now;
                 danhGia.TaiKhoan = User.Identity.Name;
@@ -296,9 +363,9 @@ namespace KK_BookStore.Controllers
                 var soSao = rate;
                 danhGia.SoSao = soSao;
                 danhGia.NoiDung = comment;
-                myData.BinhLuans.InsertOnSubmit(danhGia);
+                myData.DanhGias.InsertOnSubmit(danhGia);
                 myData.SubmitChanges();
-                CTBinhLuan cTDanhGia = new CTBinhLuan();
+                ChiTietDanhGia cTDanhGia = new ChiTietDanhGia();
                 cTDanhGia.MaBinhLuan = danhGia.MaBinhLuan;
                 int? sl = 0;
                 foreach (var item in lst_DanhGia)
@@ -307,7 +374,7 @@ namespace KK_BookStore.Controllers
                 }
                 cTDanhGia.TongSao = sl;
                 cTDanhGia.DiemDanhGia = (float)cTDanhGia.TongSao / lst_DanhGia.Count();
-                myData.CTBinhLuans.InsertOnSubmit(cTDanhGia);
+                myData.ChiTietDanhGias.InsertOnSubmit(cTDanhGia);
                 D_sach.SoSao =(float) cTDanhGia.TongSao / lst_DanhGia.Count();
                 D_sach.SoLuotDanhGia++;
                 UpdateModel(D_sach);
@@ -315,9 +382,9 @@ namespace KK_BookStore.Controllers
             }
             else
             {
-                D_tk.BinhLuan.SoSao = rate;
-                D_tk.BinhLuan.NoiDung = comment;
-                D_tk.BinhLuan.NgayTao = DateTime.Now;
+                D_tk.DanhGia.SoSao = rate;
+                D_tk.DanhGia.NoiDung = comment;
+                D_tk.DanhGia.NgayTao = DateTime.Now;
                 int? sl = 0;
                 foreach (var item in lst_DanhGia)
                 {
@@ -325,7 +392,7 @@ namespace KK_BookStore.Controllers
                 }
                 D_tk.TongSao = sl;
                 UpdateModel(D_tk);
-                var tinhSao = myData.CTBinhLuans.Where(m => m.BinhLuan.MaBaiViet == mabaiviet).AsEnumerable().Last();
+                var tinhSao = myData.ChiTietDanhGias.Where(m => m.DanhGia.MaBaiViet == mabaiviet).AsEnumerable().Last();
                 tinhSao.TongSao = sl;
                 tinhSao.DiemDanhGia = (float)sl / lst_DanhGia.Count();
 
@@ -347,9 +414,12 @@ namespace KK_BookStore.Controllers
             int pageNum = page ?? 1;
             var allPost = from tt in myData.BaiViets select tt;
 
-
-            var nguoidung = from tt in myData.NguoiDungs where tt.TaiKhoan == User.Identity.Name select tt;
-            ViewBag.hinh = nguoidung.First().Hinh;
+            if(User.Identity.IsAuthenticated)
+            {
+                var nguoidung = from tt in myData.NguoiDungs where tt.TaiKhoan == User.Identity.Name select tt;
+                ViewBag.hinh = nguoidung.First().Hinh;
+            }
+            
             //lay the loai
             var allCate = from tt in myData.TheLoais select tt;
             ViewBag.TheLoai = allCate;
@@ -394,6 +464,23 @@ namespace KK_BookStore.Controllers
 
             var cate = from tt in myData.BaiViets where tt.MaTL == id select tt;
             return View(cate.ToPagedList(pageNum, pageSize));
+        }
+        public ActionResult danhSachPhanHoi(int? id)
+        {
+            var lst_cmt = myData.BinhLuans.Where(m => m.MaBaiViet == id).First();        
+            ViewBag.replys = myData.PhanHois.Where(m => m.MaBinhLuan == lst_cmt.MaBinhLuan);
+            return View(lst_cmt);
+        }
+        public ActionResult danhSachBinhLuan(int? id)
+        {
+            var lst_cmt = myData.BinhLuans.Where(m => m.MaBaiViet == id);
+            ViewBag.replys = myData.PhanHois.ToList();
+            return View(lst_cmt);
+        }
+        public ActionResult danhSachThongBao()
+        {
+            var all_ThongBao = from tt in myData.ThongBaos where tt.TaiKhoan == User.Identity.Name orderby tt.MaThongBao descending select tt;
+            return View(all_ThongBao);
         }
 
     }

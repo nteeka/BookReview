@@ -123,7 +123,7 @@
 
 
                         </ul><!--/.nav -->
-                        
+
                     </div><!-- /.navbar-collapse -->
                 </div><!--/.container-->
             </nav><!--/nav-->
@@ -132,10 +132,17 @@
         <div class="clearfix"></div>
 
     </section><!-- /.top-area-->
+
     <div>
+        @if (TempData["AlertMessage"] != null)
+        {
+            <div id="AlertBox" style="width: fit-content; color: black; font-size: large;margin-left:500px" class="alert @TempData["AlertType"] hide">
+                @TempData["AlertMessage"]
+            </div>
+        }
         @RenderBody()
     </div>
-    
+
 
 
 
@@ -154,11 +161,11 @@
                     <div class="col-sm-9">
                         <ul class="footer-menu-item">
                             @*<li class="scroll"><a href="#works">how it works</a></li>
-        <li class="scroll"><a href="#explore">explore</a></li>
-        <li class="scroll"><a href="#reviews">review</a></li>
-        <li class="scroll"><a href="#blog">blog</a></li>
-        <li class="scroll"><a href="#contact">contact</a></li>
-        <li class=" scroll"><a href="#contact">my account</a></li>*@
+                                <li class="scroll"><a href="#explore">explore</a></li>
+                                <li class="scroll"><a href="#reviews">review</a></li>
+                                <li class="scroll"><a href="#blog">blog</a></li>
+                                <li class="scroll"><a href="#contact">contact</a></li>
+                                <li class=" scroll"><a href="#contact">my account</a></li>*@
                             <li><a href="https://localhost:44339/Home/Index">home</a></li>
                             <li class="scroll"><a href="#works">how it works</a></li>
                             <li class="scroll"><a href="#explore">explore</a></li>
@@ -166,7 +173,7 @@
                             <li class="scroll"><a href="#reviews">review</a></li>
                             <li><a href="https://localhost:44339/Blog/Index">blog</a></li>
                             <li class="scroll"><a href="#contact">contact</a></li>
-                            
+
                         </ul><!--/.nav -->
                     </div>
                 </div>
@@ -220,7 +227,12 @@
     @*<script src="assets/js/slick.min.js"></script>*@
     <script src="~/Content/LayoutChung/slick.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-
+    <script>
+        $(function () {
+            $("#AlertBox").removeClass("hide");
+            $("#AlertBox").delay("2500").slideUp("500");
+        });
+    </script>
     <!--Custom JS-->
     @*<script src="assets/js/custom.js"></script>*@
     <script src="~/Content/LayoutChung/custom.js"></script>

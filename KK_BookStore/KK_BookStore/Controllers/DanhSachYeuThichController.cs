@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml.Linq;
 
 namespace KK_BookStore.Controllers
 {
-    public class DanhSachYeuThichController : Controller
+    public class DanhSachYeuThichController : BaseController
     {
        
         MyDataDataContext data = new MyDataDataContext();
@@ -127,14 +128,15 @@ namespace KK_BookStore.Controllers
         
         public ActionResult xoaDanhSachYeuThich(int id)
         {
-            //var capnhapunLike = from tt in data.Saches where tt.MaSach == id select tt;
-            //capnhapunLike.First().SoLike--;
-            //UpdateModel(capnhapunLike);
+            var baiviet = (from s in data.BaiViets where s.MaBaiViet == id select s).First();
 
-            //var sach = from tt in data.DanhSachYeuThiches where tt.MaSach == id && tt.TaiKhoan==User.Identity.Name select tt;
-            //data.DanhSachYeuThiches.DeleteOnSubmit(sach.First());
-            //data.SubmitChanges();
-            return RedirectToAction("Index");
+            var delete = (from s in data.DanhSachYeuThiches where s.MaBaiViet == id && s.TaiKhoan.Equals(User.Identity.Name) select s).First();
+            data.DanhSachYeuThiches.DeleteOnSubmit(delete);
+            baiviet.YeuThich--;
+            UpdateModel(baiviet);
+            data.SubmitChanges();
+            SetAlert("Delete post from wishlist success!!", "success");
+            return RedirectToAction("DanhSachBaiViet");
         }
     }
 }
