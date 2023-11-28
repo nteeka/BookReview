@@ -17,6 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NTK_Reviews | @Model.TenBaiViet</title>
     <link href="~/Content/Review/Index.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/icon" href="~/Content/LayoutChung/favicon.png" />
 </head>
 
 <body>
@@ -47,7 +48,7 @@
 
         </nav>
         <div style="">
-            <div> <a href="Link web 2" target="_blank"><img border="0" src="http://farm6.staticflickr.com/5759/31081343902_b95bee4751_o.png" width="200" /></a> </div>
+            <div> <a href="Link web 2" target="_blank"><img border="0" src="http://farm6.staticflickr.com/5759/31081343902_b95bee4751_o.png" width="200" height="430" /></a> </div>
             @*<div style="margin-top: 10px;"> <a href="Link web 2" target="_blank"><img border="0" src="\Content\user.jpg" width="200" /></a> </div>*@
         </div>
 
@@ -128,11 +129,11 @@
         </div>
         <script src="~/Content/Ads/Ads_home.js"></script>
         <!--slide end-->
-        <div style="width:1000px">
+        <div style="width: 1200px; margin-left: 180px;margin-top:40px">
             <div>
-                <section style="margin-left:80px;" id="@Model.TenBaiViet">
+                @*<section style="margin-left:180px;" id="@Model.TenBaiViet">*@
                     <h1 style="background-color:bisque;width:fit-content;padding-bottom:5px">@Model.TheLoai.TenTL</h1>
-                    <h1>Bai Review @Model.TenBaiViet</h1>
+                    <h1>@Model.TenBaiViet</h1>
                     <article>
                         @*<img src="@ViewBag.baiviet.AnhBia" width="700" height="300" />*@
                         <p>
@@ -141,7 +142,7 @@
 
 
                     </article>
-                </section>
+                @*</section>*@
                 @*}*@
 
 
@@ -722,9 +723,10 @@
                             </div>
                         </li>
                         ViewBag.countComment++;
-                        if (ViewBag.countComment == 1)
+                        if (ViewBag.countComment == 3)
                         {
                             break;
+
                         }
                     }
                     <a href="https://localhost:44339/Review/danhSachBinhLuan/@ViewBag.MaBaiViet">Show all</a>

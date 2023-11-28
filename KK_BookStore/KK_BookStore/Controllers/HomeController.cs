@@ -11,6 +11,14 @@ namespace KK_BookStore.Controllers
         MyDataDataContext data = new MyDataDataContext();
         public ActionResult Index()
         {
+            //so luong truy cap he thong
+            SystemAccess systemAccess = new SystemAccess();
+            systemAccess.Ngay = DateTime.Now;
+            systemAccess.SoLuongTruyCap=1;
+            
+            data.SystemAccesses.InsertOnSubmit(systemAccess);
+            data.SubmitChanges();
+            //var demTC = data.SystemAccesses.Sum(m => m.SoLuongTruyCap);
             var all_sgg = (from s in data.SachGiamGias select s);
             ViewBag.sgg = all_sgg;
             ViewBag.sl = 0;
@@ -39,7 +47,7 @@ namespace KK_BookStore.Controllers
             Random rand = new Random();
             for (int i = 0;i<3;i++)
             {
-                int k = rand.Next(0, baivietsRanDom.Count + 1);             
+                int k = rand.Next(0, baivietsRanDom.Count);             
                 
                     random.Add(baivietsRanDom[k]);
             }

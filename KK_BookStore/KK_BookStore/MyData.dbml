@@ -193,4 +193,11 @@
       <Association Name="NguoiDung_ChiTietBinhLuan" Member="NguoiDung" ThisKey="TaiKhoan" OtherKey="TaiKhoan" Type="NguoiDung" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.SystemAccess" Member="SystemAccesses">
+    <Type Name="SystemAccess">
+      <Column Name="Ma" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SoLuongTruyCap" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Ngay" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

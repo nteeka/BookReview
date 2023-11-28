@@ -75,6 +75,9 @@ namespace KK_BookStore
     partial void InsertChiTietBinhLuan(ChiTietBinhLuan instance);
     partial void UpdateChiTietBinhLuan(ChiTietBinhLuan instance);
     partial void DeleteChiTietBinhLuan(ChiTietBinhLuan instance);
+    partial void InsertSystemAccess(SystemAccess instance);
+    partial void UpdateSystemAccess(SystemAccess instance);
+    partial void DeleteSystemAccess(SystemAccess instance);
     #endregion
 		
 		public MyDataDataContext() : 
@@ -224,6 +227,14 @@ namespace KK_BookStore
 			get
 			{
 				return this.GetTable<ChiTietBinhLuan>();
+			}
+		}
+		
+		public System.Data.Linq.Table<SystemAccess> SystemAccesses
+		{
+			get
+			{
+				return this.GetTable<SystemAccess>();
 			}
 		}
 	}
@@ -4406,6 +4417,116 @@ namespace KK_BookStore
 						this._TaiKhoan = default(string);
 					}
 					this.SendPropertyChanged("NguoiDung");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SystemAccess")]
+	public partial class SystemAccess : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Ma;
+		
+		private System.Nullable<int> _SoLuongTruyCap;
+		
+		private System.Nullable<System.DateTime> _Ngay;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMaChanging(int value);
+    partial void OnMaChanged();
+    partial void OnSoLuongTruyCapChanging(System.Nullable<int> value);
+    partial void OnSoLuongTruyCapChanged();
+    partial void OnNgayChanging(System.Nullable<System.DateTime> value);
+    partial void OnNgayChanged();
+    #endregion
+		
+		public SystemAccess()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ma", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Ma
+		{
+			get
+			{
+				return this._Ma;
+			}
+			set
+			{
+				if ((this._Ma != value))
+				{
+					this.OnMaChanging(value);
+					this.SendPropertyChanging();
+					this._Ma = value;
+					this.SendPropertyChanged("Ma");
+					this.OnMaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoLuongTruyCap", DbType="Int")]
+		public System.Nullable<int> SoLuongTruyCap
+		{
+			get
+			{
+				return this._SoLuongTruyCap;
+			}
+			set
+			{
+				if ((this._SoLuongTruyCap != value))
+				{
+					this.OnSoLuongTruyCapChanging(value);
+					this.SendPropertyChanging();
+					this._SoLuongTruyCap = value;
+					this.SendPropertyChanged("SoLuongTruyCap");
+					this.OnSoLuongTruyCapChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ngay", DbType="Date")]
+		public System.Nullable<System.DateTime> Ngay
+		{
+			get
+			{
+				return this._Ngay;
+			}
+			set
+			{
+				if ((this._Ngay != value))
+				{
+					this.OnNgayChanging(value);
+					this.SendPropertyChanging();
+					this._Ngay = value;
+					this.SendPropertyChanged("Ngay");
+					this.OnNgayChanged();
 				}
 			}
 		}

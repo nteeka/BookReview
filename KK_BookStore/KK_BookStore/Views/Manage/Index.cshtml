@@ -112,6 +112,8 @@
     {
 
     }*@
+<title>NTK_REVIEWS || Manager Account</title>
+<link rel="shortcut icon" type="image/icon" href="~/Content/LayoutChung/favicon.png" />
 <link href="~/Content/Profile/profile.css" rel="stylesheet" />
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div style="background-color:rebeccapurple" class="container bootstrap snippets bootdey">
@@ -172,9 +174,9 @@
                                         <span style="color:yellow" class="data-value">@ViewBag.Gender</span>
                                     </p>
                                     @*<p style="margin-top:10px; margin-left: 30px" class="data-row">
-                                        <span style="text-align:center;font-size:medium" class="data-name">Website</span>
-                                        <span class="data-value"><a href="#">www.jonasmith.com</a></span>
-                                    </p>*@
+                                            <span style="text-align:center;font-size:medium" class="data-name">Website</span>
+                                            <span class="data-value"><a href="#">www.jonasmith.com</a></span>
+                                        </p>*@
                                     <p style="margin-top: 10px; margin-left: 30px" class="data-row">
                                         <span style="text-align:center;font-size:medium" class="data-name">Last Login</span>
                                         <span style="color:yellow" class="data-value">2 hours ago</span>
@@ -283,110 +285,110 @@
 
                             @*<h3><i class="fa fa-square"></i> Change Password</h3>*@
                             @*@if (!Model.HasPassword)
-                {
-                    <a href="https://localhost:44339/Manage/SetPassword" class="btn btn-primary">Cập nhập mật khẩu</a>
+                                {
+                                    <a href="https://localhost:44339/Manage/SetPassword" class="btn btn-primary">Cập nhập mật khẩu</a>
 
-                }*@
-                            
+                                }*@
+
                             @*<div class="form-group">
-                    <label for="old-password" class="col-sm-3 control-label">Old Password</label>
-                    <div class="col-sm-4">
-                        <input type="password" id="old-password" name="old-password" class="form-control">
-                    </div>
-                </div>
-                <hr>
-                <div class="form-group">
-                    <label for="password" class="col-sm-3 control-label">New Password</label>
-                    <div class="col-sm-4">
-                        <input type="password" id="password" name="password" class="form-control">
-                    </div>
-                </div>*@
+                                    <label for="old-password" class="col-sm-3 control-label">Old Password</label>
+                                    <div class="col-sm-4">
+                                        <input type="password" id="old-password" name="old-password" class="form-control">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="form-group">
+                                    <label for="password" class="col-sm-3 control-label">New Password</label>
+                                    <div class="col-sm-4">
+                                        <input type="password" id="password" name="password" class="form-control">
+                                    </div>
+                                </div>*@
                             @*<div class="form-group">
-                    <label for="password2" class="col-sm-3 control-label">Repeat Password</label>
-                    <div class="col-sm-4">
-                        <input type="password" id="password2" name="password2" class="form-control">
-                    </div>
-                </div>*@
+                                    <label for="password2" class="col-sm-3 control-label">Repeat Password</label>
+                                    <div class="col-sm-4">
+                                        <input type="password" id="password2" name="password2" class="form-control">
+                                    </div>
+                                </div>*@
                         </fieldset>
 
                         @*<fieldset>
-                <h3><i class="fa fa-square"></i> Privacy</h3>
-                <label class="fancy-checkbox">
-                    <input type="checkbox">
-                    <span>Show my display name</span>
-                </label>
-                <label class="fancy-checkbox">
-                    <input type="checkbox">
-                    <span>Show my birth date</span>
-                </label>
-                <label class="fancy-checkbox">
-                    <input type="checkbox">
-                    <span>Show my email</span>
-                </label>
-                <label class="fancy-checkbox">
-                    <input type="checkbox">
-                    <span>Show my online status on chat</span>
-                </label>
-            </fieldset>
-            <h3><i class="fa fa-square"> </i>Notifications</h3>
-            <fieldset>
-                <div class="form-group">
-                    <label class="col-sm-5 control-label">Receive message from administrator</label>
-                    <ul class="col-sm-7 list-inline">
-                        <li>
-                            <div class="has-switch switch-animate switch-small switch-on" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-globe"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-globe"></i></span><input type="checkbox" checked="" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-globe'></i>" data-off-label="<i class='glyphicon glyphicon-globe'></i>"></div></div>
-                        </li>
-                        <li>
-                            <div class="has-switch switch-animate switch-small switch-on" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-phone"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-phone"></i></span><input type="checkbox" checked="" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-phone'></i>" data-off-label="<i class='glyphicon glyphicon-phone'></i>"></div></div>
-                        </li>
-                        <li>
-                            <div class="has-switch switch-animate switch-small switch-on" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-envelope"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-envelope"></i></span><input type="checkbox" checked="" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-envelope'></i>" data-off-label="<i class='glyphicon glyphicon-envelope'></i>"></div></div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-5 control-label">New product has been added</label>
-                    <ul class="col-sm-7 list-inline">
-                        <li>
-                            <div class="has-switch switch-animate switch-small switch-off" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-globe"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-globe"></i></span><input type="checkbox" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-globe'></i>" data-off-label="<i class='glyphicon glyphicon-globe'></i>"></div></div>
-                        </li>
-                        <li>
-                            <div class="has-switch switch-animate switch-small switch-on" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-phone"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-phone"></i></span><input type="checkbox" checked="" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-phone'></i>" data-off-label="<i class='glyphicon glyphicon-phone'></i>"></div></div>
-                        </li>
-                        <li>
-                            <div class="has-switch switch-animate switch-small switch-on" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-envelope"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-envelope"></i></span><input type="checkbox" checked="" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-envelope'></i>" data-off-label="<i class='glyphicon glyphicon-envelope'></i>"></div></div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-5 control-label">Product review has been approved</label>
-                    <ul class="col-sm-7 list-inline">
-                        <li>
-                            <div class="has-switch switch-animate switch-small switch-on" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-globe"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-globe"></i></span><input type="checkbox" checked="" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-globe'></i>" data-off-label="<i class='glyphicon glyphicon-globe'></i>"></div></div>
-                        </li>
-                        <li>
-                            <div class="has-switch switch-animate switch-small switch-off" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-phone"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-phone"></i></span><input type="checkbox" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-phone'></i>" data-off-label="<i class='glyphicon glyphicon-phone'></i>"></div></div>
-                        </li>
-                        <li>
-                            <div class="has-switch switch-animate switch-small switch-on" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-envelope"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-envelope"></i></span><input type="checkbox" checked="" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-envelope'></i>" data-off-label="<i class='glyphicon glyphicon-envelope'></i>"></div></div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-5 control-label">Others liked your post</label>
-                    <ul class="col-sm-7 list-inline">
-                        <li>
-                            <div class="has-switch switch-animate switch-small switch-off" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-globe"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-globe"></i></span><input type="checkbox" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-globe'></i>" data-off-label="<i class='glyphicon glyphicon-globe'></i>"></div></div>
-                        </li>
-                        <li>
-                            <div class="has-switch switch-animate switch-small switch-off" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-phone"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-phone"></i></span><input type="checkbox" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-phone'></i>" data-off-label="<i class='glyphicon glyphicon-phone'></i>"></div></div>
-                        </li>
-                        <li>
-                            <div class="has-switch switch-animate switch-small switch-off" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-envelope"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-envelope"></i></span><input type="checkbox" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-envelope'></i>" data-off-label="<i class='glyphicon glyphicon-envelope'></i>"></div></div>
-                        </li>
-                    </ul>
-                </div>
-            </fieldset>*@
+                                <h3><i class="fa fa-square"></i> Privacy</h3>
+                                <label class="fancy-checkbox">
+                                    <input type="checkbox">
+                                    <span>Show my display name</span>
+                                </label>
+                                <label class="fancy-checkbox">
+                                    <input type="checkbox">
+                                    <span>Show my birth date</span>
+                                </label>
+                                <label class="fancy-checkbox">
+                                    <input type="checkbox">
+                                    <span>Show my email</span>
+                                </label>
+                                <label class="fancy-checkbox">
+                                    <input type="checkbox">
+                                    <span>Show my online status on chat</span>
+                                </label>
+                            </fieldset>
+                            <h3><i class="fa fa-square"> </i>Notifications</h3>
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">Receive message from administrator</label>
+                                    <ul class="col-sm-7 list-inline">
+                                        <li>
+                                            <div class="has-switch switch-animate switch-small switch-on" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-globe"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-globe"></i></span><input type="checkbox" checked="" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-globe'></i>" data-off-label="<i class='glyphicon glyphicon-globe'></i>"></div></div>
+                                        </li>
+                                        <li>
+                                            <div class="has-switch switch-animate switch-small switch-on" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-phone"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-phone"></i></span><input type="checkbox" checked="" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-phone'></i>" data-off-label="<i class='glyphicon glyphicon-phone'></i>"></div></div>
+                                        </li>
+                                        <li>
+                                            <div class="has-switch switch-animate switch-small switch-on" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-envelope"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-envelope"></i></span><input type="checkbox" checked="" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-envelope'></i>" data-off-label="<i class='glyphicon glyphicon-envelope'></i>"></div></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">New product has been added</label>
+                                    <ul class="col-sm-7 list-inline">
+                                        <li>
+                                            <div class="has-switch switch-animate switch-small switch-off" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-globe"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-globe"></i></span><input type="checkbox" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-globe'></i>" data-off-label="<i class='glyphicon glyphicon-globe'></i>"></div></div>
+                                        </li>
+                                        <li>
+                                            <div class="has-switch switch-animate switch-small switch-on" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-phone"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-phone"></i></span><input type="checkbox" checked="" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-phone'></i>" data-off-label="<i class='glyphicon glyphicon-phone'></i>"></div></div>
+                                        </li>
+                                        <li>
+                                            <div class="has-switch switch-animate switch-small switch-on" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-envelope"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-envelope"></i></span><input type="checkbox" checked="" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-envelope'></i>" data-off-label="<i class='glyphicon glyphicon-envelope'></i>"></div></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">Product review has been approved</label>
+                                    <ul class="col-sm-7 list-inline">
+                                        <li>
+                                            <div class="has-switch switch-animate switch-small switch-on" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-globe"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-globe"></i></span><input type="checkbox" checked="" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-globe'></i>" data-off-label="<i class='glyphicon glyphicon-globe'></i>"></div></div>
+                                        </li>
+                                        <li>
+                                            <div class="has-switch switch-animate switch-small switch-off" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-phone"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-phone"></i></span><input type="checkbox" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-phone'></i>" data-off-label="<i class='glyphicon glyphicon-phone'></i>"></div></div>
+                                        </li>
+                                        <li>
+                                            <div class="has-switch switch-animate switch-small switch-on" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-envelope"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-envelope"></i></span><input type="checkbox" checked="" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-envelope'></i>" data-off-label="<i class='glyphicon glyphicon-envelope'></i>"></div></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">Others liked your post</label>
+                                    <ul class="col-sm-7 list-inline">
+                                        <li>
+                                            <div class="has-switch switch-animate switch-small switch-off" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-globe"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-globe"></i></span><input type="checkbox" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-globe'></i>" data-off-label="<i class='glyphicon glyphicon-globe'></i>"></div></div>
+                                        </li>
+                                        <li>
+                                            <div class="has-switch switch-animate switch-small switch-off" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-phone"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-phone"></i></span><input type="checkbox" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-phone'></i>" data-off-label="<i class='glyphicon glyphicon-phone'></i>"></div></div>
+                                        </li>
+                                        <li>
+                                            <div class="has-switch switch-animate switch-small switch-off" tabindex="0"><div><span class="switch-left"><i class="glyphicon glyphicon-envelope"></i></span><label>&nbsp;</label><span class="switch-right switch-default"><i class="glyphicon glyphicon-envelope"></i></span><input type="checkbox" class="bs-switch switch-small" data-off="default" data-on-label="<i class='glyphicon glyphicon-envelope'></i>" data-off-label="<i class='glyphicon glyphicon-envelope'></i>"></div></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </fieldset>*@
 
                     </form>
                     <h1>Xác thực hai yếu tố</h1>

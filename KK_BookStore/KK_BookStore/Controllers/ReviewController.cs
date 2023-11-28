@@ -1,4 +1,5 @@
 ﻿using Microsoft.Security.Application;
+using Newtonsoft.Json;
 using PagedList;
 using System;
 using System.Collections.Generic;
@@ -60,7 +61,7 @@ namespace KK_BookStore.Controllers
             Random rand = new Random();
             for (int i = 0; i < 6; i++)
             {
-                int k = rand.Next(0, baivietsRanDom.Count + 1);
+                int k = rand.Next(0, baivietsRanDom.Count);
 
                 random.Add(baivietsRanDom[k]);
             }
@@ -465,6 +466,142 @@ namespace KK_BookStore.Controllers
             var cate = from tt in myData.BaiViets where tt.MaTL == id select tt;
             return View(cate.ToPagedList(pageNum, pageSize));
         }
+        public ActionResult locTheoSao(int? page)
+        {
+
+            if (page == null) page = 1;
+            int pageSize = 6;
+            int pageNum = page ?? 1;
+            var allPost = from tt in myData.BaiViets.OrderByDescending(m=>m.SoSao) select tt;
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var nguoidung = from tt in myData.NguoiDungs where tt.TaiKhoan == User.Identity.Name select tt;
+                ViewBag.hinh = nguoidung.First().Hinh;
+            }
+
+            //lay the loai
+            var allCate = from tt in myData.TheLoais select tt;
+            ViewBag.TheLoai = allCate;
+            //lay post nhieu tim/view
+            var baiVietNhieuTim = from tt in myData.BaiViets orderby tt.SoSao descending select tt;
+            List<BaiViet> lstBaiVietNhieuTim = new List<BaiViet>();
+            foreach (var item in baiVietNhieuTim)
+            {
+                lstBaiVietNhieuTim.Add(item);
+                if (lstBaiVietNhieuTim.Count() == 3)
+                    break;
+            }
+            ViewBag.baiVietNhieuTim = lstBaiVietNhieuTim;
+
+
+            return View(allPost.ToPagedList(pageNum, pageSize));
+        }
+        public ActionResult locTheoLuotThich(int? page)
+        {
+
+            if (page == null) page = 1;
+            int pageSize = 6;
+            int pageNum = page ?? 1;
+            var allPost = from tt in myData.BaiViets.OrderByDescending(m => m.YeuThich) select tt;
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var nguoidung = from tt in myData.NguoiDungs where tt.TaiKhoan == User.Identity.Name select tt;
+                ViewBag.hinh = nguoidung.First().Hinh;
+            }
+
+            //lay the loai
+            var allCate = from tt in myData.TheLoais select tt;
+            ViewBag.TheLoai = allCate;
+            //lay post nhieu tim/view
+            var baiVietNhieuTim = from tt in myData.BaiViets orderby tt.SoSao descending select tt;
+            List<BaiViet> lstBaiVietNhieuTim = new List<BaiViet>();
+            foreach (var item in baiVietNhieuTim)
+            {
+                lstBaiVietNhieuTim.Add(item);
+                if (lstBaiVietNhieuTim.Count() == 3)
+                    break;
+            }
+            ViewBag.baiVietNhieuTim = lstBaiVietNhieuTim;
+
+
+            return View(allPost.ToPagedList(pageNum, pageSize));
+        }
+        public ActionResult locTheoNgayViet(int? page)
+        {
+
+            if (page == null) page = 1;
+            int pageSize = 6;
+            int pageNum = page ?? 1;
+            var allPost = from tt in myData.BaiViets.OrderByDescending(m => m.NgayViet) select tt;
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var nguoidung = from tt in myData.NguoiDungs where tt.TaiKhoan == User.Identity.Name select tt;
+                ViewBag.hinh = nguoidung.First().Hinh;
+            }
+
+            //lay the loai
+            var allCate = from tt in myData.TheLoais select tt;
+            ViewBag.TheLoai = allCate;
+            //lay post nhieu tim/view
+            var baiVietNhieuTim = from tt in myData.BaiViets orderby tt.SoSao descending select tt;
+            List<BaiViet> lstBaiVietNhieuTim = new List<BaiViet>();
+            foreach (var item in baiVietNhieuTim)
+            {
+                lstBaiVietNhieuTim.Add(item);
+                if (lstBaiVietNhieuTim.Count() == 3)
+                    break;
+            }
+            ViewBag.baiVietNhieuTim = lstBaiVietNhieuTim;
+
+
+            return View(allPost.ToPagedList(pageNum, pageSize));
+        }
+
+
+        public ActionResult filter(int id,string option, int? page)
+        {
+            if (page == null) page = 1;
+            int pageSize = 3;
+            int pageNum = page ?? 1;
+            var allPost = from tt in myData.BaiViets select tt;
+
+
+
+            ViewBag.hinh = allPost.First().NguoiDung.Hinh;
+            //lay the loai
+            var allCate = from tt in myData.TheLoais select tt;
+            ViewBag.TheLoai = allCate;
+            //lay post nhieu tim/view
+            var baiVietNhieuTim = from tt in myData.BaiViets orderby tt.SoSao descending select tt;
+            List<BaiViet> lstBaiVietNhieuTim = new List<BaiViet>();
+            foreach (var item in baiVietNhieuTim)
+            {
+                lstBaiVietNhieuTim.Add(item);
+                if (lstBaiVietNhieuTim.Count() == 3)
+                    break;
+            }
+            ViewBag.baiVietNhieuTim = lstBaiVietNhieuTim;
+
+            if (option == "Newest")
+            {
+                var cate = from tt in myData.BaiViets where tt.MaTL == id orderby tt.NgayViet descending select tt;
+                return View(cate.ToPagedList(pageNum, pageSize));
+            }
+            else
+            {
+                var cate = from tt in myData.BaiViets where tt.MaTL == id orderby tt.NgayViet ascending select tt;
+                return View(cate.ToPagedList(pageNum, pageSize));
+            }
+
+
+            
+           
+        }
+        
+
         public ActionResult danhSachPhanHoi(int? id)
         {
             var lst_cmt = myData.BinhLuans.Where(m => m.MaBaiViet == id).First();        
@@ -481,6 +618,37 @@ namespace KK_BookStore.Controllers
         {
             var all_ThongBao = from tt in myData.ThongBaos where tt.TaiKhoan == User.Identity.Name orderby tt.MaThongBao descending select tt;
             return View(all_ThongBao);
+        }
+
+        public ActionResult Search(string name, int? page)
+        {
+            if (page == null) page = 1;
+            int pageSize = 6;
+            int pageNum = page ?? 1;
+            
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var nguoidung = from tt in myData.NguoiDungs where tt.TaiKhoan == User.Identity.Name select tt;
+                ViewBag.hinh = nguoidung.First().Hinh;
+            }
+
+            //lay the loai
+            var allCate = from tt in myData.TheLoais select tt;
+            ViewBag.TheLoai = allCate;
+            //lay post nhieu tim/view
+            var baiVietNhieuTim = from tt in myData.BaiViets orderby tt.SoSao descending select tt;
+            List<BaiViet> lstBaiVietNhieuTim = new List<BaiViet>();
+            foreach (var item in baiVietNhieuTim)
+            {
+                lstBaiVietNhieuTim.Add(item);
+                if (lstBaiVietNhieuTim.Count() == 3)
+                    break;
+            }
+            ViewBag.baiVietNhieuTim = lstBaiVietNhieuTim;
+            var baiViet = myData.BaiViets.Where(m=>m.TenBaiViet.Contains(name) || m.TaiKhoan.Contains(name));
+            ViewBag.keyword = name;
+            return View(baiViet.ToPagedList(pageNum, pageSize));
         }
 
     }

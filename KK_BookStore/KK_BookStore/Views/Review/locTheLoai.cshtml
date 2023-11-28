@@ -6,8 +6,8 @@
 }
 <link href="~/Content/Review/danhSachBaiViet.css" rel="stylesheet" />
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
-<title>List Reviews</title>
-<div class="container bootdey" style="float:left;padding-left:200px;padding-top:10px">
+<title>NTK_REVIEWS || Sort by Category</title>
+<link rel="shortcut icon" type="image/icon" href="~/Content/LayoutChung/favicon.png" /><div class="container bootdey" style="float:left;padding-left:200px;padding-top:10px">
     <div class="col-md-3">
         <section class="panel">
             <div class="panel-body">
@@ -25,11 +25,11 @@
             <div class="panel-body">
                 <ul class="nav prod-cat">
                     <li>
-                        <a href="#" class="active"><i class="fa fa-angle-right"></i> Dress</a>
+                        <a href="#" class="active"><i class="fa fa-angle-right"></i> Sort by</a>
                         <ul class="nav">
-                            <li class="active"><a href="#">- Shirt</a></li>
-                            <li><a href="#">- Pant</a></li>
-                            <li><a href="#">- Shoes</a></li>
+                            <li><a href="https://localhost:44339/Review/locTheoSao">- Star <i class="fa fa-star"></i></a></li>
+                            <li><a href="https://localhost:44339/Review/locTheoLuotThich">- Like <i class="fa fa-thumbs-up"></i></a></li>
+                            <li><a href="https://localhost:44339/Review/locTheoNgayViet">- Write Lately</a></li>
                         </ul>
                     </li>
                     <li>
@@ -90,42 +90,43 @@
                 Filter
             </header>
             <div class="panel-body">
-                <form role="form product-form">
+                <form action="/Review/filter">
                     <div class="form-group">
                         <label>Category</label>
-                        <select>
+                        <select name="id" class="form-control">
                             @*<option>Wallmart</option>
                                 <option>Catseye</option>
                                 <option>Moonsoon</option>*@
 
                             @foreach (var item in ViewBag.TheLoai)
                             {
-                                <option>@item.TenTL</option>
+                                <option value="@item.MaTL">@item.TenTL</option>
                             }
 
                         </select>
                         @*<span class="customSelect form-control" style="display: inline-block;"><span class="customSelectInner" style="width: 209px; display: inline-block;">Wallmart</span></span>*@
                     </div>
                     <div class="form-group">
-                        <label>Color</label>
-                        <select class="form-control hasCustomSelect" style="-webkit-appearance: menulist-button; width: 231px; position: absolute; opacity: 0; height: 34px; font-size: 12px;">
-                            <option>White</option>
-                            <option>Black</option>
-                            <option>Red</option>
-                            <option>Green</option>
+                        <label>Date</label>
+                        <select name="option" class="form-control">
+                            <option value="Newest">Newest</option>
+                            <option value="Oldest">Oldest</option>
+                            @*<option>Red</option>
+                                <option>Green</option>*@
                         </select>
-                        <span class="customSelect form-control" style="display: inline-block;"><span class="customSelectInner" style="width: 209px; display: inline-block;">White</span></span>
+                        @*<span class="customSelect form-control" style="display: inline-block;"><span class="customSelectInner" style="width: 209px; display: inline-block;">White</span></span>*@
                     </div>
-                    <div class="form-group">
-                        <label>Type</label>
-                        <select class="form-control hasCustomSelect" style="-webkit-appearance: menulist-button; width: 231px; position: absolute; opacity: 0; height: 34px; font-size: 12px;">
-                            <option>Small</option>
-                            <option>Medium</option>
-                            <option>Large</option>
-                            <option>Extra Large</option>
-                        </select>
-                        <span class="customSelect form-control" style="display: inline-block;"><span class="customSelectInner" style="width: 209px; display: inline-block;">Small</span></span>
-                    </div>
+
+                    @*<div class="form-group">
+                            <label>Type</label>
+                            <select class="form-control hasCustomSelect" style="-webkit-appearance: menulist-button; width: 231px; position: absolute; opacity: 0; height: 34px; font-size: 12px;">
+                                <option>Small</option>
+                                <option>Medium</option>
+                                <option>Large</option>
+                                <option>Extra Large</option>
+                            </select>
+                            <span class="customSelect form-control" style="display: inline-block;"><span class="customSelectInner" style="width: 209px; display: inline-block;">Small</span></span>
+                        </div>*@
                     <button class="btn btn-primary" type="submit">Filter</button>
                 </form>
             </div>
@@ -148,8 +149,8 @@
                     <div class="col-md-4">
                         <section class="panel">
                             <div class="pro-img-box">
-                                <a href="https://localhost:44339/Review/Detail/@item.MaBaiViet"><img style="width:250px;height:220px"  src="@item.AnhBia" alt="" /></a>
-                                <a  style="margin-left:-10px" href="#" class="adtocart">
+                                <a href="https://localhost:44339/Review/Detail/@item.MaBaiViet"><img style="width:250px;height:220px" src="@item.AnhBia" alt="" /></a>
+                                <a style="margin-left:-10px" href="#" class="adtocart">
                                     <i class="fa fa-shopping-cart"></i>
                                 </a>
                             </div>
@@ -181,17 +182,17 @@
                 <div class="panel-body">
                     <div class="pull-right">
                         @*<ul class="pagination pagination-sm pro-page-list">
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">»</a></li>
-                        </ul>*@
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">»</a></li>
+                            </ul>*@
                         <div>
                             Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) /
                             @Model.PageCount
                         </div>
                         <div class="MenuTrang">
-                            @Html.PagedListPager(Model, page => Url.Action("danhSachBaiViet", new
+                            @Html.PagedListPager(Model, page => Url.Action("locTheLoai", new
                             {
                                 page = page
                             }))
