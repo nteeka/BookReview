@@ -135,6 +135,15 @@ namespace KK_BookStore.Controllers
             baiviet.YeuThich--;
             UpdateModel(baiviet);
             data.SubmitChanges();
+            LichSuHoatDong lichSuHoatDong = new LichSuHoatDong();
+            lichSuHoatDong.Ngay = DateTime.Now;
+            lichSuHoatDong.TaiKhoan = User.Identity.Name;
+            lichSuHoatDong.MaBaiViet = baiviet.MaBaiViet;
+            lichSuHoatDong.NoiDung = "Đã xóa khỏi danh sách yêu thích";
+            lichSuHoatDong.LoaiHoatDong = "xoayeuThich_Post";
+
+            data.LichSuHoatDongs.InsertOnSubmit(lichSuHoatDong);
+            data.SubmitChanges();
             SetAlert("Delete post from wishlist success!!", "success");
             return RedirectToAction("DanhSachBaiViet");
         }

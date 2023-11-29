@@ -1250,7 +1250,6 @@
     <Content Include="Views\Sach\LocGiaTheLoai.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\TacGia\Index.cshtml" />
-    <Content Include="Views\NguoiDung\trangCaNhan.cshtml" />
     <Content Include="Views\Review\Index.cshtml" />
     <Content Include="Views\Review\Create.cshtml" />
     <Content Include="Views\Review\Detail.cshtml" />
@@ -1284,6 +1283,7 @@
     <Content Include="Views\Review\locTheoNgayViet.cshtml" />
     <Content Include="Views\Review\filter.cshtml" />
     <Content Include="Views\Review\Search.cshtml" />
+    <Content Include="Views\NguoiDung\trangCaNhan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

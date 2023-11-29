@@ -50,7 +50,7 @@ namespace KK_BookStore.Controllers
         }
 
         [Authorize]
-        public ActionResult themBinhLuan(int mabaiviet, string comment)
+        public ActionResult themBinhLuan(int mabaiviet, string comment )
         {    
             //var lst_DanhGia = data.BinhLuans.Where(m => m.MaBaiViet == mabaiviet);
              BinhLuan binhLuan = new BinhLuan();
@@ -60,6 +60,16 @@ namespace KK_BookStore.Controllers
             binhLuan.NoiDung = comment;
             binhLuan.SoLike = 0;
             data.BinhLuans.InsertOnSubmit(binhLuan);
+            data.SubmitChanges();
+            LichSuHoatDong lichSuHoatDong = new LichSuHoatDong();
+            lichSuHoatDong.Ngay = DateTime.Now;
+            lichSuHoatDong.TaiKhoan = User.Identity.Name;
+            lichSuHoatDong.MaBinhLuan = binhLuan.MaBinhLuan;
+            lichSuHoatDong.MaBaiViet = binhLuan.MaBaiViet;
+            lichSuHoatDong.NoiDung ="Đã bình luận bài viết";
+            lichSuHoatDong.LoaiHoatDong = "cmt";
+            
+            data.LichSuHoatDongs.InsertOnSubmit(lichSuHoatDong);
             data.SubmitChanges();                                     
             return Redirect("https://localhost:44339/Review/Detail/" + mabaiviet);
         }
@@ -74,11 +84,21 @@ namespace KK_BookStore.Controllers
             phanHoi.NoiDung = "@" + cmt.TaiKhoan + comment;
             data.PhanHois.InsertOnSubmit(phanHoi);
             data.SubmitChanges();
-            return Redirect("https://localhost:44339/Review/danhSachPhanHoi/" + phanHoi.MaBinhLuan);
+            LichSuHoatDong lichSuHoatDong = new LichSuHoatDong();
+            lichSuHoatDong.Ngay = DateTime.Now;
+            lichSuHoatDong.TaiKhoan = User.Identity.Name;
+            lichSuHoatDong.MaPhanHoi = phanHoi.MaPhanHoi;
+            lichSuHoatDong.MaBaiViet = phanHoi.BinhLuan.MaBaiViet;
+            lichSuHoatDong.NoiDung = "Đã phản hồi một bình luận";
+            lichSuHoatDong.LoaiHoatDong = "reply";
+
+            data.LichSuHoatDongs.InsertOnSubmit(lichSuHoatDong);
+            data.SubmitChanges();
+            return Redirect("https://localhost:44339/Review/danhSachPhanHoi/" + phanHoi.BinhLuan.MaBaiViet);
         }
 
         [Authorize]
-        public ActionResult thichBinhLuan(int id)
+        public ActionResult thichBinhLuan(int id, string strURL)
         {
             var binhLuan = (from s in data.BinhLuans where s.MaBinhLuan == id select s).First();        
             var check = data.ChiTietBinhLuans.Where(m => m.MaBinhLuan == id && m.TaiKhoan.Equals(User.Identity.Name)).FirstOrDefault();
@@ -93,6 +113,16 @@ namespace KK_BookStore.Controllers
                 binhLuan.SoLike++;
                 UpdateModel(binhLuan);
                 data.SubmitChanges();
+                LichSuHoatDong lichSuHoatDong = new LichSuHoatDong();
+                lichSuHoatDong.Ngay = DateTime.Now;
+                lichSuHoatDong.TaiKhoan = User.Identity.Name;
+                lichSuHoatDong.MaBinhLuan = binhLuan.MaBinhLuan;
+                lichSuHoatDong.MaBaiViet = binhLuan.MaBaiViet;
+                lichSuHoatDong.NoiDung = "Đã thích một bình luận";
+                lichSuHoatDong.LoaiHoatDong = "like_cmt";
+
+                data.LichSuHoatDongs.InsertOnSubmit(lichSuHoatDong);
+                data.SubmitChanges();
             }
             else
             {
@@ -103,23 +133,42 @@ namespace KK_BookStore.Controllers
                 data.SubmitChanges();
                 
             }
-            return Redirect("https://localhost:44339/Review/Detail/" + binhLuan.MaBaiViet);
+            return Redirect(strURL); ;
         }
 
 
-
+        [Authorize]
         public ActionResult trangCaNhan()
-        {
-            var nguoidung = User.Identity.GetUserName();
-            var user = data.NguoiDungs.Where(p => p.TaiKhoan == nguoidung);
-            foreach (var item in user)
+        {         
+            var user = data.NguoiDungs.Where(p => p.TaiKhoan == User.Identity.Name).First();
+            var post = data.BaiViets.Where(p => p.TaiKhoan == User.Identity.Name);
+            ViewBag.posts = post;
+            var cmt = data.BinhLuans.ToList();
+            ViewBag.cmts = cmt;
+            ViewBag.hinh = user.Hinh;
+            //count CMT
+            Dictionary<int, int> categoryCounts = new Dictionary<int, int>();
+
+            foreach (var product in cmt)
             {
 
-                ViewBag.hinh = item.Hinh;
-
-
+                // Nếu loại sản phẩm đã tồn tại trong dictionary, tăng số lượng lên 1
+                if (categoryCounts.ContainsKey(product.MaBaiViet))
+                {
+                    categoryCounts[product.MaBaiViet]++;
+                }
+                // Ngược lại, thêm loại sản phẩm mới vào dictionary với số lượng là 1
+                else
+                {
+                    categoryCounts.Add(product.MaBaiViet, 1);
+                }
             }
-            return View();
+            ViewBag.CategoryCounts = categoryCounts;
+            //check yeu thich bai viet
+            var check_YeuThich = data.DanhSachYeuThiches.Where(m=>m.TaiKhoan == user.TaiKhoan);
+            ViewBag.checkYT = check_YeuThich;
+            ViewBag.tempYT = 0;
+            return View(user);
         }
     }
 }

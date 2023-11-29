@@ -4,7 +4,8 @@
     ViewBag.Title = "Search";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link href="~/Content/Review/danhSachBaiViet.css" rel="stylesheet" />
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
 <title>List Reviews</title>
@@ -15,15 +16,40 @@
                 @*usingform*@
                 <form action="/Review/Search">
                     <input type="text" placeholder="Keyword Search" value="@ViewBag.keyword" class="form-control" id="keyword" name="name" />
+                    <script>
+                        //var local = [
+
+                        //{ id: 1, value: "aadasd" },
+                        //    { id: 2, value: "badsadas" }
+
+                        //];
+                        //$("#keyword").autocomplete({
+                        //    source: local
+                        //});
+                        var dynamicList = @Html.Raw(Json.Encode(Model.Select(bv => new { Id = bv.MaBaiViet, Name = bv.TenBaiViet })));
+                        $("#keyword").autocomplete({
+                            source: dynamicList.map(item => item.Name)
+                            });
+                    </script>
                     <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
                 </form>
+                <style>
+                    .ui-autocomplete {
+                        max-height: 200px; /* Điều chỉnh chiều cao tối đa của danh sách gợi ý */
+                        overflow-y: auto; /* Cho phép cuộn nếu danh sách quá dài */
+                        border: 1px solid #ccc; /* Hiển thị đường viền cho danh sách */
+                        background-color: #fff; /* Màu nền của danh sách */
+                        position: absolute; /* Xác định vị trí tuyệt đối */
+                        font-size:large;
+                    }
+                </style>
                 @*<form>
-                    <input type="text" placeholder="Keyword Search" class="form-control" name="ten" id="autocompleteInput" />
-                                 Add a hidden input field to store the selected item value
-                                <input type="hidden" name="selectedItemId" id="selectedItemId" />
+        <input type="text" placeholder="Keyword Search" class="form-control" name="ten" id="autocompleteInput" />
+                     Add a hidden input field to store the selected item value
+                    <input type="hidden" name="selectedItemId" id="selectedItemId" />
 
-                        <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
-                    </form>*@
+            <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+        </form>*@
 
 
             </div>
@@ -195,11 +221,11 @@
             <div class="panel-body">
                 <div class="pull-right">
                     @*<ul class="pagination pagination-sm pro-page-list">
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">»</a></li>
-                    </ul>*@
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">»</a></li>
+                        </ul>*@
                     <div>
                         Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) /
                         @Model.PageCount

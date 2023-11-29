@@ -1,4 +1,5 @@
-﻿using Microsoft.Security.Application;
+﻿using KK_BookStore.Models;
+using Microsoft.Security.Application;
 using Newtonsoft.Json;
 using PagedList;
 using System;
@@ -56,7 +57,7 @@ namespace KK_BookStore.Controllers
             }
             ViewBag.baiVietDanhGiaCao = lstbaiVietDanhGiaCao;
             //layRanDom
-            List<BaiViet> baivietsRanDom = myData.BaiViets.ToList();
+            List<BaiViet> baivietsRanDom = myData.BaiViets.Where(m=>m.TrangThai==1).ToList();
             List<BaiViet> random = new List<BaiViet>();
             Random rand = new Random();
             for (int i = 0; i < 6; i++)
@@ -157,6 +158,17 @@ namespace KK_BookStore.Controllers
             thongBao.TaiKhoan = "Admin";
             myData.ThongBaos.InsertOnSubmit(thongBao);
             myData.SubmitChanges();
+
+            //luu vao lich su hoat dong
+            LichSuHoatDong lichSuHoatDong = new LichSuHoatDong();
+            lichSuHoatDong.Ngay = DateTime.Now;
+            lichSuHoatDong.TaiKhoan = User.Identity.Name;
+            lichSuHoatDong.MaBaiViet = baiViet.MaBaiViet;
+            lichSuHoatDong.NoiDung = "Đã viết một bài review";
+            lichSuHoatDong.LoaiHoatDong = "write_post";
+
+            myData.LichSuHoatDongs.InsertOnSubmit(lichSuHoatDong);
+            myData.SubmitChanges();
             //return Redirect("https://localhost:44339/Review/quanLyBaiViet/");
 
             return RedirectToAction("quanLyBaiViet"); ;
@@ -206,6 +218,7 @@ namespace KK_BookStore.Controllers
                 ViewBag.checkCMT = -1;
 
             var lstComment = myData.BinhLuans.Where(p => p.MaBaiViet == id);
+            
             if(lstComment.Count()!=0)
                 ViewBag.comments = lstComment;
             else
@@ -288,6 +301,16 @@ namespace KK_BookStore.Controllers
                 baiviet.YeuThich++;
                 UpdateModel(baiviet);
                 myData.SubmitChanges();
+
+                LichSuHoatDong lichSuHoatDong = new LichSuHoatDong();
+                lichSuHoatDong.Ngay = DateTime.Now;
+                lichSuHoatDong.TaiKhoan = User.Identity.Name;
+                lichSuHoatDong.MaBaiViet = danhSachYeuThich.MaBaiViet;
+                lichSuHoatDong.NoiDung = "Đã yêu thích bài viết";
+                lichSuHoatDong.LoaiHoatDong = "yeuThich_Post";
+
+                myData.LichSuHoatDongs.InsertOnSubmit(lichSuHoatDong);
+                myData.SubmitChanges();
             }
             else
             {
@@ -295,6 +318,15 @@ namespace KK_BookStore.Controllers
                 myData.DanhSachYeuThiches.DeleteOnSubmit(delete);
                 baiviet.YeuThich--;
                 UpdateModel(baiviet);
+                myData.SubmitChanges();
+                LichSuHoatDong lichSuHoatDong = new LichSuHoatDong();
+                lichSuHoatDong.Ngay = DateTime.Now;
+                lichSuHoatDong.TaiKhoan = User.Identity.Name;
+                lichSuHoatDong.MaBaiViet = baiviet.MaBaiViet;
+                lichSuHoatDong.NoiDung = "Đã xóa khỏi danh sách yêu thích";
+                lichSuHoatDong.LoaiHoatDong = "xoayeuThich_Post";
+
+                myData.LichSuHoatDongs.InsertOnSubmit(lichSuHoatDong);
                 myData.SubmitChanges();
             }
             
@@ -345,7 +377,7 @@ namespace KK_BookStore.Controllers
 
 
         [Authorize]
-        public ActionResult themDanhGia(int mabaiviet, string comment, int? rate)
+        public ActionResult themDanhGia(int mabaiviet, string comment, int? rate,string strURL)
         {
 
             
@@ -404,7 +436,7 @@ namespace KK_BookStore.Controllers
             }
 
             myData.SubmitChanges();
-            return Redirect("https://localhost:44339/Review/Detail/" + mabaiviet);
+            return Redirect(strURL);
         }
         
         public ActionResult danhSachBaiViet(int? page)
@@ -434,8 +466,11 @@ namespace KK_BookStore.Controllers
                     break;
             }
             ViewBag.baiVietNhieuTim = lstBaiVietNhieuTim;
-
-
+            ViewBag.allPosts = allPost;
+            //check dsyt
+            var check_YeuThich = myData.DanhSachYeuThiches.Where(m => m.TaiKhoan == User.Identity.Name);
+            ViewBag.checkYT = check_YeuThich;
+            ViewBag.tempYT = 0;
             return View(allPost.ToPagedList(pageNum, pageSize));
         }
         public ActionResult locTheLoai(int id, int? page )
@@ -602,11 +637,11 @@ namespace KK_BookStore.Controllers
         }
         
 
-        public ActionResult danhSachPhanHoi(int? id)
+        public ActionResult danhSachPhanHoi(int id)
         {
-            var lst_cmt = myData.BinhLuans.Where(m => m.MaBaiViet == id).First();        
-            ViewBag.replys = myData.PhanHois.Where(m => m.MaBinhLuan == lst_cmt.MaBinhLuan);
-            return View(lst_cmt);
+            ViewBag.cmt = myData.BinhLuans.Where(m => m.MaBinhLuan == id).First();
+            var replys = myData.PhanHois.Where(m => m.MaBinhLuan == id).ToList() ;
+            return View(replys);
         }
         public ActionResult danhSachBinhLuan(int? id)
         {

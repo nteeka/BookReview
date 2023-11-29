@@ -213,13 +213,80 @@
                 <!-- ACTIVITY TAB CONTENT -->
                 <div class="tab-pane activity" id="activity-tab">
                     <ul class="list-unstyled activity-list">
-                        <li>
-                            <i class="fa fa-shopping-cart activity-icon pull-left"></i>
-                            <p>
-                                <a href="#">Jonathan</a> commented on <a href="#">Special Deal 2013</a> <span class="timestamp">12 minutes ago</span>
-                            </p>
-                        </li>
-                        <li>
+                        @foreach (var item in ViewBag.LichSuHoatDong)
+                        {
+                            <li>
+                                @if (item.LoaiHoatDong == "cmt")
+                                {
+                                    <i class="fa fa-comment activity-icon pull-left"></i>
+                                    <p>
+                                        <a href="#">@item.TaiKhoan</a> @item.NoiDung <a href="https://localhost:44339/Review/Detail/@item.MaBaiViet">@item.BaiViet.TenBaiViet</a> <span class="timestamp">@item.Ngay.ToString("dd/MM/yyyy")</span>
+                                    </p>
+                                }
+                                else
+                                {
+                                    if (item.LoaiHoatDong == "reply")
+                                    {
+                                        <i class="fa fa-reply activity-icon pull-left"></i>
+                                        <p>
+                                            <a href="#">@item.TaiKhoan</a> @item.NoiDung <a href="#">@item.BaiViet.TenBaiViet</a> <span class="timestamp">@item.Ngay.ToString("dd/MM/yyyy")</span>
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        if (item.LoaiHoatDong == "like_cmt")
+                                        {
+                                            <i class="fa fa-thumbs-up activity-icon pull-left"></i>
+                                            <p>
+                                                <a href="#">@item.TaiKhoan</a> @item.NoiDung <a href="#">@item.BaiViet.TenBaiViet</a> <span class="timestamp">@item.Ngay.ToString("dd/MM/yyyy")</span>
+                                            </p>
+                                        }
+                                        else
+                                        {
+                                            if (item.LoaiHoatDong == "write_post")
+                                            {
+                                                <i class="fa fa-pencil activity-icon pull-left"></i>
+                                                <p>
+                                                    <a href="#">@item.TaiKhoan</a> @item.NoiDung <a href="#">@item.BaiViet.TenBaiViet</a> <span class="timestamp">@item.Ngay.ToString("dd/MM/yyyy")</span>
+                                                </p>
+                                            }
+                                            else
+                                            {
+                                                if (item.LoaiHoatDong == "yeuThich_Post")
+                                                {
+                                                    <i class="fa fa-heart activity-icon pull-left"></i>
+                                                    <p>
+                                                        <a href="#">@item.TaiKhoan</a> @item.NoiDung <a href="#">@item.BaiViet.TenBaiViet</a> <span class="timestamp">@item.Ngay.ToString("dd/MM/yyyy")</span>
+                                                    </p>
+                                                }
+                                                else
+                                                {
+                                                    if (item.LoaiHoatDong == "duyet_Post")
+                                                    {
+                                                        <i class="fa fa-trash activity-icon pull-left"></i>
+                                                        <p>
+                                                            <a href="#">@item.TaiKhoan</a> @item.NoiDung <a href="#">@item.BaiViet.TenBaiViet</a> <span class="timestamp">@item.Ngay.ToString("dd/MM/yyyy")</span>
+                                                        </p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="fa fa-trash activity-icon pull-left"></i>
+                                                        <p>
+                                                            <a href="#">@item.TaiKhoan</a> @item.NoiDung <a href="#">@item.BaiViet.TenBaiViet</a> <span class="timestamp">@item.Ngay.ToString("dd/MM/yyyy")</span>
+                                                        </p>
+                                                    }
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+
+                            </li>
+                        }
+
+                        @*<li>
                             <i class="fa fa-pencil activity-icon pull-left"></i>
                             <p>
                                 <a href="#">Jonathan</a> posted <a href="#">a new blog post</a> <span class="timestamp">4 hours ago</span>
@@ -260,7 +327,7 @@
                             <p>
                                 <a href="#">Jonathan</a> has updated his credit card info <span class="timestamp">September 28</span>
                             </p>
-                        </li>
+                        </li>*@
                     </ul>
                     <p class="text-center more"><a href="#" class="btn btn-custom-primary">View more <i class="fa fa-long-arrow-right"></i></a></p>
                 </div>

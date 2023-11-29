@@ -103,7 +103,7 @@
     </aside>
 </div>
 
-<div class="container" style="float:right">
+<div class="container" style="float:right;margin-right:100px">
     
     <div class="card">
         
@@ -116,7 +116,7 @@
                         <div class="card-body">
                             <div class="row align-items-center">
                                 <div class="table-responsive px-3">
-                                    <table id="myTable" class="table table-striped align-middle table-nowrap">
+                                    <table class="table table-striped align-middle table-nowrap">
                                         <tbody>
                                             @if (Model.Count() == 0)
                                             {
@@ -130,7 +130,7 @@
                                             {
                                                 foreach (var item in Model)
                                                 {
-                                                    <tr data-href="@Url.Action("xemTruocBaiViet", "Admin", new { @id = item.MaBaiViet })">
+                                                    <tr>
                                                         <td>
                                                             <div class="avatar-lg me-4">
                                                                 <img src="@item.AnhBia" width="380" height="380" class="img-fluid rounded" alt="">
@@ -196,9 +196,9 @@
                                                             </ul>
                                                         </td>
 
-                                                        <td style="width: 220px;">
+                                                        @*<td style="width: 220px;">
                                                             <h3 class="mb-0 font-size-20"><span class="text-muted me-2"><del class="font-size-16 fw-normal">$500</del></span><b>$450</b></h3>
-                                                        </td>
+                                                        </td>*@
 
                                                         <td>
                                                             <a href="https://localhost:44339/Review/Edit/@item.MaBaiViet" class="btn btn-primary waves-effect waves-light"><i class="fa fa-pen"></i> Edit</a>
@@ -210,8 +210,8 @@
                                                                     <i class="bx bx-dots-horizontal-rounded"></i>
                                                                 </a>
                                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                                    <a class="dropdown-item" href="#">Edit</a>
-                                                                    <a class="dropdown-item" href="#">Action</a>
+                                                                    <a class="dropdown-item" href="https://localhost:44339/Review/Edit/@item.MaBaiViet">Edit</a>
+                                                                    <a class="dropdown-item" href="@Url.Action("xemTruocBaiViet", "Admin", new { @id = item.MaBaiViet })">Preview</a>
                                                                     <a class="dropdown-item" href="#">Remove</a>
                                                                 </div>
                                                             </div>

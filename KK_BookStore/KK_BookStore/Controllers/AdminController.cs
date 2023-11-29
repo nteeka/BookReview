@@ -591,6 +591,14 @@ namespace KK_BookStore.Controllers
             thongBaoReviewer.TaiKhoan = duyet_BaiViet.TaiKhoan;
             data.ThongBaos.InsertOnSubmit(thongBaoReviewer);
             data.SubmitChanges();
+            LichSuHoatDong lichSuHoatDong = new LichSuHoatDong();
+            lichSuHoatDong.Ngay = DateTime.Now;
+            lichSuHoatDong.TaiKhoan = User.Identity.Name;
+            lichSuHoatDong.MaBaiViet = duyet_BaiViet.MaBaiViet;
+            lichSuHoatDong.NoiDung = "Đã duyệt bài viết";
+            lichSuHoatDong.LoaiHoatDong = "duyet_Post";
+
+            data.LichSuHoatDongs.InsertOnSubmit(lichSuHoatDong);
             return RedirectToAction("danhSachThongBao");
         }
 
@@ -601,12 +609,8 @@ namespace KK_BookStore.Controllers
                 var anhDaiDien = from s in data.NguoiDungs where s.TaiKhoan == User.Identity.Name select s;
                 ViewBag.hinh = anhDaiDien.First().Hinh;
             }
-
-            
-
             var baiViet = data.BaiViets.Where(m => m.MaBaiViet == id).First();
             ViewBag.MaBaiViet = baiViet.MaBaiViet;           
-            data.SubmitChanges();
             return View(baiViet);
         }
     }

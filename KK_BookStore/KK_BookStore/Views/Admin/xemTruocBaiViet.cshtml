@@ -52,17 +52,21 @@
 
 
         </div>
-        @if (Model.TrangThai == -1)
+        @if (User.IsInRole("Admin"))
         {
-            <a style="background-color:green;color:white" class="btn btn-default " href="@Url.Action("duyetBaiViet", "Admin", new { @id = Model.MaBaiViet })">Duyệt bài</a>
+            if (Model.TrangThai == -1)
+            {
+                <a style="background-color:green;color:white" class="btn btn-default " href="@Url.Action("duyetBaiViet", "Admin", new { @id = Model.MaBaiViet })">Duyệt bài</a>
 
-            <a style="background-color:red;color:white" class="btn btn-default" href="#">Từ chối duyệt bài</a>
-        }
-        else
-        {
-            <span  style="background-color:green;color:white" class="btn btn-default "> Đã Duyệt bài</span>
+                <a style="background-color:red;color:white" class="btn btn-default" href="#">Từ chối duyệt bài</a>
+            }
+            else
+            {
+                <span style="background-color:green;color:white" class="btn btn-default "> Đã Duyệt bài</span>
 
+            }
         }
+
 
 
 

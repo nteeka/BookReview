@@ -42,7 +42,7 @@ namespace KK_BookStore.Controllers
             ViewBag.baiviet = lstBaiViet;
 
 
-            List<BaiViet> baivietsRanDom = data.BaiViets.ToList();
+            List<BaiViet> baivietsRanDom = data.BaiViets.Where(m=>m.TrangThai==1).ToList();
             List<BaiViet> random = new List<BaiViet>();
             Random rand = new Random();
             for (int i = 0;i<3;i++)

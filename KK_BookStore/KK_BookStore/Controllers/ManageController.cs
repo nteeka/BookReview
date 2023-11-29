@@ -100,7 +100,8 @@ namespace KK_BookStore.Controllers
                 ViewBag.MonthJoin = thang;
                 ViewBag.YearJoin = a.Year;
             }
-
+            var listLichSuHoatDong = mydata.LichSuHoatDongs.Where(m => m.TaiKhoan == User.Identity.Name);
+            ViewBag.LichSuHoatDong = listLichSuHoatDong;
 
 
 
