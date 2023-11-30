@@ -67,10 +67,15 @@
                                         <td>@item.Name</td>
 
                                         <td>
-                                            <a class="edit" href="@Url.Action("Edit", "Role",new { @id = item.Id})" title="Edit" data-toggle="tooltip"><i class="fa fa-pen"></i></a>
-                                            <a style="margin-left:10px" class="delete" href="@Url.Action("Delete", "Role",new { @id = item.Id})" title="Delete" data-toggle="tooltip"><i class="fa fa-trash"></i></a>
-                                            <a style="margin-left:10px" href="@Url.Action("danhSachNguoiDungTheoRole", "Role",new { @id =item.Id})" title="Chi tiết" data-toggle="tooltip"><i style="font-size:large" class="fa fa-info"></i></a>
 
+                                            <a class="edit" href="@Url.Action("Edit", "Role",new { @id = item.Id})" title="Edit" data-toggle="tooltip"><i class="fa fa-pen"></i>Edit</a>
+                                            <a style="margin-left:10px" class="delete" href="@Url.Action("Delete", "Role",new { @id = item.Id})" title="Delete" data-toggle="tooltip"><i class="fa fa-trash"></i>Delete</a>
+                                            <a style="margin-left:10px" href="@Url.Action("danhSachNguoiDungTheoRole", "Role",new { @id =item.Id})" title="Chi tiết" data-toggle="tooltip"><i style="font-size:large" class="fa fa-info"></i>List User</a>
+                                            @if (item.Name != "User")
+                                            {
+                                                <a style="margin-left:10px" href="@Url.Action("danhSachNguoiDung", "Admin",new { @maChucVu =item.Id})" title="Chi tiết" data-toggle="tooltip"><i style="font-size:large" class="fa fa-plus"></i>Add user to role</a>
+
+                                            }
                                         </td>
                                     </tr>
                                 }

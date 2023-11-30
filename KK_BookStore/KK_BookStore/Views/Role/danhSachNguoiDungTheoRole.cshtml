@@ -128,12 +128,17 @@
                                             <td><p style="color:green">Normal</p></td>
                                         }
 
-                                        <td>
-                                            <a class="edit" href="@Url.Action("EditNguoiDung", "Admin",new { @id =item.TaiKhoan.Trim()})" title="Edit" data-toggle="tooltip"><i class="fa fa-pen"></i></a>
+                                    <td>
+                                        <a class="edit" href="@Url.Action("EditNguoiDung", "Admin",new { @id =item.TaiKhoan.Trim()})" title="Edit" data-toggle="tooltip"><i class="fa fa-pen"></i></a>
+                                        <hr />
+                                        <a class="delete" href="@Url.Action("camNguoiDung", "Admin",new { @id = item.TaiKhoan.Trim()})" title="Khóa tài khoản" data-toggle="tooltip"><i class="fa fa-lock"></i></a>
+                                        @if (item.ChucVu.TenChucVu.Trim() != "User")
+                                        {
                                             <hr />
-                                            <a class="delete" href="@Url.Action("camNguoiDung", "Admin",new { @id = item.TaiKhoan.Trim()})" title="Khóa tài khoản" data-toggle="tooltip"><i class="fa fa-lock"></i></a>
+                                            <a class="delete" href="@Url.Action("setToUser", "Admin",new { @id = item.TaiKhoan.Trim(), @strURL = Request.Url.ToString()})" title="set to user" data-toggle="tooltip">Set to user</a>
+                                        }
 
-                                        </td>
+                                    </td>
 
                                     </tr>
 

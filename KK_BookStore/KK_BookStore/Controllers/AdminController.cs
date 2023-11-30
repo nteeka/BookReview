@@ -75,6 +75,14 @@ namespace KK_BookStore.Controllers
 
             return View(all_nguoidung);
         }
+        //show for set role
+        public ActionResult danhSachNguoiDung(string maChucVu)
+        {
+
+            var all_nguoidung = from tt in data.NguoiDungs.Where(m=>m.MaChucVu != maChucVu) select tt;
+
+            return View(all_nguoidung);
+        }
         public ActionResult camNguoiDung(string id)
         {
 
@@ -143,11 +151,33 @@ namespace KK_BookStore.Controllers
             }
             return View();
         }
-       
+        //set role cho User
+        public async Task<ActionResult> setRole(string id, string role,string strURL)
+        {
+            var nguoiDung = data.NguoiDungs.Where(m => m.TaiKhoan == id).First();
+            var user = db.Users.Where(m => m.UserName == id).First();
+            var roleSystem = db.Roles.Where(m => m.Name == role).First();
+            nguoiDung.MaChucVu = roleSystem.Id;
+            UpdateModel(nguoiDung);
+            var result = await UserManager.AddToRoleAsync(user.Id, roleSystem.Name);
+            data.SubmitChanges();
+            return Redirect(strURL);
+        }
+        public async Task<ActionResult> setToUser(string id, string strURL)
+        {
+            var nguoiDung = data.NguoiDungs.Where(m => m.TaiKhoan == id).First();
+            var user = db.Users.Where(m => m.UserName == id).First();       
+            nguoiDung.MaChucVu = "9cb428a4-bd38-415b-aed6-264b6afa1a59";
+            UpdateModel(nguoiDung);
+            var result = await UserManager.AddToRoleAsync(user.Id, "User");
+            data.SubmitChanges();
+            return Redirect(strURL);
+        }
 
 
 
-        
+
+
 
         //Categories
         public ActionResult quanLyTheLoai()
@@ -564,22 +594,47 @@ namespace KK_BookStore.Controllers
 
         public ActionResult danhSachThongBao(int? page)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                var anhDaiDien = from s in data.NguoiDungs where s.TaiKhoan == User.Identity.Name select s;
+                ViewBag.hinh = anhDaiDien.First().Hinh;
+            }
             if (page == null) page = 1;
             int pageSize = 3;
             int pageNum = page ?? 1;
             var all_ThongBao = from tt in data.ThongBaos where tt.TaiKhoan == "Admin" orderby tt.MaThongBao descending select tt;
             return View(all_ThongBao.ToPagedList(pageNum, pageSize));
         }
+        public ActionResult danhDauDaDoc(int id, string strURL)
+        {
+
+            var all_ThongBao = (from tt in data.ThongBaos where tt.MaBaiViet == id select tt).First();
+            all_ThongBao.TrangThai = 1;
+            UpdateModel(all_ThongBao);
+            data.SubmitChanges();
+            return Redirect(strURL);
+
+        }
+        public ActionResult danhDauChuaDoc(int id, string strURL)
+        {
+
+            var all_ThongBao = (from tt in data.ThongBaos where tt.MaBaiViet == id select tt).First();
+            all_ThongBao.TrangThai = 0;
+            UpdateModel(all_ThongBao);
+            data.SubmitChanges();
+            return Redirect(strURL);
+
+        }
 
         public ActionResult duyetBaiViet(int id)
         {
             var duyet_BaiViet = (from tt in data.BaiViets where tt.MaBaiViet == id select tt).First();
-            var all_ThongBao = (from tt in data.ThongBaos where tt.MaBaiViet == id select tt).First();
+            //var all_ThongBao = (from tt in data.ThongBaos where tt.MaBaiViet == id select tt).First();
 
             duyet_BaiViet.TrangThai = 1;
             UpdateModel(duyet_BaiViet);
-            all_ThongBao.TrangThai = 1;
-            UpdateModel(all_ThongBao);
+            //all_ThongBao.TrangThai = 1;
+            //UpdateModel(all_ThongBao);
             data.SubmitChanges();
             SetAlert("Duyệt bài thành công", "success");
             //guiTHongBaoChoReviewer

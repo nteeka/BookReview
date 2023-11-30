@@ -70,7 +70,7 @@
                             </div>
                             <!-- Mail list-->
                             <div class="table-responsive">
-                                <table id="myTable" class="table email-table no-wrap table-hover v-middle mb-0 font-14">
+                                <table  class="table email-table no-wrap table-hover v-middle mb-0 font-14">
                                     <tbody>
                                         <!-- row -->
                                         <tr>
@@ -80,20 +80,21 @@
                                             <td>Status</td>
                                             <td>Kind</td>
                                             <td>Message</td>
-                                            <td>a</td>
                                             <td>Date</td>
+                                            <td>Status</td>
+
                                         </tr>
                                         @foreach (var item in Model)
                                         {
                                             if (item.TrangThai == 0)
                                             {
-                                                <tr data-href="@Url.Action("xemTruocBaiViet", "Admin", new { @id = item.MaBaiViet })" style="background-color:wheat" class="">
+                                                <tr style="background-color:lightblue" class="">
                                                     <!-- label -->
                                                     <td class="pl-3">
                                                         @*<div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input" id="cst7" />
-                                                                <label class="custom-control-label" for="cst7">&nbsp;</label>
-                                                            </div>*@
+                <input type="checkbox" class="custom-control-input" id="cst7" />
+                <label class="custom-control-label" for="cst7">&nbsp;</label>
+            </div>*@
                                                         <a href="#"><i class="fa fa-eye"></i></a>
                                                     </td>
                                                     <!-- star -->
@@ -129,57 +130,84 @@
                                                         </a>
                                                     </td>
                                                     <td><span class="font-light text-dark">@item.NoiDung</span></td>
-                                                    <!-- Attachment -->
-                                                    <td><i class="fa fa-paperclip text-muted"></i></td>
+
                                                     <!-- Time -->
                                                     <td class="text-muted font-light">@item.NgayTao.Value.ToString("dd/MM/yyyy")</td>
+                                                    <!-- Attachment -->
+                                                    <td>
+                                                        <ul>
+                                                            <li>
+                                                                <a href="@Url.Action("danhDauDaDoc", "Admin", new { @id = item.MaBaiViet,@strURL = Request.Url.ToString() })" class="fa fa-check text-muted">Đánh dấu đã đọc</a>
+
+                                                            </li>
+                                                            
+                                                            <li>
+                                                                <a href="@Url.Action("xemTruocBaiViet", "Admin", new { @id = item.MaBaiViet })" class="fa fa-eye text-muted">Xem trước </a>
+
+                                                            </li>
+                                                        </ul>
+
+                                                    </td>
                                                 </tr>
                                             }
                                             else
                                             {
-                                                <tr data-href="@Url.Action("xemTruocBaiViet", "Admin", new { @id = item.MaBaiViet })" class="">
-                                                    <!-- label -->
-                                                    <td class="pl-3">
-                                                        <a href="#"><i class="fa fa-eye"></i></a>
-                                                    </td>
-                                                    <!-- star -->
-                                                    <td>@item.BaiViet.TaiKhoan</td>
-                                                    <!-- User -->
-                                                    <td>
-                                                        <span class="mb-0 text-muted font-light">@item.BaiViet.TenBaiViet</span>
-                                                    </td>
-                                                    <!-- Message -->
-                                                    <td>
-                                                        @if (@item.BaiViet.TrangThai == -1)
-                                                        {
-                                                            <span style="background-color:yellow" class="badge badge-pill text-dark font-medium badge-danger mr-2">Waiting</span>
-                                                        }
-                                                        else
-                                                        {
-                                                            if (@item.BaiViet.TrangThai == 1)
-                                                            {
-                                                                <span class="badge badge-pill text-success font-medium badge-danger mr-2">Public</span>
+                                    <tr class="">
+                                        <!-- label -->
+                                        <td class="pl-3">
+                                            <a href="#"><i class="fa fa-eye"></i></a>
+                                        </td>
+                                        <!-- star -->
+                                        <td>@item.BaiViet.TaiKhoan</td>
+                                        <!-- User -->
+                                        <td>
+                                            <span class="mb-0 text-muted font-light">@item.BaiViet.TenBaiViet</span>
+                                        </td>
+                                        <!-- Message -->
+                                        <td>
+                                            @if (@item.BaiViet.TrangThai == -1)
+                                            {
+                                                <span style="background-color:yellow" class="badge badge-pill text-dark font-medium badge-danger mr-2">Waiting</span>
+                                            }
+                                            else
+                                            {
+                                                if (@item.BaiViet.TrangThai == 1)
+                                                {
+                                                    <span class="badge badge-pill text-success font-medium badge-danger mr-2">Public</span>
 
-                                                            }
-                                                            else
-                                                            {
-                                                                <span class="badge badge-pill text-red font-medium badge-danger mr-2">Private</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge badge-pill text-red font-medium badge-danger mr-2">Private</span>
 
-                                                            }
-                                                        }
-                                                    </td>
-                                                    <td>
-                                                        <a class="link" href="javascript: void(0)">
-                                                            <span class="badge badge-pill text-dark font-medium badge-danger mr-2">Review</span>
+                                                }
+                                            }
+                                        </td>
+                                        <td>
+                                            <a class="link" href="javascript: void(0)">
+                                                <span class="badge badge-pill text-dark font-medium badge-danger mr-2">Review</span>
 
-                                                        </a>
-                                                    </td>
-                                                    <td><span class="font-light text-dark">@item.NoiDung</span></td>
-                                                    <!-- Attachment -->
-                                                    <td><i class="fa fa-paperclip text-muted"></i></td>
-                                                    <!-- Time -->
-                                                    <td class="text-muted font-light">@item.NgayTao.Value.ToString("dd/MM/yyyy")</td>
-                                                </tr>
+                                            </a>
+                                        </td>
+                                        <td><span class="font-light text-dark">@item.NoiDung</span></td>
+                                        <!-- Time -->
+                                        <td class="text-muted font-light">@item.NgayTao.Value.ToString("dd/MM/yyyy")</td>
+                                        <!-- Attachment -->
+                                        <td>
+                                            <ul>
+                                               
+                                                <li>
+                                                    <a href="@Url.Action("danhDauChuaDoc", "Admin", new { @id = item.MaBaiViet,@strURL = Request.Url.ToString() })" class="fa fa-check text-muted">Đánh dấu chưa đọc</a>
+
+                                                </li>
+                                                <li>
+                                                    <a href="@Url.Action("xemTruocBaiViet", "Admin", new { @id = item.MaBaiViet })" class="fa fa-eye text-muted">Xem trước </a>
+
+                                                </li>
+                                            </ul>
+
+                                        </td>
+                                    </tr>
                                             }
 
                                         }

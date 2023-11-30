@@ -13,7 +13,7 @@
 
     <div class="form-horizontal" style="font-size:xx-large">
         <img src="@Model.Hinh" style="width:100px;height:70px;margin-top:25px;margin-left:635px;border-radius:20px" class="profile-user-img img-responsive img-circle" />
-        <h1 style="text-align:center">@Model.TaiKhoan</h1>
+        <h1 style="text-align:center;margin-right:100px">@Model.TaiKhoan</h1>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.TaiKhoan)

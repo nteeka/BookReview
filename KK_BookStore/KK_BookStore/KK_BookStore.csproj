@@ -428,6 +428,8 @@
     <Content Include="Content\CamOn\CamOn.css" />
     <Content Include="Content\CHiTietDonHang\CTDH.css" />
     <Content Include="Content\DanhSachYeuThich\DanhSachBaiViet.css" />
+    <Content Include="Content\darkMode.css" />
+    <Content Include="Content\darkMode.js" />
     <Content Include="Content\demo.js" />
     <Content Include="Content\Details\detail.css" />
     <Content Include="Content\DropDown.css" />
@@ -1284,6 +1286,7 @@
     <Content Include="Views\Review\filter.cshtml" />
     <Content Include="Views\Review\Search.cshtml" />
     <Content Include="Views\NguoiDung\trangCaNhan.cshtml" />
+    <Content Include="Views\Admin\danhSachNguoiDung.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -651,6 +651,11 @@ namespace KK_BookStore.Controllers
         }
         public ActionResult danhSachThongBao()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                var anhDaiDien = from s in myData.NguoiDungs where s.TaiKhoan == User.Identity.Name select s;
+                ViewBag.hinh = anhDaiDien.First().Hinh;
+            }
             var all_ThongBao = from tt in myData.ThongBaos where tt.TaiKhoan == User.Identity.Name orderby tt.MaThongBao descending select tt;
             return View(all_ThongBao);
         }

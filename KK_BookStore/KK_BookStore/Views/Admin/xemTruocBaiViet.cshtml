@@ -22,28 +22,89 @@
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
         <!------ Include the above in your HEAD tag ---------->
 
+        <link href="https://raw.githubusercontent.com/daneden/animate.css/master/animate.css" rel="stylesheet">
 
-
+        <div style="width: 100%; height: 300px" id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="mask flex-center">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div style="margin-left:200px;padding-top:10px" class="col-md-5 col-12 order-md-1 order-2">
+                                    <h4 style="font-size:50px">
+                                        Present your <br>
+                                        awesome product
+                                    </h4>
+                                    <p>
+                                        Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum <br>
+                                        necessitatibus praesentium voluptatum deleniti atque corrupti.
+                                    </p>
+                                    <a href="#">BUY NOW</a>
+                                </div>
+                                <div class="col-md-5 col-12 order-md-2 order-1"><img width="200" src="https://i.imgur.com/NKvkfTT.png" class="mx-auto" alt="slide"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*<div class="carousel-item">
+                    <div class="mask flex-center">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-md-7 col-12 order-md-1 order-2">
+                                    <h4>
+                                        Present your <br>
+                                        awesome product
+                                    </h4>
+                                    <p>
+                                        Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum <br>
+                                        necessitatibus praesentium voluptatum deleniti atque corrupti.
+                                    </p>
+                                    <a href="#">BUY NOW</a>
+                                </div>
+                                <div class="col-md-5 col-12 order-md-2 order-1"><img width="200" src="https://i.imgur.com/duWgXRs.png" class="mx-auto" alt="slide"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="mask flex-center">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-md-7 col-12 order-md-1 order-2">
+                                    <h4>
+                                        Present your <br>
+                                        awesome product
+                                    </h4>
+                                    <p>
+                                        Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum <br>
+                                        necessitatibus praesentium voluptatum deleniti atque corrupti.
+                                    </p>
+                                    <a href="#">BUY NOW</a>
+                                </div>
+                                <div class="col-md-5 col-12 order-md-2 order-1"><img width="200" src="https://i.imgur.com/DGkR4OQ.png" class="mx-auto" alt="slide"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+            </div>
+            @*<a style="width:100px" class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">Next</span> </a>*@
+        </div>
         <script src="~/Content/Ads/Ads_home.js"></script>
         <!--slide end-->
-        <div style="width:1000px">
+        <div style="width: 1200px; margin-left: 180px;margin-top:40px">
             <div>
-                <section style="margin-left:80px;" id="@Model.TenBaiViet">
-
-                    <h1 style="background-color:bisque;width:fit-content;padding-bottom:5px">@Model.TheLoai.TenTL</h1>
-                    <h1>Bai Review @Model.TenBaiViet</h1>
-                    <hr>
-                    <hr>
-                    <hr>
-                    <article>
-                        @*<img src="@ViewBag.baiviet.AnhBia" width="700" height="300" />*@
-                        <p>
-                            @Html.Raw(Model.NoiDung)
-                        </p>
+                @*<section style="margin-left:180px;" id="@Model.TenBaiViet">*@
+                <h1 style="background-color:bisque;width:fit-content;padding-bottom:5px">@Model.TheLoai.TenTL</h1>
+                <h1>@Model.TenBaiViet</h1>
+                <article>
+                    @*<img src="@ViewBag.baiviet.AnhBia" width="700" height="300" />*@
+                    <p>
+                        @Html.Raw(Model.NoiDung)
+                    </p>
 
 
-                    </article>
-                </section>
+                </article>
+                @*</section>*@
                 @*}*@
 
 
@@ -56,13 +117,16 @@
         {
             if (Model.TrangThai == -1)
             {
-                <a style="background-color:green;color:white" class="btn btn-default " href="@Url.Action("duyetBaiViet", "Admin", new { @id = Model.MaBaiViet })">Duyệt bài</a>
+                <div style="text-align:center">
+                    <a style="background-color:green;color:white" class="btn btn-default " href="@Url.Action("duyetBaiViet", "Admin", new { @id = Model.MaBaiViet })">Duyệt bài</a>
 
-                <a style="background-color:red;color:white" class="btn btn-default" href="#">Từ chối duyệt bài</a>
+                    <a style="background-color:red;color:white" class="btn btn-default" href="#">Từ chối duyệt bài</a>
+                </div>
+               
             }
             else
             {
-                <span style="background-color:green;color:white" class="btn btn-default "> Đã Duyệt bài</span>
+                <span style="background-color: green; color: white; text-align: center" class="btn btn-default "> Đã Duyệt bài</span>
 
             }
         }
