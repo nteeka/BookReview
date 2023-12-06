@@ -26,18 +26,66 @@ namespace KK_BookStore.Controllers
         [Authorize(Roles ="Admin")]
         public ActionResult Index()
         {
-            //var soLuongNguoiDung = from tt in data.NguoiDungs select tt;
-            //ViewBag.soLuongNguoiDung = soLuongNguoiDung.Count();
-            //var soLuongDonHang = from tt in data.HoaDons select tt;
-            //ViewBag.soLuongDonHang = soLuongDonHang.Count();
-            //var soLuongDonHangChuaDuyet = from tt in data.HoaDons where tt.TinhTrang == null select tt;
-            //ViewBag.soLuongDonHangChuaDuyet = soLuongDonHangChuaDuyet.Count();
-            //var tongDoanhThu = from tt in data.CTHoaDons select tt.ThanhTien ;
-            //ViewBag.tongDoanhThu = tongDoanhThu.Sum();
+            
+            
+            //thong bao
+                //chua doc
+                var notiUnread = data.ThongBaos.Where(m=>m.TrangThai ==0).ToList();
+                ViewBag.notiUnreads = notiUnread.Count();
+                var noti = data.ThongBaos.ToList();
+                ViewBag.notis = noti.Count();
+
+            //dem cmt
+            var countComment = data.BinhLuans.ToList();
+            ViewBag.countComments = countComment.Count();
+
+            //dem visitor => so sanh vs ngay hom qua
+                var countVisitorsToday = data.SystemAccesses.Where(m => m.Ngay.Value.Date == DateTime.Now.Date).ToList();
+                var countVisitor = data.SystemAccesses.ToList();
+                ViewBag.countVisitorsToday = countVisitorsToday.Count();
+                ViewBag.countVisitor = countVisitor.Count();
+            //so luong new user trong ngay
+
+            //tong so luong user/ reviewer / accessor
+            //tong account
+                var soLuongNguoiDung = from tt in data.NguoiDungs select tt;
+                ViewBag.soLuongNguoiDung = soLuongNguoiDung.Count();
+                var soLuongNguoiDungMoi = from tt in data.NguoiDungs.Where(m => m.NgayLap.Value.Date == DateTime.Now.Date) select tt;
+                ViewBag.soLuongNguoiDungMoi = soLuongNguoiDungMoi.Count();
+            //posts
+            //dem public posts
+                var soLuongBaiVietPublic = from tt in data.BaiViets where tt.TrangThai == 1 select tt;
+                ViewBag.countPostPublic = soLuongBaiVietPublic.Count();
+                var soLuongBaiVietPublicToday = from tt in data.BaiViets where tt.TrangThai == 1 && tt.NgayViet.Value.Date == DateTime.Now.Date select tt;
+                ViewBag.countPostPublicToday = soLuongBaiVietPublicToday.Count();
+            //chua duyet
+                var soLuongBaiVietChuaDuyet = from tt in data.BaiViets where tt.TrangThai == -1 select tt;
+                ViewBag.soLuongBaiVietChuaDuyet = soLuongBaiVietChuaDuyet.Count();
+
+            //post nhieu like
+
+            //nhieu view
+            var mostViewPosts = from tt in data.BaiViets where tt.TrangThai == 1 orderby tt.LuotXem descending select tt;
+            ViewBag.mostViewPosts = mostViewPosts;
+           
+            ViewBag.countMostViewPosts = 0;
+            //nhieu tim
+
+            //author(reviewer)
+            //nhieu posts
+
+            //nhieu view(tong so) - like - tim
+
+
+
+
+
             //var soLuongNguoiMuaTrongNgay = from tt in data.HoaDons where tt.NgayTao == DateTime.Now select tt;
             //ViewBag.soLuongNguoiMuaTrongNgay = soLuongNguoiMuaTrongNgay.Count();
             //var soLuongNguoiMuaTrongThang = from tt in data.HoaDons where tt.NgayTao.Value.Month == DateTime.Now.Month && tt.NgayTao.Value.Year == DateTime.Now.Year select tt;
             //ViewBag.soLuongNguoiMuaTrongThang = soLuongNguoiMuaTrongThang.Count();
+
+
             //var nguoiMuaNhieuNhat = from tt in data.HoaDons orderby tt.TaiKhoan select tt.TaiKhoan;
             //ViewBag.nguoiMuaNhieuNhat = nguoiMuaNhieuNhat.Max();
             //var anhNguoiMuaNhieuNhat = from tt in data.HoaDons orderby tt.TaiKhoan select tt.NguoiDung.Hinh;
@@ -48,14 +96,12 @@ namespace KK_BookStore.Controllers
             //var anhNguoiMuaNhieuNhatTrongThang = from tt in data.HoaDons where tt.NgayTao.Value.Month == DateTime.Now.Month && tt.NgayTao.Value.Year == DateTime.Now.Year orderby tt.TaiKhoan select tt.NguoiDung.Hinh;
             //ViewBag.anhNguoiMuaNhieuNhatTrongThang = anhNguoiMuaNhieuNhatTrongThang.Max();
 
-            //var tongDoanhThuTrongThang = from tt in data.CTHoaDons where tt.HoaDon.NgayTao.Value.Month == DateTime.Now.Month && tt.HoaDon.NgayTao.Value.Year == DateTime.Now.Year select tt.ThanhTien;
-            //ViewBag.tongDoanhThuTrongThang = tongDoanhThuTrongThang.Sum();
+
 
             //var anhSachNhieuLike = from tt in data.Saches  orderby tt.SoLike descending select tt;
             //ViewBag.anhSachNhieuLike = anhSachNhieuLike.First();
 
-            //var tongDoanhThuTrongNgay = from tt in data.CTHoaDons where tt.HoaDon.NgayTao.Value.Day == DateTime.Now.Day && tt.HoaDon.NgayTao.Value.Month == DateTime.Now.Month && tt.HoaDon.NgayTao.Value.Year == DateTime.Now.Year select tt.ThanhTien;
-            //ViewBag.tongDoanhThuTrongNgay = tongDoanhThuTrongNgay.Sum();
+
             var lstThongBao = data.ThongBaos.FirstOrDefault();
             ViewBag.thongBao = lstThongBao;
             return View();
@@ -80,7 +126,8 @@ namespace KK_BookStore.Controllers
         {
 
             var all_nguoidung = from tt in data.NguoiDungs.Where(m=>m.MaChucVu != maChucVu) select tt;
-
+            var setRole = from tt in data.NguoiDungs.Where(m => m.MaChucVu == maChucVu) select tt;
+            ViewBag.setRole = setRole.First().ChucVu.TenChucVu;
             return View(all_nguoidung);
         }
         public ActionResult camNguoiDung(string id)
@@ -159,6 +206,15 @@ namespace KK_BookStore.Controllers
             var roleSystem = db.Roles.Where(m => m.Name == role).First();
             nguoiDung.MaChucVu = roleSystem.Id;
             UpdateModel(nguoiDung);
+            if(role == "Reviewer")
+            {
+                Author author = new Author();
+                author.SoLuongTheoDoi = 0;
+                author.TaiKhoan = nguoiDung.TaiKhoan;
+                data.Authors.InsertOnSubmit(author);
+                data.SubmitChanges();
+            }
+            
             var result = await UserManager.AddToRoleAsync(user.Id, roleSystem.Name);
             data.SubmitChanges();
             return Redirect(strURL);
@@ -166,7 +222,13 @@ namespace KK_BookStore.Controllers
         public async Task<ActionResult> setToUser(string id, string strURL)
         {
             var nguoiDung = data.NguoiDungs.Where(m => m.TaiKhoan == id).First();
-            var user = db.Users.Where(m => m.UserName == id).First();       
+            var user = db.Users.Where(m => m.UserName == id).First();
+            var author = data.Authors.Where(m => m.TaiKhoan == id).First();
+            if(author!=null)
+            {
+                data.Authors.DeleteOnSubmit(author);
+                data.SubmitChanges();
+            }
             nguoiDung.MaChucVu = "9cb428a4-bd38-415b-aed6-264b6afa1a59";
             UpdateModel(nguoiDung);
             var result = await UserManager.AddToRoleAsync(user.Id, "User");
@@ -608,7 +670,7 @@ namespace KK_BookStore.Controllers
         public ActionResult danhDauDaDoc(int id, string strURL)
         {
 
-            var all_ThongBao = (from tt in data.ThongBaos where tt.MaBaiViet == id select tt).First();
+            var all_ThongBao = (from tt in data.ThongBaos where tt.MaThongBao == id select tt).First();
             all_ThongBao.TrangThai = 1;
             UpdateModel(all_ThongBao);
             data.SubmitChanges();
@@ -618,7 +680,7 @@ namespace KK_BookStore.Controllers
         public ActionResult danhDauChuaDoc(int id, string strURL)
         {
 
-            var all_ThongBao = (from tt in data.ThongBaos where tt.MaBaiViet == id select tt).First();
+            var all_ThongBao = (from tt in data.ThongBaos where tt.MaThongBao == id select tt).First();
             all_ThongBao.TrangThai = 0;
             UpdateModel(all_ThongBao);
             data.SubmitChanges();
@@ -646,6 +708,26 @@ namespace KK_BookStore.Controllers
             thongBaoReviewer.TaiKhoan = duyet_BaiViet.TaiKhoan;
             data.ThongBaos.InsertOnSubmit(thongBaoReviewer);
             data.SubmitChanges();
+
+            //thong bao cho folower cua reviewer
+            var lstFolowers = data.FollowDetails.Where(m => m.Author.TaiKhoan == duyet_BaiViet.TaiKhoan);
+            if (lstFolowers != null)
+            {
+                foreach (var a in lstFolowers)
+                {
+                    ThongBao tbao = new ThongBao();
+                    tbao.NgayTao = DateTime.Now;
+                    tbao.TrangThai = 0;
+                    tbao.TaiKhoan = a.TaiKhoan;
+                    tbao.MaBaiViet = duyet_BaiViet.MaBaiViet;
+                    tbao.NoiDung = "Reviewer " + duyet_BaiViet.TaiKhoan + " vừa mới đăng bài " + duyet_BaiViet.TenBaiViet;
+                    data.ThongBaos.InsertOnSubmit(tbao);
+
+                }
+            }
+            data.SubmitChanges();
+
+
             LichSuHoatDong lichSuHoatDong = new LichSuHoatDong();
             lichSuHoatDong.Ngay = DateTime.Now;
             lichSuHoatDong.TaiKhoan = User.Identity.Name;

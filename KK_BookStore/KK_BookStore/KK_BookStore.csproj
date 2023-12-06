@@ -1287,6 +1287,7 @@
     <Content Include="Views\Review\Search.cshtml" />
     <Content Include="Views\NguoiDung\trangCaNhan.cshtml" />
     <Content Include="Views\Admin\danhSachNguoiDung.cshtml" />
+    <Content Include="Views\NguoiDung\danhSachThongBao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

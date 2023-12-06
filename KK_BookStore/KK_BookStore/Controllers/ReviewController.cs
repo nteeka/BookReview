@@ -19,6 +19,10 @@ namespace KK_BookStore.Controllers
         MyDataDataContext myData = new MyDataDataContext();
         public ActionResult Index()
         {
+            //so luong thong bao chua doc
+            var countNoti = myData.ThongBaos.Where(m => m.TaiKhoan == User.Identity.Name && m.TrangThai == 0);
+            ViewBag.soLuongTBChuaDoc = countNoti.Count();
+
             if (User.Identity.IsAuthenticated)
             {
                 var anhDaiDien = from s in myData.NguoiDungs where s.TaiKhoan == User.Identity.Name select s;
@@ -159,6 +163,9 @@ namespace KK_BookStore.Controllers
             myData.ThongBaos.InsertOnSubmit(thongBao);
             myData.SubmitChanges();
 
+            
+
+
             //luu vao lich su hoat dong
             LichSuHoatDong lichSuHoatDong = new LichSuHoatDong();
             lichSuHoatDong.Ngay = DateTime.Now;
@@ -199,10 +206,14 @@ namespace KK_BookStore.Controllers
         }
         public ActionResult Detail(int id)
         {
+            //so luong thong bao chua doc
+            var countNoti = myData.ThongBaos.Where(m => m.TaiKhoan == User.Identity.Name && m.TrangThai == 0);
+            ViewBag.soLuongTBChuaDoc = countNoti.Count();
             if (User.Identity.IsAuthenticated)
             {
                 var anhDaiDien = from s in myData.NguoiDungs where s.TaiKhoan == User.Identity.Name select s;
                 ViewBag.hinh = anhDaiDien.First().Hinh;
+
             }
 
 
@@ -228,9 +239,11 @@ namespace KK_BookStore.Controllers
                 ViewBag.replys = reply;
             else
                 ViewBag.replys = null;
+            ViewBag.showAllReplys = 0;
             ViewBag.countReply = 0;
             ViewBag.MaBaiViet = 0;
             ViewBag.countComment = 0;
+            ViewBag.showAllCMT = lstComment.Count();
 
             var baiViet = myData.BaiViets.Where(m => m.MaBaiViet == id).First();
             ViewBag.MaBaiViet = baiViet.MaBaiViet;
@@ -441,11 +454,13 @@ namespace KK_BookStore.Controllers
         
         public ActionResult danhSachBaiViet(int? page)
         {
-
+            //so luong thong bao chua doc
+            var countNoti = myData.ThongBaos.Where(m => m.TaiKhoan == User.Identity.Name && m.TrangThai == 0);
+            ViewBag.soLuongTBChuaDoc = countNoti.Count();
             if (page == null) page = 1;
             int pageSize = 6;
             int pageNum = page ?? 1;
-            var allPost = from tt in myData.BaiViets select tt;
+            var allPost = from tt in myData.BaiViets where tt.TrangThai == 1 select tt;
 
             if(User.Identity.IsAuthenticated)
             {
@@ -475,6 +490,13 @@ namespace KK_BookStore.Controllers
         }
         public ActionResult locTheLoai(int id, int? page )
         {
+            //check dsyt
+            var check_YeuThich = myData.DanhSachYeuThiches.Where(m => m.TaiKhoan == User.Identity.Name);
+            ViewBag.checkYT = check_YeuThich;
+            ViewBag.tempYT = 0;
+            //so luong thong bao chua doc
+            var countNoti = myData.ThongBaos.Where(m => m.TaiKhoan == User.Identity.Name && m.TrangThai == 0);
+            ViewBag.soLuongTBChuaDoc = countNoti.Count();
             if (page == null) page = 1;
             int pageSize = 3;
             int pageNum = page ?? 1;
@@ -498,16 +520,22 @@ namespace KK_BookStore.Controllers
             ViewBag.baiVietNhieuTim = lstBaiVietNhieuTim;
 
 
-            var cate = from tt in myData.BaiViets where tt.MaTL == id select tt;
+            var cate = from tt in myData.BaiViets where tt.MaTL == id && tt.TrangThai == 1 select tt;
             return View(cate.ToPagedList(pageNum, pageSize));
         }
         public ActionResult locTheoSao(int? page)
         {
-
+            //check dsyt
+            var check_YeuThich = myData.DanhSachYeuThiches.Where(m => m.TaiKhoan == User.Identity.Name);
+            ViewBag.checkYT = check_YeuThich;
+            ViewBag.tempYT = 0;
+            //so luong thong bao chua doc
+            var countNoti = myData.ThongBaos.Where(m => m.TaiKhoan == User.Identity.Name && m.TrangThai == 0);
+            ViewBag.soLuongTBChuaDoc = countNoti.Count();
             if (page == null) page = 1;
             int pageSize = 6;
             int pageNum = page ?? 1;
-            var allPost = from tt in myData.BaiViets.OrderByDescending(m=>m.SoSao) select tt;
+            var allPost = from tt in myData.BaiViets.OrderByDescending(m=>m.SoSao).Where(m => m.TrangThai == 1) select tt;
 
             if (User.Identity.IsAuthenticated)
             {
@@ -534,11 +562,17 @@ namespace KK_BookStore.Controllers
         }
         public ActionResult locTheoLuotThich(int? page)
         {
-
+            //check dsyt
+            var check_YeuThich = myData.DanhSachYeuThiches.Where(m => m.TaiKhoan == User.Identity.Name);
+            ViewBag.checkYT = check_YeuThich;
+            ViewBag.tempYT = 0;
+            //so luong thong bao chua doc
+            var countNoti = myData.ThongBaos.Where(m => m.TaiKhoan == User.Identity.Name && m.TrangThai == 0);
+            ViewBag.soLuongTBChuaDoc = countNoti.Count();
             if (page == null) page = 1;
             int pageSize = 6;
             int pageNum = page ?? 1;
-            var allPost = from tt in myData.BaiViets.OrderByDescending(m => m.YeuThich) select tt;
+            var allPost = from tt in myData.BaiViets.OrderByDescending(m => m.YeuThich).Where(m => m.TrangThai == 1) select tt;
 
             if (User.Identity.IsAuthenticated)
             {
@@ -565,11 +599,17 @@ namespace KK_BookStore.Controllers
         }
         public ActionResult locTheoNgayViet(int? page)
         {
-
+            //check dsyt
+            var check_YeuThich = myData.DanhSachYeuThiches.Where(m => m.TaiKhoan == User.Identity.Name);
+            ViewBag.checkYT = check_YeuThich;
+            ViewBag.tempYT = 0;
+            //so luong thong bao chua doc
+            var countNoti = myData.ThongBaos.Where(m => m.TaiKhoan == User.Identity.Name && m.TrangThai == 0);
+            ViewBag.soLuongTBChuaDoc = countNoti.Count();
             if (page == null) page = 1;
             int pageSize = 6;
             int pageNum = page ?? 1;
-            var allPost = from tt in myData.BaiViets.OrderByDescending(m => m.NgayViet) select tt;
+            var allPost = from tt in myData.BaiViets.OrderByDescending(m => m.NgayViet).Where(m=>m.TrangThai == 1) select tt;
 
             if (User.Identity.IsAuthenticated)
             {
@@ -598,6 +638,9 @@ namespace KK_BookStore.Controllers
 
         public ActionResult filter(int id,string option, int? page)
         {
+            //so luong thong bao chua doc
+            var countNoti = myData.ThongBaos.Where(m => m.TaiKhoan == User.Identity.Name && m.TrangThai == 0);
+            ViewBag.soLuongTBChuaDoc = countNoti.Count();
             if (page == null) page = 1;
             int pageSize = 3;
             int pageNum = page ?? 1;
@@ -622,7 +665,7 @@ namespace KK_BookStore.Controllers
 
             if (option == "Newest")
             {
-                var cate = from tt in myData.BaiViets where tt.MaTL == id orderby tt.NgayViet descending select tt;
+                var cate = from tt in myData.BaiViets where tt.MaTL == id && tt.TrangThai == 1 orderby tt.NgayViet descending select tt;
                 return View(cate.ToPagedList(pageNum, pageSize));
             }
             else
@@ -639,18 +682,31 @@ namespace KK_BookStore.Controllers
 
         public ActionResult danhSachPhanHoi(int id)
         {
+            //so luong thong bao chua doc
+            var countNoti = myData.ThongBaos.Where(m => m.TaiKhoan == User.Identity.Name && m.TrangThai == 0);
+            ViewBag.soLuongTBChuaDoc = countNoti.Count();
+            var user = myData.NguoiDungs.Where(m => m.TaiKhoan == User.Identity.Name).First();
+            ViewBag.hinh = user.Hinh;
             ViewBag.cmt = myData.BinhLuans.Where(m => m.MaBinhLuan == id).First();
-            var replys = myData.PhanHois.Where(m => m.MaBinhLuan == id).ToList() ;
+            var replys = myData.PhanHois.Where(m => m.MaBinhLuan == id).ToList();
             return View(replys);
         }
         public ActionResult danhSachBinhLuan(int? id)
         {
+            //so luong thong bao chua doc
+            var countNoti = myData.ThongBaos.Where(m => m.TaiKhoan == User.Identity.Name && m.TrangThai == 0);
+            ViewBag.soLuongTBChuaDoc = countNoti.Count();
+            var user = myData.NguoiDungs.Where(m => m.TaiKhoan == User.Identity.Name).First();
+            ViewBag.hinh = user.Hinh;
             var lst_cmt = myData.BinhLuans.Where(m => m.MaBaiViet == id);
             ViewBag.replys = myData.PhanHois.ToList();
             return View(lst_cmt);
         }
         public ActionResult danhSachThongBao()
         {
+            //so luong thong bao chua doc
+            var countNoti = myData.ThongBaos.Where(m => m.TaiKhoan == User.Identity.Name && m.TrangThai == 0);
+            ViewBag.soLuongTBChuaDoc = countNoti.Count();
             if (User.Identity.IsAuthenticated)
             {
                 var anhDaiDien = from s in myData.NguoiDungs where s.TaiKhoan == User.Identity.Name select s;
@@ -662,6 +718,9 @@ namespace KK_BookStore.Controllers
 
         public ActionResult Search(string name, int? page)
         {
+            //so luong thong bao chua doc
+            var countNoti = myData.ThongBaos.Where(m => m.TaiKhoan == User.Identity.Name && m.TrangThai == 0);
+            ViewBag.soLuongTBChuaDoc = countNoti.Count();
             if (page == null) page = 1;
             int pageSize = 6;
             int pageNum = page ?? 1;
@@ -686,7 +745,7 @@ namespace KK_BookStore.Controllers
                     break;
             }
             ViewBag.baiVietNhieuTim = lstBaiVietNhieuTim;
-            var baiViet = myData.BaiViets.Where(m=>m.TenBaiViet.Contains(name) || m.TaiKhoan.Contains(name));
+            var baiViet = myData.BaiViets.Where(m=>m.TenBaiViet.Contains(name) && m.TrangThai == 1);
             ViewBag.keyword = name;
             return View(baiViet.ToPagedList(pageNum, pageSize));
         }

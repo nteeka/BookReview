@@ -1,8 +1,10 @@
 ﻿using KK_BookStore.Models;
 using Microsoft.AspNet.Identity;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Xml.Linq;
@@ -50,7 +52,7 @@ namespace KK_BookStore.Controllers
         }
 
         [Authorize]
-        public ActionResult themBinhLuan(int mabaiviet, string comment )
+        public ActionResult themBinhLuan(int mabaiviet, string comment,string strURL)
         {    
             //var lst_DanhGia = data.BinhLuans.Where(m => m.MaBaiViet == mabaiviet);
              BinhLuan binhLuan = new BinhLuan();
@@ -71,12 +73,14 @@ namespace KK_BookStore.Controllers
             
             data.LichSuHoatDongs.InsertOnSubmit(lichSuHoatDong);
             data.SubmitChanges();                                     
-            return Redirect("https://localhost:44339/Review/Detail/" + mabaiviet);
+            return Redirect(strURL);
         }
         [Authorize]
-        public ActionResult themPhanHoi(int mabinhluan, string comment)
+        public ActionResult themPhanHoi(int mabinhluan, string comment, string strURL)
         {
+           
             var cmt = data.BinhLuans.Where(m => m.MaBinhLuan == mabinhluan).First();
+
             PhanHoi phanHoi = new PhanHoi();
             phanHoi.MaBinhLuan = mabinhluan;
             phanHoi.NgayTao = DateTime.Now;
@@ -94,9 +98,9 @@ namespace KK_BookStore.Controllers
 
             data.LichSuHoatDongs.InsertOnSubmit(lichSuHoatDong);
             data.SubmitChanges();
-            return Redirect("https://localhost:44339/Review/danhSachPhanHoi/" + phanHoi.BinhLuan.MaBaiViet);
+            return Redirect(strURL);
         }
-
+        
         [Authorize]
         public ActionResult thichBinhLuan(int id, string strURL)
         {
@@ -136,17 +140,75 @@ namespace KK_BookStore.Controllers
             return Redirect(strURL); ;
         }
 
+        [Authorize]
+        public ActionResult folowAuthor(int id,string strURL)
+        {
+
+            var author = data.Authors.Where(m => m.Id_Author == id).First();            
+            FollowDetail fd = new FollowDetail();
+            fd.Id_Author = author.Id_Author;
+            fd.TaiKhoan = User.Identity.Name;
+            data.FollowDetails.InsertOnSubmit(fd);
+            author.SoLuongTheoDoi++;
+            UpdateModel(author);
+
+            //thong bao chon reviewer co nguoi folow
+            ThongBao thongBao = new ThongBao();
+            thongBao.TaiKhoan = author.TaiKhoan;
+            thongBao.TrangThai = 0;
+            thongBao.NgayTao = DateTime.Now;
+            thongBao.NoiDung = "@" + User.Identity.Name + " đã theo dõi bạn!";
+            thongBao.MaBaiViet = 3002;
+            data.ThongBaos.InsertOnSubmit(thongBao);
+
+            //lich su hoat dong
+            LichSuHoatDong lichSuHoatDong = new LichSuHoatDong();
+            lichSuHoatDong.Ngay = DateTime.Now;
+            lichSuHoatDong.NoiDung = "Bạn đã bắt đầu theo dõi reviewer " + author.TaiKhoan;
+            lichSuHoatDong.TaiKhoan = User.Identity.Name;
+            lichSuHoatDong.LoaiHoatDong = "Folow";
+            data.LichSuHoatDongs.InsertOnSubmit(lichSuHoatDong);
+            data.SubmitChanges();
+            return Redirect(strURL); ;
+        }
+        [Authorize]
+        public ActionResult unFolowAuthor(int id, string strURL)
+        {
+            var author = data.Authors.Where(m => m.Id_Author == id).First();
+            var followDT = data.FollowDetails.Where(m => m.TaiKhoan == User.Identity.Name && m.Id_Author == id).First();          
+            data.FollowDetails.DeleteOnSubmit(followDT);
+            author.SoLuongTheoDoi--;
+            UpdateModel(author);
+            //lich su hoat dong
+            LichSuHoatDong lichSuHoatDong = new LichSuHoatDong();
+            lichSuHoatDong.Ngay = DateTime.Now;
+            lichSuHoatDong.NoiDung = "Bạn đã hủy theo dõi reviewer " + author.TaiKhoan;
+            lichSuHoatDong.TaiKhoan = User.Identity.Name;
+            lichSuHoatDong.LoaiHoatDong = "unFollow";
+            data.LichSuHoatDongs.InsertOnSubmit(lichSuHoatDong);
+            data.SubmitChanges();
+            return Redirect(strURL); ;
+        }
+
 
         [Authorize]
-        public ActionResult trangCaNhan()
+        public ActionResult trangCaNhan(string name)
         {         
-            var user = data.NguoiDungs.Where(p => p.TaiKhoan == User.Identity.Name).First();
-            var post = data.BaiViets.Where(p => p.TaiKhoan == User.Identity.Name);
+
+            var anhDaiDien = data.NguoiDungs.Where(p => p.TaiKhoan == User.Identity.Name).First();
+            var user = data.Authors.Where(p => p.TaiKhoan == name).First();
+            var post = data.BaiViets.Where(p => p.TaiKhoan == name && p.TrangThai == 1);
             ViewBag.posts = post;
+            ViewBag.tongLike = post.Sum(m => m.YeuThich);
+            ViewBag.tongPost = post.Count();
+            ViewBag.tongFollow = user.SoLuongTheoDoi;
+            ViewBag.trungBinhRatting = post.Sum(m => m.SoSao)/ post.Count();
             var cmt = data.BinhLuans.ToList();
             ViewBag.cmts = cmt;
-            ViewBag.hinh = user.Hinh;
+            ViewBag.hinh = anhDaiDien.Hinh;
             //count CMT
+            ViewBag.countComment = 0;
+            ViewBag.checkCMT = 0;
             Dictionary<int, int> categoryCounts = new Dictionary<int, int>();
 
             foreach (var product in cmt)
@@ -163,12 +225,42 @@ namespace KK_BookStore.Controllers
                     categoryCounts.Add(product.MaBaiViet, 1);
                 }
             }
+
             ViewBag.CategoryCounts = categoryCounts;
             //check yeu thich bai viet
-            var check_YeuThich = data.DanhSachYeuThiches.Where(m=>m.TaiKhoan == user.TaiKhoan);
+            var check_YeuThich = data.DanhSachYeuThiches.Where(m=>m.TaiKhoan == User.Identity.Name);
             ViewBag.checkYT = check_YeuThich;
             ViewBag.tempYT = 0;
+
+            //check folows
+            var checkFollow = data.FollowDetails.Where(m => m.TaiKhoan == User.Identity.Name && m.Author.TaiKhoan == name).FirstOrDefault();
+            if(checkFollow == null)
+                ViewBag.checkFollow = 0;
+            else
+                ViewBag.checkFollow = 1;
+            //so luong thong bao chua doc
+            var countNoti = data.ThongBaos.Where(m => m.TaiKhoan == User.Identity.Name && m.TrangThai == 0);
+            ViewBag.soLuongTBChuaDoc = countNoti.Count();
             return View(user);
+        }
+
+
+        //view THong Bao
+        public ActionResult danhSachThongBao(string name, int? page)
+        {
+            //so luong thong bao chua doc
+            var countNoti = data.ThongBaos.Where(m => m.TaiKhoan == User.Identity.Name && m.TrangThai == 0);
+            ViewBag.soLuongTBChuaDoc = countNoti.Count();
+            if (User.Identity.IsAuthenticated)
+            {
+                var anhDaiDien = from s in data.NguoiDungs where s.TaiKhoan == User.Identity.Name select s;
+                ViewBag.hinh = anhDaiDien.First().Hinh;
+            }
+            if (page == null) page = 1;
+            int pageSize = 3;
+            int pageNum = page ?? 1;
+            var all_ThongBao = from tt in data.ThongBaos where tt.TaiKhoan == name orderby tt.MaThongBao descending select tt;
+            return View(all_ThongBao.ToPagedList(pageNum, pageSize));
         }
     }
 }

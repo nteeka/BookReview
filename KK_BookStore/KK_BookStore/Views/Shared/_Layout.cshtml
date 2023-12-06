@@ -118,12 +118,10 @@
                             <li><a href="https://localhost:44339/TacGia/index">Author</a></li>
                             @*<li class="scroll"><a href="#reviews">review</a></li>*@
                             <li><a href="https://localhost:44339/Review/Index">review</a></li>
-                            <li>
-                                <link href="~/Content/darkMode.css" rel="stylesheet" />
-                                <script src="~/Content/darkMode.js"></script>
-                                <button style="margin-bottom:50px" class="lightmode-button" id="darkmodebtn" onclick="darkMode()">🌓</button>
-                            </li>
-                        
+                            <li><a class="fa fa-bell" href="@Url.Action("danhSachThongBao","NguoiDung",new {@name = User.Identity.Name.Trim(),@page = 1})">( @ViewBag.soLuongTBChuaDoc )</a></li>
+
+
+
                             @Html.Partial("_LoginPartial")
 
 
@@ -148,8 +146,7 @@
         @RenderBody()
     </div>
 
-
-
+   
 
 
     <!--subscription end -->
@@ -165,19 +162,24 @@
                     </div>
                     <div class="col-sm-9">
                         <ul class="footer-menu-item">
-                            @*<li class="scroll"><a href="#works">how it works</a></li>
-                                <li class="scroll"><a href="#explore">explore</a></li>
-                                <li class="scroll"><a href="#reviews">review</a></li>
-                                <li class="scroll"><a href="#blog">blog</a></li>
-                                <li class="scroll"><a href="#contact">contact</a></li>
-                                <li class=" scroll"><a href="#contact">my account</a></li>*@
                             <li><a href="https://localhost:44339/Home/Index">home</a></li>
-                            <li class="scroll"><a href="#works">how it works</a></li>
-                            <li class="scroll"><a href="#explore">explore</a></li>
+                            <li><a href="https://localhost:44339/Home/About">about</a></li>
+                            <li><a href="https://localhost:44339/DanhSachYeuThich/DanhSachBaiViet">Wishlist</a></li>
+                            @if (User.IsInRole("Reviewer"))
+                            {
+                                <li><a href="https://localhost:44339/Review/quanLyBaiViet"><i style="font-size:x-large" class="fa fa-briefcase"></i></a></li>
+                            }
+                            <li><a href="https://localhost:44339/TacGia/index">Author</a></li>
                             @*<li class="scroll"><a href="#reviews">review</a></li>*@
-                            <li class="scroll"><a href="#reviews">review</a></li>
-                            <li><a href="https://localhost:44339/Blog/Index">blog</a></li>
-                            <li class="scroll"><a href="#contact">contact</a></li>
+                            <li><a href="https://localhost:44339/Review/Index">review</a></li>
+                            <li>
+                                <link href="~/Content/darkMode.css" rel="stylesheet" />
+                                <script src="~/Content/darkMode.js"></script>
+                                <button style="margin-bottom:50px" class="lightmode-button" id="darkmodebtn" onclick="darkMode()">🌓</button>
+                            </li>
+
+
+
 
                         </ul><!--/.nav -->
                     </div>
@@ -246,7 +248,7 @@
     @RenderSection("scripts", required: false)
     @RenderSection("upload", required: false)
 
-   
+
 </body>
 
 </html>

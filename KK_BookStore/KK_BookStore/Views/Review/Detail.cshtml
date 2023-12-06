@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Detail";
     Layout = null;
+    
 }
 
 
@@ -26,27 +27,41 @@
 
 
 
-
+    <link href="~/Content/darkMode.css" rel="stylesheet" />
+    <script src="~/Content/darkMode.js"></script>
+    <button style="margin-bottom:50px" class="lightmode-button" id="darkmodebtn" onclick="darkMode()">🌓</button>
     <header>
-        <a style="color:black;font:bold" class="navbar-brand" href="https://localhost:44339/Home/Index">NTK<span style="color:red">_Reviews</span></a>
+        <a style="color:chartreuse;font:bold" class="navbar-brand" href="https://localhost:44339/Home/Index">NTK<span style="color:red">_Reviews</span></a>
 
         <nav style="width:200px">
 
 
             <ul style="text-align:center">
-                <li><a href="https://localhost:44339/Home/Index">HOME</a></li>
-                <li class="scroll"><a href="#works">how it works</a></li>
-                <li class="scroll"><a href="#explore">explore</a></li>
+                <li><a href="https://localhost:44339/Home/Index">home</a></li>
+                <li><a href="https://localhost:44339/Home/About">about</a></li>
+                <li><a href="https://localhost:44339/DanhSachYeuThich/DanhSachBaiViet">Wishlist</a></li>
+                @if (User.IsInRole("Reviewer"))
+                {
+                    <li><a href="https://localhost:44339/Review/quanLyBaiViet"><i style="font-size:x-large" class="fa fa-briefcase"></i></a></li>
+                }
+                <li><a href="https://localhost:44339/TacGia/index">Author</a></li>
                 @*<li class="scroll"><a href="#reviews">review</a></li>*@
                 <li><a href="https://localhost:44339/Review/Index">review</a></li>
-                <li><a href="https://localhost:44339/Blog/Index">blog</a></li>
-                <li class="scroll"><a href="#contact">contact</a></li>
+
+
+                <li><button class="btn btn-default" onclick="goBack()"><i class="fa fa-arrow-left"></i> Back</button></li>
+
                 @Html.Partial("_LoginPartial")
             </ul>
 
 
 
         </nav>
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
         <div style="">
             <div> <a href="Link web 2" target="_blank"><img border="0" src="http://farm6.staticflickr.com/5759/31081343902_b95bee4751_o.png" width="200" height="430" /></a> </div>
             @*<div style="margin-top: 10px;"> <a href="Link web 2" target="_blank"><img border="0" src="\Content\user.jpg" width="200" /></a> </div>*@
@@ -129,19 +144,19 @@
         </div>
         <script src="~/Content/Ads/Ads_home.js"></script>
         <!--slide end-->
-        <div style="width: 1200px; margin-left: 180px;margin-top:40px">
+        <div style="width: 1200px; margin-left: 120px;margin-top:40px">
             <div>
                 @*<section style="margin-left:180px;" id="@Model.TenBaiViet">*@
-                    <h1 style="background-color:bisque;width:fit-content;padding-bottom:5px">@Model.TheLoai.TenTL</h1>
-                    <h1>@Model.TenBaiViet</h1>
-                    <article>
-                        @*<img src="@ViewBag.baiviet.AnhBia" width="700" height="300" />*@
-                        <p>
-                            @Html.Raw(Model.NoiDung)
-                        </p>
+                @*<h1 style="background-color:bisque;width:fit-content;padding-bottom:5px">@Model.TheLoai.TenTL</h1>*@
+                <h1>@Model.TenBaiViet</h1>
+                <article>
+                    @*<img src="@ViewBag.baiviet.AnhBia" width="700" height="300" />*@
+                    <p>
+                        @Html.Raw(Model.NoiDung)
+                    </p>
 
 
-                    </article>
+                </article>
                 @*</section>*@
                 @*}*@
 
@@ -589,10 +604,10 @@
                                             <div class="row">
                                                 <div class="col-sm-3 col-lg-2 hidden-xs">
 
-                                                    @*<img style="width:180px;height:100px" class="img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">*@
+                                                    <img style="width:100px;height:100px" class="img-responsive" src="@ViewBag.hinh" alt="">
                                                 </div>
                                                 <div class="col-xs-12 col-sm-9 col-lg-10">
-                                                    <textarea style="width:400px" class="form-control" name="comment" id="message" placeholder="Your message" required=""></textarea>
+                                                    <textarea style="width:400px" class="form-control" name="comment" id="message" placeholder="Your message" required="required"></textarea>
                                                 </div>
                                             </div>
 
@@ -675,13 +690,21 @@
                                         </div>
                                         <div class="helpful-thumb text-body-2 ml-3">
                                             @*<span class="fit-icon fa fa-reply">
-            <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0.419563 6.18835C0.148122 6.54038 6.11959e-07 7 5.62878e-07 7.56142C2.81294e-05 8.59157 0.876996 9.54578 1.98863 9.54578L3.90679 9.54578C3.66836 10.0207 3.34091 10.6098 3.34091 11.4548C3.34089 13.0519 3.97802 14 5.60793 14C6.42811 14 6.73247 12.9632 6.88841 12.1617C6.98157 11.6829 7.06959 11.2306 7.34027 10.9599C7.98476 10.3154 8.96875 8.75 9.55987 8.43213C9.61972 8.40692 9.6962 8.38707 9.77949 8.37134C9.93735 8.60005 10.2011 8.75 10.5 8.75L13.125 8.75C13.6082 8.75 14 8.35825 14 7.875L14 0.875C14 0.391754 13.6082 -3.42482e-08 13.125 -7.64949e-08L10.5 -3.0598e-07C10.0168 -3.48226e-07 9.625 0.391754 9.625 0.875L9.625 1.11398C8.73647 1.11398 6.87184 -0.000191358 4.77272 0.00038257C4.62219 0.000300541 3.74322 -0.000438633 3.65127 0.000382472C2.03027 -1.04643e-06 1.12867 0.981667 1.18117 2.45566C0.76754 2.94038 0.564868 3.64065 0.682829 4.29056C0.342234 4.82448 0.269227 5.57763 0.419563 6.18835ZM13.125 0.875L13.125 7.875L10.5 7.875L10.5 0.875L13.125 0.875ZM1.53079 6.4435C1.09375 6.125 1.09375 4.8125 1.6841 4.51125C1.31436 3.88891 1.64713 3.05613 2.09467 2.81605C1.86791 1.37941 2.61313 0.885417 3.65906 0.875355C3.74962 0.874535 4.67753 0.875355 4.77269 0.875355C6.76684 0.875355 8.45704 1.98898 9.62497 1.98898L9.62497 7.55713C8.5939 7.55713 7.64788 9.41484 6.72153 10.3412C5.88632 11.1764 6.16473 12.5685 5.6079 13.1253C4.21586 13.1253 4.21586 12.1541 4.21586 11.4548C4.21586 10.3012 5.05107 9.78439 5.05107 8.67076L1.9886 8.67076C1.36708 8.67076 0.877707 8.11393 0.874973 7.55713C0.872266 7.00033 1.09375 6.5625 1.53079 6.4435ZM11.1563 2.1875C11.1563 1.82506 11.4501 1.53125 11.8125 1.53125C12.1749 1.53125 12.4688 1.82506 12.4688 2.1875C12.4688 2.54994 12.1749 2.84375 11.8125 2.84375C11.4501 2.84375 11.1563 2.54994 11.1563 2.1875Z"></path>
-            </svg>
-        </span>*@
+                                                    <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M0.419563 6.18835C0.148122 6.54038 6.11959e-07 7 5.62878e-07 7.56142C2.81294e-05 8.59157 0.876996 9.54578 1.98863 9.54578L3.90679 9.54578C3.66836 10.0207 3.34091 10.6098 3.34091 11.4548C3.34089 13.0519 3.97802 14 5.60793 14C6.42811 14 6.73247 12.9632 6.88841 12.1617C6.98157 11.6829 7.06959 11.2306 7.34027 10.9599C7.98476 10.3154 8.96875 8.75 9.55987 8.43213C9.61972 8.40692 9.6962 8.38707 9.77949 8.37134C9.93735 8.60005 10.2011 8.75 10.5 8.75L13.125 8.75C13.6082 8.75 14 8.35825 14 7.875L14 0.875C14 0.391754 13.6082 -3.42482e-08 13.125 -7.64949e-08L10.5 -3.0598e-07C10.0168 -3.48226e-07 9.625 0.391754 9.625 0.875L9.625 1.11398C8.73647 1.11398 6.87184 -0.000191358 4.77272 0.00038257C4.62219 0.000300541 3.74322 -0.000438633 3.65127 0.000382472C2.03027 -1.04643e-06 1.12867 0.981667 1.18117 2.45566C0.76754 2.94038 0.564868 3.64065 0.682829 4.29056C0.342234 4.82448 0.269227 5.57763 0.419563 6.18835ZM13.125 0.875L13.125 7.875L10.5 7.875L10.5 0.875L13.125 0.875ZM1.53079 6.4435C1.09375 6.125 1.09375 4.8125 1.6841 4.51125C1.31436 3.88891 1.64713 3.05613 2.09467 2.81605C1.86791 1.37941 2.61313 0.885417 3.65906 0.875355C3.74962 0.874535 4.67753 0.875355 4.77269 0.875355C6.76684 0.875355 8.45704 1.98898 9.62497 1.98898L9.62497 7.55713C8.5939 7.55713 7.64788 9.41484 6.72153 10.3412C5.88632 11.1764 6.16473 12.5685 5.6079 13.1253C4.21586 13.1253 4.21586 12.1541 4.21586 11.4548C4.21586 10.3012 5.05107 9.78439 5.05107 8.67076L1.9886 8.67076C1.36708 8.67076 0.877707 8.11393 0.874973 7.55713C0.872266 7.00033 1.09375 6.5625 1.53079 6.4435ZM11.1563 2.1875C11.1563 1.82506 11.4501 1.53125 11.8125 1.53125C12.1749 1.53125 12.4688 1.82506 12.4688 2.1875C12.4688 2.54994 12.1749 2.84375 11.8125 2.84375C11.4501 2.84375 11.1563 2.54994 11.1563 2.1875Z"></path>
+                                                    </svg>
+                                                </span>*@
                                             <a href="@Url.Action("danhSachPhanHoi","Review",new {@id = item.MaBinhLuan})" class="fa fa-reply">Reply</a>
                                         </div>
                                     </div>
+                                    @foreach (var a in ViewBag.replys)
+                                    {
+                                        if (a.MaBinhLuan == item.MaBinhLuan)
+                                        {
+                                            ViewBag.showAllReplys++;
+                                        }
+
+                                    }
                                     @if (ViewBag.replys != null)
                                     {
                                         foreach (var a in ViewBag.replys)
@@ -719,7 +742,11 @@
 
                                         }
 
-                                        <a href="https://localhost:44339/Review/danhSachPhanHoi/@item.MaBinhLuan">Show all reply</a>
+                                        if (ViewBag.showAllReplys > 2)
+                                        {
+                                            <a href="https://localhost:44339/Review/danhSachPhanHoi/@item.MaBinhLuan">Show all reply</a>
+                                            ViewBag.showAllReplys = 0;
+                                        }
                                     }
 
                                 </div>
@@ -731,11 +758,20 @@
                             break;
 
                         }
+
+
                     }
-                    <a href="https://localhost:44339/Review/danhSachBinhLuan/@ViewBag.MaBaiViet">Show all comment</a>
+
+
 
 
                 </ul>
+                if (ViewBag.showAllCMT > 3)
+                {
+                    <a href="https://localhost:44339/Review/danhSachBinhLuan/@ViewBag.MaBaiViet">Show all comment</a>
+
+
+                }
             }
 
         </div>

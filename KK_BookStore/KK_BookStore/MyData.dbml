@@ -122,6 +122,8 @@
       <Association Name="NguoiDung_BinhLuan" Member="BinhLuans" ThisKey="TaiKhoan" OtherKey="TaiKhoan" Type="BinhLuan" />
       <Association Name="NguoiDung_ChiTietBinhLuan" Member="ChiTietBinhLuans" ThisKey="TaiKhoan" OtherKey="TaiKhoan" Type="ChiTietBinhLuan" />
       <Association Name="NguoiDung_LichSuHoatDong" Member="LichSuHoatDongs" ThisKey="TaiKhoan" OtherKey="TaiKhoan" Type="LichSuHoatDong" />
+      <Association Name="NguoiDung_Author" Member="Authors" ThisKey="TaiKhoan" OtherKey="TaiKhoan" Type="Author" />
+      <Association Name="NguoiDung_FollowDetail" Member="FollowDetails" ThisKey="TaiKhoan" OtherKey="TaiKhoan" Type="FollowDetail" />
       <Association Name="ChucVu_NguoiDung" Member="ChucVu" ThisKey="MaChucVu" OtherKey="MaChucVu" Type="ChucVu" IsForeignKey="true" />
     </Type>
   </Table>
@@ -218,6 +220,24 @@
       <Association Name="BinhLuan_LichSuHoatDong" Member="BinhLuan" ThisKey="MaBinhLuan" OtherKey="MaBinhLuan" Type="BinhLuan" IsForeignKey="true" />
       <Association Name="NguoiDung_LichSuHoatDong" Member="NguoiDung" ThisKey="TaiKhoan" OtherKey="TaiKhoan" Type="NguoiDung" IsForeignKey="true" />
       <Association Name="PhanHoi_LichSuHoatDong" Member="PhanHoi" ThisKey="MaPhanHoi" OtherKey="MaPhanHoi" Type="PhanHoi" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Author" Member="Authors">
+    <Type Name="Author">
+      <Column Name="Id_Author" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SoLuongTheoDoi" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TaiKhoan" Type="System.String" DbType="Char(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Author_FollowDetail" Member="FollowDetails" ThisKey="Id_Author" OtherKey="Id_Author" Type="FollowDetail" />
+      <Association Name="NguoiDung_Author" Member="NguoiDung" ThisKey="TaiKhoan" OtherKey="TaiKhoan" Type="NguoiDung" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FollowDetail" Member="FollowDetails">
+    <Type Name="FollowDetail">
+      <Column Name="Id_FollowDetail" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TaiKhoan" Type="System.String" DbType="Char(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Id_Author" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Author_FollowDetail" Member="Author" ThisKey="Id_Author" OtherKey="Id_Author" Type="Author" IsForeignKey="true" />
+      <Association Name="NguoiDung_FollowDetail" Member="NguoiDung" ThisKey="TaiKhoan" OtherKey="TaiKhoan" Type="NguoiDung" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

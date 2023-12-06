@@ -20,21 +20,26 @@
 </head>
 
 <body>
-
+    <link href="~/Content/darkMode.css" rel="stylesheet" />
+    <script src="~/Content/darkMode.js"></script>
+    <button style="margin-bottom:50px" class="lightmode-button" id="darkmodebtn" onclick="darkMode()">🌓</button>
     <header>
-        <a style="color:black;font:bold" class="navbar-brand" href="https://localhost:44339/Home/Index">NTK<span style="color:red">_Reviews</span></a>
+        <a style="color: chartreuse; font: bold" class="navbar-brand" href="https://localhost:44339/Home/Index">NTK<span style="color:red">_Reviews</span></a>
 
         <nav style="width:200px">
 
 
             <ul style="text-align:center">
-                <li><a href="https://localhost:44339/Home/Index">HOME</a></li>
-                <li class="scroll"><a href="#works">how it works</a></li>
-                <li class="scroll"><a href="#explore">explore</a></li>
-                @*<li class="scroll"><a href="#reviews">review</a></li>*@
+                <li><a href="https://localhost:44339/Home/Index">home</a></li>
+                <li><a href="https://localhost:44339/Home/About">about</a></li>
+                <li><a href="https://localhost:44339/DanhSachYeuThich/DanhSachBaiViet">Wishlist</a></li>
+                
+                <li><a href="https://localhost:44339/TacGia/index">Author</a></li>
                 <li><a href="https://localhost:44339/Review/Index">review</a></li>
-                <li><a href="https://localhost:44339/Blog/Index">blog</a></li>
-                <li class="scroll"><a href="#contact">contact</a></li>
+
+
+                <li><button class="btn btn-default" onclick="goBack()"><i class="fa fa-arrow-left"></i> Back</button></li>
+
                 @Html.Partial("_LoginPartial")
             </ul>
 
@@ -126,10 +131,16 @@
 
                                 </fieldset>
                                 <button style="margin-left:300px" type="submit" class="btn btn-default pull-right">Submit</button>
+                                <button class="btn btn-default" onclick="goBack()"><i class="fa fa-arrow-left"></i> Back</button>
 
 
                             </form>
                         }
+                        <script>
+                            function goBack() {
+                                window.history.back();
+                            }
+                        </script>
                     </div>
                 </div>
             </div>

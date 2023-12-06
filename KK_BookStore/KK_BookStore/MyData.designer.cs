@@ -81,6 +81,12 @@ namespace KK_BookStore
     partial void InsertLichSuHoatDong(LichSuHoatDong instance);
     partial void UpdateLichSuHoatDong(LichSuHoatDong instance);
     partial void DeleteLichSuHoatDong(LichSuHoatDong instance);
+    partial void InsertAuthor(Author instance);
+    partial void UpdateAuthor(Author instance);
+    partial void DeleteAuthor(Author instance);
+    partial void InsertFollowDetail(FollowDetail instance);
+    partial void UpdateFollowDetail(FollowDetail instance);
+    partial void DeleteFollowDetail(FollowDetail instance);
     #endregion
 		
 		public MyDataDataContext() : 
@@ -246,6 +252,22 @@ namespace KK_BookStore
 			get
 			{
 				return this.GetTable<LichSuHoatDong>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Author> Authors
+		{
+			get
+			{
+				return this.GetTable<Author>();
+			}
+		}
+		
+		public System.Data.Linq.Table<FollowDetail> FollowDetails
+		{
+			get
+			{
+				return this.GetTable<FollowDetail>();
 			}
 		}
 	}
@@ -2433,6 +2455,10 @@ namespace KK_BookStore
 		
 		private EntitySet<LichSuHoatDong> _LichSuHoatDongs;
 		
+		private EntitySet<Author> _Authors;
+		
+		private EntitySet<FollowDetail> _FollowDetails;
+		
 		private EntityRef<ChucVu> _ChucVu;
 		
     #region Extensibility Method Definitions
@@ -2475,6 +2501,8 @@ namespace KK_BookStore
 			this._BinhLuans = new EntitySet<BinhLuan>(new Action<BinhLuan>(this.attach_BinhLuans), new Action<BinhLuan>(this.detach_BinhLuans));
 			this._ChiTietBinhLuans = new EntitySet<ChiTietBinhLuan>(new Action<ChiTietBinhLuan>(this.attach_ChiTietBinhLuans), new Action<ChiTietBinhLuan>(this.detach_ChiTietBinhLuans));
 			this._LichSuHoatDongs = new EntitySet<LichSuHoatDong>(new Action<LichSuHoatDong>(this.attach_LichSuHoatDongs), new Action<LichSuHoatDong>(this.detach_LichSuHoatDongs));
+			this._Authors = new EntitySet<Author>(new Action<Author>(this.attach_Authors), new Action<Author>(this.detach_Authors));
+			this._FollowDetails = new EntitySet<FollowDetail>(new Action<FollowDetail>(this.attach_FollowDetails), new Action<FollowDetail>(this.detach_FollowDetails));
 			this._ChucVu = default(EntityRef<ChucVu>);
 			OnCreated();
 		}
@@ -2827,6 +2855,32 @@ namespace KK_BookStore
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NguoiDung_Author", Storage="_Authors", ThisKey="TaiKhoan", OtherKey="TaiKhoan")]
+		public EntitySet<Author> Authors
+		{
+			get
+			{
+				return this._Authors;
+			}
+			set
+			{
+				this._Authors.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NguoiDung_FollowDetail", Storage="_FollowDetails", ThisKey="TaiKhoan", OtherKey="TaiKhoan")]
+		public EntitySet<FollowDetail> FollowDetails
+		{
+			get
+			{
+				return this._FollowDetails;
+			}
+			set
+			{
+				this._FollowDetails.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ChucVu_NguoiDung", Storage="_ChucVu", ThisKey="MaChucVu", OtherKey="MaChucVu", IsForeignKey=true)]
 		public ChucVu ChucVu
 		{
@@ -2972,6 +3026,30 @@ namespace KK_BookStore
 		}
 		
 		private void detach_LichSuHoatDongs(LichSuHoatDong entity)
+		{
+			this.SendPropertyChanging();
+			entity.NguoiDung = null;
+		}
+		
+		private void attach_Authors(Author entity)
+		{
+			this.SendPropertyChanging();
+			entity.NguoiDung = this;
+		}
+		
+		private void detach_Authors(Author entity)
+		{
+			this.SendPropertyChanging();
+			entity.NguoiDung = null;
+		}
+		
+		private void attach_FollowDetails(FollowDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.NguoiDung = this;
+		}
+		
+		private void detach_FollowDetails(FollowDetail entity)
 		{
 			this.SendPropertyChanging();
 			entity.NguoiDung = null;
@@ -5044,6 +5122,377 @@ namespace KK_BookStore
 						this._MaPhanHoi = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("PhanHoi");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Author")]
+	public partial class Author : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id_Author;
+		
+		private System.Nullable<int> _SoLuongTheoDoi;
+		
+		private string _TaiKhoan;
+		
+		private EntitySet<FollowDetail> _FollowDetails;
+		
+		private EntityRef<NguoiDung> _NguoiDung;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnId_AuthorChanging(int value);
+    partial void OnId_AuthorChanged();
+    partial void OnSoLuongTheoDoiChanging(System.Nullable<int> value);
+    partial void OnSoLuongTheoDoiChanged();
+    partial void OnTaiKhoanChanging(string value);
+    partial void OnTaiKhoanChanged();
+    #endregion
+		
+		public Author()
+		{
+			this._FollowDetails = new EntitySet<FollowDetail>(new Action<FollowDetail>(this.attach_FollowDetails), new Action<FollowDetail>(this.detach_FollowDetails));
+			this._NguoiDung = default(EntityRef<NguoiDung>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id_Author", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id_Author
+		{
+			get
+			{
+				return this._Id_Author;
+			}
+			set
+			{
+				if ((this._Id_Author != value))
+				{
+					this.OnId_AuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Id_Author = value;
+					this.SendPropertyChanged("Id_Author");
+					this.OnId_AuthorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoLuongTheoDoi", DbType="Int")]
+		public System.Nullable<int> SoLuongTheoDoi
+		{
+			get
+			{
+				return this._SoLuongTheoDoi;
+			}
+			set
+			{
+				if ((this._SoLuongTheoDoi != value))
+				{
+					this.OnSoLuongTheoDoiChanging(value);
+					this.SendPropertyChanging();
+					this._SoLuongTheoDoi = value;
+					this.SendPropertyChanged("SoLuongTheoDoi");
+					this.OnSoLuongTheoDoiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaiKhoan", DbType="Char(50) NOT NULL", CanBeNull=false)]
+		public string TaiKhoan
+		{
+			get
+			{
+				return this._TaiKhoan;
+			}
+			set
+			{
+				if ((this._TaiKhoan != value))
+				{
+					if (this._NguoiDung.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTaiKhoanChanging(value);
+					this.SendPropertyChanging();
+					this._TaiKhoan = value;
+					this.SendPropertyChanged("TaiKhoan");
+					this.OnTaiKhoanChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Author_FollowDetail", Storage="_FollowDetails", ThisKey="Id_Author", OtherKey="Id_Author")]
+		public EntitySet<FollowDetail> FollowDetails
+		{
+			get
+			{
+				return this._FollowDetails;
+			}
+			set
+			{
+				this._FollowDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NguoiDung_Author", Storage="_NguoiDung", ThisKey="TaiKhoan", OtherKey="TaiKhoan", IsForeignKey=true)]
+		public NguoiDung NguoiDung
+		{
+			get
+			{
+				return this._NguoiDung.Entity;
+			}
+			set
+			{
+				NguoiDung previousValue = this._NguoiDung.Entity;
+				if (((previousValue != value) 
+							|| (this._NguoiDung.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._NguoiDung.Entity = null;
+						previousValue.Authors.Remove(this);
+					}
+					this._NguoiDung.Entity = value;
+					if ((value != null))
+					{
+						value.Authors.Add(this);
+						this._TaiKhoan = value.TaiKhoan;
+					}
+					else
+					{
+						this._TaiKhoan = default(string);
+					}
+					this.SendPropertyChanged("NguoiDung");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_FollowDetails(FollowDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Author = this;
+		}
+		
+		private void detach_FollowDetails(FollowDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Author = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.FollowDetail")]
+	public partial class FollowDetail : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id_FollowDetail;
+		
+		private string _TaiKhoan;
+		
+		private System.Nullable<int> _Id_Author;
+		
+		private EntityRef<Author> _Author;
+		
+		private EntityRef<NguoiDung> _NguoiDung;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnId_FollowDetailChanging(int value);
+    partial void OnId_FollowDetailChanged();
+    partial void OnTaiKhoanChanging(string value);
+    partial void OnTaiKhoanChanged();
+    partial void OnId_AuthorChanging(System.Nullable<int> value);
+    partial void OnId_AuthorChanged();
+    #endregion
+		
+		public FollowDetail()
+		{
+			this._Author = default(EntityRef<Author>);
+			this._NguoiDung = default(EntityRef<NguoiDung>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id_FollowDetail", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id_FollowDetail
+		{
+			get
+			{
+				return this._Id_FollowDetail;
+			}
+			set
+			{
+				if ((this._Id_FollowDetail != value))
+				{
+					this.OnId_FollowDetailChanging(value);
+					this.SendPropertyChanging();
+					this._Id_FollowDetail = value;
+					this.SendPropertyChanged("Id_FollowDetail");
+					this.OnId_FollowDetailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaiKhoan", DbType="Char(50) NOT NULL", CanBeNull=false)]
+		public string TaiKhoan
+		{
+			get
+			{
+				return this._TaiKhoan;
+			}
+			set
+			{
+				if ((this._TaiKhoan != value))
+				{
+					if (this._NguoiDung.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTaiKhoanChanging(value);
+					this.SendPropertyChanging();
+					this._TaiKhoan = value;
+					this.SendPropertyChanged("TaiKhoan");
+					this.OnTaiKhoanChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id_Author", DbType="Int")]
+		public System.Nullable<int> Id_Author
+		{
+			get
+			{
+				return this._Id_Author;
+			}
+			set
+			{
+				if ((this._Id_Author != value))
+				{
+					if (this._Author.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnId_AuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Id_Author = value;
+					this.SendPropertyChanged("Id_Author");
+					this.OnId_AuthorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Author_FollowDetail", Storage="_Author", ThisKey="Id_Author", OtherKey="Id_Author", IsForeignKey=true)]
+		public Author Author
+		{
+			get
+			{
+				return this._Author.Entity;
+			}
+			set
+			{
+				Author previousValue = this._Author.Entity;
+				if (((previousValue != value) 
+							|| (this._Author.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Author.Entity = null;
+						previousValue.FollowDetails.Remove(this);
+					}
+					this._Author.Entity = value;
+					if ((value != null))
+					{
+						value.FollowDetails.Add(this);
+						this._Id_Author = value.Id_Author;
+					}
+					else
+					{
+						this._Id_Author = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Author");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NguoiDung_FollowDetail", Storage="_NguoiDung", ThisKey="TaiKhoan", OtherKey="TaiKhoan", IsForeignKey=true)]
+		public NguoiDung NguoiDung
+		{
+			get
+			{
+				return this._NguoiDung.Entity;
+			}
+			set
+			{
+				NguoiDung previousValue = this._NguoiDung.Entity;
+				if (((previousValue != value) 
+							|| (this._NguoiDung.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._NguoiDung.Entity = null;
+						previousValue.FollowDetails.Remove(this);
+					}
+					this._NguoiDung.Entity = value;
+					if ((value != null))
+					{
+						value.FollowDetails.Add(this);
+						this._TaiKhoan = value.TaiKhoan;
+					}
+					else
+					{
+						this._TaiKhoan = default(string);
+					}
+					this.SendPropertyChanged("NguoiDung");
 				}
 			}
 		}

@@ -14,6 +14,9 @@ namespace KK_BookStore.Controllers
         private MyDataDataContext mydata = new MyDataDataContext();
         public ActionResult Index()
         {
+            //so luong thong bao chua doc
+            var countNoti = mydata.ThongBaos.Where(m => m.TaiKhoan == User.Identity.Name && m.TrangThai == 0);
+            ViewBag.soLuongTBChuaDoc = countNoti.Count();
             var nguoidung = User.Identity.GetUserName();
             var user = mydata.NguoiDungs.Where(p => p.TaiKhoan == nguoidung);
             foreach (var item in user)
@@ -23,7 +26,7 @@ namespace KK_BookStore.Controllers
                 
 
             }
-            var tacgia = mydata.NguoiDungs.Where(p => p.MaChucVu == "f72cd8b7-6945-4fba-9d72-28b9e6240acf");
+            var tacgia = mydata.Authors;
             return View(tacgia);
         }
     }

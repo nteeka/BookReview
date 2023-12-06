@@ -263,17 +263,50 @@
                                                 {
                                                     if (item.LoaiHoatDong == "duyet_Post")
                                                     {
-                                                        <i class="fa fa-trash activity-icon pull-left"></i>
+                                                        <i class="fa fa-check activity-icon pull-left"></i>
                                                         <p>
                                                             <a href="#">@item.TaiKhoan</a> @item.NoiDung <a href="#">@item.BaiViet.TenBaiViet</a> <span class="timestamp">@item.Ngay.ToString("dd/MM/yyyy")</span>
                                                         </p>
                                                     }
                                                     else
                                                     {
-                                                        <i class="fa fa-trash activity-icon pull-left"></i>
-                                                        <p>
-                                                            <a href="#">@item.TaiKhoan</a> @item.NoiDung <a href="#">@item.BaiViet.TenBaiViet</a> <span class="timestamp">@item.Ngay.ToString("dd/MM/yyyy")</span>
-                                                        </p>
+                                                        if (item.LoaiHoatDong == "xoayeuThich_Post")
+                                                        {
+                                                            <i class="fa fa-trash activity-icon pull-left"></i>
+                                                            <p>
+                                                                <a href="#">@item.TaiKhoan</a> @item.NoiDung <a href="#">@item.BaiViet.TenBaiViet</a> <span class="timestamp">@item.Ngay.ToString("dd/MM/yyyy")</span>
+                                                            </p>
+                                                        }
+                                                        else
+                                                        {
+                                                            if (item.LoaiHoatDong == "Follow")
+                                                            {
+                                                                <i class="fa fa-plus activity-icon pull-left"></i>
+                                                                <p>
+                                                                    <a href="#">@item.TaiKhoan</a> @item.NoiDung <span class="timestamp">@item.Ngay.ToString("dd/MM/yyyy")</span>
+                                                                </p>
+                                                            }
+                                                            else
+                                                            {
+                                                                if (item.LoaiHoatDong == "unFollow")
+                                                                {
+                                                                    <i class="fa fa-plus activity-icon pull-left"></i>
+                                                                    <p>
+                                                                        <a href="#">@item.TaiKhoan</a> @item.NoiDung <span class="timestamp">@item.Ngay.ToString("dd/MM/yyyy")</span>
+                                                                    </p>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <i class="fa fa-apple activity-icon pull-left"></i>
+                                                                    <p>
+                                                                        <a href="#">@item.TaiKhoan</a> @item.NoiDung <span class="timestamp">@item.Ngay.ToString("dd/MM/yyyy")</span>
+                                                                    </p>
+                                                                }
+
+                                                            }
+
+                                                        }
+
                                                     }
 
                                                 }

@@ -51,18 +51,30 @@ namespace KK_BookStore.Controllers
                 
                     random.Add(baivietsRanDom[k]);
             }
-            // Perform Fisher-Yates Shuffle
             ViewBag.random = random;
 
-            // Get the first 3 elements
-            //return View(all_sach.ToList());
+            //dem post
+            ViewBag.countPost = baivietsRanDom.Count();
+            //dem cmt
+            var countComment = data.BinhLuans.ToList();
+            ViewBag.countComments = countComment.Count();
+            //dem visitor
+            var countVisitor = data.SystemAccesses.ToList();
+            ViewBag.countVisitors = countVisitor.Count();
+
+            //so luong thong bao chua doc
+            var countNoti = data.ThongBaos.Where(m => m.TaiKhoan == User.Identity.Name && m.TrangThai == 0);
+            ViewBag.soLuongTBChuaDoc = countNoti.Count();
+
             return View();
         }
         
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
+            //so luong thong bao chua doc
+            var countNoti = data.ThongBaos.Where(m => m.TaiKhoan == User.Identity.Name && m.TrangThai == 0);
+            ViewBag.soLuongTBChuaDoc = countNoti.Count();
             return View();
         }
 

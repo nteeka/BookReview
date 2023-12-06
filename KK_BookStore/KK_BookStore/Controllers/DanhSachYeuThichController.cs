@@ -113,6 +113,10 @@ namespace KK_BookStore.Controllers
         [Authorize]
         public ActionResult DanhSachBaiViet(int? page)
         {
+            //so luong thong bao chua doc
+            var countNoti = data.ThongBaos.Where(m => m.TaiKhoan == User.Identity.Name && m.TrangThai == 0);
+            ViewBag.soLuongTBChuaDoc = countNoti.Count();
+
             if (page == null) page = 1;
             int pageSize = 3;
             int pageNum = page ?? 1;

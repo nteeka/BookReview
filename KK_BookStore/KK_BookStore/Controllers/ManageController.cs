@@ -70,6 +70,9 @@ namespace KK_BookStore.Controllers
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
+            //so luong thong bao chua doc
+            var countNoti = mydata.ThongBaos.Where(m => m.TaiKhoan == User.Identity.Name && m.TrangThai == 0);
+            ViewBag.soLuongTBChuaDoc = countNoti.Count();
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
@@ -258,6 +261,9 @@ namespace KK_BookStore.Controllers
         // GET: /Manage/ChangePassword
         public ActionResult ChangePassword()
         {
+            //so luong thong bao chua doc
+            var countNoti = mydata.ThongBaos.Where(m => m.TaiKhoan == User.Identity.Name && m.TrangThai == 0);
+            ViewBag.soLuongTBChuaDoc = countNoti.Count();
             return View();
         }
 

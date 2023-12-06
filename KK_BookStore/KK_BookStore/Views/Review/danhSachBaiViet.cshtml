@@ -13,62 +13,64 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
 <title>NTK_REVIEWS || List Reviews</title>
 <link rel="shortcut icon" type="image/icon" href="~/Content/LayoutChung/favicon.png" />
-<div class="container bootdey" style="float:left;margin-left:180px;padding-top:10px">
+<section class="panel">
+    <div class="panel-body">
+        @*usingform*@
+        <form action="/Review/Search" style="display: flex; align-items: center;">
+            <input style="max-width: 50%; flex: 1;margin-left:370px;" type="search" placeholder="Keyword Search" class="form-control" id="keyword" name="name" />
+            <script>
+        var dynamicList = @Html.Raw(Json.Encode(Model.Select(bv => new { Id = bv.MaBaiViet, Name = bv.TenBaiViet })));
+        $("#keyword").autocomplete({
+            source: dynamicList.map(item => item.Name)
+        });
+            </script>
+            <button class="btn btn-default" type="submit"><i class="fa fa-search"></i> Search</button>
+        </form>
+        <style>
+            .ui-autocomplete {
+                max-height: 200px;
+                overflow-y: auto;
+                border: 1px solid #aaa;
+                background-color: #fff;
+                position: absolute;
+                font-size: 16px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow for a lifted appearance */
+            }
+
+                .ui-autocomplete li {
+                    padding: 8px;
+                    cursor: pointer;
+                    transition: background-color 0.3s ease; /* Smooth background color transition on hover */
+                }
+
+                    .ui-autocomplete li:hover {
+                        background-color: #f0f0f0; /* Change the background color on hover */
+                    }
+
+                .ui-autocomplete .ui-menu-item-wrapper {
+                    font-weight: bold; /* Make the suggestion text bold */
+                }
+
+                .ui-autocomplete .ui-state-active {
+                    background-color: #e0e0e0; /* Highlight the active suggestion */
+                }
+
+            .ui-helper-hidden-accessible {
+                visibility: hidden;
+            }
+        </style>
+
+    </div>
+</section>
+
+<div class="container bootdey" style="float:left;margin-left:100px;padding-top:40px">
+
     <div class="col-md-3">
         <section class="panel">
             <div class="panel-body">
                 @*usingform*@
-                <form action="/Review/Search">
-                    <input type="search" placeholder="Keyword Search" class="form-control" id="keyword" name="name" />
-                    <script>
-                        //var local = [
 
-                        //{ id: 1, value: "aadasd" },
-                        //    { id: 2, value: "badsadas" }
 
-                        //];
-                        //$("#keyword").autocomplete({
-                        //    source: local
-                        //});
-                        var dynamicList = @Html.Raw(Json.Encode(Model.Select(bv => new { Id = bv.MaBaiViet, Name = bv.TenBaiViet })));
-                        $("#keyword").autocomplete({
-                            source: dynamicList.map(item => item.Name)
-                            });
-                    </script>
-                    <button class="btn btn-default" type="submit"><i class="fa fa-search"></i>Search</button>
-                </form>
-                <style>
-                    .ui-autocomplete {
-                        max-height: 200px;
-                        overflow-y: auto;
-                        border: 1px solid #aaa;
-                        background-color: #fff;
-                        position: absolute;
-                        font-size: 16px;
-                        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow for a lifted appearance */
-                        
-                        }
-
-                        .ui-autocomplete li {
-                            padding: 8px;
-                            cursor: pointer;
-                            transition: background-color 0.3s ease; /* Smooth background color transition on hover */
-                        }
-
-                            .ui-autocomplete li:hover {
-                                background-color: #f0f0f0; /* Change the background color on hover */
-                            }
-
-                        .ui-autocomplete .ui-menu-item-wrapper {
-                            font-weight: bold; /* Make the suggestion text bold */
-                        }
-
-                        .ui-autocomplete .ui-state-active {
-                            background-color: #e0e0e0; /* Highlight the active suggestion */
-                        }
-                    
-                </style>
-                
             </div>
         </section>
         <section class="panel">
