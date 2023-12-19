@@ -1,4 +1,5 @@
 ﻿using KK_BookStore.Models;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using PagedList;
 using System;
@@ -52,7 +53,7 @@ namespace KK_BookStore.Controllers
         }
 
         [Authorize]
-        public ActionResult themBinhLuan(int mabaiviet, string comment,string strURL)
+        public ActionResult themBinhLuan(int mabaiviet, string comment)
         {    
             //var lst_DanhGia = data.BinhLuans.Where(m => m.MaBaiViet == mabaiviet);
              BinhLuan binhLuan = new BinhLuan();
@@ -61,6 +62,7 @@ namespace KK_BookStore.Controllers
             binhLuan.TaiKhoan = User.Identity.Name;
             binhLuan.NoiDung = comment;
             binhLuan.SoLike = 0;
+            binhLuan.isDeleted = false;
             data.BinhLuans.InsertOnSubmit(binhLuan);
             data.SubmitChanges();
             LichSuHoatDong lichSuHoatDong = new LichSuHoatDong();
@@ -72,9 +74,152 @@ namespace KK_BookStore.Controllers
             lichSuHoatDong.LoaiHoatDong = "cmt";
             
             data.LichSuHoatDongs.InsertOnSubmit(lichSuHoatDong);
-            data.SubmitChanges();                                     
-            return Redirect(strURL);
+            data.SubmitChanges();
+
+            var comments = data.BinhLuans.Where(m => m.MaBaiViet == mabaiviet && m.isDeleted!=true).OrderByDescending(m=>m.NgayTao).ToList();
+            ViewBag.list = comments;
+            return PartialView("~/Views/NguoiDung/_CommentPartial.cshtml", comments);
         }
+        [Authorize]
+        public ActionResult xoaBinhLuan(int id)
+        {
+            
+            var binhLuan = data.BinhLuans.Where(m => m.MaBinhLuan == id).First();
+            int mabai = binhLuan.MaBaiViet;
+            ViewBag.ma = mabai;
+            if (binhLuan != null)
+            {
+                binhLuan.isDeleted = true;
+                UpdateModel(binhLuan);
+                data.SubmitChanges();
+            }
+            else
+            {
+            }
+            var comments = data.BinhLuans.Where(m => m.MaBaiViet == mabai && m.isDeleted!=true).OrderByDescending(m => m.NgayTao).ToList();
+
+            return PartialView("~/Views/NguoiDung/_CommentPartial.cshtml", comments);
+        }
+        [HttpPost]
+        public ActionResult CapNhatBinhLuan(int id, string noiDung)
+        {
+            var binhLuan = data.BinhLuans.Where(m => m.MaBinhLuan == id).First();
+            ViewBag.ma = binhLuan.MaBaiViet;
+            if (binhLuan != null)
+            {
+                binhLuan.NoiDung = noiDung;
+                UpdateModel(binhLuan);
+                data.SubmitChanges();
+                var comments = data.BinhLuans.Where(m => m.MaBaiViet == binhLuan.MaBaiViet && m.isDeleted != true).OrderByDescending(m => m.NgayTao).ToList();
+                return PartialView("~/Views/NguoiDung/_CommentPartial.cshtml", comments);
+            }
+            var commentss = data.BinhLuans.Where(m => m.MaBaiViet == binhLuan.MaBaiViet && m.isDeleted != true).OrderByDescending(m => m.NgayTao).ToList();
+            return PartialView("~/Views/NguoiDung/_CommentPartial.cshtml", commentss);
+        }
+        [HttpGet]
+        public ActionResult GetComments(int mabaiviet)
+        {
+            var reply = data.PhanHois.ToList();
+            if (reply.Count() != 0)
+                ViewBag.replys = reply;
+            else
+                ViewBag.replys = null;
+            ViewBag.showAllReplys = 0;
+            ViewBag.countReply = 0;
+            ViewBag.MaBaiViet = 0;
+            ViewBag.countComment = 0;
+
+            var comments = data.BinhLuans.Where(m => m.MaBaiViet == mabaiviet && m.isDeleted ==  false).OrderByDescending(m=>m.NgayTao).ToList();
+            if (comments.Count() != 0)
+                ViewBag.comments = comments;
+            else
+                ViewBag.comments = null;
+            ViewBag.showAllCMT = comments.Count();
+            ViewBag.MaBaiViet = mabaiviet;
+            var check_YeuThich = data.ChiTietBinhLuans.Where(m => m.TaiKhoan == User.Identity.Name).ToList();
+
+            ViewBag.checkYT = check_YeuThich;
+            ViewBag.tempYT = 0;
+            return PartialView("~/Views/NguoiDung/_CommentPartial.cshtml", comments);
+        }
+
+
+        [HttpGet]
+        public ActionResult GetRattings(int mabaiviet)
+        {
+            //so luong thong bao chua doc
+            var countNoti = data.ThongBaos.Where(m => m.TaiKhoan == User.Identity.Name && m.TrangThai == 0);
+            ViewBag.soLuongTBChuaDoc = countNoti.Count();
+            if (User.Identity.IsAuthenticated)
+            {
+                var anhDaiDien = from s in data.NguoiDungs where s.TaiKhoan == User.Identity.Name select s;
+                ViewBag.hinh = anhDaiDien.First().Hinh;
+
+            }
+            var post = data.BaiViets.Where(m => m.MaBaiViet == mabaiviet).First();
+            ViewBag.Author = post.TaiKhoan;
+            ViewBag.YeuThich = post.YeuThich;
+            ViewBag.Cate = post.TheLoai.TenTL;
+            ViewBag.Views = post.LuotXem;
+            ViewBag.Date = post.NgayViet.Value.ToString("dd/MM/yyyy");
+            ViewBag.Stars = Math.Round((float)post.SoSao, 1);
+            
+            
+            var all_baiviet = from tt in data.DanhGias where tt.MaBaiViet == mabaiviet && tt.isDeleted == false select tt;
+            ViewBag.cmt = all_baiviet;
+            int sao5 = 0;
+            int sao4 = 0;
+            int sao3 = 0;
+            int sao2 = 0;
+            int sao1 = 0;
+            int demSao = 0;
+            foreach (var item in all_baiviet)
+            {
+                demSao++;
+                if (item.SoSao == 5)
+                {
+                    sao5++;
+                }
+                if (item.SoSao == 4)
+                {
+                    sao4++;
+                }
+                if (item.SoSao == 3)
+                {
+                    sao3++;
+                }
+                if (item.SoSao == 2)
+                {
+                    sao2++;
+                }
+                if (item.SoSao == 1)
+                {
+                    sao1++;
+                }
+            }
+            if (demSao == 0)
+            {
+                demSao = 1;
+                ViewBag.slDanhGia = 0;
+            }
+            else
+                ViewBag.slDanhGia = demSao;
+            ViewBag.sao1 = sao1; ViewBag.phanTram1 = (sao1 * 100) / demSao;
+            ViewBag.sao2 = sao2; ViewBag.phanTram2 = (sao2 * 100) / demSao;
+            ViewBag.sao3 = sao3; ViewBag.phanTram3 = (sao3 * 100) / demSao;
+            ViewBag.sao4 = sao4; ViewBag.phanTram4 = (sao4 * 100) / demSao;
+            ViewBag.sao5 = sao5; ViewBag.phanTram5 = (sao5 * 100) / demSao;
+
+            var rattings = data.DanhGias.Where(m => m.MaBaiViet == mabaiviet && m.isDeleted == false).OrderByDescending(m => m.NgayTao).ToList();
+            if (rattings.Count() != 0)
+                ViewBag.rattings = rattings;
+            else
+                ViewBag.rattings = null;
+
+
+            return PartialView("~/Views/NguoiDung/_RatePartial.cshtml", rattings);
+        }
+
         [Authorize]
         public ActionResult themPhanHoi(int mabinhluan, string comment, string strURL)
         {
@@ -102,7 +247,7 @@ namespace KK_BookStore.Controllers
         }
         
         [Authorize]
-        public ActionResult thichBinhLuan(int id, string strURL)
+        public ActionResult thichBinhLuan(int id)
         {
             var binhLuan = (from s in data.BinhLuans where s.MaBinhLuan == id select s).First();        
             var check = data.ChiTietBinhLuans.Where(m => m.MaBinhLuan == id && m.TaiKhoan.Equals(User.Identity.Name)).FirstOrDefault();
@@ -137,7 +282,11 @@ namespace KK_BookStore.Controllers
                 data.SubmitChanges();
                 
             }
-            return Redirect(strURL); ;
+            
+            var comments = data.BinhLuans.Where(m => m.MaBaiViet == binhLuan.MaBaiViet && m.isDeleted != true).OrderByDescending(m => m.NgayTao).ToList();
+
+            return PartialView("~/Views/NguoiDung/_CommentPartial.cshtml", comments);
+            //return Redirect("https://localhost:44339/Review/detail/" + binhLuan.MaBaiViet); ;
         }
 
         [Authorize]
@@ -246,6 +395,7 @@ namespace KK_BookStore.Controllers
 
 
         //view THong Bao
+        [Authorize]
         public ActionResult danhSachThongBao(string name, int? page)
         {
             //so luong thong bao chua doc
@@ -257,7 +407,7 @@ namespace KK_BookStore.Controllers
                 ViewBag.hinh = anhDaiDien.First().Hinh;
             }
             if (page == null) page = 1;
-            int pageSize = 3;
+            int pageSize = 6;
             int pageNum = page ?? 1;
             var all_ThongBao = from tt in data.ThongBaos where tt.TaiKhoan == name orderby tt.MaThongBao descending select tt;
             return View(all_ThongBao.ToPagedList(pageNum, pageSize));

@@ -24,18 +24,22 @@
     <script src="~/Content/darkMode.js"></script>
     <button style="margin-bottom:50px" class="lightmode-button" id="darkmodebtn" onclick="darkMode()">🌓</button>
     <header>
-        <a style="color: chartreuse; font: bold" class="navbar-brand" href="https://localhost:44339/Home/Index">NTK<span style="color:red">_Reviews</span></a>
+        <a style="color:black;font:bold" class="navbar-brand" href="https://localhost:44339/Home/Index">NTK<span style="color:red">_Reviews</span></a>
 
         <nav style="width:200px">
 
 
             <ul style="text-align:center">
-                <li><a href="https://localhost:44339/Home/Index">home</a></li>
-                <li><a href="https://localhost:44339/Home/About">about</a></li>
-                <li><a href="https://localhost:44339/DanhSachYeuThich/DanhSachBaiViet">Wishlist</a></li>
-                
-                <li><a href="https://localhost:44339/TacGia/index">Author</a></li>
-                <li><a href="https://localhost:44339/Review/Index">review</a></li>
+                <li><a href="https://localhost:44339/Home/Index">HOME</a></li>
+                <li><a href="https://localhost:44339/Home/About">ABOUT</a></li>
+                <li><a href="https://localhost:44339/DanhSachYeuThich/DanhSachBaiViet">WISHLIST</a></li>
+                @*@if (User.IsInRole("Reviewer"))
+                {
+                    <li><a href="https://localhost:44339/Review/quanLyBaiViet"><i style="font-size:x-large" class="fa fa-briefcase"></i></a></li>
+                }*@
+                <li><a href="https://localhost:44339/TacGia/index">AUTHOR</a></li>
+                @*<li class="scroll"><a href="#reviews">review</a></li>*@
+                <li><a href="https://localhost:44339/Review/Index">POSTS</a></li>
 
 
                 <li><button class="btn btn-default" onclick="goBack()"><i class="fa fa-arrow-left"></i> Back</button></li>
@@ -46,8 +50,14 @@
 
 
         </nav>
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
         <div style="">
-            <div> <a href="Link web 2" target="_blank"><img border="0" src="http://farm6.staticflickr.com/5759/31081343902_b95bee4751_o.png" width="200" /></a> </div>
+            <div> <a href="Link web 2" target="_blank"><img border="0" src="http://farm6.staticflickr.com/5759/31081343902_b95bee4751_o.png" width="200" height="430" /></a> </div>
+            @*<div style="margin-top: 10px;"> <a href="Link web 2" target="_blank"><img border="0" src="\Content\user.jpg" width="200" /></a> </div>*@
         </div>
 
     </header>
@@ -78,7 +88,7 @@
                                 <li class="clearfix">
                                     <img src="@item.NguoiDung.Hinh" class="avatar" alt="">
                                     <div class="post-comments">
-                                        <p class="meta">@item.NgayTao.ToString("dd/MM/yyyy") <a href="#">@item.TaiKhoan</a> says : <i class="pull-right"><a href="#"><small>Reply</small></a></i></p>
+                                        <p class="meta">@item.NgayTao.ToString("dd/MM/yyyy") <a href="#">@item.TaiKhoan</a> says : <i class="pull-right"><a href="@Url.Action("danhSachPhanHoi","Review",new {@id = item.MaBinhLuan})"><small>Reply</small></a></i></p>
                                         <p>
                                             @item.NoiDung
                                         </p>
@@ -121,7 +131,7 @@
                                     <div class="row">
                                         <div class="col-sm-3 col-lg-2 hidden-xs">
 
-                                            <img style="width:100px;height:100px" class="img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                                            <img style="width:100px;height:100px" class="img-responsive" src="@ViewBag.Hinh" alt="">
                                         </div>
                                         <div class="col-xs-12 col-sm-9 col-lg-10">
                                             <textarea style="width:400px" class="form-control" name="comment" id="message" placeholder="Your message" required=""></textarea>

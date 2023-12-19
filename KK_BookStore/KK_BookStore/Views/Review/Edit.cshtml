@@ -100,104 +100,154 @@
             @using (Html.BeginForm("Edit", "Review", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
-                <div class="form_container">
-                    <div class="form_control">
-                        <label for="TenBaiViet"> Post's Name </label>
-                        @*<input required id="TenBaiViet"
-                               name="TenBaiViet"
-                               placeholder="Enter TenBaiViet..." />*@
-                        @Html.EditorFor(model => model.TenBaiViet, new { htmlAttributes = new { @class = "form-control",@id= "TenBaiViet",
-                       @name = "TenBaiViet",
-                       @placeholder = "Enter TenBaiViet...",
-                       @required=true
-                   } })
-                    </div>
-                    @*@Html.EditorFor(model => model.MaTL, new { htmlAttributes = new { @class = "form-control",@style="display:none" } })*@
-                <div class="form_control">
-                    <label for="MaTL"> Catagory </label>
-                    <select id="MaTL" name="MaTL">
+        <div class="form_container">
+            <div class="form_control">
+                <label for="TenBaiViet"> Post's Name </label>
+                @*<input required id="TenBaiViet"
+            name="TenBaiViet"
+            placeholder="Enter TenBaiViet..." />*@
+                @Html.EditorFor(model => model.TenBaiViet, new
+                {
+                    htmlAttributes = new
+                    {
+                        @class = "form-control",
+                        @id = "TenBaiViet",
+               @name = "TenBaiViet",
+               @placeholder = "Enter TenBaiViet...",
+               @required = true
+           }
+                })
+            </div>
+            @*@Html.EditorFor(model => model.MaTL, new { htmlAttributes = new { @class = "form-control",@style="display:none" } })*@
+            <div class="form_control">
+                <label for="MaTL"> Catagory </label>
+                <select id="MaTL" name="MaTL">
 
-                        @foreach (var i in ViewBag.TheLoais)
+                    @foreach (var i in ViewBag.TheLoais)
+                    {
+                        if (ViewBag.TL == i.MaTL)
                         {
-                            if (ViewBag.TL == i.MaTL)
-                            {
-                                <option selected value=@i.MaTL>@i.TenTL</option>
+                            <option selected value=@i.MaTL>@i.TenTL</option>
 
-                            }
-                            else
-                            {
-                                <option value=@i.MaTL>@i.TenTL</option>
-
-                            }
+                        }
+                        else
+                        {
+                            <option value=@i.MaTL>@i.TenTL</option>
 
                         }
 
+                    }
 
-                    </select>
+
+                </select>
 
 
-                </div>
-                    @*<div class="form_control">
-                        <label for="TrangThai"> Status </label>
-                        <select id="TrangThai" name="TrangThai">
-                            @if (ViewBag.status == 0)
+            </div>
+            @if (ViewBag.status != -2)
+            {
+                <div class="form_control">
+                    <label for="TrangThai"> Status </label>
+                    <select id="TrangThai" name="TrangThai">
+                        @if (ViewBag.status == 1)
+                        {
+                            <option selected value=1>Public</option>
+                            <option value=0>Private</option>
+                        }
+                        else
+                        {
+                            if (ViewBag.status == 0)
                             {
                                 <option selected value=0>Private</option>
                                 <option value=1>Public</option>
                             }
                             else
                             {
-                                <option  value=0>Private</option>
-                                <option selected value=1>Public</option>
+                                @*if (ViewBag.status == -1)
+                            {
+                                <option value=0>Private</option>
+                                <option selected value=-1>Waiting</option>
+                            }*@
+                                <option value=0>Private</option>
+                                <option selected value=-1>Waiting</option>
                             }
 
 
-                        </select>
-                        
+                        }
 
-                    </div>*@
-                    <div class="form_control">
-                        <label for="MoTa"> Bio </label>
-                        @Html.TextAreaFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control"
-                                    ,@id = "MoTa",
-                                  @name = "MoTa",
-                                  @placeholder = "Enter Bio...",
-                                  @required=true
-                   } })
-                    </div>
 
-                    @*<div class="form_control">
-                            <label for="email"> Email </label>
-                            <input type="email"
-                                   id="email"
-                                   name="email"
-                                   placeholder="Enter Email..." />
-                        </div>*@
 
-                <div class="textarea_control ckeditor">
-                    <label for="NoiDung"> Content </label>
-                    @Html.TextAreaFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control ckeditor"
-                              ,@id = "NoiDung",
-                   @name = "NoiDung",
-                   @row = "4",
-                   @cols = "50",
-                   @placeholder = "Enter NoiDung",
-                   @required = true
-               } })
+
+                    </select>
+
+
                 </div>
-                    <script>CKEDITOR.replace("NoiDung");</script>
-
-                   
-
-                    <div class="form_control">
-                        <label for="AnhBia"> Upload Post's Background </label>
-                        @*<input type="file" id="AnhBia" name="AnhBia" />*@
-                        @Html.EditorFor(model => model.AnhBia, new { htmlAttributes = new { @class = "form-control",@style="display:none" } })
-                        @Html.ValidationMessageFor(model => model.AnhBia, "", new { @class = "text-danger" })
-                        <input type="file" class="text-center center-block file-upload" name="fileUpload" id="fileUpload" accept="image/*" />
-                        @section upload
+            }
+            else
             {
-                            <script>
+                <div class="form_control">
+                    <label for="TrangThai"> Status </label>
+                    <select id="TrangThai" name="TrangThai">
+                        <option selected value=-2>Deny</option>
+                    </select>
+
+
+                </div>
+            }
+
+            <div class="form_control">
+                <label for="MoTa"> Bio </label>
+                @Html.TextAreaFor(model => model.MoTa, new
+                {
+                    htmlAttributes = new
+                    {
+                        @class = "form-control"
+                            ,
+                        @id = "MoTa",
+                          @name = "MoTa",
+                          @placeholder = "Enter Bio...",
+                          @required = true
+           }
+                })
+            </div>
+
+            @*<div class="form_control">
+            <label for="email"> Email </label>
+            <input type="email"
+                   id="email"
+                   name="email"
+                   placeholder="Enter Email..." />
+        </div>*@
+
+            <div class="textarea_control ckeditor">
+                <label for="NoiDung"> Content </label>
+                @Html.TextAreaFor(model => model.NoiDung, new
+                {
+                    htmlAttributes = new
+                    {
+                        @class = "form-control ckeditor"
+                          ,
+                        @id = "NoiDung",
+               @name = "NoiDung",
+               @row = "4",
+               @cols = "50",
+               @placeholder = "Enter NoiDung",
+               @required = true
+           }
+                })
+            </div>
+            <script>CKEDITOR.replace("NoiDung");</script>
+
+
+
+            <div class="form_control">
+                <label for="AnhBia"> Upload Post's Background </label>
+                @*<input type="file" id="AnhBia" name="AnhBia" />*@
+                @Html.EditorFor(model => model.AnhBia, new { htmlAttributes = new { @class = "form-control", @style = "display:none" } })
+                @Html.ValidationMessageFor(model => model.AnhBia, "", new { @class = "text-danger" })
+                <input type="file" class="text-center center-block file-upload" name="fileUpload" id="fileUpload" accept="image/*" />
+                @section upload
+            {
+                    <script>
                         $(function () {
                             $('#btnUpload').click(function () {
                                 $('#fileUpload').trigger('click');
@@ -227,11 +277,11 @@
                                     });
                             }
                         });
-                            </script>
-                        }
-                    </div>
+                    </script>
+                }
+            </div>
 
-                </div>
+        </div>
                 <div class="button_container">
                     <button type="submit">Save</button>
                 </div>

@@ -43,6 +43,8 @@ namespace KK_BookStore.Controllers
 
         public ActionResult Index()
         {
+            var user = data.NguoiDungs.Where(m => m.TaiKhoan == User.Identity.Name).First();
+            ViewBag.Hinh = user.Hinh;
             List<RoleViewModel> list = new List<RoleViewModel>();
             foreach (var role in RoleManager.Roles)
             {

@@ -14,6 +14,8 @@ using System.IO;
 using System.Globalization;
 using System.Drawing;
 using PayPal.Api;
+using System.Xml.Linq;
+using System.Text.RegularExpressions;
 
 namespace KK_BookStore.Controllers
 {
@@ -103,9 +105,10 @@ namespace KK_BookStore.Controllers
                 ViewBag.MonthJoin = thang;
                 ViewBag.YearJoin = a.Year;
             }
+
             var listLichSuHoatDong = mydata.LichSuHoatDongs.Where(m => m.TaiKhoan == User.Identity.Name);
             ViewBag.LichSuHoatDong = listLichSuHoatDong;
-
+            
 
 
             var model = new IndexViewModel
@@ -264,6 +267,8 @@ namespace KK_BookStore.Controllers
             //so luong thong bao chua doc
             var countNoti = mydata.ThongBaos.Where(m => m.TaiKhoan == User.Identity.Name && m.TrangThai == 0);
             ViewBag.soLuongTBChuaDoc = countNoti.Count();
+            var user = mydata.NguoiDungs.Where(m => m.TaiKhoan == User.Identity.Name).First();
+            ViewBag.Hinh = user.Hinh;
             return View();
         }
 
@@ -397,34 +402,79 @@ namespace KK_BookStore.Controllers
         }
         [HttpPost]
      
-        public ActionResult Edit(string id, FormCollection collection)
+        public ActionResult Edit(string id, NguoiDung model)
         {
-            var E_taikhoan = mydata.NguoiDungs.First(m => m.TaiKhoan.Equals(id));
-            var E_hoten = collection["HoTen"];
-            var E_ngaysinh = collection["NgaySinh"];
-            var E_diachi = collection["DiaChi"];
-            var E_hinh = collection["Hinh"];
-            var E_gioitinh = collection["GioiTinh"];
-            
-            E_taikhoan.TaiKhoan = id;
-            
-            if (string.IsNullOrEmpty(E_hoten))
+            //var E_taikhoan = mydata.NguoiDungs.First(m => m.TaiKhoan.Equals(id));
+            //var E_hoten = collection["HoTen"];
+            //var E_ngaysinh = collection["NgaySinh"];
+            //var E_diachi = collection["DiaChi"];
+            //var E_hinh = collection["Hinh"];
+            //var E_gioitinh = collection["GioiTinh"];
+
+            //E_taikhoan.TaiKhoan = id;
+
+            //if (string.IsNullOrEmpty(E_hoten))
+            //{
+            //    ViewData["Error"] = "Don't empty!";
+            //}
+            //else
+            //{
+            //    E_taikhoan.HoTen = E_hoten;
+            //    E_taikhoan.NgaySinh = E_ngaysinh;
+            //    E_taikhoan.DiaChi = E_diachi;
+            //    E_taikhoan.Hinh = E_hinh;
+            //    E_taikhoan.GioiTinh=E_gioitinh;
+
+            //    UpdateModel(E_taikhoan);
+            //    mydata.SubmitChanges();
+            //    return RedirectToAction("Index");
+            //}
+            //return this.Edit(id);
+            var nguoidung = mydata.NguoiDungs.Where(m => m.TaiKhoan == id).First();
+            if (string.IsNullOrEmpty(model.HoTen))
             {
-                ViewData["Error"] = "Don't empty!";
+                ModelState.AddModelError("HoTen", "Name cannot be empty!");
             }
-            else
+
+            if (string.IsNullOrEmpty(model.NgaySinh))
             {
-                E_taikhoan.HoTen = E_hoten;
-                E_taikhoan.NgaySinh = E_ngaysinh;
-                E_taikhoan.DiaChi = E_diachi;
-                E_taikhoan.Hinh = E_hinh;
-                E_taikhoan.GioiTinh=E_gioitinh;
-                
-                UpdateModel(E_taikhoan);
+                ModelState.AddModelError("NgaySinh", "Date of birth cannot be empty!");
+            }
+
+            if (string.IsNullOrEmpty(model.DiaChi))
+            {
+                ModelState.AddModelError("DiaChi", "Address cannot be empty!");
+            }
+
+            if (string.IsNullOrEmpty(model.SDT))
+            {
+                ModelState.AddModelError("SDT", "Phone number cannot be empty!");
+            }
+            else if (!Regex.IsMatch(model.SDT, @"^(03|05|07|08|09)+([0-9]{8})\b"))
+            {
+                ModelState.AddModelError("SDT", "Invalid phone number format");
+            }
+            
+            if (!ModelState.IsValid)
+            {
+                // If there are validation errors, return to the edit view with the same ID
+                return Edit(id);
+            }
+
+
+
+            if (nguoidung != null)
+            {
+                nguoidung.Hinh = model.Hinh;
+                nguoidung.HoTen = model.HoTen;
+                nguoidung.SDT = model.SDT;
+                nguoidung.NgaySinh = model.NgaySinh;
+                nguoidung.DiaChi = model.DiaChi;
+                nguoidung.GioiTinh = model.GioiTinh;
+                nguoidung.MoTa = model.MoTa;
                 mydata.SubmitChanges();
-                return RedirectToAction("Index");
             }
-            return this.Edit(id);
+            return RedirectToAction("Index");
         }
         
 

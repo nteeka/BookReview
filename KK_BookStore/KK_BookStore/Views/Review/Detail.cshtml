@@ -1,9 +1,8 @@
 ﻿@model KK_BookStore.BaiViet
-
 @{
     ViewBag.Title = "Detail";
     Layout = null;
-    
+
 }
 
 
@@ -30,26 +29,27 @@
     <link href="~/Content/darkMode.css" rel="stylesheet" />
     <script src="~/Content/darkMode.js"></script>
     <button style="margin-bottom:50px" class="lightmode-button" id="darkmodebtn" onclick="darkMode()">🌓</button>
+    
     <header>
-        <a style="color:chartreuse;font:bold" class="navbar-brand" href="https://localhost:44339/Home/Index">NTK<span style="color:red">_Reviews</span></a>
+        <a style="color:black;font:bold" class="navbar-brand" href="https://localhost:44339/Home/Index">NTK<span style="color:red">_Reviews</span></a>
 
         <nav style="width:200px">
 
 
             <ul style="text-align:center">
-                <li><a href="https://localhost:44339/Home/Index">home</a></li>
-                <li><a href="https://localhost:44339/Home/About">about</a></li>
-                <li><a href="https://localhost:44339/DanhSachYeuThich/DanhSachBaiViet">Wishlist</a></li>
-                @if (User.IsInRole("Reviewer"))
+                <li><a href="https://localhost:44339/Home/Index">HOME</a></li>
+                <li><a href="https://localhost:44339/Home/About">ABOUT</a></li>
+                <li><a href="https://localhost:44339/DanhSachYeuThich/DanhSachBaiViet">WISHLIST</a></li>
+                @*@if (User.IsInRole("Reviewer"))
                 {
                     <li><a href="https://localhost:44339/Review/quanLyBaiViet"><i style="font-size:x-large" class="fa fa-briefcase"></i></a></li>
-                }
-                <li><a href="https://localhost:44339/TacGia/index">Author</a></li>
+                }*@
+                <li><a href="https://localhost:44339/TacGia/index">AUTHOR</a></li>
                 @*<li class="scroll"><a href="#reviews">review</a></li>*@
-                <li><a href="https://localhost:44339/Review/Index">review</a></li>
+                <li><a href="https://localhost:44339/Review/Index">POSTS</a></li>
 
 
-                <li><button class="btn btn-default" onclick="goBack()"><i class="fa fa-arrow-left"></i> Back</button></li>
+                <li><button  class="btn btn-default" onclick="goBack()"><i class="fa fa-arrow-left"></i> Back</button></li>
 
                 @Html.Partial("_LoginPartial")
             </ul>
@@ -100,45 +100,45 @@
                     </div>
                 </div>
                 @*<div class="carousel-item">
-                        <div class="mask flex-center">
-                            <div class="container">
-                                <div class="row align-items-center">
-                                    <div class="col-md-7 col-12 order-md-1 order-2">
-                                        <h4>
-                                            Present your <br>
-                                            awesome product
-                                        </h4>
-                                        <p>
-                                            Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum <br>
-                                            necessitatibus praesentium voluptatum deleniti atque corrupti.
-                                        </p>
-                                        <a href="#">BUY NOW</a>
-                                    </div>
-                                    <div class="col-md-5 col-12 order-md-2 order-1"><img width="200" src="https://i.imgur.com/duWgXRs.png" class="mx-auto" alt="slide"></div>
+                    <div class="mask flex-center">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-md-7 col-12 order-md-1 order-2">
+                                    <h4>
+                                        Present your <br>
+                                        awesome product
+                                    </h4>
+                                    <p>
+                                        Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum <br>
+                                        necessitatibus praesentium voluptatum deleniti atque corrupti.
+                                    </p>
+                                    <a href="#">BUY NOW</a>
                                 </div>
+                                <div class="col-md-5 col-12 order-md-2 order-1"><img width="200" src="https://i.imgur.com/duWgXRs.png" class="mx-auto" alt="slide"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-item">
-                        <div class="mask flex-center">
-                            <div class="container">
-                                <div class="row align-items-center">
-                                    <div class="col-md-7 col-12 order-md-1 order-2">
-                                        <h4>
-                                            Present your <br>
-                                            awesome product
-                                        </h4>
-                                        <p>
-                                            Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum <br>
-                                            necessitatibus praesentium voluptatum deleniti atque corrupti.
-                                        </p>
-                                        <a href="#">BUY NOW</a>
-                                    </div>
-                                    <div class="col-md-5 col-12 order-md-2 order-1"><img width="200" src="https://i.imgur.com/DGkR4OQ.png" class="mx-auto" alt="slide"></div>
+                </div>
+                <div class="carousel-item">
+                    <div class="mask flex-center">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-md-7 col-12 order-md-1 order-2">
+                                    <h4>
+                                        Present your <br>
+                                        awesome product
+                                    </h4>
+                                    <p>
+                                        Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum <br>
+                                        necessitatibus praesentium voluptatum deleniti atque corrupti.
+                                    </p>
+                                    <a href="#">BUY NOW</a>
                                 </div>
+                                <div class="col-md-5 col-12 order-md-2 order-1"><img width="200" src="https://i.imgur.com/DGkR4OQ.png" class="mx-auto" alt="slide"></div>
                             </div>
                         </div>
-                    </div>*@
+                    </div>
+                </div>*@
             </div>
             @*<a style="width:100px" class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">Next</span> </a>*@
         </div>
@@ -177,28 +177,34 @@
                     <div class="row">
                         <div class="col-sm-8">
                             <div style="width:fit-content">
-                                @using (Html.BeginForm("themDanhGia", "Review", FormMethod.Get, new { id = "ratingForm" }))
-                                {
-                                    <input hidden list="browsers" value=@ViewBag.MaBaiViet type="text" placeholder="ma" name="mabaiviet" />
-                                    <input hidden list="browsers" value=@Request.Url.ToString() type="text" placeholder="ma" name="strURL" />
 
+                                @using (Html.BeginForm("themDanhGia", "Review", FormMethod.Post))
+                                {
+                                    <input id="mabaivietrat" hidden list="browsers" value=@ViewBag.MaBaiViet type="text" placeholder="ma" name="mabaiviet" />
+                                    @*<input id="url" hidden list="browsers" value=@Request.Url.ToString() type="text" placeholder="ma" name="strURL" />*@
                                     <h3 class="pull-left">New Ratting</h3>
                                     <div class="rate">
 
-                                        <<input type="radio" id="star5" name="rate" value="5" />
-                                        <label for="star5" title="text">5 stars</label>
-                                        <input type="radio" id="star4" name="rate" value="4" />
-                                        <label for="star4" title="text">4 stars</label>
-                                        <input type="radio" id="star3" name="rate" value="3" />
-                                        <label for="star3" title="text">3 stars</label>
-                                        <input type="radio" id="star2" name="rate" value="2" />
-                                        <label for="star2" title="text">2 stars</label>
-                                        <input type="radio" id="star1" name="rate" value="1" />
-                                        <label for="star1" title="text">1 star</label>
+                                        <span class="star" data-value="1" title="1 star">☆</span>
+                                        <span class="star" data-value="2" title="2 stars">☆</span>
+                                        <span class="star" data-value="3" title="3 stars">☆</span>
+                                        <span class="star" data-value="4" title="4 stars">☆</span>
+                                        <span class="star" data-value="5" title="5 stars">☆</span>
+
+                                        @*<label for="star1" title="text">1 star</label>*@
 
                                     </div>
+                                    <style>
+                                        .star {
+                                            cursor: pointer;
+                                            font-size: 20px;
+                                            color: #ccc; /* Màu cho các sao chưa được chọn */
+                                        }
 
-                                    <button type="submit" class="btn btn-normal pull-right">Submit</button>
+                                            .star.selected {
+                                                color: #f5b301; /* Màu cho các sao sau khi được chọn */
+                                            }
+                                    </style>
                                     <fieldset>
                                         <div class="row">
                                             <div class="col-sm-3 col-lg-2 hidden-xs">
@@ -206,73 +212,24 @@
                                                 @*<img style="width:180px;height:100px" class="img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">*@
                                             </div>
                                             <div class="col-xs-12 col-sm-9 col-lg-10">
-                                                <textarea style="width:400px" class="form-control" name="comment" id="message" placeholder="Your message" required=""></textarea>
+                                                <textarea style="width:400px" class="form-control" name="comment" id="rat" placeholder="Your message"required="required"></textarea>
                                             </div>
                                         </div>
                                     </fieldset>
+                                    <button id="addRattingtButton" type="button" class="btn btn-normal pull-right">Submit</button>
+
                                 }
+
+
+
+
+
+
 
 
                             </div>
 
-                            @*@if (ViewBag.checkCMT == -1)
-                                {
-                                    <h1>Chua co cmt</h1>
-                                }
-                                else
-                                {
-                                    <h3>@ViewBag.slCMT Rattings</h3>
-                                    foreach (var item in ViewBag.cmt)
-                                    {
-                                        <div class="media">
-                                            <a class="pull-left" href="#"><img width="100" height="100" class="media-object" src="@item.NguoiDung.Hinh" alt=""></a>
-                                            <div>
-
-                                                <h4 class="media-heading">
-                                                    @item.TaiKhoan
-                                                    @if (item.SoSao == 1)
-                                                    {
-                                                        <span class="fa fa-star checked"></span>
-
-                                                    }
-                                                    @if (item.SoSao == 2)
-                                                    {
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-
-                                                    }
-                                                    @if (item.SoSao == 3)
-                                                    {
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-
-                                                    }
-                                                    @if (item.SoSao == 4)
-                                                    {
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-
-                                                    }
-                                                    @if (item.SoSao == 5)
-                                                    {
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                    }
-                                                </h4>
-
-                                                <p>@item.NoiDung</p>
-
-                                            </div>
-                                        </div>
-
-                                    }
-                                }*@
+                            
 
 
 
@@ -281,311 +238,17 @@
                 </div>
             </section>
         }
-        //else
-        //{
-        @*<section class="content-item" id="comments">
-                <div style="" class="container">
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <div style="width:fit-content">
-                                <h1>Dang nhap de binh luan</h1>
-
-                            </div>
-                            <h3>@ViewBag.slCMT Comments</h3>
-                            @if (ViewBag.checkCMT == -1)
-                            {
-                                <h1>Chua co cmt</h1>
-                            }
-                            else
-                            {
-                                foreach (var item in ViewBag.cmt)
-                                {
-                                    <div class="media">
-                                        <a class="pull-left" href="#"><img width="100" height="100" class="media-object" src="@item.NguoiDung.Hinh" alt=""></a>
-                                        <div>
-
-                                            <h4>
-                                                @item.TaiKhoan
-                                                @if (item.SoSao == 1)
-                                                {
-                                                    <span class="fa fa-star checked"></span>
-
-                                                }
-                                                @if (item.SoSao == 2)
-                                                {
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-
-                                                }
-                                                @if (item.SoSao == 3)
-                                                {
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-
-                                                }
-                                                @if (item.SoSao == 4)
-                                                {
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-
-                                                }
-                                                @if (item.SoSao == 5)
-                                                {
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                }
-                                            </h4>
-
-                                            <p>@item.NoiDung</p>
-
-                                        </div>
-                                    </div>
-
-                                }
-                            }
-
-
-
-
-                        </div>
-                    </div>
-                </div>
-            </section>*@
-        <h1>Rattings of Accessor</h1>
-        <link href="~/Content/BinhLuan/NguoiDungBL.css" rel="stylesheet" />
-        <div class="container">
-            <div id="reviews" class="review-section">
-                <div class="d-flex align-items-center justify-content-between mb-4">
-                    <h4 class="m-0"> @Math.Round((float)Model.SoSao, 1)<i class="fa fa-star"></i>  @ViewBag.slDanhGia Rattings</h4>
-                    <select class="custom-select custom-select-sm border-0 shadow-sm ml-2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                        <option data-select2-id="3">Most Relevant</option>
-                        <option>Most Recent</option>
-                    </select>
-                    <span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="2" style="width: 188px;">
-                        <span class="selection">
-                            <span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-qd66-container">
-                                <span class="select2-selection__rendered" id="select2-qd66-container" role="textbox" aria-readonly="true" title="Most Relevant">Most Relevant</span>
-                                <span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span>
-                            </span>
-                        </span>
-                        <span class="dropdown-wrapper" aria-hidden="true"></span>
-                    </span>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <table class="stars-counters">
-                            <tbody>
-                                <tr class="">
-                                    <td>
-                                        <span>
-                                            <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">5 Stars</button>
-                                        </span>
-                                    </td>
-                                    <td class="progress-bar-container">
-                                        <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-                                            <div class="fit-progressbar-background">
-                                                <span class="progress-fill" style="width: @ViewBag.phanTram5%;"></span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="star-num">(@ViewBag.sao5)</td>
-                                </tr>
-                                <tr class="">
-                                    <td>
-                                        <span>
-                                            <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">4 Stars</button>
-                                        </span>
-                                    </td>
-                                    <td class="progress-bar-container">
-                                        <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-                                            <div class="fit-progressbar-background">
-                                                <span class="progress-fill" style="width: @ViewBag.phanTram4%;"></span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="star-num">(@ViewBag.sao4)</td>
-                                </tr>
-                                <tr class="">
-                                    <td>
-                                        <span>
-                                            <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">3 Stars</button>
-                                        </span>
-                                    </td>
-                                    <td class="progress-bar-container">
-                                        <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-                                            <div class="fit-progressbar-background">
-                                                <span class="progress-fill" style="width:@ViewBag.phanTram3% ;"></span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="star-num">(@ViewBag.sao3)</td>
-                                </tr>
-                                <tr class="">
-                                    <td>
-                                        <span>
-                                            <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">2 Stars</button>
-                                        </span>
-                                    </td>
-                                    <td class="progress-bar-container">
-                                        <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-                                            <div class="fit-progressbar-background">
-                                                <span class="progress-fill" style="width: @ViewBag.phanTram2%;"></span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="star-num">(@ViewBag.sao2)</td>
-                                </tr>
-                                <tr class="">
-                                    <td>
-                                        <span>
-                                            <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">1 Stars</button>
-                                        </span>
-                                    </td>
-                                    <td class="progress-bar-container">
-                                        <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-                                            <div class="fit-progressbar-background">
-                                                <span class="progress-fill" style="width: @ViewBag.phanTram1%;"></span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="star-num">(@ViewBag.sao1)</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="ranking">
-                            <h6 class="text-display-7">Rating Breakdown</h6>
-                            <ul>
-                                <li>
-                                    Seller communication level<span>5<span class="review-star rate-10 show-one"></span></span>
-                                </li>
-                                <li>
-                                    Recommend to a friend<span>5<span class="review-star rate-10 show-one"></span></span>
-                                </li>
-                                <li>
-                                    Service as described<span>4.9<span class="review-star rate-10 show-one"></span></span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="review-list">
-                <ul>
-                    @foreach (var item in ViewBag.cmt)
-                    {
-                        <li>
-                            <div class="d-flex">
-                                <div class="left">
-                                    <span>
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="profile-pict-img img-fluid" alt="" />
-                                    </span>
-                                </div>
-                                <div class="right">
-                                    <h4>
-                                        @item.TaiKhoan
-                                        <span class="gig-rating text-body-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" width="15" height="15">
-                                                <path fill="currentColor"
-                                                      d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z"></path>
-                                            </svg>
-                                            @item.SoSao.0
-                                        </span>
-                                    </h4>
-                                    <div class="country d-flex align-items-center">
-                                        <span>
-                                            <img class="country-flag img-fluid" src="https://bootdey.com/img/Content/avatar/avatar6.png" />
-                                        </span>
-                                        <div class="country-name font-accent">@item.NguoiDung.ChucVu.TenChucVu</div>
-                                    </div>
-                                    <div class="review-description">
-                                        <p>
-                                            @item.NoiDung
-                                        </p>
-                                    </div>
-                                    <span class="publish py-3 d-inline-block w-100">Published 4 weeks ago</span>
-                                    <div class="helpful-thumbs">
-                                        <div class="helpful-thumb text-body-2">
-                                            <span class="fit-icon thumbs-icon">
-                                                <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M13.5804 7.81165C13.8519 7.45962 14 7 14 6.43858C14 5.40843 13.123 4.45422 12.0114 4.45422H10.0932C10.3316 3.97931 10.6591 3.39024 10.6591 2.54516C10.6591 0.948063 10.022 0 8.39207 0C7.57189 0 7.26753 1.03682 7.11159 1.83827C7.01843 2.31708 6.93041 2.76938 6.65973 3.04005C6.01524 3.68457 5.03125 5.25 4.44013 5.56787C4.38028 5.59308 4.3038 5.61293 4.22051 5.62866C4.06265 5.39995 3.79889 5.25 3.5 5.25H0.875C0.391754 5.25 0 5.64175 0 6.125V13.125C0 13.6082 0.391754 14 0.875 14H3.5C3.98325 14 4.375 13.6082 4.375 13.125V12.886C5.26354 12.886 7.12816 14.0002 9.22728 13.9996C9.37781 13.9997 10.2568 14.0004 10.3487 13.9996C11.9697 14 12.8713 13.0183 12.8188 11.5443C13.2325 11.0596 13.4351 10.3593 13.3172 9.70944C13.6578 9.17552 13.7308 8.42237 13.5804 7.81165ZM0.875 13.125V6.125H3.5V13.125H0.875ZM12.4692 7.5565C12.9062 7.875 12.9062 9.1875 12.3159 9.48875C12.6856 10.1111 12.3529 10.9439 11.9053 11.1839C12.1321 12.6206 11.3869 13.1146 10.3409 13.1246C10.2504 13.1255 9.32247 13.1246 9.22731 13.1246C7.23316 13.1246 5.54296 12.011 4.37503 12.011V6.44287C5.40611 6.44287 6.35212 4.58516 7.27847 3.65879C8.11368 2.82357 7.83527 1.43153 8.3921 0.874727C9.78414 0.874727 9.78414 1.84589 9.78414 2.54518C9.78414 3.69879 8.94893 4.21561 8.94893 5.32924H12.0114C12.6329 5.32924 13.1223 5.88607 13.125 6.44287C13.1277 6.99967 12.9062 7.4375 12.4692 7.5565ZM2.84375 11.8125C2.84375 12.1749 2.54994 12.4688 2.1875 12.4688C1.82506 12.4688 1.53125 12.1749 1.53125 11.8125C1.53125 11.4501 1.82506 11.1562 2.1875 11.1562C2.54994 11.1562 2.84375 11.4501 2.84375 11.8125Z"></path>
-                                                </svg>
-                                            </span>
-                                            <a href="#" class="thumb-title">Helpful</a>
-                                        </div>
-                                        <div class="helpful-thumb text-body-2 ml-3">
-                                            @*<span class="fit-icon thumbs-icon">
-                                                    <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M0.419563 6.18835C0.148122 6.54038 6.11959e-07 7 5.62878e-07 7.56142C2.81294e-05 8.59157 0.876996 9.54578 1.98863 9.54578L3.90679 9.54578C3.66836 10.0207 3.34091 10.6098 3.34091 11.4548C3.34089 13.0519 3.97802 14 5.60793 14C6.42811 14 6.73247 12.9632 6.88841 12.1617C6.98157 11.6829 7.06959 11.2306 7.34027 10.9599C7.98476 10.3154 8.96875 8.75 9.55987 8.43213C9.61972 8.40692 9.6962 8.38707 9.77949 8.37134C9.93735 8.60005 10.2011 8.75 10.5 8.75L13.125 8.75C13.6082 8.75 14 8.35825 14 7.875L14 0.875C14 0.391754 13.6082 -3.42482e-08 13.125 -7.64949e-08L10.5 -3.0598e-07C10.0168 -3.48226e-07 9.625 0.391754 9.625 0.875L9.625 1.11398C8.73647 1.11398 6.87184 -0.000191358 4.77272 0.00038257C4.62219 0.000300541 3.74322 -0.000438633 3.65127 0.000382472C2.03027 -1.04643e-06 1.12867 0.981667 1.18117 2.45566C0.76754 2.94038 0.564868 3.64065 0.682829 4.29056C0.342234 4.82448 0.269227 5.57763 0.419563 6.18835ZM13.125 0.875L13.125 7.875L10.5 7.875L10.5 0.875L13.125 0.875ZM1.53079 6.4435C1.09375 6.125 1.09375 4.8125 1.6841 4.51125C1.31436 3.88891 1.64713 3.05613 2.09467 2.81605C1.86791 1.37941 2.61313 0.885417 3.65906 0.875355C3.74962 0.874535 4.67753 0.875355 4.77269 0.875355C6.76684 0.875355 8.45704 1.98898 9.62497 1.98898L9.62497 7.55713C8.5939 7.55713 7.64788 9.41484 6.72153 10.3412C5.88632 11.1764 6.16473 12.5685 5.6079 13.1253C4.21586 13.1253 4.21586 12.1541 4.21586 11.4548C4.21586 10.3012 5.05107 9.78439 5.05107 8.67076L1.9886 8.67076C1.36708 8.67076 0.877707 8.11393 0.874973 7.55713C0.872266 7.00033 1.09375 6.5625 1.53079 6.4435ZM11.1563 2.1875C11.1563 1.82506 11.4501 1.53125 11.8125 1.53125C12.1749 1.53125 12.4688 1.82506 12.4688 2.1875C12.4688 2.54994 12.1749 2.84375 11.8125 2.84375C11.4501 2.84375 11.1563 2.54994 11.1563 2.1875Z"></path>
-                                                    </svg>
-                                                </span>*@
-                                            @*<a href="#" class="thumb-title">Not Helpful</a>*@
-                                        </div>
-                                        <div class="helpful-thumb text-body-2 ml-3">
-                                            @*<span class="fit-icon fa fa-reply">
-                                                    <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M0.419563 6.18835C0.148122 6.54038 6.11959e-07 7 5.62878e-07 7.56142C2.81294e-05 8.59157 0.876996 9.54578 1.98863 9.54578L3.90679 9.54578C3.66836 10.0207 3.34091 10.6098 3.34091 11.4548C3.34089 13.0519 3.97802 14 5.60793 14C6.42811 14 6.73247 12.9632 6.88841 12.1617C6.98157 11.6829 7.06959 11.2306 7.34027 10.9599C7.98476 10.3154 8.96875 8.75 9.55987 8.43213C9.61972 8.40692 9.6962 8.38707 9.77949 8.37134C9.93735 8.60005 10.2011 8.75 10.5 8.75L13.125 8.75C13.6082 8.75 14 8.35825 14 7.875L14 0.875C14 0.391754 13.6082 -3.42482e-08 13.125 -7.64949e-08L10.5 -3.0598e-07C10.0168 -3.48226e-07 9.625 0.391754 9.625 0.875L9.625 1.11398C8.73647 1.11398 6.87184 -0.000191358 4.77272 0.00038257C4.62219 0.000300541 3.74322 -0.000438633 3.65127 0.000382472C2.03027 -1.04643e-06 1.12867 0.981667 1.18117 2.45566C0.76754 2.94038 0.564868 3.64065 0.682829 4.29056C0.342234 4.82448 0.269227 5.57763 0.419563 6.18835ZM13.125 0.875L13.125 7.875L10.5 7.875L10.5 0.875L13.125 0.875ZM1.53079 6.4435C1.09375 6.125 1.09375 4.8125 1.6841 4.51125C1.31436 3.88891 1.64713 3.05613 2.09467 2.81605C1.86791 1.37941 2.61313 0.885417 3.65906 0.875355C3.74962 0.874535 4.67753 0.875355 4.77269 0.875355C6.76684 0.875355 8.45704 1.98898 9.62497 1.98898L9.62497 7.55713C8.5939 7.55713 7.64788 9.41484 6.72153 10.3412C5.88632 11.1764 6.16473 12.5685 5.6079 13.1253C4.21586 13.1253 4.21586 12.1541 4.21586 11.4548C4.21586 10.3012 5.05107 9.78439 5.05107 8.67076L1.9886 8.67076C1.36708 8.67076 0.877707 8.11393 0.874973 7.55713C0.872266 7.00033 1.09375 6.5625 1.53079 6.4435ZM11.1563 2.1875C11.1563 1.82506 11.4501 1.53125 11.8125 1.53125C12.1749 1.53125 12.4688 1.82506 12.4688 2.1875C12.4688 2.54994 12.1749 2.84375 11.8125 2.84375C11.4501 2.84375 11.1563 2.54994 11.1563 2.1875Z"></path>
-                                                    </svg>
-                                                </span>*@
-                                            <a href="" class="fa fa-reply">Reply</a>
-                                        </div>
-                                    </div>
-
-                                    @*<div class="response-item mt-4 d-flex">
-                                            <div class="left">
-                                                <span>
-                                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="profile-pict-img img-fluid" alt="" />
-                                                </span>
-                                            </div>
-                                            <div class="right">
-                                                <h4>
-                                                    Gurdeep Osahan
-                                                    <span class="gig-rating text-body-2">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" width="15" height="15">
-                                                            <path fill="currentColor"
-                                                                  d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z"></path>
-                                                        </svg>
-                                                        5.0
-                                                    </span>
-                                                </h4>
-                                                <div class="country d-flex align-items-center">
-                                                    <span>
-                                                        <img class="country-flag img-fluid" src="https://bootdey.com/img/Content/avatar/avatar3.png" />
-                                                    </span>
-                                                    <div class="country-name font-accent">India</div>
-                                                </div>
-                                                <div class="review-description">
-                                                    <p>
-                                                        The process was smooth, after providing the required info, Pragyesh sent me an outstanding packet of wireframes. Thank you a lot!
-                                                    </p>
-                                                </div>
-                                                <span class="publish py-3 d-inline-block w-100">Published 4 weeks ago</span>
-                                            </div>
-                                        </div>*@
-                                </div>
-                            </div>
-                        </li>
-                    }
-
-                </ul>
+        
+    <div class="review-list">
+        <div id="comments">
+            <div id="rattingList">
+                <!-- Nội dung danh sách bình luận sẽ được cập nhật tại đây -->
             </div>
         </div>
-        @*}*@
-
-
-
+    </div>       
         <h1>Share our your thoughts !!</h1>
-        @if (!User.IsInRole("Assessor") && User.Identity.IsAuthenticated)
+        @if (User.Identity.IsAuthenticated)
         {
-
             <section class="content-item" id="comments">
                 <div style="" class="container">
                     <div class="row">
@@ -593,10 +256,10 @@
                             <div style="width:fit-content">
                                 @using (Html.BeginForm("themBinhLuan", "NguoiDung", FormMethod.Get))
                                 {
-                                    <input hidden list="browsers" value=@ViewBag.MaBaiViet type="text" placeholder="ma" name="mabaiviet" />
-                                    <input hidden list="browsers" value=@Request.Url.ToString() type="text" placeholder="ma" name="strURL" />
+                                    @*<input hidden list="browsers" value=@ViewBag.MaBaiViet type="text" placeholder="ma" name="mabaiviet" />
+                                    <input hidden list="browsers" value=@Request.Url.ToString() type="text" placeholder="ma" name="strURL" />*@
 
-                                    <form>
+                                    <form id="commentForm">
                                         <h3 class="pull-left">New Commnent</h3>
 
 
@@ -607,12 +270,13 @@
                                                     <img style="width:100px;height:100px" class="img-responsive" src="@ViewBag.hinh" alt="">
                                                 </div>
                                                 <div class="col-xs-12 col-sm-9 col-lg-10">
-                                                    <textarea style="width:400px" class="form-control" name="comment" id="message" placeholder="Your message" required="required"></textarea>
+                                                    <input type="hidden" id="mabaiviet" value="@Model.MaBaiViet" />
+                                                    <textarea id="comment" style="width:400px" class="form-control" name="comment" placeholder="Your message" required="required"></textarea>
                                                 </div>
                                             </div>
 
                                         </fieldset>
-                                        <button type="submit" class="btn btn-normal pull-right">Submit</button>
+                                        <button id="addCommentButton" type="button" class="btn btn-normal pull-right">Submit</button>
 
 
                                     </form>
@@ -630,152 +294,307 @@
         {
             <h3>Login to share your comments</h3>
         }
-
-        <div style="padding-left:120px" class="review-list">
-            @if (ViewBag.comments == null)
-            {
-                <h1>Chưa có comment</h1>
-            }
-            else
-            {
-                <ul>
-                    @foreach (var item in ViewBag.comments)
-                    {
-                        <li>
-                            <div class="d-flex">
-                                <div class="left">
-                                    <span>
-                                        <img src="@item.NguoiDung.Hinh" class="profile-pict-img img-fluid" alt="" />
-                                    </span>
-                                </div>
-                                <div class="right">
-                                    <h4>
-                                        @item.TaiKhoan
-                                        @*<span class="gig-rating text-body-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" width="15" height="15">
-                                                    <path fill="currentColor"
-                                                          d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z"></path>
-                                                </svg>
-
-                                            </span>*@
-                                    </h4>
-                                    @*<div class="country d-flex align-items-center">
-                                            <span>
-                                                <img class="country-flag img-fluid" src="https://bootdey.com/img/Content/avatar/avatar6.png" />
-                                            </span>
-                                            <div class="country-name font-accent">@item.NguoiDung.ChucVu.TenChucVu</div>
-                                        </div>*@
-                                    <div class="review-description">
-                                        <p>
-                                            @item.NoiDung
-                                        </p>
-                                    </div>
-                                    <span class="publish py-3 d-inline-block w-100">@item.NgayTao.ToString("dd/MM/yyyy") <span class="fa fa-thumbs-up">@item.SoLike</span></span>
-                                    <div class="helpful-thumbs">
-                                        <div class="helpful-thumb text-body-2">
-                                            <span class="fit-icon thumbs-icon">
-                                                <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M13.5804 7.81165C13.8519 7.45962 14 7 14 6.43858C14 5.40843 13.123 4.45422 12.0114 4.45422H10.0932C10.3316 3.97931 10.6591 3.39024 10.6591 2.54516C10.6591 0.948063 10.022 0 8.39207 0C7.57189 0 7.26753 1.03682 7.11159 1.83827C7.01843 2.31708 6.93041 2.76938 6.65973 3.04005C6.01524 3.68457 5.03125 5.25 4.44013 5.56787C4.38028 5.59308 4.3038 5.61293 4.22051 5.62866C4.06265 5.39995 3.79889 5.25 3.5 5.25H0.875C0.391754 5.25 0 5.64175 0 6.125V13.125C0 13.6082 0.391754 14 0.875 14H3.5C3.98325 14 4.375 13.6082 4.375 13.125V12.886C5.26354 12.886 7.12816 14.0002 9.22728 13.9996C9.37781 13.9997 10.2568 14.0004 10.3487 13.9996C11.9697 14 12.8713 13.0183 12.8188 11.5443C13.2325 11.0596 13.4351 10.3593 13.3172 9.70944C13.6578 9.17552 13.7308 8.42237 13.5804 7.81165ZM0.875 13.125V6.125H3.5V13.125H0.875ZM12.4692 7.5565C12.9062 7.875 12.9062 9.1875 12.3159 9.48875C12.6856 10.1111 12.3529 10.9439 11.9053 11.1839C12.1321 12.6206 11.3869 13.1146 10.3409 13.1246C10.2504 13.1255 9.32247 13.1246 9.22731 13.1246C7.23316 13.1246 5.54296 12.011 4.37503 12.011V6.44287C5.40611 6.44287 6.35212 4.58516 7.27847 3.65879C8.11368 2.82357 7.83527 1.43153 8.3921 0.874727C9.78414 0.874727 9.78414 1.84589 9.78414 2.54518C9.78414 3.69879 8.94893 4.21561 8.94893 5.32924H12.0114C12.6329 5.32924 13.1223 5.88607 13.125 6.44287C13.1277 6.99967 12.9062 7.4375 12.4692 7.5565ZM2.84375 11.8125C2.84375 12.1749 2.54994 12.4688 2.1875 12.4688C1.82506 12.4688 1.53125 12.1749 1.53125 11.8125C1.53125 11.4501 1.82506 11.1562 2.1875 11.1562C2.54994 11.1562 2.84375 11.4501 2.84375 11.8125Z"></path>
-                                                </svg>
-                                            </span>
-                                            <a href="@Url.Action("thichBinhLuan","NguoiDung", new { @id = item.MaBinhLuan, @strURL = Request.Url.ToString() })" class="thumb-title">Helpful</a>
-                                        </div>
-                                        <div class="helpful-thumb text-body-2 ml-3">
-                                            @*<span class="fit-icon thumbs-icon">
-                                                    <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M0.419563 6.18835C0.148122 6.54038 6.11959e-07 7 5.62878e-07 7.56142C2.81294e-05 8.59157 0.876996 9.54578 1.98863 9.54578L3.90679 9.54578C3.66836 10.0207 3.34091 10.6098 3.34091 11.4548C3.34089 13.0519 3.97802 14 5.60793 14C6.42811 14 6.73247 12.9632 6.88841 12.1617C6.98157 11.6829 7.06959 11.2306 7.34027 10.9599C7.98476 10.3154 8.96875 8.75 9.55987 8.43213C9.61972 8.40692 9.6962 8.38707 9.77949 8.37134C9.93735 8.60005 10.2011 8.75 10.5 8.75L13.125 8.75C13.6082 8.75 14 8.35825 14 7.875L14 0.875C14 0.391754 13.6082 -3.42482e-08 13.125 -7.64949e-08L10.5 -3.0598e-07C10.0168 -3.48226e-07 9.625 0.391754 9.625 0.875L9.625 1.11398C8.73647 1.11398 6.87184 -0.000191358 4.77272 0.00038257C4.62219 0.000300541 3.74322 -0.000438633 3.65127 0.000382472C2.03027 -1.04643e-06 1.12867 0.981667 1.18117 2.45566C0.76754 2.94038 0.564868 3.64065 0.682829 4.29056C0.342234 4.82448 0.269227 5.57763 0.419563 6.18835ZM13.125 0.875L13.125 7.875L10.5 7.875L10.5 0.875L13.125 0.875ZM1.53079 6.4435C1.09375 6.125 1.09375 4.8125 1.6841 4.51125C1.31436 3.88891 1.64713 3.05613 2.09467 2.81605C1.86791 1.37941 2.61313 0.885417 3.65906 0.875355C3.74962 0.874535 4.67753 0.875355 4.77269 0.875355C6.76684 0.875355 8.45704 1.98898 9.62497 1.98898L9.62497 7.55713C8.5939 7.55713 7.64788 9.41484 6.72153 10.3412C5.88632 11.1764 6.16473 12.5685 5.6079 13.1253C4.21586 13.1253 4.21586 12.1541 4.21586 11.4548C4.21586 10.3012 5.05107 9.78439 5.05107 8.67076L1.9886 8.67076C1.36708 8.67076 0.877707 8.11393 0.874973 7.55713C0.872266 7.00033 1.09375 6.5625 1.53079 6.4435ZM11.1563 2.1875C11.1563 1.82506 11.4501 1.53125 11.8125 1.53125C12.1749 1.53125 12.4688 1.82506 12.4688 2.1875C12.4688 2.54994 12.1749 2.84375 11.8125 2.84375C11.4501 2.84375 11.1563 2.54994 11.1563 2.1875Z"></path>
-                                                    </svg>
-                                                </span>*@
-                                            @*<a href="#" class="thumb-title">Not Helpful</a>*@
-                                        </div>
-                                        <div class="helpful-thumb text-body-2 ml-3">
-                                            @*<span class="fit-icon fa fa-reply">
-                                                    <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M0.419563 6.18835C0.148122 6.54038 6.11959e-07 7 5.62878e-07 7.56142C2.81294e-05 8.59157 0.876996 9.54578 1.98863 9.54578L3.90679 9.54578C3.66836 10.0207 3.34091 10.6098 3.34091 11.4548C3.34089 13.0519 3.97802 14 5.60793 14C6.42811 14 6.73247 12.9632 6.88841 12.1617C6.98157 11.6829 7.06959 11.2306 7.34027 10.9599C7.98476 10.3154 8.96875 8.75 9.55987 8.43213C9.61972 8.40692 9.6962 8.38707 9.77949 8.37134C9.93735 8.60005 10.2011 8.75 10.5 8.75L13.125 8.75C13.6082 8.75 14 8.35825 14 7.875L14 0.875C14 0.391754 13.6082 -3.42482e-08 13.125 -7.64949e-08L10.5 -3.0598e-07C10.0168 -3.48226e-07 9.625 0.391754 9.625 0.875L9.625 1.11398C8.73647 1.11398 6.87184 -0.000191358 4.77272 0.00038257C4.62219 0.000300541 3.74322 -0.000438633 3.65127 0.000382472C2.03027 -1.04643e-06 1.12867 0.981667 1.18117 2.45566C0.76754 2.94038 0.564868 3.64065 0.682829 4.29056C0.342234 4.82448 0.269227 5.57763 0.419563 6.18835ZM13.125 0.875L13.125 7.875L10.5 7.875L10.5 0.875L13.125 0.875ZM1.53079 6.4435C1.09375 6.125 1.09375 4.8125 1.6841 4.51125C1.31436 3.88891 1.64713 3.05613 2.09467 2.81605C1.86791 1.37941 2.61313 0.885417 3.65906 0.875355C3.74962 0.874535 4.67753 0.875355 4.77269 0.875355C6.76684 0.875355 8.45704 1.98898 9.62497 1.98898L9.62497 7.55713C8.5939 7.55713 7.64788 9.41484 6.72153 10.3412C5.88632 11.1764 6.16473 12.5685 5.6079 13.1253C4.21586 13.1253 4.21586 12.1541 4.21586 11.4548C4.21586 10.3012 5.05107 9.78439 5.05107 8.67076L1.9886 8.67076C1.36708 8.67076 0.877707 8.11393 0.874973 7.55713C0.872266 7.00033 1.09375 6.5625 1.53079 6.4435ZM11.1563 2.1875C11.1563 1.82506 11.4501 1.53125 11.8125 1.53125C12.1749 1.53125 12.4688 1.82506 12.4688 2.1875C12.4688 2.54994 12.1749 2.84375 11.8125 2.84375C11.4501 2.84375 11.1563 2.54994 11.1563 2.1875Z"></path>
-                                                    </svg>
-                                                </span>*@
-                                            <a href="@Url.Action("danhSachPhanHoi","Review",new {@id = item.MaBinhLuan})" class="fa fa-reply">Reply</a>
-                                        </div>
-                                    </div>
-                                    @foreach (var a in ViewBag.replys)
-                                    {
-                                        if (a.MaBinhLuan == item.MaBinhLuan)
-                                        {
-                                            ViewBag.showAllReplys++;
-                                        }
-
-                                    }
-                                    @if (ViewBag.replys != null)
-                                    {
-                                        foreach (var a in ViewBag.replys)
-                                        {
-                                            if (a.MaBinhLuan == item.MaBinhLuan)
-                                            {
-                                                <div class="response-item mt-4 d-flex">
-                                                    <div class="left">
-                                                        <span>
-                                                            <img src="@a.NguoiDung.Hinh" class="profile-pict-img img-fluid" alt="" />
-                                                        </span>
-                                                    </div>
-                                                    <div class="right">
-                                                        <h4>
-                                                            @a.TaiKhoan
-
-                                                        </h4>
-
-                                                        <div class="review-description">
-                                                            <p>
-                                                                @a.NoiDung
-                                                            </p>
-                                                        </div>
-                                                        <span class="publish py-3 d-inline-block w-100">@a.NgayTao.ToString("dd/MM/yyyy")</span>
-                                                    </div>
-                                                </div>
-                                                ViewBag.countReply++;
-                                                if (ViewBag.countReply == 2)
-                                                {
-                                                    break;
-
-                                                }
-                                                ViewBag.MaBaiViet = item.MaBaiViet;
-                                            }
-
-                                        }
-
-                                        if (ViewBag.showAllReplys > 2)
-                                        {
-                                            <a href="https://localhost:44339/Review/danhSachPhanHoi/@item.MaBinhLuan">Show all reply</a>
-                                            ViewBag.showAllReplys = 0;
-                                        }
-                                    }
-
-                                </div>
-                            </div>
-                        </li>
-                        ViewBag.countComment++;
-                        if (ViewBag.countComment == 3)
-                        {
-                            break;
-
-                        }
+        @*<form id="commentForm">
+            <input type="hidden" id="mabaiviet" value="@Model.MaBaiViet" />
+            <textarea id="comment" name="comment"></textarea>
+            <input type="button" value="Bình luận" id="addCommentButton" />
+        </form>*@
 
 
-                    }
+
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        
+        <script>
+    $(document).ready(function () {
 
 
 
 
-                </ul>
-                if (ViewBag.showAllCMT > 3)
-                {
-                    <a href="https://localhost:44339/Review/danhSachBinhLuan/@ViewBag.MaBaiViet">Show all comment</a>
+        var selectedRating = 0; // Biến để lưu giá trị đánh giá được chọn
 
-
+        // Xử lý sự kiện click trên các sao
+        $('.star').click(function () {
+            selectedRating = $(this).data('value'); // Cập nhật giá trị đánh giá được chọn
+            $('.star').removeClass('selected'); // Xóa tất cả các lớp 'selected' khác
+            $(this).prevAll().addBack().addClass('selected'); // Thêm lớp 'selected' vào sao được chọn và tất cả các sao phía trước nó
+        });
+        function loadRatting() {
+            var mabaiviet = "@Model.MaBaiViet"; // Lấy MaBaiViet từ Model của view detail
+            console.log("loadRatting is called");
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetRattings", "NguoiDung")",
+                data: { mabaiviet: @Model.MaBaiViet },
+                success: function (data) {
+                    // Cập nhật danh sách bình luận
+                    $("#rattingList").html(data);
                 }
+            });
+        }
+        loadRatting();
+
+
+        $("#addRattingtButton").click(function (e) {
+            e.preventDefault();
+            var rate = selectedRating;
+            var mabaiviet = $("#mabaivietrat").val();
+            var comment = $("#rat").val();
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("themDanhGia", "Review")",
+                data: { mabaiviet: mabaiviet, comment: comment, rate: rate }
+            }).done(function() {
+                console.log("Success or Error, loadRatting is called");
+            }).fail(function() {
+                console.log("An error occurred, but still calling loadRatting");
+            }).always(function() {
+                // Sẽ chạy sau khi AJAX request hoàn tất, không quan trọng là success hay error
+                loadRatting();
+                // Xóa nội dung ô nhập bình luận sau khi thêm
+                $("#rat").val('');
+                $('.star').removeClass('selected');
+            });
+        });
+
+
+        function xoaDanhGia(maBinhLuan) {
+            if (confirm('Bạn có chắc muốn xóa đánh giá này không?')) {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("xoaDanhGia", "Review")",
+                    data: { id: maBinhLuan }
+                }).done(function () {
+                    console.log("Success or Error, loadRatting is called");
+                }).fail(function () {
+                    console.log("An error occurred, but still calling loadRatting");
+                }).always(function () {
+                    // Sẽ chạy sau khi AJAX request hoàn tất, không quan trọng là success hay error
+                    loadRatting();
+
+
+                });
             }
+        }
 
+        // Gắn event listener cho nút xóa (phải xử lý trường hợp nút xóa được thêm sau khi AJAX load)
+        $(document).on('click', '.delete-rate-link', function(e) {
+            e.preventDefault();
+            var maBinhLuan = $(this).data('mabinhluan');
+            xoaDanhGia(maBinhLuan);
+        });
+        $(document).on('click', '.edit-rate-btn', function (e) {
+            e.preventDefault();
+            var maBinhLuan = $(this).data('mabinhluan');
+            $(this).hide(); // Ẩn nút chỉnh sửa
+            $('#edit-content-' + maBinhLuan).parent().show();
+        });
+        $(document).on('click', '.cancelRate-edit-btn', function (e) {
+            e.preventDefault();
+            var maBinhLuan = $(this).data('mabinhluan');
+            var updatedContent = $('#edit-content-' + maBinhLuan).val();
+            
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("CapNhatDanhGia", "Review")", // Thay thế bằng URL của action update comment
+                data: {
+                    id: maBinhLuan,
+                    noiDung: updatedContent
+                    //rate
+                },
+                success: function () {
+                    // Cập nhật nội dung bình luận trên trang
+                    // Ẩn form chỉnh sửa và hiển thị nút chỉnh sửa
+                    $('#edit-content-' + maBinhLuan).parent().hide();
+                    $('.edit-rate-btn[data-mabinhluan="' + maBinhLuan + '"]').show();
+                    loadRatting();
+                }
+
+
+            });
+        });
+        // Xử lý Lưu Chỉnh Sửa
+        $(document).on('click', '.save-editRate-btn', function (e) {
+            e.preventDefault();
+            var maBinhLuan = $(this).data('mabinhluan');
+            var updatedContent = $('#edit-content-' + maBinhLuan).val();
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("CapNhatDanhGia", "Review")", // Thay thế bằng URL của action update comment
+                data: {
+                    id: maBinhLuan,
+                    noiDung: updatedContent
+                    //rate
+                },
+                success: function () {
+                    // Cập nhật nội dung bình luận trên trang
+                    // Ẩn form chỉnh sửa và hiển thị nút chỉnh sửa
+                    $('#edit-content-' + maBinhLuan).parent().hide();
+                    $('.edit-rate-btn[data-mabinhluan="' + maBinhLuan + '"]').show();
+                    loadRatting();
+                }
+
+
+            });
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+        // Function để lấy danh sách comment và cập nhật view
+        function loadComments() {
+            var mabaiviet = "@Model.MaBaiViet"; // Lấy MaBaiViet từ Model của view detail
+
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetComments", "NguoiDung")",
+                data: { mabaiviet: mabaiviet },
+                success: function (data) {
+                    // Cập nhật danh sách bình luận
+                    $("#commentList").html(data);
+                }
+            });
+        }
+
+        // Gọi hàm để hiển thị danh sách comment khi trang được tải
+        loadComments();
+
+        // Bắt sự kiện khi thêm bình luận
+        $("#addCommentButton").click(function (e) {
+            e.preventDefault();
+
+            var mabaiviet = $("#mabaiviet").val();
+            var comment = $("#comment").val();
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("themBinhLuan", "NguoiDung")",
+                data: { mabaiviet: mabaiviet, comment: comment },
+                success: function () {
+                    // Sau khi thêm bình luận thành công, load lại danh sách comment
+                    loadComments();
+
+                    // Xóa nội dung ô nhập bình luận sau khi thêm
+                    $("#comment").val('');
+                }
+            });
+        });
+        function xoaBinhLuan(maBinhLuan) {
+            if (confirm('Bạn có chắc muốn xóa bình luận này không?')) {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("xoaBinhLuan", "NguoiDung")",
+                    data: { id: maBinhLuan },
+                    success: function () {
+                        loadComments();
+                    }
+                });
+            }
+        }
+
+        // Gắn event listener cho nút xóa (phải xử lý trường hợp nút xóa được thêm sau khi AJAX load)
+        $(document).on('click', '.delete-comment-link', function(e) {
+            e.preventDefault();
+            var maBinhLuan = $(this).data('mabinhluan');
+            xoaBinhLuan(maBinhLuan);
+        });
+
+
+        $(document).on('click', '.edit-comment-btn', function (e) {
+            e.preventDefault();
+            var maBinhLuan = $(this).data('mabinhluan');
+            $(this).hide(); // Ẩn nút chỉnh sửa
+            $('#edit-content-' + maBinhLuan).parent().show();
+        });
+        $(document).on('click', '.cancel-edit-btn', function (e) {
+            e.preventDefault();
+            var maBinhLuan = $(this).data('mabinhluan');
+            var updatedContent = $('#edit-content-' + maBinhLuan).val();
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("CapNhatBinhLuan", "NguoiDung")", // Thay thế bằng URL của action update comment
+                data: {
+                    id: maBinhLuan,
+                    noiDung: updatedContent
+                },
+                success: function () {
+                    // Cập nhật nội dung bình luận trên trang
+                    // Ẩn form chỉnh sửa và hiển thị nút chỉnh sửa
+                    $('#edit-content-' + maBinhLuan).parent().hide();
+                    $('.edit-comment-btn[data-mabinhluan="' + maBinhLuan + '"]').show();
+                    loadComments();
+                }
+
+
+            });
+        });
+        // Xử lý Lưu Chỉnh Sửa
+        $(document).on('click', '.save-edit-btn', function (e) {
+            e.preventDefault();
+            var maBinhLuan = $(this).data('mabinhluan');
+            var updatedContent = $('#edit-content-' + maBinhLuan).val();
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("CapNhatBinhLuan", "NguoiDung")", // Thay thế bằng URL của action update comment
+                data: {
+                    id: maBinhLuan,
+                    noiDung: updatedContent
+                },
+                success: function () {
+                    // Cập nhật nội dung bình luận trên trang
+                    // Ẩn form chỉnh sửa và hiển thị nút chỉnh sửa
+                    $('#edit-content-' + maBinhLuan).parent().hide();
+                    $('.edit-comment-btn[data-mabinhluan="' + maBinhLuan + '"]').show();
+                    loadComments();
+                }
+
+
+            });
+        });
+
+
+
+        $(document).on('click', '.like-comment-link', function (e) {
+            e.preventDefault();
+            var maBinhLuan = $(this).data('mabinhluan');
+            likeBinhLuan(maBinhLuan);
+        });
+        function likeBinhLuan(maBinhLuan) {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("thichBinhLuan", "NguoiDung")",
+                    data: { id: maBinhLuan },
+                    success: function () {
+                        loadComments();
+                    }
+                });
+
+        }
+
+
+    });
+        </script>
+        
+        
+
+        <div style="margin-bottom:40px" class="review-list">
+            <div id="comments">
+                <div id="commentList">
+                    <!-- Nội dung danh sách bình luận sẽ được cập nhật tại đây -->
+                </div>
+            </div>
         </div>
-
 
 
 

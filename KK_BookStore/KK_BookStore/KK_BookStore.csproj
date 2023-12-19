@@ -441,6 +441,8 @@
     <Content Include="Content\Home.css" />
     <Content Include="Content\Home\About.css" />
     <Content Include="Content\Home\banner.jpg" />
+    <Content Include="Content\Home\Carousel.css" />
+    <Content Include="Content\Home\Carousel.js" />
     <Content Include="Content\icheck.min.js" />
     <Content Include="Content\Img\77518c88c397c8a314ac5614803c8aebe4bfed210d82a4f509ec0955ccaa17f5.jpg" />
     <Content Include="Content\Img\book.png" />
@@ -1288,6 +1290,13 @@
     <Content Include="Views\NguoiDung\trangCaNhan.cshtml" />
     <Content Include="Views\Admin\danhSachNguoiDung.cshtml" />
     <Content Include="Views\NguoiDung\danhSachThongBao.cshtml" />
+    <Content Include="Views\DanhSachYeuThich\DanhSachTacGia.cshtml" />
+    <Content Include="Views\Admin\danhSachBaiVietChuaDuyet.cshtml" />
+    <Content Include="Views\Admin\danhSachBaiVietBiTuChoi.cshtml" />
+    <Content Include="Views\Admin\danhSachDaGhim.cshtml" />
+    <Content Include="Views\Admin\danhSachBaiVietDaDuyet.cshtml" />
+    <Content Include="Views\NguoiDung\_CommentPartial.cshtml" />
+    <Content Include="Views\NguoiDung\_RatePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

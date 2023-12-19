@@ -13,7 +13,7 @@
 
 <link href="~/Content/Review/danhSachBaiViet.css" rel="stylesheet" />
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
-<title>NTK_REVIEWS || Sort by Star</title>
+<title>NTK_REVIEWS || List Reviews</title>
 <link rel="shortcut icon" type="image/icon" href="~/Content/LayoutChung/favicon.png" />
 <section class="panel">
     <div class="panel-body">
@@ -69,82 +69,8 @@
 
     <div class="col-md-3">
         <section class="panel">
-            <div class="panel-body">
-                @*usingform*@
-
-
-            </div>
-        </section>
-        <section class="panel">
             <header class="panel-heading">
-                Category
-            </header>
-            <div class="panel-body">
-                <ul class="nav prod-cat">
-                    <li>
-                        <a href="#" class="active"><i class="fa fa-angle-right"></i> Sort by</a>
-                        <ul class="nav">
-                            <li><a href="https://localhost:44339/Review/locTheoSao">- Star <i class="fa fa-star"></i></a></li>
-                            <li><a href="https://localhost:44339/Review/locTheoLuotThich">- Like <i class="fa fa-thumbs-up"></i></a></li>
-                            <li><a href="https://localhost:44339/Review/locTheoNgayViet">- Write Lately</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="https://localhost:44339/Review/danhSachBaiViet"><i class="fa fa-angle-right"></i>ALL</a>
-
-                    </li>
-                    @foreach (var item in ViewBag.TheLoai)
-                    {
-                        <li>
-                            <a href="@Url.Action("locTheLoai", "Review",new { @id = item.MaTL,@page = 1})"><i class="fa fa-angle-right"></i>@item.TenTL</a>
-
-                        </li>
-                    }
-
-                    @*<li>
-                            <a href="#"><i class="fa fa-angle-right"></i> Beauty</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-angle-right"></i> Coat &amp; Jacket</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-angle-right"></i> Jeans</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-angle-right"></i> Jewellery</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-angle-right"></i> Electronics</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-angle-right"></i> Sports</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-angle-right"></i> Technology</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-angle-right"></i> Watches</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-angle-right"></i> Accessories</a>
-                        </li>*@
-                </ul>
-            </div>
-        </section>
-        @*<section class="panel">
-                <header class="panel-heading">
-                    Price Range
-                </header>
-                <div class="panel-body sliders">
-                    <div id="slider-range" class="slider"></div>
-                    <div class="slider-info">
-                        <span id="slider-range-amount"></span>
-                    </div>
-                </div>
-            </section>*@
-        <section class="panel">
-            <header class="panel-heading">
-                Filter
+                <strong>Filter</strong>
             </header>
             <div class="panel-body">
                 <form action="/Review/filter">
@@ -188,6 +114,48 @@
                 </form>
             </div>
         </section>
+        <section class="panel">
+            @*<header class="panel-heading">
+                    Category
+                </header>*@
+            <div class="panel-body">
+                <ul class="nav prod-cat">
+                    <li>
+                        <a href="#" class="active"><i class="fa fa-angle-right"></i> Sort by</a>
+                        <ul class="nav">
+                            <li><a href="https://localhost:44339/Review/locTheoSao">- Star <i class="fa fa-star"></i></a></li>
+                            <li><a href="https://localhost:44339/Review/locTheoLuotThich">- Like <i class="fa fa-thumbs-up"></i></a></li>
+                            <li><a href="https://localhost:44339/Review/locTheoNgayViet">- Write Lately</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="https://localhost:44339/Review/danhSachBaiViet"><i class="fa fa-angle-right"></i>ALL</a>
+
+                    </li>
+                    @foreach (var item in ViewBag.TheLoai)
+                    {
+                        <li>
+                            <a href="@Url.Action("locTheLoai", "Review",new { @id = item.MaTL,@page = 1})"><i class="fa fa-angle-right"></i>@item.TenTL</a>
+
+                        </li>
+                    }
+
+
+                </ul>
+            </div>
+        </section>
+        @*<section class="panel">
+                <header class="panel-heading">
+                    Price Range
+                </header>
+                <div class="panel-body sliders">
+                    <div id="slider-range" class="slider"></div>
+                    <div class="slider-info">
+                        <span id="slider-range-amount"></span>
+                    </div>
+                </div>
+            </section>*@
+
 
     </div>
     <div class="col-md-9">
@@ -199,20 +167,36 @@
                 <div class="col-md-4">
                     <section class="panel">
                         <div class="pro-img-box">
-                            <a href="https://localhost:44339/Review/Detail/@item.MaBaiViet"><img style="width:250px;height:220px" src="@item.AnhBia" alt="" /></a>
-                            <a style="margin-left:-10px" href="#" class="adtocart">
-                                @*<i class="fa fa-readme"></i>*@
-                                @*<img />*@
-                            </a>
+                            <a title="@item.TenBaiViet" href="@Url.Action("Detail","Review",new {@id = item.MaBaiViet})"><img style="width:250px;height:220px" src="@item.AnhBia" alt="" /></a>
+                            @foreach (var check in ViewBag.checkYT)
+                            {
+                                if (check.MaBaiViet == item.MaBaiViet)
+                                {
+                                    ViewBag.tempYT = 1;
+                                    break;
+                                }
+
+
+                            }
+                            @if (ViewBag.tempYT == 0)
+                            {
+                                <a title="Thêm vào danh sách yêu thích" style="margin-left:-10px" class="adtocart" href="@Url.Action("yeuThichBaiViet", "Review",new { @id = item.MaBaiViet, @strURL = Request.Url.ToString()})"><i class="fa fa-heart"></i></a>
+                                ViewBag.tempYT = 0;
+                            }
+                            else
+                            {
+                                <a title="Loại bỏ khỏi danh sách yêu thích" style="margin-left:-10px" class="adtocart" href="@Url.Action("yeuThichBaiViet", "Review",new { @id = item.MaBaiViet, @strURL = Request.Url.ToString()})"><i class="fa fa-heart-broken"></i></a>
+                                ViewBag.tempYT = 0;
+                            }
 
                         </div>
 
                         <div class="panel-body text-center">
                             <h4>
-                                <a href="https://localhost:44339/Review/Detail/@item.MaBaiViet" class="pro-title">
+                                <a title="@item.TenBaiViet" href="@Url.Action("Detail","Review",new {@id = item.MaBaiViet})" class="pro-title">
                                     @if (item.TenBaiViet.Length < 15)
                                     {
-                                        @item.TenBaiViet
+                                        <h1>@item.TenBaiViet</h1>
                                     }
                                     else
                                     {
@@ -223,8 +207,8 @@
                                 </a>
                                 <p>@Math.Round((float)item.SoSao, 1) <i style="color:yellow" class="fa fa-star"> </i> || @item.YeuThich <i style="color:red" class="fa fa-heart"></i> || @item.LuotXem <i style="color:blue" class="fa fa-eye"></i></p>
                             </h4>
-                            <p>Category: @item.TheLoai.TenTL</p>
-                            <p>Author: @item.TaiKhoan</p>
+                            <p>@item.TheLoai.TenTL</p>
+                            @*<p>Author: @item.TaiKhoan</p>*@
                             @foreach (var check in ViewBag.checkYT)
                             {
                                 if (check.MaBaiViet == item.MaBaiViet)
@@ -237,16 +221,16 @@
 
                             }
 
-                            @if (ViewBag.tempYT == 0)
-                            {
-                                <a href="@Url.Action("yeuThichBaiViet", "Review",new { @id = item.MaBaiViet, @strURL = Request.Url.ToString()})" class="fa fa-thumbs-up" style="">Add to wishlist</a>
-                                ViewBag.tempYT = 0;
-                            }
-                            else
-                            {
-                                <a href="@Url.Action("yeuThichBaiViet", "Review",new { @id = item.MaBaiViet, @strURL = Request.Url.ToString()})" class="fa fa-thumbs-up" style="">Remove wishlist</a>
-                                ViewBag.tempYT = 0;
-                            }
+                            @*@if (ViewBag.tempYT == 0)
+                                {
+                                    <a href="@Url.Action("yeuThichBaiViet", "Review",new { @id = item.MaBaiViet, @strURL = Request.Url.ToString()})" style="">Add to wishlist</a>
+                                    ViewBag.tempYT = 0;
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("yeuThichBaiViet", "Review",new { @id = item.MaBaiViet, @strURL = Request.Url.ToString()})"  style="">Remove wishlist</a>
+                                    ViewBag.tempYT = 0;
+                                }*@
                             @*<p class="price">Author: @item.TaiKhoan<p>*@
                         </div>
                     </section>
@@ -256,12 +240,7 @@
         <section class="panel">
             <div class="panel-body">
                 <div class="pull-right">
-                    @*<ul class="pagination pagination-sm pro-page-list">
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">»</a></li>
-                        </ul>*@
+                    
                     <div>
                         Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) /
                         @Model.PageCount
@@ -280,29 +259,29 @@
 </div>
 <div style="" class="container bootdey col-md-2">
     <section class="panel">
-        <header class="panel-heading">
-            Top Review
+        <header style="text-align:center" class="panel-heading">
+            <strong>Top Review</strong>
         </header>
         <div class="panel-body">
             <div class="best-seller">
                 @foreach (var item in ViewBag.baiVietNhieuTim)
                 {
                     <article class="media">
-                        <a class="pull-left thumb p-thumb">
+                        <a title="@item.TenBaiViet" href="@Url.Action("Detail","Review",new {@id = item.MaBaiViet})" class="pull-left thumb p-thumb">
                             <img src="@item.AnhBia" />
                         </a>
                         <div style="text-align:center" class="media-body">
                             @*<a  href="#" class="p-head">@item.TenBaiViet</a>
                                 <p>@Math.Round((float)item.SoSao, 1) <i style="color:yellow" class="fa fa-star"> </i></p>*@
                             <h4>
-                                <a href="https://localhost:44339/Review/Detail/@item.MaBaiViet" class="pro-title">
+                                <a title="@item.TenBaiViet" href="@Url.Action("Detail","Review",new {@id = item.MaBaiViet})" class="pro-title">
                                     @item.TenBaiViet
 
                                 </a>
                                 <p>@Math.Round((float)item.SoSao, 1) <i style="color:yellow" class="fa fa-star"> </i> || @item.YeuThich <i style="color:red" class="fa fa-heart"></i> || @item.LuotXem <i style="color:blue" class="fa fa-eye"></i></p>
                             </h4>
-                            <p>Author: @item.TheLoai.TenTL</p>
-                            <p>Author: @item.TaiKhoan</p>
+                            <p>@item.TheLoai.TenTL</p>
+                            @*<p>Author: @item.TaiKhoan</p>*@
                         </div>
                     </article>
                 }

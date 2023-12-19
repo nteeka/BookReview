@@ -1,0 +1,174 @@
+﻿@model List<KK_BookStore.BinhLuan>
+
+
+
+
+<div style="padding-left:120px;padding-top:30px" class="review-list">
+    @if (ViewBag.comments == null)
+    {
+        <h1>Chưa có comment</h1>
+    }
+    else
+    {
+        <ul>
+            @foreach (var item in Model.OrderByDescending(m => m.NgayTao))
+            {
+                <li>
+                    <div class="d-flex">
+                        <div class="left">
+                            <span>
+                                <img src="@item.NguoiDung.Hinh" class="profile-pict-img img-fluid" alt="" />
+                            </span>
+                        </div>
+                        <div class="right">
+                            <h4>
+                                @item.TaiKhoan
+                                
+                            </h4>
+                            
+                            <div class="review-description">
+                                <p>
+                                    @item.NoiDung
+                                </p>
+                            </div>
+                            <span class="publish py-3 d-inline-block w-100">@item.NgayTao.ToString("dd/MM/yyyy") <span class="fa fa-thumbs-up">@item.SoLike</span></span>
+                            <div class="helpful-thumbs">
+                                <div class="helpful-thumb text-body-2">
+                                    @foreach (var check in ViewBag.checkYT)
+                                    {
+                                        if (check.MaBinhLuan == item.MaBinhLuan)
+                                        {
+                                            ViewBag.tempYT = 1;
+                                            break;
+                                        }
+
+
+                                    }
+                                    @if (ViewBag.tempYT == 0)
+                                    {
+                                        <a href="#"
+                                           class="like-comment-link fa fa-thumbs-up"
+                                           data-mabinhluan="@item.MaBinhLuan">Like</a>
+                                        ViewBag.tempYT = 0;
+                                    }
+                                    else
+                                    {
+                                        <a href="#"
+                                           class="like-comment-link fa fa-thumbs-up"
+                                           data-mabinhluan="@item.MaBinhLuan">Unike</a>
+                                        ViewBag.tempYT = 0;
+                                    }
+                                    
+
+                                    @*<a href="#"
+        class="like-comment-link fa fa-thumbs-up"
+        data-mabinhluan="@item.MaBinhLuan">Like</a>*@
+                                    @*<a href="@Url.Action("thichBinhLuan","NguoiDung", new { @id = item.MaBinhLuan })" class="thumb-title">Helpful</a>*@
+
+                                </div>
+                                
+                                @if (item.TaiKhoan.Trim() == User.Identity.Name.Trim())
+                                {
+                                    <div class="helpful-thumb text-body-2 ml-3">
+                                        <a href="#"
+                                           class="delete-comment-link fa fa-trash"
+                                           data-mabinhluan="@item.MaBinhLuan">Delete</a>
+                                    </div>
+                                    <div class="helpful-thumb text-body-2 ml-3">
+                                        <a href="#"
+                                           class="edit-comment-btn fa fa-edit"
+                                           data-mabinhluan="@item.MaBinhLuan">Edit</a>
+                                    </div>
+                                }
+
+
+
+                                <!-- Form Chỉnh Sửa (Ban đầu ẩn) -->
+                                <div class="edit-comment-form" style="display: none;">
+                                    <textarea class="form-control" id="edit-content-@item.MaBinhLuan">@item.NoiDung</textarea>
+                                    <a href="#" class="save-edit-btn" data-mabinhluan="@item.MaBinhLuan">Save</a>
+                                    <a href="#" class="cancel-edit-btn" data-mabinhluan="@item.MaBinhLuan">Cancel</a>
+                                </div>
+                                <div class="helpful-thumb text-body-2 ml-3">
+
+                                    <a href="@Url.Action("danhSachPhanHoi","Review",new {@id = item.MaBinhLuan})" class="fa fa-reply">Reply</a>
+                                </div>
+                            </div>
+                            @foreach (var a in ViewBag.replys)
+                            {
+                                if (a.MaBinhLuan == item.MaBinhLuan)
+                                {
+                                    ViewBag.showAllReplys++;
+                                }
+
+                            }
+                            @if (ViewBag.replys != null)
+                            {
+                                foreach (var a in ViewBag.replys)
+                                {
+                                    if (a.MaBinhLuan == item.MaBinhLuan)
+                                    {
+                                        <div class="response-item mt-4 d-flex">
+                                            <div class="left">
+                                                <span>
+                                                    <img src="@a.NguoiDung.Hinh" class="profile-pict-img img-fluid" alt="" />
+                                                </span>
+                                            </div>
+                                            <div class="right">
+                                                <h4>
+                                                    @a.TaiKhoan
+
+                                                </h4>
+
+                                                <div class="review-description">
+                                                    <p>
+                                                        @a.NoiDung
+                                                    </p>
+                                                </div>
+                                                <span class="publish py-3 d-inline-block w-100">@a.NgayTao.ToString("dd/MM/yyyy")</span>
+                                            </div>
+                                        </div>
+                                        ViewBag.countReply++;
+                                        if (ViewBag.countReply == 2)
+                                        {
+                                            break;
+
+                                        }
+                                        ViewBag.MaBaiViet = item.MaBaiViet;
+                                    }
+
+                                }
+
+                                if (ViewBag.showAllReplys > 2)
+                                {
+                                    <a href="https://localhost:44339/Review/danhSachPhanHoi/@item.MaBinhLuan">Show all reply</a>
+                                    ViewBag.showAllReplys = 0;
+                                }
+                            }
+
+                        </div>
+                    </div>
+                </li>
+                ViewBag.countComment++;
+                if (ViewBag.countComment == 3)
+                {
+                    break;
+
+                }
+
+
+            }
+
+
+
+
+        </ul>
+        if (ViewBag.showAllCMT > 3)
+        {
+            <a href="https://localhost:44339/Review/danhSachBinhLuan/@ViewBag.MaBaiViet">Show all comment</a>
+
+
+        }
+    }
+
+</div>

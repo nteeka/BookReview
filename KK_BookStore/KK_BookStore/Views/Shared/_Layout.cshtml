@@ -101,23 +101,23 @@
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                             <i class="fa fa-bars"></i>
                         </button>
-                        <a class="navbar-brand" href="https://localhost:44339/Home/Index">NTK<span>_Reviews</span></a>
+                        <a class="navbar-brand" href="@Url.Action("Index","Home")">NTK<span>_Reviews</span></a>
 
                     </div><!--/.navbar-header-->
                     <!-- End Header Navigation -->
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
                         <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-                            <li><a href="https://localhost:44339/Home/Index">home</a></li>
-                            <li><a href="https://localhost:44339/Home/About">about</a></li>
-                            <li><a href="https://localhost:44339/DanhSachYeuThich/DanhSachBaiViet">Wishlist</a></li>
+                            <li><a href="@Url.Action("Index","Home")">home</a></li>
+                            <li><a href="@Url.Action("About","Home")">about</a></li>
+                            <li><a href="@Url.Action("DanhSachBaiViet","DanhSachYeuThich")">Wishlist</a></li>
                             @if (User.IsInRole("Reviewer"))
                             {
-                                <li><a href="https://localhost:44339/Review/quanLyBaiViet"><i style="font-size:x-large" class="fa fa-briefcase"></i></a></li>
+                                <li><a href="@Url.Action("quanLyBaiViet","Review")"><i style="font-size:x-large" class="fa fa-briefcase"></i></a></li>
                             }
-                            <li><a href="https://localhost:44339/TacGia/index">Author</a></li>
+                            <li><a href="@Url.Action("Index","TacGia")">Author</a></li>
                             @*<li class="scroll"><a href="#reviews">review</a></li>*@
-                            <li><a href="https://localhost:44339/Review/Index">review</a></li>
+                            <li><a href="@Url.Action("Index","Review")">Posts</a></li>
                             <li><a class="fa fa-bell" href="@Url.Action("danhSachThongBao","NguoiDung",new {@name = User.Identity.Name.Trim(),@page = 1})">( @ViewBag.soLuongTBChuaDoc )</a></li>
 
 
@@ -157,21 +157,21 @@
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="navbar-header">
-                            <a class="navbar-brand" href="https://localhost:44339/Home/Index">NTK<span>_Reviews</span></a>
+                            <a class="navbar-brand" href="@Url.Action("Index","Home")">NTK<span>_Reviews</span></a>
                         </div><!--/.navbar-header-->
                     </div>
                     <div class="col-sm-9">
                         <ul class="footer-menu-item">
-                            <li><a href="https://localhost:44339/Home/Index">home</a></li>
-                            <li><a href="https://localhost:44339/Home/About">about</a></li>
-                            <li><a href="https://localhost:44339/DanhSachYeuThich/DanhSachBaiViet">Wishlist</a></li>
+                            <li><a href="@Url.Action("Index","Home")">home</a></li>
+                            <li><a href="@Url.Action("About","Home")">about</a></li>
+                            <li><a href="@Url.Action("DanhSachBaiViet","DanhSachYeuThich")">Wishlist</a></li>
                             @if (User.IsInRole("Reviewer"))
                             {
-                                <li><a href="https://localhost:44339/Review/quanLyBaiViet"><i style="font-size:x-large" class="fa fa-briefcase"></i></a></li>
+                                <li><a href="@Url.Action("quanLyBaiViet","Review")"><i style="font-size:x-large" class="fa fa-briefcase"></i></a></li>
                             }
-                            <li><a href="https://localhost:44339/TacGia/index">Author</a></li>
+                            <li><a href="@Url.Action("Index","TacGia")">Author</a></li>
                             @*<li class="scroll"><a href="#reviews">review</a></li>*@
-                            <li><a href="https://localhost:44339/Review/Index">review</a></li>
+                            <li><a href="@Url.Action("Index","Review")">review</a></li>
                             <li>
                                 <link href="~/Content/darkMode.css" rel="stylesheet" />
                                 <script src="~/Content/darkMode.js"></script>
@@ -194,11 +194,11 @@
                     </div>
                     <div class="col-sm-7">
                         <div class="footer-social">
-                            <span><i class="fa fa-phone"> +1  (222) 777 8888</i></span>
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                            <a href="#"><i class="fa fa-google-plus"></i></a>
+                            <span><i class="fa fa-phone"> +84  834363672</i></span>
+                            <a href="https://www.facebook.com/nteeka202/"><i class="fa fa-facebook"></i></a>
+                            <a href="https://www.facebook.com/nteeka202/"><i class="fa fa-twitter"></i></a>
+                            <a href="https://www.linkedin.com/in/t%C6%B0%E1%BB%9Dng-khang-nguy%E1%BB%85n-792039295/"><i class="fa fa-linkedin"></i></a>
+                            <a href="https://www.instagram.com/nteeka/"><i class="fa fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>

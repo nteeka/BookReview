@@ -19,8 +19,8 @@ namespace KK_BookStore.Controllers
             data.SystemAccesses.InsertOnSubmit(systemAccess);
             data.SubmitChanges();
             //var demTC = data.SystemAccesses.Sum(m => m.SoLuongTruyCap);
-            var all_sgg = (from s in data.SachGiamGias select s);
-            ViewBag.sgg = all_sgg;
+            //var all_sgg = (from s in data.SachGiamGias select s);
+            //ViewBag.sgg = all_sgg;
             ViewBag.sl = 0;
             //var all_sach = (from s in data.SachGiamGias  select s);
             if (User.Identity.IsAuthenticated)
@@ -41,8 +41,9 @@ namespace KK_BookStore.Controllers
             }
             ViewBag.baiviet = lstBaiViet;
 
-
+            
             List<BaiViet> baivietsRanDom = data.BaiViets.Where(m=>m.TrangThai==1).ToList();
+            //RANDOM POSTS
             List<BaiViet> random = new List<BaiViet>();
             Random rand = new Random();
             for (int i = 0;i<3;i++)
@@ -52,6 +53,14 @@ namespace KK_BookStore.Controllers
                     random.Add(baivietsRanDom[k]);
             }
             ViewBag.random = random;
+            List<BaiViet> baivietMoi = data.BaiViets.Where(m => m.TrangThai == 1).OrderByDescending(m => m.NgayViet).ToList();
+            List<BaiViet> newPosts = new List<BaiViet>();
+            for (int i = 0; i < 3; i++)
+            {
+                newPosts.Add(baivietMoi[i]);
+            }
+            ViewBag.newPosts = newPosts;
+            //NEWEST POST
 
             //dem post
             ViewBag.countPost = baivietsRanDom.Count();

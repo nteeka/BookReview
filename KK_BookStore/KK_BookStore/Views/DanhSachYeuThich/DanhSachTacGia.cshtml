@@ -1,0 +1,144 @@
+﻿@model PagedList.IPagedList<KK_BookStore.FollowDetail>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "DanhSachTacGia";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<title>NTK_Reviews || Wishlist</title>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="~/Content/DanhSachYeuThich/DanhSachBaiViet.css" rel="stylesheet" />
+<div class="container padding-bottom-3x mb-2">
+    <div class="row">
+        <div class="col-lg-4">
+            <aside class="user-info-wrapper">
+                <div class="user-cover" style="background-image: url(https://bootdey.com/img/Content/bg1.jpg);">
+                </div>
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <a class="edit-avatar" href="#"></a><img src="@ViewBag.hinh" alt="User">
+                    </div>
+                    <div class="user-data">
+                        <h4>@User.Identity.Name</h4><span></span>
+                    </div>
+                </div>
+            </aside>
+            <nav class="list-group">
+                @*<a class="list-group-item with-badge" href="#"><i class=" fa fa-th"></i>Orders<span class="badge badge-primary badge-pill">6</span></a>
+                    <a class="list-group-item" href="#"><i class="fa fa-user"></i>Profile</a>
+                    <a class="list-group-item" href="#"><i class="fa fa-map"></i>Addresses</a>*@
+                @*<a class="list-group-item with-badge active" href="#"><i class="fa fa-heart"></i>Wishlist<span>3</span></a>*@
+                @*<a class="list-group-item with-badge" href="#"><i class="fa fa-tag"></i>My Tickets<span class="badge badge-primary badge-pill">4</span></a>*@
+                <div style="padding-top:10px">
+                    <a style="padding-left:30px" href="https://localhost:44339/DanhSachYeuThich/DanhSachBaiViet"><i class="fa fa-heart"></i>  Wishlist</a> <span style="padding-left:160px;color:black">@ViewBag.post posts</span>
+                    <hr />
+                    <a style="padding-left:30px" href="#"><i class="fa-solid fa-person"></i>Your Author</a> <span style="padding-left:135px;color:black">@Model.Count() people</span>
+
+                </div>
+                @*<hr />
+                    <div style=""><a href="#">Wishlist</a></div>
+                    <hr />
+                    <div style=""><a href="#">Wishlist</a></div>*@
+
+            </nav>
+        </div>
+        <div class="col-lg-8">
+            <div class="padding-top-2x mt-2 hidden-lg-up"></div>
+            <!-- Wishlist Table-->
+            <div class="table-responsive wishlist-table margin-bottom-none">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th><h2>@User.Identity.Name's WISHLIST</h2></th>
+                            <th class="text-center"><a class="btn btn-sm btn-outline-danger" href="#">Clear Wishlist</a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="product-item">
+                                        <a class="product-thumb" href="https://localhost:44339/NguoiDung/trangCaNhan/@item.Author.TaiKhoan"><img src="@item.Author.NguoiDung.Hinh" alt="Product"></a>
+                                        <div class="product-info">
+                                            <h4 class="product-title"><a href="https://localhost:44339/NguoiDung/trangCaNhan/@item.Author.TaiKhoan">@item.Author.TaiKhoan</a></h4>
+                                            <div class="text-lg text-medium text-muted">@item.Author.NguoiDung.MoTa</div>
+                                            <div>
+                                                    <div class="d-inline text-success"><a class="fa fa-trash" href="@Url.Action("unFolowAuthor", "NguoiDung", new {@id = item.Id_Author,@strURL = Request.Url.ToString()})">Unfollow</a></div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="icon-cross"></i></a></td>
+                            </tr>
+                        }
+
+
+
+                    </tbody>
+                </table>
+            </div>
+            <hr class="mb-4">
+            <div class="custom-control custom-checkbox">
+                @*<input class="custom-control-input" type="checkbox" id="inform_me" checked="">
+                    <label class="custom-control-label" for="inform_me">Inform me when item from my wishlist is available</label>*@
+                <div>
+                    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) /
+                    @Model.PageCount
+                </div>
+                <div class="MenuTrang">
+                    @Html.PagedListPager(Model, page => Url.Action("DanhSachTacGia", new
+                    {
+                        page = page
+                    }))
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>
+<style type="text/css">
+    #mau-nut a {
+        clear: both;
+        background-color: orange;
+        color: snow;
+    }
+
+        #mau-nut a:hover {
+            background-color: darkcyan;
+            color: snow;
+        }
+</style>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var maxLength = 100;
+        $(".show-read-more").each(function () {
+            var myStr = $(this).text();
+            if ($.trim(myStr).length > maxLength) {
+                var newStr = myStr.substring(0, maxLength);
+                var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
+                $(this).empty().html(newStr);
+
+                $(this).append(' <a href="javascript:void(0);" class="read-more">đọc tiếp...</a>');
+
+                $(this).append('<span class="more-text">' + removedStr +
+                    '</span>');
+            }
+        });
+        $(".read-more").click(function () {
+            $(this).siblings(".more-text").contents().unwrap(); $(this).remove();
+        });
+    });
+</script>
+<style>
+    .show-read-more .more-text {
+        display: none;
+    }
+</style>
+

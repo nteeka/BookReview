@@ -16,14 +16,17 @@ namespace KK_BookStore.Models
         [Display(Name = "Mã Binh Luan")]
         public int MaBinhLuan { get; set; }
         [Display(Name = "Nội dung")]
-
         public String noiDung { get; set; }
-        [Display(Name = "Tên Khách  Hàng")]
+        [Display(Name = "Tên tài khoản")]
         public String taiKhoan { get; set; }
-        [Display(Name = "Mã Sách")]
-        public int maSach { get; set; }
-        
-        
+        [Display(Name = "Mã Bài viết")]
+        public int maBaiViet { get; set; }
+
+        public DateTime NgayTao { get; set; }
+
+        public int soLike { get; set; }
+
+
 
         //public BinhLuan(int MaSach,String idUser)
         //{

@@ -25,130 +25,138 @@
             <div class="container-fluid px-4">
                 <h1 style="text-align:center" class="mt-4">Quản lý người dùng</h1>
                 @*<ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Tables</li>
-                    </ol>*@
+            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+            <li class="breadcrumb-item active">Tables</li>
+        </ol>*@
                 @*<div class="card mb-4">
-                        <div class="card-body">
-                            DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the
-                            <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-                            .
+            <div class="card-body">
+                DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the
+                <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
+                .
+            </div>
+        </div>*@
+                @if (Model.Count() != 0)
+                {
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+
+                            Danh sách @Model.First().ChucVu.TenChucVu
+                            (@Model.Count() người)
+                            <div style="float:right">
+                                <a href="#"><i class="fa fa-plus"></i>Add</a>
+                            </div>
                         </div>
-                    </div>*@
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <i class="fas fa-table me-1"></i>
-                        
-                        Danh sách @Model.First().ChucVu.TenChucVu                      
-                        (@Model.Count() người)
-                    <div style="float:right">
-                        <a href="#"><i class="fa fa-plus"></i>Add</a>
-                    </div>
-                    </div>
-                    <div class="card-body">
-                        <table id="datatablesSimple">
-                            <thead>
-                                <tr>
-                                    <th>Hình</th>
-                                    <th>User name</th>
-                                    <th>Họ tên</th>
-                                    <th>Địa chỉ</th>
-
-                                    <th>Số điện thoại</th>
-                                    <th>Email</th>
-                                    <th>Banned</th>
-                                    <th></th>
-
-
-                                </tr>
-                            </thead>
-
-                            <tbody>
-
-                                @foreach (var item in Model)
-                                {
+                        <div class="card-body">
+                            <table id="datatablesSimple">
+                                <thead>
                                     <tr>
-                                        @if (item.Hinh == null)
-                                        {
-                                            <th><img style="width:100px;height:100px" src="\Content\user.jpg" alt="anh" /></th>
+                                        <th>Hình</th>
+                                        <th>User name</th>
+                                        <th>Họ tên</th>
+                                        <th>Địa chỉ</th>
 
-                                        }
-                                        else
-                                        {
-                                            <th><img style="width:100px;height:100px" src="@item.Hinh" alt="anh" /></th>
+                                        <th>Số điện thoại</th>
+                                        <th>Email</th>
+                                        <th>Banned</th>
+                                        <th></th>
 
-                                        }
-                                        <td>@item.TaiKhoan</td>
-                                        @if (item.HoTen == null)
-                                        {
-                                            <td>!NULL!</td>
-                                        }
-                                        else
-                                        {
-                                            <td>@item.HoTen</td>
-
-                                        }
-                                        @if (@item.DiaChi == null)
-                                        {
-                                            <td>!NULL!</td>
-                                        }
-                                        else
-                                        {
-                                            <td>@item.DiaChi</td>
-
-                                        }
-
-
-                                        @if (@item.SDT == null)
-                                        {
-                                            <td>!NULL!</td>
-                                        }
-                                        else
-                                        {
-                                            <td>@item.SDT</td>
-
-                                        }
-                                        @if (@item.Email == null)
-                                        {
-                                            <td>!NULL!</td>
-                                        }
-                                        else
-                                        {
-                                            <td>@item.Email</td>
-
-                                        }
-                                        @if (item.Banned == true)
-                                        {
-                                            <td>
-                                                <p style="color:red">Lock</p>
-                                            </td>
-                                        }
-                                        else
-                                        {
-                                            <td><p style="color:green">Normal</p></td>
-                                        }
-
-                                    <td>
-                                        <a class="edit" href="@Url.Action("EditNguoiDung", "Admin",new { @id =item.TaiKhoan.Trim()})" title="Edit" data-toggle="tooltip"><i class="fa fa-pen"></i></a>
-                                        <hr />
-                                        <a class="delete" href="@Url.Action("camNguoiDung", "Admin",new { @id = item.TaiKhoan.Trim()})" title="Khóa tài khoản" data-toggle="tooltip"><i class="fa fa-lock"></i></a>
-                                        @if (item.ChucVu.TenChucVu.Trim() != "User")
-                                        {
-                                            <hr />
-                                            <a class="delete" href="@Url.Action("setToUser", "Admin",new { @id = item.TaiKhoan.Trim(), @strURL = Request.Url.ToString()})" title="set to user" data-toggle="tooltip">Set to user</a>
-                                        }
-
-                                    </td>
 
                                     </tr>
+                                </thead>
 
-                                }
+                                <tbody>
+
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            @if (item.Hinh == null)
+                                            {
+                                                <th><img style="width:100px;height:100px" src="\Content\user.jpg" alt="anh" /></th>
+
+                                            }
+                                            else
+                                            {
+                                                <th><img style="width:100px;height:100px" src="@item.Hinh" alt="anh" /></th>
+
+                                            }
+                                            <td>@item.TaiKhoan</td>
+                                            @if (item.HoTen == null)
+                                            {
+                                                <td>!NULL!</td>
+                                            }
+                                            else
+                                            {
+                                                <td>@item.HoTen</td>
+
+                                            }
+                                            @if (@item.DiaChi == null)
+                                            {
+                                                <td>!NULL!</td>
+                                            }
+                                            else
+                                            {
+                                                <td>@item.DiaChi</td>
+
+                                            }
 
 
-                            </tbody>
-                        </table>
+                                            @if (@item.SDT == null)
+                                            {
+                                                <td>!NULL!</td>
+                                            }
+                                            else
+                                            {
+                                                <td>@item.SDT</td>
+
+                                            }
+                                            @if (@item.Email == null)
+                                            {
+                                                <td>!NULL!</td>
+                                            }
+                                            else
+                                            {
+                                                <td>@item.Email</td>
+
+                                            }
+                                            @if (item.Banned == true)
+                                            {
+                                                <td>
+                                                    <p style="color:red">Lock</p>
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td><p style="color:green">Normal</p></td>
+                                            }
+
+                                            <td>
+                                                <a class="edit" href="@Url.Action("EditNguoiDung", "Admin",new { @id =item.TaiKhoan.Trim()})" title="Edit" data-toggle="tooltip"><i class="fa fa-pen"></i></a>
+                                                <hr />
+                                                <a class="delete" href="@Url.Action("camNguoiDung", "Admin",new { @id = item.TaiKhoan.Trim()})" title="Khóa tài khoản" data-toggle="tooltip"><i class="fa fa-lock"></i></a>
+                                                @if (item.ChucVu.TenChucVu.Trim() != "User")
+                                                {
+                                                    <hr />
+                                                    <a class="delete" href="@Url.Action("setToUser", "Admin",new { @id = item.TaiKhoan.Trim(), @strURL = Request.Url.ToString()})" title="set to user" data-toggle="tooltip">Set to user</a>
+                                                }
+
+                                            </td>
+
+                                        </tr>
+
+                                    }
+
+
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
+                }
+                else
+            {
+                <h1>None user have this role</h1>
+            }
+
             </div>
         </main>
 

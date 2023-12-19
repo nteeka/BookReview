@@ -733,7 +733,7 @@
                                 @foreach (var item in ViewBag.lstTacGia)
                                 {
                                     <li class="avatar-item">
-                                        <a href="#" class="avatar large img-holder" style="--width: 100; --height: 100;">
+                                        <a href="@Url.Action("trangCaNhan","NguoiDung",new {@name = item.TaiKhoan})" class="avatar large img-holder" style="--width: 100; --height: 100;">
                                             <img src="@item.Hinh" width="100" height="100" alt="top author" class="img-cover">
                                         </a>
                                     </li>
@@ -766,7 +766,7 @@
 
                             </ul>
 
-                            <a href="#" class="span">Meet our top authors</a>
+                            <a href="@Url.Action("Index","TacGia")" class="span">Meet our top authors</a>
                         </div>
 
                     </div>
@@ -779,7 +779,7 @@
                                 <div class="blog-card">
 
                                     <figure class="card-banner img-holder" style="--width: 550; --height: 660;">
-                                        <a class="img-cover" href="https://localhost:44339/Review/Detail/@item.MaBaiViet">
+                                        <a class="img-cover" href="@Url.Action("Detail","Review",new {@id = item.MaBaiViet})">
                                             <img src="@item.AnhBia" width="550" height="660" loading="lazy"
                                                  alt="Creating is a privilege but it’s also a gift" class="img-cover">
                                         </a>
@@ -788,7 +788,7 @@
                                         <ul class="avatar-list absolute">
 
                                             <li class="avatar-item">
-                                                <a href="#" class="avatar img-holder" style="--width: 100; --height: 100;">
+                                                <a href="@Url.Action("trangCaNhan","NguoiDung",new {@name = item.TaiKhoan})" class="avatar img-holder" style="--width: 100; --height: 100;">
                                                     <img src="@item.NguoiDung.Hinh" width="100" height="100" loading="lazy" alt="Author"
                                                          class="img-cover">
                                                 </a>
@@ -819,7 +819,7 @@
                                         </ul>
 
                                         <h3 class="h4">
-                                            <a href="#" class="card-title hover:underline">
+                                            <a href="@Url.Action("Detail","Review",new {@id = item.MaBaiViet})" class="card-title hover:underline">
                                                 @item.TenBaiViet
                                                 
 
@@ -842,7 +842,7 @@
                     </ul>
 
                     @*<button class="btn">Load more</button>*@
-                    <button class="btn" onclick="window.location.href='https://localhost:44339/Review/danhSachBaiViet'">Load more</button>
+                    <button class="btn" onclick="window.location.href='@Url.Action("danhSachBaiViet","Review")'">Load more</button>
                 </div>
             </section>
 
@@ -875,7 +875,7 @@
                                         <ul class="avatar-list absolute">
 
                                             <li class="avatar-item">
-                                                <a href="#" class="avatar img-holder" style="--width: 100; --height: 100;">
+                                                <a href="@Url.Action("trangCaNhan","NguoiDung",new {@name = item.TaiKhoan})" class="avatar img-holder" style="--width: 100; --height: 100;">
                                                     <img src="@item.NguoiDung.Hinh" width="100" height="100" loading="lazy" alt="Author"
                                                          class="img-cover">
                                                 </a>

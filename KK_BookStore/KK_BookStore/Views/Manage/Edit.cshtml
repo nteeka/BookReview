@@ -8,123 +8,7 @@
 }
 <title>NTK_REVIEWS || Edit</title>
 <link rel="shortcut icon" type="image/icon" href="~/Content/LayoutChung/favicon.png" />
-@*<h1 style="margin-top: 80px; font: bold; color: white;text-align:center">Cập nhập thông tin tài khoản</h1>
 
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal" style="font-size:x-large;color:white;margin-left:300px">
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.TaiKhoan)
-
-
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.HoTen, htmlAttributes: new { @class = "control-label col-md-2" })
-                <strong class="control-label col-md-2">Họ tên</strong>
-                <div style="margin-top:10px" class="col-md-10">
-                    @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <strong class="control-label col-md-2">Giới tính</strong>
-                @Html.LabelFor(model => model.GioiTinh, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div style="margin-top:10px" class="col-md-10">
-                    @Html.EditorFor(model => model.GioiTinh, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.GioiTinh, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <strong class="control-label col-md-2">Ngày sinh</strong>
-                @Html.LabelFor(model => model.NgaySinh, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div style="margin-top:10px" class="col-md-10">
-                    @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
-                    @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <strong class="control-label col-md-2">Địa chỉ</strong>
-                @Html.LabelFor(model => model.DiaChi, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div style="margin-top:10px" class="col-md-10">
-                    @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <strong class="control-label col-md-2">Số điện thoại</strong>
-                @Html.LabelFor(model => model.SDT, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div style="margin-top:10px" class="col-md-10">
-                    @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
-                    @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group" style="margin-left:120px">
-                <div class="col-md-10">
-                    <strong>Hình</strong>
-                    @Html.EditorFor(model => model.Hinh, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Hinh, "", new { @class = "text-danger" })
-                    <input type="file" name="fileUpload" id="fileUpload" accept="image/*"
-                           style="display:none;" />
-                    <input type="button" id="btnUpload" value="Chọn" class="btn btn-success" />
-                    <img src="@Model.Hinh" style="width:100px" id="pictureUpload" />
-                </div>
-            </div>
-            @section upload
-            {
-                <script>
-                    $(function () {
-                        $('#btnUpload').click(function () {
-                            $('#fileUpload').trigger('click');
-                        });
-                    });
-                    $('#fileUpload').change(function () {
-                        if (window.FormData !== undefined) {
-                            var fileUpload = $('#fileUpload').get(0);
-                            var files = fileUpload.files;
-                            var formData = new FormData();
-                            formData.append('file', files[0]);
-                            $.ajax(
-                                {
-                                    type: 'POST',
-                                    url: '/Manage/ProcessUpload',
-                                    contentType: false,
-                                    processData: false,
-                                    data: formData,
-                                    success: function (urlImage) {
-                                        $('#pictureUpload').attr('src', urlImage);
-                                        $('#Hinh').val(urlImage);
-                                    },
-                                    error: function (err) {
-                                        alert('Error ', err.statusText);
-                                        19
-                                    }
-                                });
-                        }
-                    });
-                </script>
-            }
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input style="background-color:forestgreen;color:white;margin-left:50px;width:70px" type="submit" value="Save" class="btn btn-default" />
-                </div>
-            </div>
-        </div>
-
-
-    }*@
-
-@*<div>
-        <a href="https://localhost:44339/Manage/Index/">Back</a>
-    </div>*@
 
 
 
@@ -156,43 +40,13 @@
     </div>
     <div class="row">
         <div class="col-sm-3">
-            <!--left col-->
-            @*<div class="text-center">
-                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
-                    <h6>Upload a different photo...</h6>
-                    <input type="file" class="text-center center-block file-upload">
-                </div>*@
-            <br>
+          
 
-
-            <div class="panel panel-default">
-                <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
-                <div class="panel-body"><a href="http://bootnipets.com">bootnipets.com</a></div>
-            </div>
-
-
-            <ul class="list-group">
-                <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Shares</strong></span> 125</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> 13</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> 37</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> 78</li>
-            </ul>
-
-            <div class="panel panel-default">
-                <div class="panel-heading">Social Media</div>
-                <div class="panel-body">
-                    <i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
-                </div>
-            </div>
+           
 
         </div><!--/col-3-->
-        <div class="col-sm-9">
-            @*<ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-                    <li><a data-toggle="tab" href="#messages">Menu 1</a></li>
-                    <li><a data-toggle="tab" href="#settings">Menu 2</a></li>
-                </ul>*@
+        <div style="margin-left:180px" class="col-sm-9">
+            
 
 
             <div class="tab-content">
@@ -228,7 +82,7 @@
 
                         <div class="form-group">
                             <div class="col-xs-6">
-                                <label for="HoTen"><h4>Ho va ten</h4></label>
+                                <label for="HoTen"><h4>Full name</h4></label>
                                 @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control", @style = "width:300px;" } })
                                 @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
                             </div>
@@ -420,144 +274,7 @@
                     <hr>
 
                 </div><!--/tab-pane-->
-                @*<div class="tab-pane" id="messages">
-
-                        <h2></h2>
-
-                        <hr>
-                        <form class="form" action="##" method="post" id="registrationForm">
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="first_name"><h4>First name</h4></label>
-                                    <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="last_name"><h4>Last name</h4></label>
-                                    <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="phone"><h4>Phone</h4></label>
-                                    <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-xs-6">
-                                    <label for="mobile"><h4>Mobile</h4></label>
-                                    <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="email"><h4>Email</h4></label>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="email"><h4>Location</h4></label>
-                                    <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="password"><h4>Password</h4></label>
-                                    <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="password2"><h4>Verify</h4></label>
-                                    <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-xs-12">
-                                    <br>
-                                    <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                    <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
-                                </div>
-                            </div>
-                        </form>
-
-                    </div>*@<!--/tab-pane-->
-                <!--<div class="tab-pane" id="settings">
-
-
-                    <hr>
-                    <form class="form" action="##" method="post" id="registrationForm">
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="first_name"><h4>First name</h4></label>
-                                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="last_name"><h4>Last name</h4></label>
-                                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="phone"><h4>Phone</h4></label>
-                                <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                <label for="mobile"><h4>Mobile</h4></label>
-                                <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="email"><h4>Email</h4></label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="email"><h4>Location</h4></label>
-                                <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="password2"><h4>Verify</h4></label>
-                                <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <br>
-                                <button class="btn btn-lg btn-success pull-right" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>-->
-                <!--<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>-->
-                <!--</div>
-                        </div>
-                    </form>
-                </div>-->
+                
 
             </div><!--/tab-pane-->
         </div><!--/tab-content-->
@@ -565,6 +282,4 @@
     </div><!--/col-9-->
 </div><!--/row-->
 <script src="~/Content/Profile/Edit.js"></script>
-@*@section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }*@
+

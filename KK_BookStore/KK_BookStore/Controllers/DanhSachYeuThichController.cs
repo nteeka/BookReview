@@ -14,102 +14,7 @@ namespace KK_BookStore.Controllers
     {
        
         MyDataDataContext data = new MyDataDataContext();
-        //public List<DanhSachYeuThich> layDanhSach()
-        //{
-        //    var user = User.Identity.GetUserId();
-        //    List<DanhSachYeuThich> lstYeuThich = Session[user] as List<DanhSachYeuThich>;
-        //    if (lstYeuThich == null)
-        //    {
-        //        lstYeuThich = new List<DanhSachYeuThich>();
-        //        Session[user] = lstYeuThich;
-        //    }
-        //    return lstYeuThich;
-        //}
-        //[Authorize]
-        //public ActionResult  themDanhSachYeuThich(int id, string strURL)
-        //{
-
-        //    List<DanhSachYeuThich> lstYeuThich = layDanhSach();
-        //    DanhSachYeuThich danhsach = lstYeuThich.Find(n => n.maSach == id);
-        //    if (danhsach == null)
-        //    {
-        //        danhsach = new DanhSachYeuThich(id);
-        //        Sach sach = data.Saches.FirstOrDefault(n => n.MaSach == id);
-        //        sach.SoLike = sach.SoLike +1;
-        //        UpdateModel(sach);
-        //        data.SubmitChanges();
-        //        lstYeuThich.Add(danhsach);             
-        //        return Redirect(strURL);
-        //    }
-        //    else
-        //    {
-
-        //        return Redirect(strURL);
-        //    }
-        //}
-        //[Authorize]
-        //public ActionResult DanhSachYeuThich()
-        //{
-        //    if (User.Identity.IsAuthenticated)
-        //    {
-        //        var anhDaiDien = from s in data.NguoiDungs where s.TaiKhoan == User.Identity.Name select s;
-        //        ViewBag.hinh = anhDaiDien.First().Hinh;
-        //    }
-        //    List<DanhSachYeuThich> lstYeuThich = layDanhSach();          
-        //    foreach (var item in lstYeuThich)
-        //    {
-        //        var sach = data.Saches.SingleOrDefault(x => x.MaSach == item.maSach);
-
-        //    }
-        //    return View(lstYeuThich);
-        //}
-        //public ActionResult DanhSachYeuThichPartial()
-        //{
-        //    if (User.Identity.IsAuthenticated)
-        //    {
-        //        var anhDaiDien = from s in data.NguoiDungs where s.TaiKhoan == User.Identity.Name select s;
-        //        ViewBag.hinh = anhDaiDien.First().Hinh;
-        //    }
-        //    return PartialView();
-        //}
-        //public ActionResult xoaDanhSachYeuThich(int id)
-        //{
-        //    List<DanhSachYeuThich> lstYeuThich = layDanhSach();
-        //    DanhSachYeuThich danhsach = lstYeuThich.SingleOrDefault(n => n.maSach == id);
-        //    if (danhsach != null)
-        //    {
-        //        Sach sach = data.Saches.FirstOrDefault(n => n.MaSach == id);
-        //        sach.SoLike = sach.SoLike -1;
-        //        UpdateModel(sach);
-        //        data.SubmitChanges();
-        //        lstYeuThich.RemoveAll(n => n.maSach == id) ;
-        //        return RedirectToAction("DanhSachYeuThich");
-        //    }
-        //    return RedirectToAction("DanhSachYeuThich");
-        //}
-        //public ActionResult capNhapDanhSachYeuThich(int id, FormCollection collection)
-        //{
-        //    List<DanhSachYeuThich> lstYeuThich = layDanhSach();
-        //    DanhSachYeuThich danhsach = lstYeuThich.SingleOrDefault(n => n.maSach == id);
-        //    return RedirectToAction("DanhSachYeuThich");
-        //}
-        //public ActionResult xoaTatCaDanhSachYeuThich()
-        //{
-        //    List<DanhSachYeuThich> lstYeuThich = layDanhSach();
-        //    lstYeuThich.Clear();
-        //    return RedirectToAction("DanhSachYeuThich");
-        //}
-        //[Authorize]
-        //public ActionResult Index()
-        //{
-        //    if (User.Identity.IsAuthenticated)
-        //    {
-        //        var anhDaiDien = from s in data.NguoiDungs where s.TaiKhoan == User.Identity.Name select s;
-        //        ViewBag.hinh = anhDaiDien.First().Hinh;
-        //    }
-        //    var danhsach = from tt in data.DanhSachYeuThiches where tt.TaiKhoan == User.Identity.Name  select tt;
-        //    return View(danhsach.ToList());
-        //}
+        
         [Authorize]
         public ActionResult DanhSachBaiViet(int? page)
         {
@@ -127,6 +32,9 @@ namespace KK_BookStore.Controllers
                 ViewBag.hinh = anhDaiDien.First().Hinh;
             }
             var danhsach = from tt in data.DanhSachYeuThiches where tt.TaiKhoan == User.Identity.Name select tt;
+            var danhSachFolow = from tt in data.FollowDetails where tt.TaiKhoan == User.Identity.Name select tt;
+            ViewBag.folow = danhSachFolow.Count();
+            ViewBag.post = danhsach.Count();
             return View(danhsach.ToPagedList(pageNum, pageSize));
         }
         
@@ -151,5 +59,32 @@ namespace KK_BookStore.Controllers
             SetAlert("Delete post from wishlist success!!", "success");
             return RedirectToAction("DanhSachBaiViet");
         }
+
+
+        [Authorize]
+        public ActionResult DanhSachTacGia(int? page)
+        {
+            //so luong thong bao chua doc
+            var countNoti = data.ThongBaos.Where(m => m.TaiKhoan == User.Identity.Name && m.TrangThai == 0);
+            ViewBag.soLuongTBChuaDoc = countNoti.Count();
+
+            if (page == null) page = 1;
+            int pageSize = 3;
+            int pageNum = page ?? 1;
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var anhDaiDien = from s in data.NguoiDungs where s.TaiKhoan == User.Identity.Name select s;
+                ViewBag.hinh = anhDaiDien.First().Hinh;
+            }
+            var danhsachPost = from tt in data.DanhSachYeuThiches where tt.TaiKhoan == User.Identity.Name select tt;
+            ViewBag.post = danhsachPost.Count();
+
+
+            var danhsach = from tt in data.FollowDetails where tt.TaiKhoan == User.Identity.Name select tt;
+            
+            return View(danhsach.ToPagedList(pageNum, pageSize));
+        }
+
     }
 }

@@ -12,14 +12,14 @@
         <div class="col-lg-4">
             <aside class="user-info-wrapper">
                 <div class="user-cover" style="background-image: url(https://bootdey.com/img/Content/bg1.jpg);">
-                    <div class="info-label" data-toggle="tooltip" title="" data-original-title="You currently have 290 Reward Points to spend"><i class="icon-medal"></i>290 points</div>
+                    @*<div class="info-label" data-toggle="tooltip" title="" data-original-title="You currently have 290 Reward Points to spend"><i class="icon-medal"></i>290 points</div>*@
                 </div>
                 <div class="user-info">
                     <div class="user-avatar">
                         <a class="edit-avatar" href="#"></a><img src="@ViewBag.hinh" alt="User">
                     </div>
                     <div class="user-data">
-                        <h4>@User.Identity.Name</h4><span>Joined February 06, 2017</span>
+                        <h4>@User.Identity.Name</h4><span></span>
                     </div>
                 </div>
             </aside>
@@ -30,9 +30,9 @@
                 @*<a class="list-group-item with-badge active" href="#"><i class="fa fa-heart"></i>Wishlist<span>3</span></a>*@
                 @*<a class="list-group-item with-badge" href="#"><i class="fa fa-tag"></i>My Tickets<span class="badge badge-primary badge-pill">4</span></a>*@
                 <div style="padding-top:10px">
-                    <a style="padding-left:30px" href="https://localhost:44339/DanhSachYeuThich/DanhSachBaiViet"><i class="fa fa-heart"></i>  Wishlist</a> <span style="padding-left:160px;color:black">@Model.Count() posts</span>
+                    <a style="padding-left:30px" href="https://localhost:44339/DanhSachYeuThich/DanhSachBaiViet"><i class="fa fa-heart"></i>  Wishlist</a> <span style="padding-left:160px;color:black">@ViewBag.post posts</span>
                     <hr />
-                    <a style="padding-left:30px" href="#"><i class="fa-solid fa-person"></i>Your Author</a> <span style="padding-left:135px;color:black">0 people</span>
+                    <a style="padding-left:30px" href="@Url.Action("DanhSachTacGia","DanhSachYeuThich")"><i class="fa-solid fa-person"></i>Your Author</a> <span style="padding-left:135px;color:black">@ViewBag.folow people</span>
 
                 </div>
                 @*<hr />
@@ -50,29 +50,34 @@
                     <thead>
                         <tr>
                             <th><h2>@User.Identity.Name's WISHLIST</h2></th>
-                            <th class="text-center"><a class="btn btn-sm btn-outline-danger" href="#">Clear Wishlist</a></th>
+                            @*<th class="text-center"><a class="btn btn-sm btn-outline-danger" href="#">Clear Wishlist</a></th>*@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model)
+                        @if (Model.Count() != 0)
                         {
-                            <tr>
-                                <td>
-                                    <div class="product-item">
-                                        <a class="product-thumb" href="https://localhost:44339/Review/Detail/@item.MaBaiViet"><img src="@item.BaiViet.AnhBia" alt="Product"></a>
-                                        <div class="product-info">
-                                            <h4 class="product-title"><a href="https://localhost:44339/Review/Detail/@item.MaBaiViet">@item.BaiViet.TenBaiViet -- @Math.Round(item.BaiViet.SoSao.Value, 1)⭐ -- @item.BaiViet.YeuThich ❤️</a></h4>
-                                            <div class="text-lg text-medium text-muted">@item.BaiViet.MoTa</div>
-                                            <div>
-                                                @item.BaiViet.TheLoai.TenTL
-                                                <div class="d-inline text-success">Author: @item.BaiViet.TaiKhoan <a class="fa fa-trash" href="@Url.Action("xoaDanhSachYeuThich", "DanhSachYeuThich", new {@id = item.MaBaiViet})">Delete</a></div>
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="product-item">
+                                            <a class="product-thumb" href="https://localhost:44339/Review/Detail/@item.MaBaiViet"><img src="@item.BaiViet.AnhBia" alt="Product"></a>
+                                            <div class="product-info">
+                                                <h4 class="product-title"><a href="https://localhost:44339/Review/Detail/@item.MaBaiViet">@item.BaiViet.TenBaiViet </a></h4>
+                                                @Math.Round(item.BaiViet.SoSao.Value, 1)⭐ || @item.BaiViet.YeuThich ❤️
+                                                <div class="text-lg text-medium text-muted">@item.BaiViet.MoTa</div>
+                                                <div>
+                                                    @item.BaiViet.TheLoai.TenTL
+                                                    <div class="d-inline text-success">Author: @item.BaiViet.TaiKhoan <a class="btn btn-default" href="@Url.Action("xoaDanhSachYeuThich", "DanhSachYeuThich", new {@id = item.MaBaiViet})">Remove</a></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="icon-cross"></i></a></td>
-                            </tr>
+                                    </td>
+                                    <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="icon-cross"></i></a></td>
+                                </tr>
+                            }
                         }
+                        
 
 
 

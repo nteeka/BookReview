@@ -4,7 +4,7 @@
     ViewBag.Title = "danhSachThongBao";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<title>Notify Page</title>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
 <link href="~/Content/ThongBao/danhSachThongBao.css" rel="stylesheet" />
 <div class="container" style="margin-top:50px">
@@ -20,7 +20,7 @@
                                 <span class="d-none d-md-block"> ALL</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        @*<li class="nav-item">
                             <a class="nav-link" id="sent-tab" data-toggle="tab" aria-controls="sent" href="#sent" role="tab" aria-selected="false">
                                 <span class="d-block d-md-none"><i class="ti-export"></i></span>
                                 <span class="d-none d-md-block">READ</span>
@@ -37,37 +37,13 @@
                                 <span class="d-block d-md-none"><i class="ti-trash"></i></span>
                                 <span class="d-none d-md-block">DELETED</span>
                             </a>
-                        </li>
+                        </li>*@
                     </ul>
                 </div>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade active show" id="inbox" aria-labelledby="inbox-tab" role="tabpanel">
                         <div>
-                            <div class="row p-4 no-gutters align-items-center">
-                                <div class="col-sm-12 col-md-6">
-                                    <h3 class="font-light mb-0"><i class="ti-email mr-2"></i>@Model.Count() unresolved message</h3>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <ul class="list-inline dl mb-0 float-left float-md-right">
-                                        <li class="list-inline-item text-info mr-3">
-                                            <a href="#">
-                                                <button class="btn btn-circle btn-success text-white" href="javascript:void(0)">
-                                                    <i class="fa fa-plus"></i>
-                                                </button>
-                                                <span class="ml-2 font-normal text-dark">Compose</span>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item text-danger">
-                                            <a href="#">
-                                                <button class="btn btn-circle btn-danger text-white" href="javascript:void(0)">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                                <span class="ml-2 font-normal text-dark">Delete</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                            
                             <!-- Mail list-->
                             <div class="table-responsive">
                                 <table class="table email-table no-wrap table-hover v-middle mb-0 font-14">
@@ -90,45 +66,49 @@
                                             {
                                                 <tr style="background-color:lightblue" class="">
                                                     <!-- label -->
-                                                    <td class="pl-3">
-                                                        @*<div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="cst7" />
-                                                <label class="custom-control-label" for="cst7">&nbsp;</label>
-                                            </div>*@
-                                                        <a href="#"><i class="fa fa-eye"></i></a>
-                                                    </td>
+                                                    @if (item.MaBaiViet != 3002)
+                                                    {
+                                                        <td class="pl-3"><a href="@Url.Action("Detail","Review",new {@id = item.MaBaiViet})" title="xem bài viết" class="fa fa-eye"></a></td>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <td></td>
+
+
+                                                    }
                                                     <!-- star -->
                                                     <td>@item.BaiViet.TaiKhoan</td>
                                                     <!-- User -->
                                                     <!--<td>
-                                        <span class="mb-0 text-muted font-light">@item.BaiViet.TenBaiViet</span>
-                                    </td>-->
+        <span class="mb-0 text-muted font-light">@item.BaiViet.TenBaiViet</span>
+    </td>-->
                                                     <!-- Message -->
                                                     @*<td>
-                                            @if (@item.BaiViet.TrangThai == -1)
-                                            {
-                                                <span style="background-color:yellow" class="badge badge-pill text-dark font-medium badge-danger mr-2">Waiting</span>
-                                            }
-                                            else
-                                            {
-                                                if (@item.BaiViet.TrangThai == 1)
-                                                {
-                                                    <span class="badge badge-pill text-success font-medium badge-danger mr-2">Public</span>
+            @if (@item.BaiViet.TrangThai == -1)
+            {
+                <span style="background-color:yellow" class="badge badge-pill text-dark font-medium badge-danger mr-2">Waiting</span>
+            }
+            else
+            {
+                if (@item.BaiViet.TrangThai == 1)
+                {
+                    <span class="badge badge-pill text-success font-medium badge-danger mr-2">Public</span>
 
-                                                }
-                                                else
-                                                {
-                                                    <span class="badge badge-pill text-red font-medium badge-danger mr-2">Private</span>
+                }
+                else
+                {
+                    <span class="badge badge-pill text-red font-medium badge-danger mr-2">Private</span>
 
-                                                }
-                                            }
+                }
+            }
 
-                                        </td>*@
+        </td>*@
                                                     @*<td>
-                                            <a class="link" href="javascript: void(0)">
-                                                <span class="badge badge-pill text-dark font-medium badge-danger mr-2">Review</span>
-                                            </a>
-                                        </td>*@
+            <a class="link" href="javascript: void(0)">
+                <span class="badge badge-pill text-dark font-medium badge-danger mr-2">Review</span>
+            </a>
+        </td>*@
                                                     <td><span class="font-light text-dark">@item.NoiDung</span></td>
 
                                                     <!-- Time -->
@@ -143,9 +123,9 @@
 
                                                             @*<li>
 
-                                                    <a href="@Url.Action("Detail", "Review", new { @id = item.MaBaiViet })" class="fa fa-eye text-muted">See post</a>
+                    <a href="@Url.Action("Detail", "Review", new { @id = item.MaBaiViet })" class="fa fa-eye text-muted">See post</a>
 
-                                                </li>*@
+                </li>*@
                                                         </ul>
 
                                                     </td>
@@ -153,33 +133,40 @@
                                             }
                                             else
                                             {
-                                                <tr class="">
-                                                    <td class="pl-3">
+                                    <tr class="">
+                                        @if (item.MaBaiViet != 3002)
+                                        {
+                                            <td class="pl-3"><a href="@Url.Action("Detail","Review",new {@id = item.MaBaiViet})" title="xem bài viết" class="fa fa-eye"></a></td>
 
-                                                        <a href="#"><i class="fa fa-eye"></i></a>
-                                                    </td>
-                                                    <td>@item.BaiViet.TaiKhoan</td>
+                                        }
+                                        else
+                                        {
+                                            <td></td>
 
-                                                    <td><span class="font-light text-dark">@item.NoiDung</span></td>
 
-                                                    <!-- Time -->
-                                                    <td class="text-muted font-light">@item.NgayTao.Value.ToString("dd/MM/yyyy")</td>
-                                                    <!-- Attachment -->
-                                                    <td>
-                                                        <ul>
-                                                            <li>
-                                                                <a href="@Url.Action("danhDauChuaDoc", "Admin", new { @id = item.MaThongBao,@strURL = Request.Url.ToString() })" class="fa fa-check text-muted">Đánh dấu chưa đọc</a>
+                                        }
+                                        <td>@item.BaiViet.TaiKhoan</td>
 
-                                                            </li>
+                                        <td><span class="font-light text-dark">@item.NoiDung</span></td>
 
-                                                            <li>
-                                                                @*<a href="@Url.Action("Detail", "Review", new { @id = item.MaBaiViet })" class="fa fa-eye text-muted">See post</a>*@
+                                        <!-- Time -->
+                                        <td class="text-muted font-light">@item.NgayTao.Value.ToString("dd/MM/yyyy")</td>
+                                        <!-- Attachment -->
+                                        <td>
+                                            <ul>
+                                                <li>
+                                                    <a href="@Url.Action("danhDauChuaDoc", "Admin", new { @id = item.MaThongBao,@strURL = Request.Url.ToString() })" class="fa fa-check text-muted">Đánh dấu chưa đọc</a>
 
-                                                            </li>
-                                                        </ul>
+                                                </li>
 
-                                                    </td>
-                                                </tr>
+                                                <li>
+                                                    @*<a href="@Url.Action("Detail", "Review", new { @id = item.MaBaiViet })" class="fa fa-eye text-muted">See post</a>*@
+
+                                                </li>
+                                            </ul>
+
+                                        </td>
+                                    </tr>
                                             }
 
                                         }
@@ -193,9 +180,10 @@
                                 </div>
                                 <div class="MenuTrang">
                                     @Html.PagedListPager(Model, page => Url.Action("danhSachThongBao", new
-                                    {
-                                        page = page
-                                    }))
+                               {
+                                   page = page,
+                                   name = Model.First().TaiKhoan
+                               }))
                                 </div>
 
                                 <script>
@@ -217,11 +205,11 @@
                         </div>
                     </div>
                     @*Read*@
-                    <div class="tab-pane fade" id="sent" aria-labelledby="sent-tab" role="tabpanel">
+                    <!--<div class="tab-pane fade" id="sent" aria-labelledby="sent-tab" role="tabpanel">
                         
-                    </div>
+                    </div>-->
                     @*unRead*@
-                    <div class="tab-pane fade" id="spam" aria-labelledby="spam-tab" role="tabpanel">
+                    <!--<div class="tab-pane fade" id="spam" aria-labelledby="spam-tab" role="tabpanel">
                         <div class="row p-3 text-dark">
                             <div class="col-md-6">
                                 <h3 class="font-light">Come on you have a lot message</h3>
@@ -242,7 +230,7 @@
                                 <p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a.</p>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
