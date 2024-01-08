@@ -236,11 +236,11 @@
                                             <ul>
                                                 <li>
                                                     <div class="single-explore-image-icon">
-                                                        <a href="https://localhost:44339/Review/Detail/@item.MaBaiViet"><i style="color:white" class="fa fa-arrows-alt"></i></a>
+                                                        <a href="@Url.Action("Detail", "Review", new {@id = @item.MaBaiViet})"><i style="color:white" class="fa fa-arrows-alt"></i></a>
 
                                                     </div>
                                                 </li>
-                                                <li>
+                                                @*<li>
                                                     <div class="single-explore-image-icon">
 
                                                         <a href=" @Url.Action("yeuThichBaiViet", "Review",new { @id = item.MaBaiViet, @strURL = Request.Url.ToString()})"><i style="color:white" class="fa fa-bookmark-o"></i></a>
@@ -248,7 +248,7 @@
 
 
                                                     </div>
-                                                </li>
+                                                </li>*@
                                             </ul>
                                         </div>
                                     </div>
@@ -290,11 +290,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="explore-open-close-part">
+                                    <!--<div class="explore-open-close-part">
                                         <div class="row">
-                                            <div class="col-sm-5">
-                                                <button class="close-btn" onclick="window.location.href='#'">close now</button>
-                                            </div>
+                                            <div class="col-sm-5">-->
+                                                @*<button class="close-btn" onclick="window.location.href='#'">close now</button>*@
+                                            <!--</div>
                                             <div class="col-sm-7">
                                                 <div class="explore-map-icon">
                                                     <a href="#"><i data-feather="map-pin"></i></a>
@@ -303,7 +303,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                         </div>
@@ -380,7 +380,7 @@
                                     <h2><a href="@Url.Action("Detail","Review",new {@id = item.MaBaiViet})">@item.TenBaiViet</a></h2>
                                     <h4>posted <span>by</span> <a href="#">@item.TaiKhoan</a> @item.NgayViet.ToString("dd/MM/yyyy")</h4>
                                     <p>
-                                        @item.MoTa.Substring(0, 50)..
+                                        @*@item.MoTa.Substring(0, 50)..*@
                                     </p>
                                 </div>
                             </div>

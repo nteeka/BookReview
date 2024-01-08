@@ -118,7 +118,7 @@
                             <li><a href="@Url.Action("Index","TacGia")">Author</a></li>
                             @*<li class="scroll"><a href="#reviews">review</a></li>*@
                             <li><a href="@Url.Action("Index","Review")">Posts</a></li>
-                            <li><a class="fa fa-bell" href="@Url.Action("danhSachThongBao","NguoiDung",new {@name = User.Identity.Name.Trim(),@page = 1})">( @ViewBag.soLuongTBChuaDoc )</a></li>
+                            <li><a style="font-size:medium" class="fa fa-bell" href="@Url.Action("danhSachThongBao","NguoiDung",new {@name = User.Identity.Name.Trim(),@page = 1})">( @ViewBag.soLuongTBChuaDoc )</a></li>
 
 
 

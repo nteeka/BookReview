@@ -56,7 +56,7 @@ namespace KK_BookStore.Controllers
             foreach (var item in baiVietDanhGiaCao)
             {
                 lstbaiVietDanhGiaCao.Add(item);
-                if (lstbaiVietDanhGiaCao.Count() == 4)
+                if (lstbaiVietDanhGiaCao.Count() == 6)
                     break;
             }
             ViewBag.baiVietDanhGiaCao = lstbaiVietDanhGiaCao;
@@ -93,7 +93,7 @@ namespace KK_BookStore.Controllers
         public ActionResult quanLyBaiViet(int? page)
         {
             if (page == null) page = 1;
-            int pageSize = 3;
+            int pageSize = 5;
             int pageNum = page ?? 1;
             var nguoidung = myData.NguoiDungs.Where(m => m.TaiKhoan == User.Identity.Name);
             ViewBag.hinh = nguoidung.First().Hinh;
@@ -774,14 +774,14 @@ namespace KK_BookStore.Controllers
             var replys = myData.PhanHois.Where(m => m.MaBinhLuan == id).ToList();
             return View(replys);
         }
-        public ActionResult danhSachBinhLuan(int? id)
+        public ActionResult danhSachBinhLuan(int id)
         {
             //so luong thong bao chua doc
             var countNoti = myData.ThongBaos.Where(m => m.TaiKhoan == User.Identity.Name && m.TrangThai == 0);
             ViewBag.soLuongTBChuaDoc = countNoti.Count();
             var user = myData.NguoiDungs.Where(m => m.TaiKhoan == User.Identity.Name).First();
             ViewBag.hinh = user.Hinh;
-            var lst_cmt = myData.BinhLuans.Where(m => m.MaBaiViet == id && m.isDeleted == null);
+            var lst_cmt = myData.BinhLuans.Where(m => m.MaBaiViet == id && m.isDeleted == false);
             ViewBag.replys = myData.PhanHois.ToList();
             return View(lst_cmt);
         }
@@ -836,6 +836,51 @@ namespace KK_BookStore.Controllers
             ViewBag.baiVietNhieuTim = lstBaiVietNhieuTim;
             var baiViet = myData.BaiViets.Where(m=>m.TenBaiViet.Contains(name) && m.TrangThai == 1);
             ViewBag.keyword = name;
+            return View(baiViet.ToPagedList(pageNum, pageSize));
+        }
+
+
+        public ActionResult danhSachBaiVietChuaDuyet(int? page)
+        {
+            if (page == null) page = 1;
+            int pageSize = 3;
+            int pageNum = page ?? 1;
+            if (User.Identity.IsAuthenticated)
+            {
+                var anhDaiDien = from s in myData.NguoiDungs where s.TaiKhoan == User.Identity.Name select s;
+                ViewBag.hinh = anhDaiDien.First().Hinh;
+            }
+            var baiViet = myData.BaiViets.Where(m => m.TrangThai == -1 && m.TaiKhoan == User.Identity.Name);
+
+            return View(baiViet.ToPagedList(pageNum, pageSize));
+        }
+
+        public ActionResult danhSachBaiVietBiTuChoi(int? page)
+        {
+            if (page == null) page = 1;
+            int pageSize = 3;
+            int pageNum = page ?? 1;
+            if (User.Identity.IsAuthenticated)
+            {
+                var anhDaiDien = from s in myData.NguoiDungs where s.TaiKhoan == User.Identity.Name select s;
+                ViewBag.hinh = anhDaiDien.First().Hinh;
+            }
+            var baiViet = myData.BaiViets.Where(m => m.TrangThai == -2 && m.TaiKhoan == User.Identity.Name );
+
+            return View(baiViet.ToPagedList(pageNum, pageSize));
+        }
+        public ActionResult danhSachBaiVietDaDuyet(int? page)
+        {
+            if (page == null) page = 1;
+            int pageSize = 3;
+            int pageNum = page ?? 1;
+            if (User.Identity.IsAuthenticated)
+            {
+                var anhDaiDien = from s in myData.NguoiDungs where s.TaiKhoan == User.Identity.Name select s;
+                ViewBag.hinh = anhDaiDien.First().Hinh;
+            }
+            var baiViet = myData.BaiViets.Where(m => m.TrangThai == 1 && m.TaiKhoan == User.Identity.Name);
+
             return View(baiViet.ToPagedList(pageNum, pageSize));
         }
 

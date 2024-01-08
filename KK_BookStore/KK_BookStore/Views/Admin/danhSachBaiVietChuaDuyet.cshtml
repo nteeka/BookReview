@@ -48,12 +48,12 @@
                                                                 <div>
                                                                     @if (item.TenBaiViet.Length < 30)
                                                                     {
-                                                                        <h5 class="font-size-18"><a href="ecommerce-product-detail.html" class="text-dark">@item.TenBaiViet</a></h5>
+                                                                        <h5 class="font-size-18"><a href="@Url.Action("xemTruocBaiViet", "Admin", new {@id = item.MaBaiViet})" class="text-dark">@item.TenBaiViet</a></h5>
 
                                                                     }
                                                                     else
                                                                     {
-                                                                        <h5 class="font-size-18"><a href="ecommerce-product-detail.html" class="text-dark">@item.TenBaiViet.Substring(0, 30)...</a></h5>
+                                                                        <h5 class="font-size-18"><a href="@Url.Action("xemTruocBaiViet", "Admin", new {@id = item.MaBaiViet})" class="text-dark">@item.TenBaiViet.Substring(0, 30)...</a></h5>
 
                                                                     }
                                                                     <p class="text-muted mb-0 mt-2 pt-2">

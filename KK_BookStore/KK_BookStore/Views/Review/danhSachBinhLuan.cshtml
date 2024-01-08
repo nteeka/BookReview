@@ -121,7 +121,7 @@
                         @using (Html.BeginForm("themBinhLuan", "NguoiDung", FormMethod.Get))
                         {
                             <input hidden list="browsers" value=@Model.First().MaBaiViet type="text" placeholder="ma" name="mabaiviet" />
-                            <input hidden list="browsers" value=@Request.Url.ToString() type="text" placeholder="ma" name="strURL" />
+                            @*<input hidden list="browsers" value=@Request.Url.ToString() type="text" placeholder="ma" name="strURL" />*@
 
                             <form>
                                 <h3 class="pull-left">Commnent</h3>

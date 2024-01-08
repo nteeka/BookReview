@@ -336,11 +336,11 @@ namespace KK_BookStore.Controllers
             lichSuHoatDong.LoaiHoatDong = "unFollow";
             data.LichSuHoatDongs.InsertOnSubmit(lichSuHoatDong);
             data.SubmitChanges();
-            return Redirect(strURL); ;
+            return Redirect(strURL); 
         }
 
 
-        [Authorize]
+        
         public ActionResult trangCaNhan(string name)
         {         
 
@@ -390,6 +390,8 @@ namespace KK_BookStore.Controllers
             //so luong thong bao chua doc
             var countNoti = data.ThongBaos.Where(m => m.TaiKhoan == User.Identity.Name && m.TrangThai == 0);
             ViewBag.soLuongTBChuaDoc = countNoti.Count();
+            var lst_TG = data.NguoiDungs.Where(m => m.ChucVu.TenChucVu == "Reviewer" && m.TaiKhoan != name);
+            ViewBag.Author = lst_TG;
             return View(user);
         }
 

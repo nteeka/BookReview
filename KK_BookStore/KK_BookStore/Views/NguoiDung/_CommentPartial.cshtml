@@ -34,39 +34,39 @@
                             <span class="publish py-3 d-inline-block w-100">@item.NgayTao.ToString("dd/MM/yyyy") <span class="fa fa-thumbs-up">@item.SoLike</span></span>
                             <div class="helpful-thumbs">
                                 <div class="helpful-thumb text-body-2">
-                                    @foreach (var check in ViewBag.checkYT)
+                                    @if (User.Identity.IsAuthenticated)
                                     {
-                                        if (check.MaBinhLuan == item.MaBinhLuan)
+                                        foreach (var check in ViewBag.checkYT)
                                         {
-                                            ViewBag.tempYT = 1;
-                                            break;
+                                            if (check.MaBinhLuan == item.MaBinhLuan)
+                                            {
+                                                ViewBag.tempYT = 1;
+                                                break;
+                                            }
+
+
                                         }
+                                        if (ViewBag.tempYT == 0)
+                                        {
+                                            <a href="#"
+                                               class="like-comment-link fa fa-thumbs-up"
+                                               data-mabinhluan="@item.MaBinhLuan">Like</a>
+                                            ViewBag.tempYT = 0;
+                                        }
+                                        else
+                                        {
+                                            <a href="#"
+                                               class="like-comment-link fa fa-thumbs-up"
+                                               data-mabinhluan="@item.MaBinhLuan">Unike</a>
+                                            ViewBag.tempYT = 0;
+                                        }
+                                    }
 
 
-                                    }
-                                    @if (ViewBag.tempYT == 0)
-                                    {
-                                        <a href="#"
-                                           class="like-comment-link fa fa-thumbs-up"
-                                           data-mabinhluan="@item.MaBinhLuan">Like</a>
-                                        ViewBag.tempYT = 0;
-                                    }
-                                    else
-                                    {
-                                        <a href="#"
-                                           class="like-comment-link fa fa-thumbs-up"
-                                           data-mabinhluan="@item.MaBinhLuan">Unike</a>
-                                        ViewBag.tempYT = 0;
-                                    }
-                                    
 
-                                    @*<a href="#"
-        class="like-comment-link fa fa-thumbs-up"
-        data-mabinhluan="@item.MaBinhLuan">Like</a>*@
-                                    @*<a href="@Url.Action("thichBinhLuan","NguoiDung", new { @id = item.MaBinhLuan })" class="thumb-title">Helpful</a>*@
 
                                 </div>
-                                
+
                                 @if (item.TaiKhoan.Trim() == User.Identity.Name.Trim())
                                 {
                                     <div class="helpful-thumb text-body-2 ml-3">
@@ -89,10 +89,14 @@
                                     <a href="#" class="save-edit-btn" data-mabinhluan="@item.MaBinhLuan">Save</a>
                                     <a href="#" class="cancel-edit-btn" data-mabinhluan="@item.MaBinhLuan">Cancel</a>
                                 </div>
-                                <div class="helpful-thumb text-body-2 ml-3">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <div class="helpful-thumb text-body-2 ml-3">
 
-                                    <a href="@Url.Action("danhSachPhanHoi","Review",new {@id = item.MaBinhLuan})" class="fa fa-reply">Reply</a>
-                                </div>
+                                        <a href="@Url.Action("danhSachPhanHoi","Review",new {@id = item.MaBinhLuan})" class="fa fa-reply">Reply</a>
+                                    </div>
+                                }
+
                             </div>
                             @foreach (var a in ViewBag.replys)
                             {

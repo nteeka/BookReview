@@ -80,6 +80,8 @@ namespace KK_BookStore.Controllers
         
         public ActionResult About()
         {
+            var user = data.NguoiDungs.Where(m => m.TaiKhoan == User.Identity.Name).First();
+            ViewBag.Hinh = user.Hinh;
             ViewBag.Message = "Your application description page.";
             //so luong thong bao chua doc
             var countNoti = data.ThongBaos.Where(m => m.TaiKhoan == User.Identity.Name && m.TrangThai == 0);

@@ -122,6 +122,8 @@ namespace KK_BookStore.Controllers
             var all_nguoidung = from tt in data.NguoiDungs where tt.MaChucVu == id select tt;
             var nguoidung = from tt in data.NguoiDungs select tt;
             ViewBag.lstNguoiDung = nguoidung;
+            var user = data.NguoiDungs.Where(m => m.TaiKhoan == User.Identity.Name).First();
+            ViewBag.Hinh = user.Hinh;
             return View(all_nguoidung);
         }
         //public ActionResult allUser()

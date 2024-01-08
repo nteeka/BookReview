@@ -1297,6 +1297,9 @@
     <Content Include="Views\Admin\danhSachBaiVietDaDuyet.cshtml" />
     <Content Include="Views\NguoiDung\_CommentPartial.cshtml" />
     <Content Include="Views\NguoiDung\_RatePartial.cshtml" />
+    <Content Include="Views\Review\danhSachBaiVietChuaDuyet.cshtml" />
+    <Content Include="Views\Review\danhSachBaiVietBiTuChoi.cshtml" />
+    <Content Include="Views\Review\danhSachBaiVietDaDuyet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

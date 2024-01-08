@@ -22,10 +22,10 @@
                                         <i class="icofont icofont-ui-delete"></i>
                                     </div>
                                 </div>
-                                <div class="timeline-btn">
+                                @*<div class="timeline-btn">
                                     <a href="#" class="btn btn-primary waves-effect waves-light m-r-10">follows</a>
                                     <a href="#" class="btn btn-primary waves-effect waves-light">Send Message</a>
-                                </div>
+                                </div>*@
 
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                                                     }
 
                                                 </div>
-                                                <div class="col-4">
+                                                @*<div class="col-4">
                                                     <button class="btn btn-danger btn-icon" data-toggle="tooltip" data-placement="top" title="" data-original-title="2k">
                                                         <i class="fa fa-thumbs-o-up"></i>Like
                                                     </button>
@@ -70,11 +70,11 @@
                                                     <button class="btn btn-success btn-icon" data-toggle="tooltip" data-placement="top" title="" data-original-title="90">
                                                         <i class="fa fa-eye"></i>View
                                                     </button>
-                                                </div>
+                                                </div>*@
                                             </div>
-                                            <div class="">
+                                            @*<div class="">
                                                 <button type="button" class="btn btn-outline-primary waves-effect btn-block"><i class="icofont icofont-ui-user m-r-10"></i> Add as Friend</button>
-                                            </div>
+                                            </div>*@
                                         </div>
                                     </div>
                                     <div>
@@ -90,12 +90,12 @@
 
                                         </ul>
 
-                                        <div class="panel panel-default">
+                                        @*<div class="panel panel-default">
                                             <div class="panel-heading">Social Media</div>
                                             <div class="panel-body">
                                                 <i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
                                             </div>
-                                        </div>
+                                        </div>*@
 
                                     </div><!--/col-3-->
                                     @*<div class="card">
@@ -172,7 +172,7 @@
                                 <div class="card social-tabs">
                                     <ul class="nav nav-tabs md-tabs tab-timeline" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link active" data-toggle="tab" href="#timeline" role="tab">Timeline</a>
+                                            <a class="nav-link active" data-toggle="tab" href="#timeline" role="tab">Posts</a>
                                             <div class="slide"></div>
                                         </li>
                                         <li class="nav-item">
@@ -184,7 +184,7 @@
                                             <div class="slide"></div>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#friends" role="tab">Friends</a>
+                                            <a hidden class="nav-link" data-toggle="tab" href="#friends" role="tab">Other Author</a>
                                             <div class="slide"></div>
                                         </li>
                                     </ul>
@@ -241,12 +241,12 @@
 
                                                                         @if (ViewBag.tempYT == 0)
                                                                         {
-                                                                            <a href="@Url.Action("yeuThichBaiViet", "Review",new { @id = item.MaBaiViet, @strURL = Request.Url.ToString()})"> <i class="icofont icofont-heart-alt text-muted"></i><span class="b-r-muted fa fa-thumbs-up">Like (@item.YeuThich)</span> </a>
+                                                                            <a href="@Url.Action("yeuThichBaiViet", "Review",new { @id = item.MaBaiViet, @strURL = Request.Url.ToString()})"> <i class="icofont icofont-heart-alt text-muted"></i><span style="font: bold; color: black" class="b-r-muted fa fa-thumbs-up">Like (@item.YeuThich)</span> </a>
                                                                             ViewBag.tempYT = 0;
                                                                         }
                                                                         else
                                                                         {
-                                                                            <a href="@Url.Action("yeuThichBaiViet", "Review",new { @id = item.MaBaiViet, @strURL = Request.Url.ToString()})"> <i class="icofont icofont-heart-alt text-muted"></i><span style="font:bold;color:black" class="b-r-muted fa fa-thumbs-up">Unlike (@item.YeuThich)</span> </a>
+                                                                            <a href="@Url.Action("yeuThichBaiViet", "Review",new { @id = item.MaBaiViet, @strURL = Request.Url.ToString()})"> <i class="icofont icofont-heart-alt text-muted"></i><span style="font: bold; color: blue" class="b-r-muted fa fa-thumbs-up">Unlike (@item.YeuThich)</span> </a>
                                                                             ViewBag.tempYT = 0;
                                                                         }
                                                                         @{
@@ -256,14 +256,11 @@
                                                                         {
                                                                             if (categoryCount.Key == item.MaBaiViet)
                                                                             {
-                                                                                <a href="#"> <i class="icofont icofont-comment text-muted"></i> <span class="b-r-muted">Comments (@categoryCount.Value)</span></a>
+                                                                                <a href="@Url.Action("danhSachBinhLuan", "Review", new {@id = @item.MaBaiViet})"> <i class="icofont icofont-comment text-muted"></i> <span class="b-r-muted">Comments (@categoryCount.Value)</span></a>
                                                                                 hasCategory = true;
                                                                                 break;
 
                                                                             }
-
-
-
 
                                                                         }
                                                                         @if (!hasCategory)
@@ -277,60 +274,7 @@
 
                                                                         <a href="#"> <i class="icofont icofont-share text-muted"></i> <span>Star (@Math.Round(@item.SoSao, 1)<i class="fa fa-star"></i>/@item.SoLuotDanhGia rates)</span></a>
                                                                     </div>
-                                                                    <div class="card-block user-box">
-                                                                        
-                                                                        
-                                                                        @*cmt*@
-                                                                        @foreach (var comment in ViewBag.cmts)
-                                                                        {
-                                                                            if (comment.MaBaiViet == item.MaBaiViet)
-                                                                            {
-                                                                                <div class="media m-b-20">
-                                                                                    <a class="media-left" href="#">
-                                                                                        <img class="media-object img-radius m-r-20" src="@comment.NguoiDung.Hinh" alt="Generic placeholder image">
-                                                                                    </a>
-                                                                                    <div class="media-body b-b-muted social-client-description">
-                                                                                        <div class="chat-header">@comment.TaiKhoan<span class="text-muted">@comment.NgayTao.ToString("dd/MM/yyyy")</span></div>
-                                                                                        <p class="text-muted">@comment.NoiDung</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                                ViewBag.countComment++;
-                                                                                if (ViewBag.countComment == 3)
-                                                                                {
-                                                                                    <a style="text-align:center" href="https://localhost:44339/Review/danhSachBinhLuan/@item.MaBaiViet">Show all comments</a>
-                                                                                    ViewBag.countComment = 0;
-                                                                                    break;
-                                                                                }
-                                                                            }
-
-                                                                        }
-
-                                                                        @*<div class="media m-b-20">
-            <a class="media-left" href="#">
-                <img class="media-object img-radius m-r-20" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="Generic placeholder image">
-            </a>
-            <div class="media-body b-b-muted social-client-description">
-                <div class="chat-header">About Marta Williams<span class="text-muted">Jane 11, 2015</span></div>
-                <p class="text-muted">lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            </div>
-        </div>*@
-                                                                        @*add cmt*@
-                                                                        <div class="media">
-                                                                            <a class="media-left" href="#">
-                                                                                <img class="media-object img-radius m-r-20" src="@Model.NguoiDung.Hinh" alt="Generic placeholder image">
-                                                                            </a>
-                                                                            <div class="media-body">
-                                                                                <form action="@Url.Action("themBinhLuan", "NguoiDung")" method="get" class="">
-                                                                                    <div class="">
-                                                                                        <input hidden list="browsers" value=@item.MaBaiViet type="text" placeholder="ma" name="mabaiviet" />
-                                                                                        <input hidden list="browsers" value=@Request.Url.ToString() type="text" placeholder="ma" name="strURL" />
-                                                                                        <textarea name="comment" rows="5" cols="5" required="required" class="form-control" placeholder="Write Something here..."></textarea>
-                                                                                        <div class="text-right m-t-20"><button type="submit" class="btn btn-primary waves-effect waves-light">Post</button></div>
-                                                                                    </div>
-                                                                                </form>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+                                                                    
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -340,7 +284,7 @@
                                             </div>
                                           }
                                         
-                                        <div class="f-30 text-muted text-center">2014</div>
+                                        @*<div class="f-30 text-muted text-center">2014</div>*@
                                         @*<div class="row">
                                             <div class="col-md-12 timeline-dot">
                                                 <div class="social-timelines p-relative">
@@ -565,16 +509,16 @@
                                                                             <th class="social-label b-none p-t-0">
                                                                                 Occupation &nbsp; &nbsp; &nbsp;
                                                                             </th>
-                                                                            <td class="social-user-name b-none p-t-0 text-muted">Developer</td>
+                                                                            <td class="social-user-name b-none p-t-0 text-muted">Reviewer</td>
                                                                         </tr>
-                                                                        <tr>
+                                                                        @*<tr>
                                                                             <th class="social-label b-none">Skills</th>
                                                                             <td class="social-user-name b-none text-muted">C#, Javascript, Anguler</td>
                                                                         </tr>
                                                                         <tr>
                                                                             <th class="social-label b-none">Jobs</th>
                                                                             <td class="social-user-name b-none p-b-0 text-muted">#</td>
-                                                                        </tr>
+                                                                        </tr>*@
                                                                     </tbody>
                                                                 </table>
                                                             </div>
@@ -639,104 +583,37 @@
                                         </div>
                                     </div>
 
-                                    <div class="tab-pane" id="friends">
+                                    <div style="padding-bottom:100px" class="tab-pane" id="friends">
                                         <div class="row">
-                                            <div class="col-lg-12 col-xl-6">
-                                                <div class="card">
-                                                    <div class="card-block post-timelines">
-                                                        <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
-                                                        <div class="dropdown-menu dropdown-menu-right b-none services-list">
-                                                            <a class="dropdown-item" href="#">Remove tag</a>
-                                                            <a class="dropdown-item" href="#">Report Photo</a>
-                                                            <a class="dropdown-item" href="#">Hide From Timeline</a>
-                                                            <a class="dropdown-item" href="#">Blog User</a>
-                                                        </div>
-                                                        <div class="media bg-white d-flex">
-                                                            <div class="media-left media-middle">
-                                                                <a href="#">
-                                                                    <img class="media-object" width="120" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
-                                                                </a>
-                                                            </div>
-                                                            <div class="media-body friend-elipsis">
-                                                                <div class="f-15 f-bold m-b-5">Josephin Doe</div>
-                                                                <div class="text-muted social-designation">Software Engineer</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 col-xl-6">
-                                                <div class="card">
-                                                    <div class="card-block post-timelines">
-                                                        <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
-                                                        <div class="dropdown-menu dropdown-menu-right b-none services-list">
-                                                            <a class="dropdown-item" href="#">Remove tag</a>
-                                                            <a class="dropdown-item" href="#">Report Photo</a>
-                                                            <a class="dropdown-item" href="#">Hide From Timeline</a>
-                                                            <a class="dropdown-item" href="#">Blog User</a>
-                                                        </div>
-                                                        <div class="media bg-white d-flex">
-                                                            <div class="media-left media-middle">
-                                                                <a href="#">
-                                                                    <img class="media-object" width="120" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="">
-                                                                </a>
-                                                            </div>
-                                                            <div class="media-body friend-elipsis">
-                                                                <div class="f-15 f-bold m-b-5">Josephin Doe</div>
-                                                                <div class="text-muted social-designation">Software Engineer</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 col-xl-6">
-                                                <div class="card">
-                                                    <div class="card-block post-timelines">
-                                                        <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
-                                                        <div class="dropdown-menu dropdown-menu-right b-none services-list">
-                                                            <a class="dropdown-item" href="#">Remove tag</a>
-                                                            <a class="dropdown-item" href="#">Report Photo</a>
-                                                            <a class="dropdown-item" href="#">Hide From Timeline</a>
-                                                            <a class="dropdown-item" href="#">Blog User</a>
-                                                        </div>
-                                                        <div class="media bg-white d-flex">
-                                                            <div class="media-left media-middle">
-                                                                <a href="#">
-                                                                    <img class="media-object" width="120" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
-                                                                </a>
-                                                            </div>
-                                                            <div class="media-body friend-elipsis">
-                                                                <div class="f-15 f-bold m-b-5">Josephin Doe</div>
-                                                                <div class="text-muted social-designation">Software Engineer</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 col-xl-6">
-                                                <div class="card">
-                                                    <div class="card-block post-timelines">
-                                                        <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
-                                                        <div class="dropdown-menu dropdown-menu-right b-none services-list">
-                                                            <a class="dropdown-item" href="#">Remove tag</a>
-                                                            <a class="dropdown-item" href="#">Report Photo</a>
-                                                            <a class="dropdown-item" href="#">Hide From Timeline</a>
-                                                            <a class="dropdown-item" href="#">Blog User</a>
-                                                        </div>
-                                                        <div class="media bg-white d-flex">
-                                                            <div class="media-left media-middle">
-                                                                <a href="#">
-                                                                    <img class="media-object" width="120" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
-                                                                </a>
-                                                            </div>
-                                                            <div class="media-body friend-elipsis">
-                                                                <div class="f-15 f-bold m-b-5">Josephin Doe</div>
-                                                                <div class="text-muted social-designation">Software Engineer</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            @foreach(var tg in ViewBag.Author)
+            {
+                    <div class="col-lg-12 col-xl-6">
+                        <div class="card">
+                            <div class="card-block post-timelines">
+                                <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
+                                <div class="dropdown-menu dropdown-menu-right b-none services-list">
+                                    <a class="dropdown-item" href="#">Remove tag</a>
+                                    <a class="dropdown-item" href="#">Report Photo</a>
+                                    <a class="dropdown-item" href="#">Hide From Timeline</a>
+                                    <a class="dropdown-item" href="#">Blog User</a>
+                                </div>
+                                <div class="media bg-white d-flex">
+                                    <div class="media-left media-middle">
+                                        <a href="#">
+                                            <img class="media-object" width="120" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="media-body friend-elipsis">
+                                        <div class="f-15 f-bold m-b-5"><a href="@Url.Action("trangCaNhan", "NguoiDung", new {@name = @tg.TaiKhoan})">@tg.TaiKhoan</a> </div>
+                                        <div class="text-muted social-designation">@tg.ChucVu.TenChucVu</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            }
+                                            
+                                            
                                         </div>
                                     </div>
                                 </div>

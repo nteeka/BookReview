@@ -271,17 +271,17 @@ namespace KK_BookStore.Controllers
         {
             var nguoiDung = data.NguoiDungs.Where(m => m.TaiKhoan == id).First();
             var user = db.Users.Where(m => m.UserName == id).First();
-            var author = data.Authors.Where(m => m.TaiKhoan == id).First();
-            if(author!=null)
-            {
-                data.Authors.DeleteOnSubmit(author);
-                data.SubmitChanges();
-            }
+            //var author = data.Authors.Where(m => m.TaiKhoan == id).First();
+            //if(author!=null)
+            //{
+            //    data.Authors.DeleteOnSubmit(author);
+            //    data.SubmitChanges();
+            //}
             nguoiDung.MaChucVu = "9cb428a4-bd38-415b-aed6-264b6afa1a59";
             UpdateModel(nguoiDung);
             var result = await UserManager.AddToRoleAsync(user.Id, "User");
             data.SubmitChanges();
-            return Redirect(strURL);
+            return RedirectToAction("danhSachNguoiDungTheoRole", "Role", new {@id = "7e4b3521-c157-45f8-8790-2c9bb2b4a89e" });
         }
 
 
@@ -786,7 +786,7 @@ namespace KK_BookStore.Controllers
             lichSuHoatDong.LoaiHoatDong = "duyet_Post";
 
             data.LichSuHoatDongs.InsertOnSubmit(lichSuHoatDong);
-            return RedirectToAction(strURL);
+            return RedirectToAction("danhSachBaiVietChuaDuyet");
         }
         
         public ActionResult tuChoiBaiViet(int id, string strURL)
@@ -831,11 +831,16 @@ namespace KK_BookStore.Controllers
             {
                 
                 ghim_BaiViet.Pinned = false;
+                UpdateModel(ghim_BaiViet);
+                data.SubmitChanges();
+                SetAlert("Bỏ ghim bài thành công", "success");
+                return RedirectToAction("danhSachBaiVietChuaDuyet");
+
             }
             else
             {
                 
-                ghim_BaiViet.Pinned = true;
+                ghim_BaiViet.Pinned = true;          
 
             }
             UpdateModel(ghim_BaiViet);
@@ -896,6 +901,7 @@ namespace KK_BookStore.Controllers
 
             return View(baiViet);
         }
+        [ValidateInput(false)]
         public ActionResult xemTruocBaiViet(int id)
         {
             if (User.Identity.IsAuthenticated)
